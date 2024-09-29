@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 
-public class BasicController : NetworkBehaviour
+public class BasicController : NetworkBehaviour, IAttack
 {
     protected Rigidbody2D rb;
     protected Camera cam;
@@ -30,6 +30,8 @@ public class BasicController : NetworkBehaviour
         InputActionW();
         InputActionE();
         InputActionR();
+
+        
     }
 
     protected void MouseRightClick()
@@ -40,7 +42,37 @@ public class BasicController : NetworkBehaviour
         {
             mouseClickPos = Input.mousePosition;
             mouseClickPos = cam.ScreenToWorldPoint(mouseClickPos);
-            rb.velocity = (mouseClickPos - objectPos).normalized * stat.GetSpeed() * Runner.DeltaTime;
+
+            RaycastHit2D hit = Physics2D.Raycast(mouseClickPos, Vector2.zero, 0f);
+
+            Vector2 distance = (mouseClickPos - objectPos);
+
+            if ((hit.collider != null))
+            {
+                GameObject targetObject = hit.transform.gameObject;
+
+                Debug.Log("Test");
+
+                if (distance.magnitude < stat.GetAttackRange())
+                {
+                    IAttack targetAttack = targetObject.GetComponent<IAttack>();
+                    if (targetAttack != null)
+                    {
+                        targetAttack.GetDamage(10.0f);
+                    }
+                    
+                    
+                }
+                else
+                {
+                    rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
+                }
+                
+            }
+            else
+            {
+                rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
+            }
 
         }
 
@@ -51,4 +83,11 @@ public class BasicController : NetworkBehaviour
     protected virtual void InputActionW() { }
     protected virtual void InputActionE() { }
     protected virtual void InputActionR() { }
+
+
+    public virtual void GetDamage(float Damage)
+    {
+        Debug.Log("BasicDamage");
+    }
+
 }

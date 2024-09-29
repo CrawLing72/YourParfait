@@ -27,7 +27,7 @@ public class Stat : MonoBehaviour
     }
     public float GetSpeed() { return speed; }
     public void SetSpeed(float setValue) { speed = setValue; }
-    public float GetAttackRange() { return speed; }
-    public void SetAttackRange(float setValue) { speed = setValue; }
+    public float GetAttackRange() { return attackRange; }
+    public void SetAttackRange(float setValue) { attackRange = setValue; }
 
 }
