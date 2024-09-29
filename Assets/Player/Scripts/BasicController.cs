@@ -9,6 +9,9 @@ public class BasicController : NetworkBehaviour, IAttack
     protected Camera cam;
     protected Stat stat;
 
+    protected bool isAttackAble, isWAble, isEAble, isRAble;
+    protected float currentAttackTime, currentWTime, currentRTime, currentETiem;
+
     protected Vector2 mouseClickPos;
 
     protected void Awake()
@@ -30,6 +33,12 @@ public class BasicController : NetworkBehaviour, IAttack
         InputActionW();
         InputActionE();
         InputActionR();
+
+        setTimer(ref currentAttackTime, ref isAttackAble);
+        setTimer(ref currentWTime, ref isWAble);
+        setTimer(ref currentETiem, ref isEAble);
+        setTimer(ref currentRTime, ref isRAble);
+
     }
 
     protected void MouseRightClick()
@@ -52,11 +61,14 @@ public class BasicController : NetworkBehaviour, IAttack
                 if (distance.magnitude < stat.GetAttackRange())
                 {
                     IAttack targetAttack = targetObject.GetComponent<IAttack>();
-                    if (targetAttack != null)
+                    if ((targetAttack != null) && (isAttackAble == true))
                     {
+                        Attack(mouseClickPos);
                         targetAttack.GetDamage(10.0f);
-                    }
 
+                        isAttackAble = false;
+                        currentAttackTime = stat.GetAttackTime();
+                    }
                 }
                 else
                 {
@@ -78,6 +90,7 @@ public class BasicController : NetworkBehaviour, IAttack
     protected virtual void InputActionW() { }
     protected virtual void InputActionE() { }
     protected virtual void InputActionR() { }
+    protected virtual void Attack(Vector2 targetLocation) { }
 
 
     public virtual void GetDamage(float Damage)
@@ -85,4 +98,17 @@ public class BasicController : NetworkBehaviour, IAttack
         Debug.Log("BasicDamage");
     }
 
+    private void setTimer(ref float currentTime, ref bool check)
+    {
+        if (check == false)
+        {
+            currentTime -= Runner.DeltaTime;
+
+            if (currentTime < 0)
+            {
+                check = true;
+                currentTime = 0;
+            }
+        }
+    }
 }
