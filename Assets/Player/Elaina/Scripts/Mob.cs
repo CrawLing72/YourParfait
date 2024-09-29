@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mob : MonoBehaviour, IAttack
 {
 
-    public void GetDamage(float Damage) 
+    public virtual void GetDamage(float Damage) 
     {
         Debug.Log("GEtDamageMob");
     }
