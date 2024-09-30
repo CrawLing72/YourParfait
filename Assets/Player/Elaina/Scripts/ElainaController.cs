@@ -23,6 +23,8 @@ public class ElainaController : BasicController
         stat.SetTWime(10.0f);
         stat.SetTRime(10.0f);
 
+        stat.SetAd(10.0f);
+
     }
 
     public override void FixedUpdateNetwork()
@@ -36,7 +38,7 @@ public class ElainaController : BasicController
         RangeAttack attackFunc = attack.GetComponent<RangeAttack>();
 
         attack.transform.position = gameObject.transform.position;
-        attackFunc.GetTarget(Target);
+        attackFunc.GetTarget(Target, stat.GetAd()); 
     }
 
     protected override void InputActionW()

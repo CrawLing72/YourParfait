@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class RangeAttack : MonoBehaviour
 {
-    GameObject target; 
+    GameObject target;
+    float Damage;
     protected Vector2 vel;
-    protected Rigidbody2D rb;
-
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
     public void Update()
     {
@@ -23,10 +17,13 @@ public class RangeAttack : MonoBehaviour
 
         vel = (targetLocation - myLocation).normalized;
 
-        rb.velocity = vel * 3000.0f * Time.deltaTime;
+        gameObject.transform.Translate(vel * 50.0f * Time.deltaTime);
 
         if (Mathf.Abs((myLocation - targetLocation).magnitude) < 1.0f) 
         {
+            IAttack getAttack = target.GetComponent<IAttack>();
+            getAttack.GetDamage(Damage);
+
             Destroy(gameObject);
         }
 
@@ -34,8 +31,10 @@ public class RangeAttack : MonoBehaviour
 
     }
 
-    public void GetTarget(GameObject Target) 
+    public void GetTarget(GameObject Target, float ad) 
     {
         target = Target;
+        Damage = ad;
     }
+
 }

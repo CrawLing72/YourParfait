@@ -66,7 +66,6 @@ public class BasicController : NetworkBehaviour, IAttack
                     if ((targetAttack != null) && (isAttackAble == true))
                     {
                         Attack(targetObject);
-                        targetAttack.GetDamage(10.0f);
 
                         isAttackAble = false;
                         currentAttackTime = stat.GetAttackTime();

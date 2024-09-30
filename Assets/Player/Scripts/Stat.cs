@@ -6,7 +6,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class Stat : MonoBehaviour
 {
-    protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, wTime, eTime, rTime;
+    protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, wTime, eTime, rTime,
+        ad;
 
     public float GetMaxHp() { return maxHp; }
     public void SetMaxHp(float setValue){ maxHp = setValue; }
@@ -37,5 +38,7 @@ public class Stat : MonoBehaviour
     public void SetTEime(float setValue) { eTime = setValue; }
     public float GetRTime() { return rTime; }
     public void SetTRime(float setValue) { rTime = setValue; }
+    public float GetAd() { return ad; }
+    public void SetAd(float setValue) { ad = setValue; }
 
 }
