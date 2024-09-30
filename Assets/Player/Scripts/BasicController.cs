@@ -9,7 +9,7 @@ public class BasicController : NetworkBehaviour, IAttack
     protected Camera cam;
     protected Stat stat;
 
-    protected bool isAttackAble, isWAble, isEAble, isRAble;
+    protected bool isAttackAble = true, isWAble = true, isEAble = true, isRAble = true;
     protected float currentAttackTime, currentWTime, currentRTime, currentETiem;
 
     protected Vector2 mouseClickPos;
@@ -24,11 +24,12 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected virtual void Start()
     {
-        stat.SetSpeed(1000.0f);
+        stat.SetSpeed(500.0f);
     }
 
     public override void FixedUpdateNetwork()
     {
+
         MouseRightClick();
         InputActionW();
         InputActionE();
@@ -43,6 +44,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected void MouseRightClick()
     {
+
         Vector2 objectPos = gameObject.transform.position;
         Vector2 distance = (mouseClickPos - objectPos);
 
@@ -63,7 +65,7 @@ public class BasicController : NetworkBehaviour, IAttack
                     IAttack targetAttack = targetObject.GetComponent<IAttack>();
                     if ((targetAttack != null) && (isAttackAble == true))
                     {
-                        Attack(mouseClickPos);
+                        Attack(targetObject);
                         targetAttack.GetDamage(10.0f);
 
                         isAttackAble = false;
@@ -85,12 +87,13 @@ public class BasicController : NetworkBehaviour, IAttack
 
         if (Mathf.Abs((distance).magnitude) < 0.5f)
             rb.velocity = Vector2.zero;
+
     }
 
     protected virtual void InputActionW() { }
     protected virtual void InputActionE() { }
     protected virtual void InputActionR() { }
-    protected virtual void Attack(Vector2 targetLocation) { }
+    protected virtual void Attack(GameObject Target) { }
 
 
     public virtual void GetDamage(float Damage)
@@ -104,7 +107,7 @@ public class BasicController : NetworkBehaviour, IAttack
         {
             currentTime -= Runner.DeltaTime;
 
-            if (currentTime < 0)
+            if (currentTime <= 0)
             {
                 check = true;
                 currentTime = 0;

@@ -30,10 +30,13 @@ public class ElainaController : BasicController
         base.FixedUpdateNetwork();
     }
 
-    protected override void Attack(Vector2 targetLocation)
+    protected override void Attack(GameObject Target)
     {
         GameObject attack = Instantiate(attackPrefeb);
-        attack.transform.position = targetLocation;
+        RangeAttack attackFunc = attack.GetComponent<RangeAttack>();
+
+        attack.transform.position = gameObject.transform.position;
+        attackFunc.GetTarget(Target);
     }
 
     protected override void InputActionW()
