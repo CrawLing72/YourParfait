@@ -10,10 +10,6 @@ using UnityEngine.UI;
 public class DataManager : MonoBehaviour
 {
     public List<Dictionary<string, object>> player_info;
-    public Image CharImg;
-    public TMP_Text CharName;
-    public TMP_Text CharDesc;
-    public TMP_Text CharPos;
 
     private static DataManager instance;
     public static DataManager Instance //singleton pattern implementation

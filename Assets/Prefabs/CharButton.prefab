@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 638130840523664352}
   - component: {fileID: 5667135057701257188}
   - component: {fileID: 5840410871742498980}
-  - component: {fileID: -6572826441098485279}
+  - component: {fileID: 7115875986155230715}
   m_Layer: 5
   m_Name: CharButton
   m_TagString: Untagged
@@ -123,9 +123,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -6572826441098485279}
-        m_TargetAssemblyTypeName: SelButtonController, Assembly-CSharp
-        m_MethodName: onClick
+      - m_Target: {fileID: 7115875986155230715}
+        m_TargetAssemblyTypeName: CharButtonController, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &-6572826441098485279
+--- !u!114 &7115875986155230715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,7 +159,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4570613343011716825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742bec63ab885e34b8920f180a1bd828, type: 3}
+  m_Script: {fileID: 11500000, guid: 3720428f180590a4b9f1fba79783afdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharNameString: 
+  charName: 
+  index: 0
