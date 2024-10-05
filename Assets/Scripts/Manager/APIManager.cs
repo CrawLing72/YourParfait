@@ -1,40 +1,63 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using System;
 
 public class APIManager : MonoBehaviour
 {
-    // API 엔드포인트 URL -> 클라 내부에서 실험하는 중이라 나중에 GCP or Azure로 이전할 것
-    private string apiUrl = "https://127.0.0.1:5000";
-
-    void Start()
+    [System.Serializable]
+    public class UserData
     {
-        // 코루틴을 사용하여 비동기 요청 실행
-        StartCoroutine(GetJsonData());
+        public string username;
+        public string password;
     }
 
-    // 비동기 코루틴 함수
-    IEnumerator GetJsonData()
+    public static APIManager instance;
+    private string apiUrl = "http://127.0.0.1:5000";
+
+    private void Awake()
     {
-        // UnityWebRequest 객체 생성
-        UnityWebRequest request = UnityWebRequest.Get(apiUrl);
-
-        // 요청 보내기
-        yield return request.SendWebRequest();
-
-        // 오류 체크
-        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+        if (instance == null)
         {
-            Debug.LogError("Error: " + request.error);
+            instance = this;
         }
         else
         {
-            // 요청이 성공적으로 완료되면 JSON 데이터를 출력
-            string jsonResponse = request.downloadHandler.text;
-            Debug.Log("Received: " + jsonResponse);
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 
-            // JSON 파싱 및 처리 (필요시)
-            // var data = JsonUtility.FromJson<YourClass>(jsonResponse);
+    public void sendJsonData(string _name, string _password, string keyword)
+    {
+        UserData userData = new UserData() { username = _name, password = _password };
+        string json = JsonUtility.ToJson(userData);
+        StartCoroutine(PostRequest(apiUrl + "/" + keyword, json));
+    }
+
+    IEnumerator PostRequest(string url, string json)
+    {
+        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        {
+            // JSON 데이터를 바이트 배열로 변환하여 설정
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            // 헤더 설정
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Accept", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.Log("Error: " + request.error);
+            }
+            else
+            {
+                Debug.Log("Response: " + request.downloadHandler.text);
+            }
         }
     }
 }
