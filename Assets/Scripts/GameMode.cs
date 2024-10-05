@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameMode : MonoBehaviour
 {
+    
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;

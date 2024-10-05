@@ -31,7 +31,7 @@ public class RangeAttack : MonoBehaviour
 
     }
 
-    public void GetTarget(GameObject Target, float ad) 
+    public void GetTarget(GameObject Target, float ad)
     {
         target = Target;
         Damage = ad;

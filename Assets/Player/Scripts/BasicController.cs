@@ -63,6 +63,7 @@ public class BasicController : NetworkBehaviour, IAttack
                 if (distance.magnitude < stat.GetAttackRange())
                 {
                     IAttack targetAttack = targetObject.GetComponent<IAttack>();
+
                     if ((targetAttack != null) && (isAttackAble == true))
                     {
                         Attack(targetObject);

@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class ElainaController : BasicController
 {
     [SerializeField]
     protected GameObject attackPrefeb;
+
+    [SerializeField]
+    protected GameObject butterflyPrefb;
+
+    bool wIsOn = false;
 
     protected override void Start()
     {
@@ -30,6 +36,32 @@ public class ElainaController : BasicController
     public override void FixedUpdateNetwork()
     {
         base.FixedUpdateNetwork();
+
+        if (wIsOn)
+        {
+            
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("W is On");
+
+                Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 myPos = Object.transform.position;
+                Vector2 dir = (mousePos - myPos).normalized;
+
+                GameObject butterfly = Instantiate(butterflyPrefb);
+                NonTargetSkill nonTargetSkill = butterfly.GetComponent<NonTargetSkill>();
+
+                butterfly.transform.position = myPos + dir*1.0f;
+                nonTargetSkill.GetDirection(dir);
+
+                isWAble = false;
+                currentWTime = stat.GetWTime();
+
+                wIsOn = false;
+            }
+        }
+
     }
 
     protected override void Attack(GameObject Target)
@@ -43,17 +75,43 @@ public class ElainaController : BasicController
 
     protected override void InputActionW()
     {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+           
+            if (isWAble)
+            {
+                
+                wIsOn = true;
+            }
+            else
+            {
+                wIsOn = false;
+            }
+        }
 
     }
 
     protected override void InputActionE()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (isWAble)
+            {
+            }
+        }
 
     }
 
     protected override void InputActionR()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (isWAble)
+            {
 
+            }
+        }
+    
     }
 
     public override void GetDamage(float Damage)
