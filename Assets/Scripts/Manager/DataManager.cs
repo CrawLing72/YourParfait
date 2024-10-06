@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class DataManager : MonoBehaviour
 {
     public List<Dictionary<string, object>> player_info;
+    public bool isLogined;
 
     private static DataManager instance;
     public static DataManager Instance //singleton pattern implementation

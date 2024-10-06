@@ -9,13 +9,13 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager instance;
-    public bool isLoggined = false;
 
     [Header("UI Elements")]
     public GameObject loginButton;
     public GameObject lobbyButton;
     public GameObject mainMenu;
     public GameObject logginMenu;
+    public TMP_Text loginAlert;
 
     public void LoadLoadingScene()
     {
@@ -29,12 +29,39 @@ public class MenuManager : MonoBehaviour
         logginMenu.SetActive(true);
     }
 
-    public void sendLogginData()
+    public void DeactivateLoginMenu()
+    {
+        mainMenu.SetActive(true);
+        logginMenu.SetActive(false);
+    }
+
+    public async void sendLogginData()
     {
         string name = GameObject.Find("identityField").GetComponent<TMP_InputField>().text;
         string password = GameObject.Find("passwordField").GetComponent<TMP_InputField>().text;
 
-        APIManager.instance.sendJsonData(name, password, "login");
+        await APIManager.instance.sendJsonData(name, password, "login");
+        long response_code = APIManager.instance.answered_data.response_code;
+        if (response_code == 200)
+        {
+            DataManager.Instance.isLogined = true;
+            Debug.Log(APIManager.instance.answered_data.message);
+            DeactivateLoginMenu();
+
+        } else if (response_code == 401)
+        {
+            loginAlert.text = "사용자가 없거나 비밀번호가 틀렸습니다.";
+        } else if (response_code == 405)
+        {
+            loginAlert.text = "이미 존재하는 아이디 입니다.";
+        } else if (response_code == 500)
+        {
+            loginAlert.text = "SERVER CLOSED";
+        }
+        else
+        {
+            loginAlert.text = "response_code : " + response_code.ToString();
+        }
     }
 
     public void sendRegister()
@@ -68,7 +95,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (isLoggined)
+        if (DataManager.Instance.isLogined)
         {
             loginButton.SetActive(false);
             lobbyButton.SetActive(true);
