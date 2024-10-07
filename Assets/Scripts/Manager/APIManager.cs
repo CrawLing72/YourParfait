@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using System;
+using System.Threading.Tasks;
 
 public class APIManager : MonoBehaviour
 {
@@ -12,7 +13,15 @@ public class APIManager : MonoBehaviour
         public string password;
     }
 
+    public class Message
+    {
+        public long response_code;
+        public string message;
+        public bool isError;
+    }
+
     public static APIManager instance;
+    public Message answered_data;
     private string apiUrl = "http://127.0.0.1:5000";
 
     private void Awake()
@@ -28,35 +37,43 @@ public class APIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void sendJsonData(string _name, string _password, string keyword)
+    public async Task sendJsonData(string _name, string _password, string keyword)
     {
         UserData userData = new UserData() { username = _name, password = _password };
         string json = JsonUtility.ToJson(userData);
-        StartCoroutine(PostRequest(apiUrl + "/" + keyword, json));
-    }
+        string fullUrl = apiUrl + "/" + keyword;
 
-    IEnumerator PostRequest(string url, string json)
-    {
-        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        string method = "POST";
+        if (keyword == "matchmaking" || keyword == "gameover")
         {
-            // JSON 데이터를 바이트 배열로 변환하여 설정
-            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+            method = "GET";
+        }
+
+        using (UnityWebRequest request = new UnityWebRequest(fullUrl, method))
+        {
+            byte[] bodyRaw = new System.Text.UTF8Encoding().GetBytes(json);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
 
-            // 헤더 설정
             request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("Accept", "application/json");
+            if (keyword == "matchmaking" || keyword == "gameover")
+            {
+                request.SetRequestHeader("Authorization", "Bearer " + DataManager.Instance.JWTToken);
+            }
 
-            yield return request.SendWebRequest();
+            var operation = request.SendWebRequest();
+
+            // 응답이 올 때까지 비동기 대기
+            while (!operation.isDone)
+                await Task.Yield();  // 대기 시 유니티 메인 스레드를 차단하지 않음
 
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.Log("Error: " + request.error);
+                answered_data = new Message() { response_code = request.responseCode, message = request.downloadHandler.text, isError = true };
             }
             else
             {
-                Debug.Log("Response: " + request.downloadHandler.text);
+                answered_data = new Message() { response_code = request.responseCode, message = request.downloadHandler.text, isError = false };
             }
         }
     }
