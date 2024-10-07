@@ -53,14 +53,17 @@ public class MenuManager : MonoBehaviour
             Token token = JsonUtility.FromJson<Token>(APIManager.instance.answered_data.message);
             DataManager.Instance.JWTToken = token.access_token;
             DeactivateLoginMenu();
+            PlayerPrefs.SetString("Name", name);
+            PlayerPrefs.SetString("Password", password);
 
-        } else if (response_code == 401)
+        }
+        else if (response_code == 401)
         {
             loginAlert.text = "사용자가 없거나 비밀번호가 틀렸습니다.";
         } else if (response_code == 405)
         {
             loginAlert.text = "이미 존재하는 아이디 입니다.";
-        } else if (response_code == 500)
+        } else if (response_code == 0)
         {
             loginAlert.text = "SERVER CLOSED";
         }
@@ -70,12 +73,29 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void sendRegister()
+    public async void sendRegister()
     {
         string name = GameObject.Find("identityField").GetComponent<TMP_InputField>().text;
         string password = GameObject.Find("passwordField").GetComponent<TMP_InputField>().text;
 
-        APIManager.instance.sendJsonData(name, password, "register");
+        await APIManager.instance.sendJsonData(name, password, "register");
+        long response_code = APIManager.instance.answered_data.response_code;
+        if (response_code == 200)
+        {
+            loginAlert.text = "회원가입 성공";
+        }
+        else if (response_code == 400)
+        {
+            loginAlert.text = "같은 아이디의 유저가 이미 존재합니다.";
+        }
+        else if (response_code == 0)
+        {
+            loginAlert.text = "SERVER CLOSED";
+        }
+        else
+        {
+            loginAlert.text = "response_code : " + response_code.ToString();
+        }
     }
 
     public void exitGame()

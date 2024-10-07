@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class DataManager : MonoBehaviour
 {
-    public List<Dictionary<string, object>> player_info;
+    public List<Dictionary<string, object>> Character_info;
     public bool isLogined;
     public string JWTToken;
 
@@ -53,6 +53,6 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        player_info = CSVReader.Read("CharacterInfo");
+        Character_info = CSVReader.Read("CharacterInfo");
     }
 }

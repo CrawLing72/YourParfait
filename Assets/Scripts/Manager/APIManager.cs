@@ -43,13 +43,23 @@ public class APIManager : MonoBehaviour
         string json = JsonUtility.ToJson(userData);
         string fullUrl = apiUrl + "/" + keyword;
 
-        using (UnityWebRequest request = new UnityWebRequest(fullUrl, "POST"))
+        string method = "POST";
+        if (keyword == "matchmaking" || keyword == "gameover")
+        {
+            method = "GET";
+        }
+
+        using (UnityWebRequest request = new UnityWebRequest(fullUrl, method))
         {
             byte[] bodyRaw = new System.Text.UTF8Encoding().GetBytes(json);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
 
             request.SetRequestHeader("Content-Type", "application/json");
+            if (keyword == "matchmaking" || keyword == "gameover")
+            {
+                request.SetRequestHeader("Authorization", "Bearer " + DataManager.Instance.JWTToken);
+            }
 
             var operation = request.SendWebRequest();
 

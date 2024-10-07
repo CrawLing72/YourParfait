@@ -16,6 +16,12 @@ public class LobbyManager : MonoBehaviour
 
     public static LobbyManager instance;
 
+    public class MatchedServer
+    {
+        public string arranged_server;
+        public int player_count;
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -36,19 +42,19 @@ public class LobbyManager : MonoBehaviour
 
     private void Start()
     {
-        if(DataManager.Instance.player_info == null)
+        if(DataManager.Instance.Character_info == null)
         {
-            DataManager.Instance.player_info = CSVReader.Read("CharacterInfo");
+            DataManager.Instance.Character_info = CSVReader.Read("CharacterInfo");
         }
 
-        for(int i = 0; i < DataManager.Instance.player_info.Count; i++)
+        for(int i = 0; i < DataManager.Instance.Character_info.Count; i++)
         {
             Instantiate(CharPrefab, CharInfoPanel.transform);
         }
-        for(int i = 0; i<DataManager.Instance.player_info.Count; i++)
+        for(int i = 0; i<DataManager.Instance.Character_info.Count; i++)
         {
             CharButtonController charButton = CharInfoPanel.transform.GetChild(i).GetComponent<CharButtonController>();
-            charButton.charName = DataManager.Instance.player_info[i]["ImgFileName"].ToString();
+            charButton.charName = DataManager.Instance.Character_info[i]["ImgFileName"].ToString();
             charButton.index = i;
             charButton.refresh_button_info();
         }
@@ -56,15 +62,34 @@ public class LobbyManager : MonoBehaviour
 
     public void refresh_char_info(int index)
     {
-        CharName.text = DataManager.Instance.player_info[index]["Name"].ToString();
-        CharDesc.text = DataManager.Instance.player_info[index]["Description"].ToString();
-        CharPos.text = DataManager.Instance.player_info[index]["Position"].ToString();
-        CharImg.sprite = Resources.Load<Sprite>("CharImgs/" + DataManager.Instance.player_info[index]["ImgFileName"].ToString());
+        CharName.text = DataManager.Instance.Character_info[index]["Name"].ToString();
+        CharDesc.text = DataManager.Instance.Character_info[index]["Description"].ToString();
+        CharPos.text = DataManager.Instance.Character_info[index]["Position"].ToString();
+        CharImg.sprite = Resources.Load<Sprite>("CharImgs/" + DataManager.Instance.Character_info[index]["ImgFileName"].ToString());
     }
 
     public void backToMain()
     {
         PlayerPrefs.SetString("NewScene", "MainMenu");
         SceneManager.LoadScene("LoadingScene");
+    }
+
+    public async void startGame()
+    {
+        await APIManager.instance.sendJsonData(PlayerPrefs.GetString("Name"), PlayerPrefs.GetString("Password"), "matchmaking");
+        long response_code = APIManager.instance.answered_data.response_code;
+        if (response_code == 200)
+        {
+            MatchedServer matchedServer = JsonUtility.FromJson<MatchedServer>(APIManager.instance.answered_data.message);
+            PlayerPrefs.SetString("Server", matchedServer.arranged_server);
+            PlayerPrefs.SetInt("PlayerCount", matchedServer.player_count);
+            Debug.Log("Matched Server : " + matchedServer.arranged_server);
+            PlayerPrefs.SetString("NewScene", "GameScene");
+            SceneManager.LoadScene("LoadingScene");
+        }
+        else
+        {
+            Debug.Log("Error : " + response_code);
+        }
     }
 }
