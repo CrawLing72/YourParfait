@@ -10,6 +10,11 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager instance;
 
+    public class Token
+    {
+        public string access_token;
+    }
+
     [Header("UI Elements")]
     public GameObject loginButton;
     public GameObject lobbyButton;
@@ -45,7 +50,8 @@ public class MenuManager : MonoBehaviour
         if (response_code == 200)
         {
             DataManager.Instance.isLogined = true;
-            Debug.Log(APIManager.instance.answered_data.message);
+            Token token = JsonUtility.FromJson<Token>(APIManager.instance.answered_data.message);
+            DataManager.Instance.JWTToken = token.access_token;
             DeactivateLoginMenu();
 
         } else if (response_code == 401)
