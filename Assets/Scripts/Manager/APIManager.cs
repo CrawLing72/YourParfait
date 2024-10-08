@@ -22,7 +22,7 @@ public class APIManager : MonoBehaviour
 
     public static APIManager instance;
     public Message answered_data;
-    private string apiUrl = "http://127.0.0.1:5000";
+    private string apiUrl = "http://yourparfait.duckdns.org:5000";
 
     private void Awake()
     {
