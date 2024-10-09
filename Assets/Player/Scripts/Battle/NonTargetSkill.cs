@@ -27,16 +27,18 @@ public class NonTargetSkill : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        IAttack target = collision.gameObject.GetComponent<IAttack>();
-
-        Debug.Log("Collison on");
-
-        if (target != null)
+        if(collision.collider != null)
         {
-            target.GetDamage(10.0f);
-            Destroy(gameObject);
-        }
+            Debug.Log("Collison on");
 
+            IAttack target = collision.gameObject.GetComponent<IAttack>();
+
+            if (target != null)
+            {
+                target.GetDamage(10.0f);
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void GetStat(Stat stat)

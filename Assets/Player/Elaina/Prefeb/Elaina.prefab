@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2694146350132601831}
   - component: {fileID: 153401081678291508}
   - component: {fileID: -7884896743747013699}
+  - component: {fileID: 6163534280365881847}
   m_Layer: 0
   m_Name: Elaina
   m_TagString: Untagged
@@ -159,3 +160,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bef59479f6d7f44aa2e2c577aa07065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6163534280365881847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998946159674773842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7299a8a144c0a4f9938188e39d529b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSpeed: 300
+  zoomMAx: 200
+  moveSpeed: 10
