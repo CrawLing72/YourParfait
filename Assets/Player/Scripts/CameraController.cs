@@ -40,7 +40,6 @@ public class CameraController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("KeyDwonSapce");
             Vector2 pos = gameObject.transform.position;
 
             mainCamera.transform.position = new Vector3(pos.x,pos.y, -30.0f);
