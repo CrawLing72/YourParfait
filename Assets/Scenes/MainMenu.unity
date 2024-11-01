@@ -400,7 +400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ClientVersion : 0.01v'
+  m_text: 'ClientVersion : 0.02v'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a6d1144a476e9e2458fa301857fb914d, type: 2}
   m_sharedMaterial: {fileID: -5976616382853653185, guid: a6d1144a476e9e2458fa301857fb914d, type: 2}

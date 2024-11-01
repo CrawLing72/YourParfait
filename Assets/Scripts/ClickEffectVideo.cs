@@ -6,7 +6,6 @@ public class ClickEffectVideo : MonoBehaviour
 {
     public GameObject videoImagePrefab; // ¿µ»ó ÇÁ¸®ÆÕ
     public Canvas canvas; // UI Äµ¹ö½º
-
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
