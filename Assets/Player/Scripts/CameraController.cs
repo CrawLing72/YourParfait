@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEngine.Rendering;
+using UnityEditor.ShaderGraph.Internal;
+#endif
 
 public class CameraController : MonoBehaviour
 {

@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+#if UNITY_EDITOR
 using static UnityEditor.PlayerSettings;
+#endif
 
 public class ElainaController : BasicController
 {
