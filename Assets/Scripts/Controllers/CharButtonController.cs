@@ -11,6 +11,7 @@ public class CharButtonController : MonoBehaviour
     public void refresh_button_info()
     {
         GetComponent<Image>().sprite = Resources.Load<Sprite>("circled_char/" + charName);
+        PlayerPrefs.SetString("SelectedChar", charName);
     }
 
     public void OnClick()

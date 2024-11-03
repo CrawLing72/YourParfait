@@ -22,6 +22,9 @@ public class APIManager : MonoBehaviour
 
     public static APIManager instance;
     public Message answered_data;
+    public string username;
+
+
     private string apiUrl = "http://yourparfait.duckdns.org:5000";
 
     private void Awake()
@@ -40,6 +43,7 @@ public class APIManager : MonoBehaviour
     public async Task sendJsonData(string _name, string _password, string keyword)
     {
         UserData userData = new UserData() { username = _name, password = _password };
+        DataManager.Instance.username = _name;
         string json = JsonUtility.ToJson(userData);
         string fullUrl = apiUrl + "/" + keyword;
 
