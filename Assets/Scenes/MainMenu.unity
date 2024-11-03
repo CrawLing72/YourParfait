@@ -1106,6 +1106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLogined: 0
   JWTToken: 
+  username: 
 --- !u!4 &295321378
 Transform:
   m_ObjectHideFlags: 0
@@ -4211,6 +4212,7 @@ GameObject:
   - component: {fileID: 1471967260}
   - component: {fileID: 1471967262}
   - component: {fileID: 1471967261}
+  - component: {fileID: 1471967263}
   m_Layer: 5
   m_Name: logginMenu
   m_TagString: Untagged
@@ -4285,6 +4287,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471967259}
   m_CullTransparentMesh: 1
+--- !u!114 &1471967263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471967259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b3fd5a2e1ecf34f907d672138fc593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputFields:
+  - {fileID: 179531926}
+  - {fileID: 1616962214}
+  - {fileID: 480372940}
+  - {fileID: 1012165025}
 --- !u!1 &1510801377
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,6 +4577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9641483945c36d04ab2f6e5a1f866936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  username: 
 --- !u!4 &1879502587
 Transform:
   m_ObjectHideFlags: 0

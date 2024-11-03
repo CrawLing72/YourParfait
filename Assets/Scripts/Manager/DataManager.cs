@@ -10,6 +10,7 @@ public class DataManager : MonoBehaviour
     public List<Dictionary<string, object>> Character_info;
     public bool isLogined;
     public string JWTToken;
+    public string username;
 
     private static DataManager instance;
     public static DataManager Instance //singleton pattern implementation
