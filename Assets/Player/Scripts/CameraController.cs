@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEngine.Rendering;
-using UnityEditor.ShaderGraph.Internal;
-#endif
+using Cinemachine; // 시네머신 네임스페이스 추가
 
 public class CameraController : MonoBehaviour
 {
@@ -13,19 +10,13 @@ public class CameraController : MonoBehaviour
     float zoomSpeed = 300f;
 
     [SerializeField]
-    float zoomMAx = 200f;
+    float zoomMax = 200f;
 
     [SerializeField]
     float moveSpeed = 100.0f;
 
-    Camera mainCamera;
-
-    protected void Awake()
-    {
-        mainCamera = Camera.main;
-    }
-
-
+    [SerializeField]
+    CinemachineVirtualCamera cinemachineCamera; // 시네머신 카메라 변수 선언
 
     private void LateUpdate()
     {
@@ -35,44 +26,40 @@ public class CameraController : MonoBehaviour
 
     protected void CameraZoom()
     {
-        float zoonDirection = Input.GetAxis("Mouse ScrollWhell");
+        float zoomDirection = Input.GetAxis("Mouse ScrollWheel");
+        var lensSettings = cinemachineCamera.m_Lens;
+
+        // 줌 인/아웃 조정
+        lensSettings.FieldOfView -= zoomDirection * zoomSpeed * Time.deltaTime;
+        lensSettings.FieldOfView = Mathf.Clamp(lensSettings.FieldOfView, 15f, zoomMax); // 줌 범위 설정
+        cinemachineCamera.m_Lens = lensSettings;
     }
 
     protected void CharacterLocationFix()
     {
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Vector2 pos = gameObject.transform.position;
-
-            mainCamera.transform.position = new Vector3(pos.x,pos.y, -30.0f);
+            Vector2 pos = transform.position;
+            cinemachineCamera.transform.position = new Vector3(pos.x, pos.y, -30.0f);
         }
     }
 
     protected void CameraMove()
     {
         Vector2 mousePos = Input.mousePosition;
-        mousePos = mainCamera.ScreenToViewportPoint(mousePos);
+        mousePos = Camera.main.ScreenToViewportPoint(mousePos);
 
-        if (mousePos.x < 0.01)
-        {
-            mainCamera.transform.Translate((new Vector2(-1.0f,0.0f)) * Time.deltaTime * moveSpeed);
-        }
-        else if(mousePos.x > 0.99)
-        {
-            mainCamera.transform.Translate((new Vector2(1.0f, 0.0f)) * Time.deltaTime * moveSpeed);
-        }
-        else if(mousePos.y < 0.01)
-        {
-            mainCamera.transform.Translate((new Vector2(0.0f, -1.0f)) * Time.deltaTime * moveSpeed);
-        }
-        else if(mousePos.y > 0.99)
-        {
-            mainCamera.transform.Translate((new Vector2(0.0f, 1.0f)) * Time.deltaTime * moveSpeed);
-        }
+        Vector3 direction = Vector3.zero;
 
+        if (mousePos.x < 0.01f)
+            direction = Vector3.left;
+        else if (mousePos.x > 0.99f)
+            direction = Vector3.right;
+        else if (mousePos.y < 0.01f)
+            direction = Vector3.down;
+        else if (mousePos.y > 0.99f)
+            direction = Vector3.up;
 
+        cinemachineCamera.transform.Translate(direction * Time.deltaTime * moveSpeed);
     }
-
-    
-
 }
