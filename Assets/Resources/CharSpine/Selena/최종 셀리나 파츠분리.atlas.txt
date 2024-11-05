@@ -1,0 +1,129 @@
+최종 셀리나 파츠분리.png
+size:2048,1737
+filter:Linear,Linear
+pma:true
+scale:0.5
+B-cape 1
+bounds:2,1323,210,242
+offsets:0,0,210,244
+rotate:90
+B-cape 2
+bounds:1458,1096,561,255
+F-cape
+bounds:1404,781,477,313
+F-hair
+bounds:1189,437,342,762
+offsets:0,0,404,762
+rotate:90
+L-arm
+bounds:789,499,398,344
+L-closed eye
+bounds:675,878,371,305
+offsets:1,0,373,306
+L-eyebrow
+bounds:355,1688,307,47
+L-eyelashes
+bounds:2,1535,310,157
+L-face
+bounds:2,983,350,293
+L-hair
+bounds:733,2,433,748
+rotate:90
+L-highlight
+bounds:740,1683,67,52
+L-iris
+bounds:1163,1588,147,189
+rotate:90
+L-leg
+bounds:314,1513,164,593
+rotate:90
+L-pupil
+bounds:265,1694,43,41
+L-sclera
+bounds:246,1278,286,233
+offsets:0,1,287,234
+Layer 14 copy
+bounds:909,1497,187,179
+R-arm
+bounds:357,541,430,335
+R-closed eye
+bounds:1048,845,354,322
+offsets:0,0,354,323
+R-eyebrow
+bounds:809,1679,247,56
+R-eyelashes
+bounds:1544,1579,295,156
+R-face
+bounds:354,972,293,319
+offsets:0,1,294,321
+rotate:90
+R-hair
+bounds:2,131,408,729
+offsets:0,36,408,765
+rotate:90
+R-highlight
+bounds:664,1685,74,50
+R-iris
+bounds:1354,1586,149,188
+rotate:90
+R-leg
+bounds:1098,1413,164,586
+rotate:90
+R-pupil
+bounds:310,1694,43,41
+R-sclera
+bounds:534,1267,257,244
+offsets:0,1,258,245
+accessory
+bounds:1686,1353,208,339
+offsets:0,0,209,339
+rotate:90
+body1
+bounds:2,646,324,353
+rotate:90
+body2 down
+bounds:793,1185,310,253
+rotate:90
+earring
+bounds:72,1697,38,191
+rotate:90
+hair ribbon
+bounds:1048,1169,242,408
+rotate:90
+mouse
+bounds:9,1718,61,17
+offsets:0,1,62,18
+nose
+bounds:2,1730,5,5
+offsets:1,1,7,7
+ribbon
+bounds:1841,1563,172,205
+rotate:90
+string
+bounds:1058,1678,103,57
+offsets:1,1,105,58
+
+최종 셀리나 파츠분리_2.png
+size:2035,1287
+filter:Linear,Linear
+pma:true
+scale:0.5
+L- side hair
+bounds:2,176,581,1015
+offsets:11,0,592,1015
+rotate:90
+R-side hair
+bounds:2,759,526,1135
+rotate:90
+face
+bounds:1019,2,1014,699
+skirt
+bounds:1139,703,646,582
+
+최종 셀리나 파츠분리_3.png
+size:1333,1923
+filter:Linear,Linear
+pma:true
+scale:0.5
+B-hair
+bounds:2,2,1329,1919
