@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fusion;
+using Spine.Unity;
 using UnityEngine;
 
 public class BasicController : NetworkBehaviour, IAttack
@@ -8,21 +9,23 @@ public class BasicController : NetworkBehaviour, IAttack
     protected Rigidbody2D rb;
     protected Camera cam;
     protected Stat stat;
-    private bool onDirection = true;
-    private Transform Char;
 
     protected bool isAttackAble = true, isWAble = true, isEAble = true, isRAble = true;
     protected float currentAttackTime, currentWTime, currentRTime, currentETiem;
 
     protected Vector2 mouseClickPos;
 
+    private bool onDirection = true;
+    private Transform Char;
+    private SkeletonAnimation skeletonAnimation;
+
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         stat = GetComponent<Stat>();
-
         cam = Camera.main;
         Char = gameObject.transform.GetChild(0);
+        skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
     }
 
     protected virtual void Start()
@@ -34,6 +37,7 @@ public class BasicController : NetworkBehaviour, IAttack
     {
 
         MouseRightClick();
+        settingAnimation();
         InputActionW();
         InputActionE();
         InputActionR();
@@ -127,6 +131,18 @@ public class BasicController : NetworkBehaviour, IAttack
                 check = true;
                 currentTime = 0;
             }
+        }
+    }
+
+    private void settingAnimation()
+    {
+        if (rb.velocity.magnitude > 0)
+        {
+            skeletonAnimation.AnimationName = "walking";
+        }
+        else
+        {
+            skeletonAnimation.AnimationName = "idle";
         }
     }
 }
