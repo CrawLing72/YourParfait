@@ -8,7 +8,7 @@ public class ClickEffectVideo : MonoBehaviour
     public Canvas canvas; // UI Äµ¹ö½º
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             ShowVideoAtClickPosition(Input.mousePosition);
         }

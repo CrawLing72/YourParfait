@@ -8,6 +8,8 @@ public class BasicController : NetworkBehaviour, IAttack
     protected Rigidbody2D rb;
     protected Camera cam;
     protected Stat stat;
+    private bool onDirection = true;
+    private Transform Char;
 
     protected bool isAttackAble = true, isWAble = true, isEAble = true, isRAble = true;
     protected float currentAttackTime, currentWTime, currentRTime, currentETiem;
@@ -20,11 +22,12 @@ public class BasicController : NetworkBehaviour, IAttack
         stat = GetComponent<Stat>();
 
         cam = Camera.main;
+        Char = gameObject.transform.GetChild(0);
     }
 
     protected virtual void Start()
     {
-        stat.SetSpeed(500.0f);
+        stat.SetSpeed(50.0f);
     }
 
     public override void FixedUpdateNetwork()
@@ -84,6 +87,18 @@ public class BasicController : NetworkBehaviour, IAttack
             }
 
         }
+
+        Vector3 Scale = Char.localScale;
+        if(distance.x < 0)
+        {
+            Scale.x = (Scale.x < 0 ? -Scale.x : Scale.x);
+        }
+        else
+        {
+            Scale.x = (Scale.x > 0 ? -Scale.x : Scale.x);
+        }
+        Char.localScale = Scale;
+
 
         if (Mathf.Abs((distance).magnitude) < 0.5f)
             rb.velocity = Vector2.zero;
