@@ -10,9 +10,6 @@ public class CameraController : MonoBehaviour
     float zoomSpeed = 300f;
 
     [SerializeField]
-    float zoomMax = 200f;
-
-    [SerializeField]
     float moveSpeed = 100.0f;
 
     [SerializeField]
@@ -22,6 +19,7 @@ public class CameraController : MonoBehaviour
     {
         CameraMove();
         CharacterLocationFix();
+        CameraZoom();
     }
 
     protected void CameraZoom()
@@ -30,8 +28,8 @@ public class CameraController : MonoBehaviour
         var lensSettings = cinemachineCamera.m_Lens;
 
         // ¡‹ ¿Œ/æ∆øÙ ¡∂¡§
-        lensSettings.FieldOfView -= zoomDirection * zoomSpeed * Time.deltaTime;
-        lensSettings.FieldOfView = Mathf.Clamp(lensSettings.FieldOfView, 15f, zoomMax); // ¡‹ π¸¿ß º≥¡§
+        lensSettings.OrthographicSize -= zoomDirection * zoomSpeed * Time.deltaTime;
+        lensSettings.OrthographicSize = Mathf.Clamp(lensSettings.OrthographicSize, 2.5f, 6f); // ¡‹ π¸¿ß º≥¡§
         cinemachineCamera.m_Lens = lensSettings;
     }
 

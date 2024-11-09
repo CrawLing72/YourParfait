@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fusion;
+using Spine.Unity;
 using UnityEngine;
 
 public class BasicController : NetworkBehaviour, IAttack
@@ -14,23 +15,29 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected Vector2 mouseClickPos;
 
+    private bool onDirection = true;
+    private Transform Char;
+    private SkeletonAnimation skeletonAnimation;
+
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         stat = GetComponent<Stat>();
-
         cam = Camera.main;
+        Char = gameObject.transform.GetChild(0);
+        skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
     }
 
     protected virtual void Start()
     {
-        stat.SetSpeed(500.0f);
+        stat.SetSpeed(50.0f);
     }
 
     public override void FixedUpdateNetwork()
     {
 
         MouseRightClick();
+        settingAnimation();
         InputActionW();
         InputActionE();
         InputActionR();
@@ -85,6 +92,18 @@ public class BasicController : NetworkBehaviour, IAttack
 
         }
 
+        Vector3 Scale = Char.localScale;
+        if(distance.x < 0)
+        {
+            Scale.x = (Scale.x < 0 ? -Scale.x : Scale.x);
+        }
+        else
+        {
+            Scale.x = (Scale.x > 0 ? -Scale.x : Scale.x);
+        }
+        Char.localScale = Scale;
+
+
         if (Mathf.Abs((distance).magnitude) < 0.5f)
             rb.velocity = Vector2.zero;
 
@@ -112,6 +131,18 @@ public class BasicController : NetworkBehaviour, IAttack
                 check = true;
                 currentTime = 0;
             }
+        }
+    }
+
+    private void settingAnimation()
+    {
+        if (rb.velocity.magnitude > 0)
+        {
+            skeletonAnimation.AnimationName = "walking";
+        }
+        else
+        {
+            skeletonAnimation.AnimationName = "idle";
         }
     }
 }
