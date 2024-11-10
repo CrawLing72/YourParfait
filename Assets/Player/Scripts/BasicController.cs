@@ -35,7 +35,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     public override void FixedUpdateNetwork()
     {
-
+        Debug.Log("RightClickUpdated");
         MouseRightClick();
         settingAnimation();
         InputActionW();
@@ -59,39 +59,11 @@ public class BasicController : NetworkBehaviour, IAttack
         {
             mouseClickPos = Input.mousePosition;
             mouseClickPos = cam.ScreenToWorldPoint(mouseClickPos);
-
-            RaycastHit2D hit = Physics2D.Raycast(mouseClickPos, Vector2.zero, 0f);
-
-
-            if ((hit.collider != null))
-            {
-                GameObject targetObject = hit.transform.gameObject;
-
-                if (distance.magnitude < stat.GetAttackRange())
-                {
-                    IAttack targetAttack = targetObject.GetComponent<IAttack>();
-
-                    if ((targetAttack != null) && (isAttackAble == true))
-                    {
-                        Attack(targetObject);
-
-                        isAttackAble = false;
-                        currentAttackTime = stat.GetAttackTime();
-                    }
-                }
-                else
-                {
-                    rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
-                }
-                
-            }
-            else
-            {
-                rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
-            }
+            rb.velocity = (distance).normalized * stat.GetSpeed() * NetworkManager.Instance.runner.DeltaTime;
 
         }
 
+        // X축 distance Projectioned Vecotr에 따른 Character 방향 전환
         Vector3 Scale = Char.localScale;
         if(distance.x < 0)
         {
@@ -124,7 +96,7 @@ public class BasicController : NetworkBehaviour, IAttack
     {
         if (check == false)
         {
-            currentTime -= Runner.DeltaTime;
+            currentTime -= NetworkManager.Instance.runner.DeltaTime;
 
             if (currentTime <= 0)
             {
