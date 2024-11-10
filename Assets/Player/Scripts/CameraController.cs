@@ -7,7 +7,7 @@ using Cinemachine; // 시네머신 네임스페이스 추가
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    float zoomSpeed = 300f;
+    float zoomSpeed = 1200f;
 
     [SerializeField]
     float moveSpeed = 100.0f;

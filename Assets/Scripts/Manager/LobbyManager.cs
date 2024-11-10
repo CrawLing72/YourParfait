@@ -10,6 +10,7 @@ public class LobbyManager : MonoBehaviour
     public TMP_Text CharDesc;
     public TMP_Text CharPos;
     public Image CharImg;
+    private string CharFileName;
 
     public GameObject CharInfoPanel;
     public GameObject CharPrefab;
@@ -66,6 +67,7 @@ public class LobbyManager : MonoBehaviour
         CharDesc.text = DataManager.Instance.Character_info[index]["Description"].ToString();
         CharPos.text = DataManager.Instance.Character_info[index]["Position"].ToString();
         CharImg.sprite = Resources.Load<Sprite>("CharImgs/" + DataManager.Instance.Character_info[index]["ImgFileName"].ToString());
+        CharFileName = DataManager.Instance.Character_info[index]["ImgFileName"].ToString();
     }
 
     public void backToMain()
@@ -85,6 +87,7 @@ public class LobbyManager : MonoBehaviour
             PlayerPrefs.SetInt("PlayerCount", matchedServer.player_count);
             Debug.Log("Matched Server : " + matchedServer.arranged_server);
             PlayerPrefs.SetString("NewScene", "GameScene");
+            PlayerPrefs.SetString("CharName", CharFileName);
             SceneManager.LoadScene("LoadingScene");
         }
         else
