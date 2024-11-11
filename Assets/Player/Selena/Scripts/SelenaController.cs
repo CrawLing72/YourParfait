@@ -44,7 +44,6 @@ public class SelenaController : BasicController
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Left Mouse Click");
             lastMouseClickPosition = Input.mousePosition;
             lastMouseClickPosition.z = Mathf.Abs(cam.transform.position.z);
             lastMouseClickPosition = cam.ScreenToWorldPoint(lastMouseClickPosition);
