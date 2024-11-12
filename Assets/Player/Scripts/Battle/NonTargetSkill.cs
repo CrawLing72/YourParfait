@@ -13,6 +13,9 @@ public class NonTargetSkill : MonoBehaviour, IAttack
     float time;
 
 
+    private float damage;
+
+
     Vector2 dir;
 
     private void Start()
@@ -34,19 +37,24 @@ public class NonTargetSkill : MonoBehaviour, IAttack
             IAttack target = collision.gameObject.GetComponent<IAttack>();
             if (target != null)
             {
-                target.GetDamage(10.0f);
+                target.GetDamage(damage);
                 Destroy(gameObject);
             }
         }
     }
 
-    public void GetStat(Stat stat)
+    public void SetStat(Stat stat)
     {
         playerStat = stat;
     }
 
-    public void GetDirection(Vector2 diretion)
+    public void SetDirection(Vector2 diretion)
     {
         dir = diretion;
+    }
+
+    public void SetSkillDamage(float Damage)
+    {
+        damage = Damage;
     }
 }

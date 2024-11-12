@@ -6,6 +6,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class Stat : MonoBehaviour
 {
+    [SerializeField]
     protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, wTime, eTime, rTime,
         ad;
 

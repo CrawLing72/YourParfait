@@ -15,6 +15,8 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected Vector2 mouseClickPos;
 
+
+    private bool inputDelay = true;
     private bool onDirection = true;
     private Transform Char;
     private SkeletonAnimation skeletonAnimation;
@@ -30,7 +32,9 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected virtual void Start()
     {
+
         stat.SetSpeed(50.0f);
+
     }
 
     public override void FixedUpdateNetwork()
@@ -59,10 +63,38 @@ public class BasicController : NetworkBehaviour, IAttack
             mouseClickPos = Input.mousePosition;
             mouseClickPos = cam.ScreenToWorldPoint(mouseClickPos);
             rb.velocity = (distance).normalized * stat.GetSpeed() * NetworkManager.Instance.runner.DeltaTime;
+            RaycastHit2D hit = Physics2D.Raycast(mouseClickPos, Vector2.zero, 0f);
 
-        }
 
-        // XÃà distance Projectioned Vecotr¿¡ µû¸¥ Character ¹æÇâ ÀüÈ¯
+            if ((hit.collider != null))
+            {
+                GameObject targetObject = hit.transform.gameObject;
+
+                if (distance.magnitude < stat.GetAttackRange())
+                {
+                    IAttack targetAttack = targetObject.GetComponent<IAttack>();
+
+                    if ((targetAttack != null) && (isAttackAble == true))
+                    {
+                        Debug.Log("Attack");
+                        Attack(targetObject);
+
+                        isAttackAble = false;
+                        currentAttackTime = stat.GetAttackTime();
+                    }
+                }
+                else
+                {
+                    rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
+                }
+                
+            }
+            else
+            {
+                rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
+            }
+
+        // XÃƒÃ  distance Projectioned VecotrÂ¿Â¡ ÂµÃ»Â¸Â¥ Character Â¹Ã¦Ã‡Ã¢ Ã€Ã¼ÃˆÂ¯
         Vector3 Scale = Char.localScale;
         if(distance.x < 0)
         {
@@ -89,6 +121,7 @@ public class BasicController : NetworkBehaviour, IAttack
     public virtual void GetDamage(float Damage)
     {
         Debug.Log("BasicDamage");
+        stat.SetCurrentHp(stat.GetCurrentHp() - Damage);
     }
 
     private void setTimer(ref float currentTime, ref bool check)
