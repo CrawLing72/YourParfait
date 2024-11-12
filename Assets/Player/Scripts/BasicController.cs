@@ -14,6 +14,8 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected Vector2 mouseClickPos;
 
+    private bool inputDelay = true;
+
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,7 +26,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected virtual void Start()
     {
-        stat.SetSpeed(500.0f);
+
     }
 
     public override void FixedUpdateNetwork()
@@ -66,6 +68,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
                     if ((targetAttack != null) && (isAttackAble == true))
                     {
+                        Debug.Log("Attack");
                         Attack(targetObject);
 
                         isAttackAble = false;
@@ -99,6 +102,7 @@ public class BasicController : NetworkBehaviour, IAttack
     public virtual void GetDamage(float Damage)
     {
         Debug.Log("BasicDamage");
+        stat.SetCurrentHp(stat.GetCurrentHp() - Damage);
     }
 
     private void setTimer(ref float currentTime, ref bool check)
