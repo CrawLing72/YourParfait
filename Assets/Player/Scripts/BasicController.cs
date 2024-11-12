@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class BasicController : NetworkBehaviour, IAttack
 {
+
+    [Header("Skill")]
+    [SerializeField]
+    GameObject BasicAttack;
+
     protected Rigidbody2D rb;
     protected Camera cam;
     protected Stat stat;
@@ -18,6 +23,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     private bool inputDelay = true;
     private bool onDirection = true;
+    protected bool shouldFire = false;
     private Transform Char;
     private SkeletonAnimation skeletonAnimation;
 
@@ -110,6 +116,42 @@ public class BasicController : NetworkBehaviour, IAttack
         if (Mathf.Abs((distance).magnitude) < 0.5f)
             rb.velocity = Vector2.zero;
 
+    }
+
+    protected void MouseLeftClick(Vector3 mouseClickPos) // Basic Attack
+    {
+        RaycastHit2D hit = Physics2D.Raycast(mouseClickPos, Vector2.zero, Mathf.Infinity);
+
+        if (hit.collider != null)
+        {
+            Debug.Log($"Hit Object: {hit.collider.name}");
+
+            Vector2 objectPos = gameObject.transform.position;
+            Vector2 distance = ((Vector2)mouseClickPos - objectPos);
+
+            Debug.Log($"Distance: {distance.magnitude}, Required Range: {stat.GetAttackRange()}");
+
+            if (distance.magnitude < stat.GetAttackRange() && isAttackAble)
+            {
+                Vector3 projectilePos = gameObject.transform.position;
+                projectilePos.x += (distance.x < 0 ? -2 : 1); // Object Axis Imbalance로 인한 보정
+                projectilePos.y -= 1;
+
+                GameObject projectile = Instantiate(BasicAttack, projectilePos, Quaternion.identity);
+                projectile.GetComponent<NonTargetSkill>().GetDirection(distance.normalized);
+
+                Debug.Log("Projectile Launched");
+
+                isAttackAble = false;
+                currentAttackTime = stat.GetAttackTime();
+                shouldFire = false; // 발사 후 플래그 초기화
+            }
+        }
+        else
+        {
+            Debug.Log("No Object Hit Detected");
+            shouldFire = false; // 발사 실패 시 플래그 초기화
+        }
     }
 
     protected virtual void InputActionW() { }
