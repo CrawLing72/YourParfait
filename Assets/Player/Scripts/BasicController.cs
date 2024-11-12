@@ -35,7 +35,6 @@ public class BasicController : NetworkBehaviour, IAttack
 
     public override void FixedUpdateNetwork()
     {
-        Debug.Log("RightClickUpdated");
         MouseRightClick();
         settingAnimation();
         InputActionW();

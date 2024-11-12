@@ -27,6 +27,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     {
         playerSpawner = gameObject.GetComponent<PlayerSpawner>();
         string char_name = PlayerPrefs.GetString("CharName");
+        Debug.Log("CharName: " + char_name);
         switch (char_name)
         {
             case "Selena":
