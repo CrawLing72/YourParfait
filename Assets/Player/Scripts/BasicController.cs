@@ -93,32 +93,33 @@ public class BasicController : NetworkBehaviour, IAttack
                 {
                     rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
                 }
-                
+
             }
             else
             {
                 rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
             }
 
-        // XÃà distance Projectioned Vecotr¿¡ µû¸¥ Character ¹æÇâ ÀüÈ¯
-        Vector3 Scale = Char.localScale;
-        if(distance.x < 0)
-        {
-            Scale.x = (Scale.x < 0 ? -Scale.x : Scale.x);
+            // XÃà distance Projectioned Vecotr¿¡ µû¸¥ Character ¹æÇâ ?üÈ¯
+            Vector3 Scale = Char.localScale;
+            if (distance.x < 0)
+            {
+                Scale.x = (Scale.x < 0 ? -Scale.x : Scale.x);
+            }
+            else
+            {
+                Scale.x = (Scale.x > 0 ? -Scale.x : Scale.x);
+            }
+            Char.localScale = Scale;
+
+
+            if (Mathf.Abs((distance).magnitude) < 0.5f)
+                rb.velocity = Vector2.zero;
+
         }
-        else
-        {
-            Scale.x = (Scale.x > 0 ? -Scale.x : Scale.x);
-        }
-        Char.localScale = Scale;
-
-
-        if (Mathf.Abs((distance).magnitude) < 0.5f)
-            rb.velocity = Vector2.zero;
-
     }
 
-    protected void MouseLeftClick(Vector3 mouseClickPos) // Basic Attack
+    protected void MouseLeftClick(Vector3 mouseClickPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(mouseClickPos, Vector2.zero, Mathf.Infinity);
 
@@ -138,7 +139,7 @@ public class BasicController : NetworkBehaviour, IAttack
                 projectilePos.y -= 1;
 
                 GameObject projectile = Instantiate(BasicAttack, projectilePos, Quaternion.identity);
-                projectile.GetComponent<NonTargetSkill>().GetDirection(distance.normalized);
+                projectile.GetComponent<NonTargetSkill>().SetDirection(distance.normalized);
 
                 Debug.Log("Projectile Launched");
 
