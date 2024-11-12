@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NonTargetSkill : MonoBehaviour
+public class NonTargetSkill : MonoBehaviour, IAttack
 {
     Stat playerStat;
 
@@ -32,10 +32,9 @@ public class NonTargetSkill : MonoBehaviour
     {
         if(collision.collider != null)
         {
-            Debug.Log("Collison on");
+            Debug.Log(collision.gameObject.name);
 
             IAttack target = collision.gameObject.GetComponent<IAttack>();
-
             if (target != null)
             {
                 target.GetDamage(damage);

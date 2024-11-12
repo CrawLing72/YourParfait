@@ -1,0 +1,145 @@
+최종 파츠분리.png
+size:2033,1888
+filter:Linear,Linear
+pma:true
+scale:0.5
+Layer 1 copy
+bounds:10,1868,18,44
+rotate:90
+Layer 1
+bounds:10,1868,18,44
+rotate:90
+Layer 2 copy
+bounds:128,1850,45,36
+Layer 2
+bounds:128,1850,45,36
+Layer 33 copy 2
+bounds:912,1636,146,190
+offsets:0,1,146,191
+rotate:90
+Layer 33 copy 3
+bounds:1849,1747,139,182
+offsets:8,10,151,192
+rotate:90
+Layer 33 copy 5
+bounds:1085,973,328,263
+Layer 33 copy 6
+bounds:1415,793,361,285
+arm 1 L
+bounds:1457,1119,230,250
+arm 1 r
+bounds:804,976,260,279
+offsets:0,0,260,281
+rotate:90
+arm 2 L
+bounds:1700,1547,207,198
+arm 2 r
+bounds:1471,1371,227,224
+back ribbon
+bounds:1376,1760,126,172
+rotate:90
+back wing
+bounds:713,552,633,419
+offsets:0,56,633,475
+belt 1
+bounds:1511,1597,187,154
+offsets:0,8,187,162
+belt 2
+bounds:743,1825,61,213
+offsets:0,19,77,239
+rotate:90
+body
+bounds:725,136,414,767
+rotate:90
+front hair
+bounds:2,671,343,709
+offsets:7,16,350,725
+rotate:90
+front hair L
+bounds:1494,2,490,789
+offsets:396,14,886,803
+front hair r
+bounds:2,137,413,721
+offsets:0,77,560,798
+rotate:90
+hair ribbon
+bounds:965,1238,490,223
+hand L
+bounds:1095,1784,132,102
+hand r
+bounds:1229,1771,145,115
+offsets:0,0,146,115
+l
+bounds:571,1678,339,145
+l-closed eye
+bounds:2,1100,354,241
+offsets:1,1,355,243
+l-eye
+bounds:1700,1337,270,208
+offsets:0,0,271,208
+l-side hair 2
+bounds:1104,1617,141,405
+rotate:90
+leg L
+bounds:856,1463,152,613
+offsets:0,0,168,641
+rotate:90
+leg r
+bounds:2,1526,150,610
+offsets:0,0,150,618
+rotate:90
+leg-ribbon L
+bounds:2,1690,135,567
+rotate:90
+leg-ribbon r
+bounds:958,1811,135,75
+offsets:0,0,135,537
+mouse
+bounds:56,1867,70,19
+nose
+bounds:2,1880,6,6
+r
+bounds:1550,1753,297,133
+r-closed eye
+bounds:1689,1080,322,255
+offsets:0,1,322,256
+r-eye
+bounds:614,1470,240,206
+r-side hair 2
+bounds:358,1016,247,444
+rotate:90
+wing L
+bounds:500,1265,196,463
+offsets:0,0,289,463
+rotate:90
+wing r
+bounds:2,1343,181,496
+offsets:0,0,219,496
+rotate:90
+눈썹 L
+bounds:439,1827,302,59
+눈썹 r
+bounds:175,1830,262,56
+
+최종 파츠분리_2.png
+size:1606,2042
+filter:Linear,Linear
+pma:true
+scale:0.5
+Layer 33 copy
+bounds:548,180,1056,713
+back hair
+bounds:548,895,1145,1054
+rotate:90
+side tail
+bounds:2,2,544,2038
+
+최종 파츠분리_3.png
+size:1130,1083
+filter:Linear,Linear
+pma:true
+scale:0.5
+l-side hair
+bounds:571,2,557,1079
+r-side hair
+bounds:2,8,567,1073
