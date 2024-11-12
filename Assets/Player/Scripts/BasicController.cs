@@ -20,8 +20,6 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected Vector2 mouseClickPos;
 
-
-    private bool inputDelay = true;
     private bool onDirection = true;
     protected bool shouldFire = false;
     private Transform Char;
@@ -38,9 +36,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected virtual void Start()
     {
-
         stat.SetSpeed(50.0f);
-
     }
 
     public override void FixedUpdateNetwork()
@@ -69,57 +65,28 @@ public class BasicController : NetworkBehaviour, IAttack
             mouseClickPos = Input.mousePosition;
             mouseClickPos = cam.ScreenToWorldPoint(mouseClickPos);
             rb.velocity = (distance).normalized * stat.GetSpeed() * NetworkManager.Instance.runner.DeltaTime;
-            RaycastHit2D hit = Physics2D.Raycast(mouseClickPos, Vector2.zero, 0f);
-
-
-            if ((hit.collider != null))
-            {
-                GameObject targetObject = hit.transform.gameObject;
-
-                if (distance.magnitude < stat.GetAttackRange())
-                {
-                    IAttack targetAttack = targetObject.GetComponent<IAttack>();
-
-                    if ((targetAttack != null) && (isAttackAble == true))
-                    {
-                        Debug.Log("Attack");
-                        Attack(targetObject);
-
-                        isAttackAble = false;
-                        currentAttackTime = stat.GetAttackTime();
-                    }
-                }
-                else
-                {
-                    rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
-                }
-
-            }
-            else
-            {
-                rb.velocity = (distance).normalized * stat.GetSpeed() * Runner.DeltaTime;
-            }
-
-            // XÃƒÃ  distance Projectioned VecotrÂ¿Â¡ ÂµÃ»Â¸Â¥ Character Â¹Ã¦Ã‡Ã¢ ?Ã¼ÃˆÂ¯
-            Vector3 Scale = Char.localScale;
-            if (distance.x < 0)
-            {
-                Scale.x = (Scale.x < 0 ? -Scale.x : Scale.x);
-            }
-            else
-            {
-                Scale.x = (Scale.x > 0 ? -Scale.x : Scale.x);
-            }
-            Char.localScale = Scale;
-
-
-            if (Mathf.Abs((distance).magnitude) < 0.5f)
-                rb.velocity = Vector2.zero;
 
         }
+
+        // XÃà distance Projectioned Vecotr¿¡ µû¸¥ Character ¹æÇâ ÀüÈ¯
+        Vector3 Scale = Char.localScale;
+        if (distance.x < 0)
+        {
+            Scale.x = (Scale.x < 0 ? -Scale.x : Scale.x);
+        }
+        else
+        {
+            Scale.x = (Scale.x > 0 ? -Scale.x : Scale.x);
+        }
+        Char.localScale = Scale;
+
+
+        if (Mathf.Abs((distance).magnitude) < 0.5f)
+            rb.velocity = Vector2.zero;
+
     }
 
-    protected void MouseLeftClick(Vector3 mouseClickPos)
+    protected void MouseLeftClick(Vector3 mouseClickPos) // Basic Attack
     {
         RaycastHit2D hit = Physics2D.Raycast(mouseClickPos, Vector2.zero, Mathf.Infinity);
 
@@ -164,7 +131,6 @@ public class BasicController : NetworkBehaviour, IAttack
     public virtual void GetDamage(float Damage)
     {
         Debug.Log("BasicDamage");
-        stat.SetCurrentHp(stat.GetCurrentHp() - Damage);
     }
 
     private void setTimer(ref float currentTime, ref bool check)

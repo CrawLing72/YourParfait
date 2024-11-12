@@ -123,7 +123,7 @@ Transform:
   - {fileID: 2108579284240613613}
   - {fileID: 5117020583613137103}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2373934900748405906
 MonoBehaviour:
@@ -231,7 +231,7 @@ MonoBehaviour:
   - {x: -0.0027694702, y: -1.8207352, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -294306
+  m_InstanceId: 69078
   m_LocalBounds:
     m_Center: {x: -0.5756798, y: -0.6737629, z: 0}
     m_Extent: {x: 0.5729103, y: 1.1469723, z: 0}
@@ -247,6 +247,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bef59479f6d7f44aa2e2c577aa07065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 0
+  maxMp: 0
+  currentHp: 0
+  currentMp: 0
+  speed: 0
+  attackRange: 0
+  attackTime: 0
+  wTime: 0
+  eTime: 0
+  rTime: 0
+  ad: 0
 --- !u!114 &-769864879231956894
 MonoBehaviour:
   m_ObjectHideFlags: 0
