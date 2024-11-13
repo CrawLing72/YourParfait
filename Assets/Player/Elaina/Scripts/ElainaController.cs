@@ -20,8 +20,6 @@ public class ElainaController : BasicController
     [SerializeField]
     protected GameObject skillREffect;
 
-    bool wIsOn = false;
-    bool rISOn = false;
 
     protected override void Start()
     {
@@ -51,11 +49,11 @@ public class ElainaController : BasicController
                 Vector2 myPos = Object.transform.position;
                 Vector2 dir = (mousePos - myPos).normalized;
 
-                GameObject butterfly = Instantiate(butterflyPrefb);
-                NonTargetSkill nonTargetSkill = butterfly.GetComponent<NonTargetSkill>();
+                GameObject wSkillPrefeb = Instantiate(butterflyPrefb);
+                NonTargetSkill nonTargetSkill = wSkillPrefeb.GetComponent<NonTargetSkill>();
                 nonTargetSkill.SetSkillDamage(10.0f); // ?? ??
 
-                butterfly.transform.position = myPos + dir * 1.0f;
+                wSkillPrefeb.transform.position = myPos + dir * 1.0f;
                 nonTargetSkill.SetDirection(dir);
 
                 isWAble = false;
@@ -68,7 +66,7 @@ public class ElainaController : BasicController
 
     private void CastRSkill()
     {
-        if (rISOn)
+        if (qIsOn)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -85,10 +83,10 @@ public class ElainaController : BasicController
                 attack.transform.rotation = Quaternion.Euler(0, 0, angle);
                 attack.transform.position = gameObject.transform.position;
 
-                isRAble = false;
-                currentRTime = stat.GetRTime();
+                isQAble = false;
+                currentQTime = stat.GetQTime();
 
-                rISOn = false;
+                qIsOn = false;
             }
         }
     }
@@ -131,7 +129,7 @@ public class ElainaController : BasicController
                 eSkill.SetTarget(gameObject);
                 attack.transform.position = gameObject.transform.position;
 
-                currentETiem = stat.GetETime();
+                currentETime = stat.GetETime();
 
                 isEAble = false;
             }
@@ -139,17 +137,17 @@ public class ElainaController : BasicController
 
     }
 
-    protected override void InputActionR()
+    protected override void InputActionQ()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (isRAble)
+            if (isQAble)
             {
-                rISOn = true;
+                qIsOn = true;
             }
             else
             {
-                rISOn = false;
+                qIsOn = false;
             }
         }
     

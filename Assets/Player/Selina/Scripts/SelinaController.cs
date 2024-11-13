@@ -17,6 +17,7 @@ public class SelinaController : BasicController
     protected GameObject skillREffect;
 
 
+
     protected override void Start()
     {
         base.Start();
@@ -30,6 +31,37 @@ public class SelinaController : BasicController
 
 
     }
+
+    private void CastWSkill()
+    {
+        if (wIsOn)
+        {
+
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("W is On");
+
+                Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 myPos = Object.transform.position;
+                Vector2 dir = (mousePos - myPos).normalized;
+
+                GameObject butterfly = Instantiate(skillWEffect);
+                NonTargetSkill nonTargetSkill = butterfly.GetComponent<NonTargetSkill>();
+                nonTargetSkill.SetSkillDamage(10.0f); // ?? ??
+
+                butterfly.transform.position = myPos + dir * 1.0f;
+                nonTargetSkill.SetDirection(dir);
+
+                isWAble = false;
+                currentWTime = stat.GetWTime();
+
+                wIsOn = false;
+            }
+        }
+    }
+
+
 
     protected override void Attack(GameObject Target)
     {
@@ -46,8 +78,9 @@ public class SelinaController : BasicController
         {
             if(isWAble)
             {
-
                 currentWTime = stat.GetWTime();
+
+
             }
 
         }
@@ -66,13 +99,13 @@ public class SelinaController : BasicController
 
     }
 
-    protected override void InputActionR()
+    protected override void InputActionQ()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(isRAble)
+            if(isQAble)
             {
-
+               
             }
         }
 

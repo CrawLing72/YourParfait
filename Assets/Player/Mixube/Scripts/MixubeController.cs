@@ -56,9 +56,9 @@ public class MixubeController : BasicController
 
     }
 
-    protected override void InputActionR()
+    protected override void InputActionQ()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
 
         }

@@ -231,7 +231,7 @@ MonoBehaviour:
   - {x: -0.0027694702, y: -1.8207352, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 69078
+  m_InstanceId: 62826
   m_LocalBounds:
     m_Center: {x: -0.5756798, y: -0.6737629, z: 0}
     m_Extent: {x: 0.5729103, y: 1.1469723, z: 0}
@@ -254,9 +254,9 @@ MonoBehaviour:
   speed: 0
   attackRange: 0
   attackTime: 0
+  qTime: 0
   wTime: 0
   eTime: 0
-  rTime: 0
   ad: 0
 --- !u!114 &-769864879231956894
 MonoBehaviour:
@@ -271,17 +271,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BasicAttack: {fileID: 1292993822233510530, guid: 5e3024423c6586444b9e6b7e1f63b7ca, type: 3}
+  CircleRangePrefeb: {fileID: 0}
   maxHp: 100
   maxMp: 100
   currentHp: 100
   currentMp: 100
   speed: 70
   attackRang: 1000
-  attackTime: 3
-  wTime: 5
-  eTime: 7
-  rTime: 9
+  attackTime: 1
+  wTime: 10
+  eTime: 110
+  qTime: 8
   ad: 10
+  skillEPreFeb: {fileID: 0}
+  skillQPreFeb: {fileID: 2770224853270250887, guid: ddcce101c29164a4f9761566696bd33b, type: 3}
+  skillWPreFeb: {fileID: 0}
+  QSkillRange: 10
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0

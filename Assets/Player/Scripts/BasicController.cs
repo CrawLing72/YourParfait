@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Fusion;
 using Spine.Unity;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Windows;
+using static UnityEditor.PlayerSettings;
 
 public class BasicController : NetworkBehaviour, IAttack
 {
@@ -15,8 +18,9 @@ public class BasicController : NetworkBehaviour, IAttack
     protected Camera cam;
     protected Stat stat;
 
-    protected bool isAttackAble = true, isWAble = true, isEAble = true, isRAble = true;
-    protected float currentAttackTime, currentWTime, currentRTime, currentETiem;
+    protected bool isAttackAble = true, isQAble = true, isWAble = true, isEAble = true;
+    protected bool qIsOn = false, wIsOn = false, eIsOn = false;
+    protected float currentAttackTime, currentQTime, currentWTime, currentETime;
 
     protected Vector2 mouseClickPos;
 
@@ -24,6 +28,10 @@ public class BasicController : NetworkBehaviour, IAttack
     protected bool shouldFire = false;
     private Transform Char;
     private SkeletonAnimation skeletonAnimation;
+
+    [SerializeField]
+    protected GameObject CircleRangePrefeb;
+
 
     protected void Awake()
     {
@@ -41,16 +49,19 @@ public class BasicController : NetworkBehaviour, IAttack
 
     public override void FixedUpdateNetwork()
     {
-        MouseRightClick();
         settingAnimation();
+
+        Attack2();
+        MouseRightClick();
+
         InputActionW();
         InputActionE();
-        InputActionR();
+        InputActionQ();
 
         setTimer(ref currentAttackTime, ref isAttackAble);
+        setTimer(ref currentQTime, ref isQAble);
         setTimer(ref currentWTime, ref isWAble);
-        setTimer(ref currentETiem, ref isEAble);
-        setTimer(ref currentRTime, ref isRAble);
+        setTimer(ref currentETime, ref isEAble);
 
     }
 
@@ -60,9 +71,9 @@ public class BasicController : NetworkBehaviour, IAttack
         Vector2 objectPos = gameObject.transform.position;
         Vector2 distance = (mouseClickPos - objectPos);
 
-        if (Input.GetMouseButton(1))
+        if (UnityEngine.Input.GetMouseButton(1))
         {
-            mouseClickPos = Input.mousePosition;
+            mouseClickPos = UnityEngine.Input.mousePosition;
             mouseClickPos = cam.ScreenToWorldPoint(mouseClickPos);
             rb.velocity = (distance).normalized * stat.GetSpeed() * NetworkManager.Instance.runner.DeltaTime;
 
@@ -124,13 +135,36 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected virtual void InputActionW() { }
     protected virtual void InputActionE() { }
-    protected virtual void InputActionR() { }
+    protected virtual void InputActionQ() { }
     protected virtual void Attack(GameObject Target) { }
 
-
-    public virtual void GetDamage(float Damage)
+    protected virtual void Attack2()
     {
-        Debug.Log("BasicDamage");
+        
+           if (isAttackAble)
+           {
+               if (UnityEngine.Input.GetMouseButtonDown(0))
+                {
+                    Vector2 mouseLeftPos, objectPos;
+                    mouseLeftPos = UnityEngine.Input.mousePosition;
+                    mouseLeftPos = cam.ScreenToWorldPoint(mouseLeftPos);
+                    objectPos = gameObject.transform.position;
+                    Vector2 dir = (mouseLeftPos - objectPos).normalized;
+
+                    GameObject projectile = Instantiate(BasicAttack, objectPos + dir*1.7f, Quaternion.identity);
+                    projectile.GetComponent<NonTargetSkill>().SetDirection(dir);
+
+                    isAttackAble = false;
+                    currentAttackTime = stat.GetAttackTime();
+                }
+            }
+    }
+
+
+    public virtual void GetDamage(float Damage, MonoBehaviour DamageCauser)
+    {
+        float CurrentHp = stat.GetCurrentHp();
+        stat.SetCurrentHp(CurrentHp - Damage);
     }
 
     private void setTimer(ref float currentTime, ref bool check)
@@ -158,4 +192,5 @@ public class BasicController : NetworkBehaviour, IAttack
             skeletonAnimation.AnimationName = "idle";
         }
     }
+
 }
