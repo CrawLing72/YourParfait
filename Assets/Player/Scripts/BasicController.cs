@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using Fusion;
+using Fusion.Sockets;
 using Spine.Unity;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Windows;
-using static UnityEditor.PlayerSettings;
 
 public class BasicController : NetworkBehaviour, IAttack
 {
@@ -21,6 +18,19 @@ public class BasicController : NetworkBehaviour, IAttack
     protected bool isAttackAble = true, isQAble = true, isWAble = true, isEAble = true;
     protected bool qIsOn = false, wIsOn = false, eIsOn = false;
     protected float currentAttackTime, currentQTime, currentWTime, currentETime;
+
+    protected Vector3 Scale;
+
+    // under : network property, do not modify manually!!!! - SHIN
+    [Networked, OnChangedRender(nameof(settingNetworkAnim))]
+    protected string CurrentAnimation { get; set;}
+    [Networked, OnChangedRender(nameof(settingNetworkAnim))]
+    protected bool isLeft { get; set; }
+
+
+    /// <summary>
+    /// end of network property
+    /// </summary>
 
     protected Vector2 mouseClickPos;
 
@@ -40,6 +50,8 @@ public class BasicController : NetworkBehaviour, IAttack
         cam = Camera.main;
         Char = gameObject.transform.GetChild(0);
         skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
+
+        Scale = Char.localScale;
     }
 
     protected virtual void Start()
@@ -49,11 +61,10 @@ public class BasicController : NetworkBehaviour, IAttack
 
     public override void FixedUpdateNetwork()
     {
+        MouseRightClick();
         settingAnimation();
 
         Attack2();
-        MouseRightClick();
-
         InputActionW();
         InputActionE();
         InputActionQ();
@@ -79,21 +90,19 @@ public class BasicController : NetworkBehaviour, IAttack
 
         }
 
-        // X축 distance Projectioned Vecotr에 따른 Character 방향 전환
-        Vector3 Scale = Char.localScale;
-        if (distance.x < 0)
-        {
-            Scale.x = (Scale.x < 0 ? -Scale.x : Scale.x);
-        }
-        else
-        {
-            Scale.x = (Scale.x > 0 ? -Scale.x : Scale.x);
-        }
-        Char.localScale = Scale;
-
-
         if (Mathf.Abs((distance).magnitude) < 0.5f)
             rb.velocity = Vector2.zero;
+        else
+        {
+            if (distance.x < 0)
+            {
+                isLeft = true;
+            }
+            else
+            {
+                isLeft = false;
+            }
+        }
 
     }
 
@@ -185,11 +194,34 @@ public class BasicController : NetworkBehaviour, IAttack
     {
         if (rb.velocity.magnitude > 0)
         {
-            skeletonAnimation.AnimationName = "walking";
+            CurrentAnimation = "walking";
         }
         else
         {
-            skeletonAnimation.AnimationName = "idle";
+            CurrentAnimation = "idle";
+        }
+        skeletonAnimation.AnimationName = CurrentAnimation;
+
+        if(isLeft)
+        {
+            Char.localScale = new Vector3(Scale.x, Scale.y, Scale.z);
+        }
+        else
+        {
+            Char.localScale = new Vector3(-Scale.x, Scale.y, Scale.z);
+        }
+    }
+
+    private void settingNetworkAnim()
+    {
+        skeletonAnimation.AnimationName = CurrentAnimation;
+        if (isLeft)
+        {
+            Char.localScale = new Vector3(Scale.x, Scale.y, Scale.z);
+        }
+        else
+        {
+            Char.localScale = new Vector3(-Scale.x, Scale.y, Scale.z);
         }
     }
 
