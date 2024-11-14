@@ -21,25 +21,14 @@ public class SelenaController : BasicController
     private Vector3 lastMouseClickPosition;
 
 
-    [Header("Skill")]
-    [SerializeField]
-    protected GameObject skillEPreFeb;
-
-    [SerializeField]
-    protected GameObject skillQPreFeb;
-
-    [SerializeField]
-    protected GameObject skillWPreFeb;
-
-    [SerializeField]
-    float QSkillRange;
-
+    float CurrentShild = 0.0f;
     bool IsShild = false;
 
     
     protected override void Start()
     {
         base.Start();
+
         stat.SetMaxHp(maxHp);
         stat.SetMaxMp(maxMp);
         stat.SetCurrentHp(currentHp);
@@ -51,79 +40,32 @@ public class SelenaController : BasicController
         stat.SetTEime(eTime);
         stat.SetQTime(qTime);
         stat.SetAd(ad);
-    }
 
-    private void Update()
-    {
-        /*
-        if ( (!qIsOn) && (!wIsOn) && (!eIsOn))
+        //        skillWPreFeb = transform.GetChild(4).gameObject;
+
+        IsShild = false;
+        skillWPreFeb = transform.Find("Shild").gameObject;
+
+        if(skillWPreFeb != null)
         {
-            Debug.Log("Should Fire");
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (isAttackAble)
-                {
-                    lastMouseClickPosition = Input.mousePosition;
-                    lastMouseClickPosition.z = Mathf.Abs(cam.transform.position.z);
-                    lastMouseClickPosition = cam.ScreenToWorldPoint(lastMouseClickPosition);
-                    shouldFire = true; // 발사 플래그 설정
-                }
-                else
-                {
-                    shouldFire = false;
-                }
-            }
-
+            skillWPreFeb.SetActive(IsShild);
         }
-        */
-    }
-
-    public override void FixedUpdateNetwork()
-    {
-        base.FixedUpdateNetwork();
-
         
 
-
-        /*
-        if (shouldFire)
-        {
-            MouseLeftClick(lastMouseClickPosition);
-        }
-        */
         
     }
+
 
     protected override void InputActionW() 
     {
-
-    }
-
-    protected override void InputActionE() 
-    {
-
-    }
-
-    protected override void InputActionQ() 
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            
-            if (isQAble)
-            {
-                qIsOn = true;
+            IsShild = true;
+            CurrentShild = 200.0f;
 
-                wIsOn = false;
-                eIsOn = false;
+            skillWPreFeb.SetActive(IsShild);
 
-                Debug.Log("QISOn");
-            }
-            else
-            {
-                qIsOn = false;
-
-                Debug.Log("QISOFF");
-            }
+            Invoke("OffShild", 5);
         }
     }
 
@@ -132,10 +74,8 @@ public class SelenaController : BasicController
 
         if (qIsOn)
         {
-            Debug.Log("QIsable");
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("CastQ");
 
                 Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 myPos = Object.transform.position;
@@ -153,8 +93,42 @@ public class SelenaController : BasicController
                 }
 
                 qIsOn = false;
+
+                QSkillRangePrefeb.SetActive(qIsOn);
+
             }
         }
+        else if(eIsOn)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+
+                Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 myPos = Object.transform.position;
+                Vector2 disTance = mousePos - myPos;
+
+                if (disTance.magnitude <= ESkillRange)
+                {
+                    GameObject attack = Instantiate(skillEPreFeb);
+                    NonTargetThrow skill = attack.GetComponent<NonTargetThrow>();
+
+
+                    skill.SetSilent(3);
+                    skill.SetSkillDamage(10.0f); // need Change
+                    attack.transform.position = mousePos;
+
+
+
+                    isEAble = false;
+                    currentETime = stat.GetETime();
+                }
+
+                eIsOn = false;
+
+                ESkillRangePrefeb.SetActive(eIsOn);
+
+            }
+        }    
         else
         {
             base.Attack2();
@@ -165,12 +139,27 @@ public class SelenaController : BasicController
     {
         if(IsShild)
         {
+            CurrentShild = CurrentShild - Damage;
+            if(CurrentShild <= 0)
+            {
+                IsShild = false;
+                skillWPreFeb.SetActive(IsShild);
 
+                float CurrentHp = stat.GetCurrentHp();
+                stat.SetCurrentHp(CurrentHp - Damage);
+            }
         }
         else
         {
-            base.GetDamage(Damage, DamageCauser);
+            float CurrentHp = stat.GetCurrentHp();
+            stat.SetCurrentHp(CurrentHp - Damage);
         }
+    }
+
+    void OffShild()
+    {
+        IsShild = false;
+        skillWPreFeb.SetActive(IsShild);
     }
 
 }
