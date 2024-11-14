@@ -5,25 +5,15 @@ using UnityEngine;
 public class BuffSkill : MonoBehaviour
 {
 
-    bool isFactory = false;
-    GameObject player;
-
-
-    void Update()
-    {
-        transform.position = player.transform.position;
-    }
+    bool isFactoryBuff = false;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider != null)
         {
-            IAttack target = collision.gameObject.GetComponent<IAttack>();
-
-
-            if (target != null)
+            if (isFactoryBuff)
             {
-            
+
             }
         }
     }
@@ -35,11 +25,5 @@ public class BuffSkill : MonoBehaviour
 
         }
     }
-
-    public void SetTarget(GameObject target)
-    {
-        player = target;
-    }
-
 
 }
