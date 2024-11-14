@@ -3,6 +3,7 @@ using Fusion.Sockets;
 using Spine.Unity;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BasicController : NetworkBehaviour, IAttack
 {
@@ -58,6 +59,9 @@ public class BasicController : NetworkBehaviour, IAttack
 
     [SerializeField]
     protected GameObject skillWPreFeb;
+
+    float ADBuffTemp;
+    float TempSpeed;
 
 
 
@@ -346,7 +350,17 @@ public class BasicController : NetworkBehaviour, IAttack
 
     }
 
-    void GetAdBuff(float value, float time)
+    void GetStop()
+    {
+
+    }
+
+    void Getbondage(float time)
+    {
+
+    }
+
+    public void GetAdBuff(float value, float time)
     {
         stat.SetAd(stat.GetAd() + value);
         adBuffTemp = value;
@@ -355,7 +369,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     void OffAdBuff()
     {
-        stat.SetAd(stat.GetAd());
+        stat.SetAd(stat.GetAd() - adBuffTemp);
     }
 
     void OnQ()

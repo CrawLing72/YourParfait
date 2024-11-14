@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class SeraphinaController : BasicController
 {
+
+    protected override void Start()
+    {
+        base.Start();
+
+    }
     protected override void InputActionW() 
     {
+        if (isWAble)
+        {
+            float currentHp = stat.GetCurrentHp();
+            float healAmount = 150.0f;
+            stat.SetCurrentHp(currentHp + healAmount);
+            GetAdBuff(50.0f, 3.0f);
 
+            isWAble = false;
+            currentWTime = stat.GetWTime();
+        }
     }
     protected override void InputActionE() 
     {
         if(isEAble)
         {
-            float currentHp = stat.GetCurrentHp();
-            float healAmount = 150.0f;
-            stat.SetCurrentHp(currentHp + healAmount);
 
-            isEAble = false;
-            currentETime = stat.GetETime();
         }
     }
 
@@ -41,8 +51,9 @@ public class SeraphinaController : BasicController
                 NonTargetThrow skill = attack.GetComponent<NonTargetThrow>();
 
                 skill.SetSkillDamage(10.0f); // need Change
-                attack.transform.position = myPos + dir * 2.0f;
                 attack.transform.rotation = Quaternion.AngleAxis(angel, new Vector3(0, 0, 1));
+                attack.transform.position = myPos + dir * 2.0f;
+                
 
 
                 isQAble = false;

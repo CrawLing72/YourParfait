@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 2373934900748405906}
   - component: {fileID: 4112948764345381290}
   - component: {fileID: 8767585292580150796}
+  - component: {fileID: 6375233714020237232}
   - component: {fileID: 6471399642047127761}
-  - component: {fileID: 4694432290697744131}
   m_Layer: 7
   m_Name: Seraphina
   m_TagString: Untagged
@@ -128,7 +128,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 5736492768576714638}
-  - {fileID: 4694432290697744131}
+  - {fileID: 6375233714020237232}
 --- !u!50 &4112948764345381290
 Rigidbody2D:
   serializedVersion: 4
@@ -191,6 +191,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.5756798, y: -0.6737629}
   m_Size: {x: 1.1458206, y: 2.2939446}
   m_Direction: 0
+--- !u!114 &6375233714020237232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022063319299320383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400aec5c52440864bad7b7d2ef9e7328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BasicAttack: {fileID: 0}
+  QSkillRange: 0
+  WSkillRange: 0
+  ESkillRange: 0
+  skillEPreFeb: {fileID: 0}
+  skillQPreFeb: {fileID: 0}
+  skillWPreFeb: {fileID: 0}
 --- !u!114 &6471399642047127761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,40 +236,10 @@ MonoBehaviour:
   - {x: -0.0027694702, y: -1.8207352, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 57736
+  m_InstanceId: 50002
   m_LocalBounds:
     m_Center: {x: -0.5756798, y: -0.6737629, z: 0}
     m_Extent: {x: 0.5729103, y: 1.1469723, z: 0}
---- !u!114 &4694432290697744131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3022063319299320383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7f6c64b26835640822872621cd27f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BasicAttack: {fileID: 1292993822233510530, guid: 5e3024423c6586444b9e6b7e1f63b7ca, type: 3}
-  QSkillRange: 0
-  WSkillRange: 0
-  ESkillRange: 0
-  skillEPreFeb: {fileID: 0}
-  skillQPreFeb: {fileID: 5130351690371029280, guid: 68f357b2749c4f141aa5d681096b5fc2, type: 3}
-  skillWPreFeb: {fileID: 0}
-  maxHp: 100
-  maxMp: 100
-  currentHp: 100
-  currentMp: 100
-  speed: 70
-  attackRang: 100
-  attackTime: 2
-  wTime: 3
-  eTime: 5
-  qTime: 0
-  ad: 9
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0
