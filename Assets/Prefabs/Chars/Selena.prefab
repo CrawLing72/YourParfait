@@ -129,7 +129,6 @@ GameObject:
   - component: {fileID: 3552752287648522537}
   - component: {fileID: 2373934900748405906}
   - component: {fileID: -769864879231956894}
-  - component: {fileID: 6998256626790563293}
   - component: {fileID: 1193574297610853171}
   m_Layer: 7
   m_Name: Selena
@@ -264,7 +263,6 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: -769864879231956894}
-  - {fileID: 6998256626790563293}
   - {fileID: 1193574297610853171}
 --- !u!114 &-769864879231956894
 MonoBehaviour:
@@ -296,28 +294,6 @@ MonoBehaviour:
   eTime: 110
   qTime: 8
   ad: 10
---- !u!114 &6998256626790563293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3022063319299320383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e690b5fb1084f5ab1c86457af401d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncScale: 1
-  SyncParent: 1
-  _interpolationTarget: {fileID: 0}
-  UsePreciseRotation: 0
-  UseRenderSleepThresholds: 1
-  RenderThresholds:
-    UseEnergy: 1
-    Position: 0.01
-    Rotation: 0.01
-    Scale: 0.01
 --- !u!114 &1193574297610853171
 MonoBehaviour:
   m_ObjectHideFlags: 0

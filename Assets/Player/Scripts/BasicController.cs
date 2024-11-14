@@ -22,15 +22,20 @@ public class BasicController : NetworkBehaviour, IAttack
 
 
     float adBuffTemp;
-
-
     protected Vector3 Scale;
 
+    // under : network property, do not modify manually!!!! - SHIN
     [Networked, OnChangedRender(nameof(settingNetworkAnim))]
     protected string CurrentAnimation { get; set;}
+    [Networked, OnChangedRender(nameof(settingNetworkAnim))]
     protected bool isLeft { get; set; }
 
 
+    /// <summary>
+    /// end of network property
+    /// </summary>
+    
+    
     protected Vector2 mouseClickPos;
 
     private Transform Char;
@@ -74,7 +79,6 @@ public class BasicController : NetworkBehaviour, IAttack
         skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
 
         Scale = Char.localScale;
-
     }
 
     protected virtual void Start()
@@ -116,7 +120,7 @@ public class BasicController : NetworkBehaviour, IAttack
             InputActionE();
             InputActionQ();
         }
-        
+
         setTimer(ref currentAttackTime, ref isAttackAble);
         setTimer(ref currentQTime, ref isQAble);
         setTimer(ref currentWTime, ref isWAble);
@@ -140,6 +144,18 @@ public class BasicController : NetworkBehaviour, IAttack
 
         if (Mathf.Abs((distance).magnitude) < 0.5f)
             rb.velocity = Vector2.zero;
+
+        else
+        {
+            if (distance.x < 0)
+            {
+                isLeft = true;
+            }
+            else
+            {
+                isLeft = false;
+            }
+        }
 
     }
 
