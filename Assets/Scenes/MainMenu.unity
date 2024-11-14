@@ -805,6 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoImagePrefab: {fileID: 3711630395692622290, guid: 3480116d3b545094f927f7853285e214, type: 3}
+  Animator: {fileID: 0}
   canvas: {fileID: 140760829}
 --- !u!1 &261491801
 GameObject:

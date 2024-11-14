@@ -1,12 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using Fusion;
+using Fusion.Sockets;
 using Spine.Unity;
 using Unity.VisualScripting;
 using UnityEngine;
+<<<<<<< Updated upstream
 using UnityEngine.Windows;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.Rendering.DebugUI;
+=======
+
+>>>>>>> 96be59a059770397d1046706cfa45cfd9c7aa986
+>>>>>>> Stashed changes
 
 public class BasicController : NetworkBehaviour, IAttack
 {
@@ -23,7 +27,26 @@ public class BasicController : NetworkBehaviour, IAttack
     protected bool qIsOn = false, wIsOn = false, eIsOn = false;
     protected float currentAttackTime, currentQTime, currentWTime, currentETime;
 
+<<<<<<< Updated upstream
     float adBuffTemp;
+=======
+<<<<<<< HEAD
+    float adBuffTemp;
+=======
+    protected Vector3 Scale;
+
+    // under : network property, do not modify manually!!!! - SHIN
+    [Networked, OnChangedRender(nameof(settingNetworkAnim))]
+    protected string CurrentAnimation { get; set;}
+    [Networked, OnChangedRender(nameof(settingNetworkAnim))]
+    protected bool isLeft { get; set; }
+
+
+    /// <summary>
+    /// end of network property
+    /// </summary>
+>>>>>>> 96be59a059770397d1046706cfa45cfd9c7aa986
+>>>>>>> Stashed changes
 
     protected Vector2 mouseClickPos;
 
@@ -64,8 +87,17 @@ public class BasicController : NetworkBehaviour, IAttack
         Char = gameObject.transform.GetChild(0);
         skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
 
+<<<<<<< Updated upstream
         
 
+=======
+<<<<<<< HEAD
+        
+
+=======
+        Scale = Char.localScale;
+>>>>>>> 96be59a059770397d1046706cfa45cfd9c7aa986
+>>>>>>> Stashed changes
     }
 
     protected virtual void Start()
@@ -95,9 +127,11 @@ public class BasicController : NetworkBehaviour, IAttack
 
     public override void FixedUpdateNetwork()
     {
+        MouseRightClick();
         settingAnimation();
 
         Attack2();
+<<<<<<< HEAD
         MouseRightClick();
 
         if(!isSilent)
@@ -107,6 +141,14 @@ public class BasicController : NetworkBehaviour, IAttack
             InputActionQ();
         }
         
+<<<<<<< Updated upstream
+=======
+=======
+        InputActionW();
+        InputActionE();
+        InputActionQ();
+>>>>>>> 96be59a059770397d1046706cfa45cfd9c7aa986
+>>>>>>> Stashed changes
 
         setTimer(ref currentAttackTime, ref isAttackAble);
         setTimer(ref currentQTime, ref isQAble);
@@ -129,24 +171,90 @@ public class BasicController : NetworkBehaviour, IAttack
 
         }
 
-        // X축 distance Projectioned Vecotr에 따른 Character 방향 전환
-        Vector3 Scale = Char.localScale;
-        if (distance.x < 0)
-        {
-            Scale.x = (Scale.x < 0 ? -Scale.x : Scale.x);
-        }
-        else
-        {
-            Scale.x = (Scale.x > 0 ? -Scale.x : Scale.x);
-        }
-        Char.localScale = Scale;
-
-
         if (Mathf.Abs((distance).magnitude) < 0.5f)
             rb.velocity = Vector2.zero;
+<<<<<<< Updated upstream
 
     }
 
+    protected virtual void InputActionW() 
+    {
+        if (UnityEngine.Input.GetKeyDown(KeyCode.W))
+        {
+
+            if (wIsOn)
+            {
+                wIsOn = false;
+
+                WSkillRangePrefeb.SetActive(wIsOn);
+            }
+            else
+            {
+                if (isWAble)
+                {
+                    wIsOn = true;
+
+                    eIsOn = false;
+                    qIsOn = false;
+
+                    QSkillRangePrefeb.SetActive(qIsOn);
+                    WSkillRangePrefeb.SetActive(wIsOn);
+                    ESkillRangePrefeb.SetActive(eIsOn);
+
+                }
+            }
+        }
+    }
+    protected virtual void InputActionE() 
+    {
+        if (UnityEngine.Input.GetKeyDown(KeyCode.E))
+        {
+
+            if (eIsOn)
+            {
+                eIsOn = false;
+
+                ESkillRangePrefeb.SetActive(eIsOn);
+            }
+            else
+            {
+                if (isEAble)
+                {
+                    eIsOn = true;
+
+                    wIsOn = false;
+                    qIsOn = false;
+
+                    QSkillRangePrefeb.SetActive(qIsOn);
+                    WSkillRangePrefeb.SetActive(wIsOn);
+                    ESkillRangePrefeb.SetActive(eIsOn);
+
+                }
+=======
+        else
+        {
+            if (distance.x < 0)
+            {
+                isLeft = true;
+            }
+            else
+            {
+                isLeft = false;
+>>>>>>> Stashed changes
+            }
+        }
+
+    }
+    protected virtual void InputActionQ() 
+    {
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
+        {
+            if (qIsOn)
+            {
+                qIsOn = false;
+
+<<<<<<< Updated upstream
+=======
     protected virtual void InputActionW() 
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.W))
@@ -211,6 +319,7 @@ public class BasicController : NetworkBehaviour, IAttack
             {
                 qIsOn = false;
 
+>>>>>>> Stashed changes
                 QSkillRangePrefeb.SetActive(qIsOn);
             }
             else
@@ -279,14 +388,40 @@ public class BasicController : NetworkBehaviour, IAttack
     {
         if (rb.velocity.magnitude > 0)
         {
-            skeletonAnimation.AnimationName = "walking";
+            CurrentAnimation = "walking";
         }
         else
         {
-            skeletonAnimation.AnimationName = "idle";
+            CurrentAnimation = "idle";
+        }
+        skeletonAnimation.AnimationName = CurrentAnimation;
+
+        if(isLeft)
+        {
+            Char.localScale = new Vector3(Scale.x, Scale.y, Scale.z);
+        }
+        else
+        {
+            Char.localScale = new Vector3(-Scale.x, Scale.y, Scale.z);
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    private void settingNetworkAnim()
+    {
+        skeletonAnimation.AnimationName = CurrentAnimation;
+        if (isLeft)
+        {
+            Char.localScale = new Vector3(Scale.x, Scale.y, Scale.z);
+        }
+        else
+        {
+            Char.localScale = new Vector3(-Scale.x, Scale.y, Scale.z);
+        }
+    }
+
+>>>>>>> Stashed changes
     public void GetSilent(float time)
     {
         isSilent = true;
