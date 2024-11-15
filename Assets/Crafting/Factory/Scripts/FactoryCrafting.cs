@@ -52,7 +52,7 @@ public class FactoryCrafting : MonoBehaviour, IFactoryBuff
                 bIsMinion = true;
                 currentMinion += 1;
 
-                if (currentMinion == maxMinion)
+                if (currentMinion >= maxMinion)
                 {
                     bIsFull = true;
                 }
@@ -68,7 +68,10 @@ public class FactoryCrafting : MonoBehaviour, IFactoryBuff
             if (minion != null)
             {
                 currentMinion -= 1;
-                bIsFull = false;
+                if (currentMinion < maxMinion)
+                {
+                    bIsFull = false;
+                }
 
                 if(currentMinion == 0)
                 {

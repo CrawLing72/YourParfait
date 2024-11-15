@@ -16,6 +16,8 @@ public class NonTargetThrow : MonoBehaviour
 
     protected bool bisbondage;
 
+    bool bTeam;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider != null)
@@ -57,5 +59,10 @@ public class NonTargetThrow : MonoBehaviour
         slowTime = time;
         slowValue = value;
         slow = true;
+    }
+
+    public void GetTeam(bool team)
+    {
+        bTeam = team;
     }
 }
