@@ -5,14 +5,16 @@ using UnityEngine;
 public class NonTargetThrow : MonoBehaviour
 {
 
-    private float damage;
+    protected float damage;
 
-    bool silent = false;
-    float silentTime;
+    protected bool silent = false;
+    protected float silentTime;
 
-    bool slow = false;
-    float slowTime;
-    float slowValue;
+    protected bool slow = false;
+    protected float slowTime;
+    protected float slowValue;
+
+    protected bool bisbondage;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

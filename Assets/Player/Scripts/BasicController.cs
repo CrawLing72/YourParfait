@@ -79,11 +79,6 @@ public class BasicController : NetworkBehaviour, IAttack
         skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
 
         Scale = Char.localScale;
-    }
-
-    protected virtual void Start()
-    {
-        stat.SetSpeed(50.0f);
 
         QSkillRangePrefeb = transform.Find("QRange").gameObject;
 
@@ -104,6 +99,13 @@ public class BasicController : NetworkBehaviour, IAttack
         {
             WSkillRangePrefeb.SetActive(eIsOn);
         }
+    }
+
+    protected virtual void Start()
+    {
+        stat.SetSpeed(50.0f);
+
+        
     }
 
     public override void FixedUpdateNetwork()

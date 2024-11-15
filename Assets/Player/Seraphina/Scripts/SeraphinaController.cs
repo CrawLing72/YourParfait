@@ -9,6 +9,9 @@ public class SeraphinaController : BasicController
     {
         base.Start();
 
+        skillEPreFeb = transform.Find("ESkill").gameObject;
+        skillEPreFeb.SetActive(false);
+
     }
     protected override void InputActionW() 
     {
@@ -17,7 +20,7 @@ public class SeraphinaController : BasicController
             float currentHp = stat.GetCurrentHp();
             float healAmount = 150.0f;
             stat.SetCurrentHp(currentHp + healAmount);
-            GetAdBuff(50.0f, 3.0f);
+            GetAdBuff(50.0f, 3);
 
             isWAble = false;
             currentWTime = stat.GetWTime();
@@ -27,8 +30,16 @@ public class SeraphinaController : BasicController
     {
         if(isEAble)
         {
+            GameObject attack = Instantiate(skillEPreFeb);
+            skillEPreFeb.SetActive(true);
+            Invoke("OffE", 3);
 
         }
+    }
+
+    void OffE()
+    {
+        skillEPreFeb.SetActive(false);
     }
 
 
