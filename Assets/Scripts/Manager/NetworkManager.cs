@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkManager : MonoBehaviour
+public class NetworkManager : NetworkBehaviour
 {
     //네트워크 매니저는 주로 Fusion Runner(Core system)과 네트워크 프로퍼티를 관리하는 역할을 합니다.
     //모르는 사항은 PM에게 문의해주세요.

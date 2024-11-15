@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     //GameManager singleton instance
     public static GameManager instance;
 
+    //GameInfo instance
+    public GameInfo gameInfo = new GameInfo();
+
     private void Awake()
     {
         //singleton pattern implementation
