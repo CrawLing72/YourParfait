@@ -273,7 +273,7 @@ public class BasicController : NetworkBehaviour, IAttack
     }
 
 
-    public virtual void GetDamage(float Damage, MonoBehaviour DamageCauser)
+    protected virtual void GetDamage(float Damage, MonoBehaviour DamageCauser)
     {
         float CurrentHp = stat.GetCurrentHp();
         stat.SetCurrentHp(CurrentHp - Damage);
@@ -358,7 +358,7 @@ public class BasicController : NetworkBehaviour, IAttack
         isSilent = false;
     }
 
-    public void GetSlow(float value, float time)
+    void GetSlow(float value, float time)
     {
 
     }
@@ -378,7 +378,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     }
 
-    public void GetAdBuff(float value, float time)
+    protected void GetAdBuff(float value, float time)
     {
         stat.SetAd(stat.GetAd() + value);
         adBuffTemp = value;

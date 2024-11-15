@@ -135,7 +135,7 @@ public class SelenaController : BasicController
         }
     }
 
-    public override void GetDamage(float Damage, MonoBehaviour DamageCauser)
+    protected override void GetDamage(float Damage, MonoBehaviour DamageCauser)
     {
         if(IsShild)
         {
