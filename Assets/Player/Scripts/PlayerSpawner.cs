@@ -2,11 +2,12 @@ using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Collections.Unicode;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 {
     public GameObject PlayerPrefab;
+    public GameObject[] UICAN;
+    public GameObject WaitingText;
     public Vector3 SpawnPoint = new Vector3(-33, 2, -4);
 
     [Header("Chars")]
@@ -60,8 +61,10 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     {
         if (player == NetworkManager.Instance.runner.LocalPlayer)
         {
-            Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-            NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
+            var plObject = NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
+            NetworkManager.Instance.runner.SetPlayerObject(player, plObject);
         }
+        foreach (var obj in UICAN) obj.SetActive(true);
+        WaitingText.SetActive(false);
     }
 }

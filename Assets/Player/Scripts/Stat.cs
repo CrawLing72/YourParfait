@@ -2,13 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Stat : MonoBehaviour
 {
     [SerializeField]
     protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, qTime, wTime, eTime,
         ad;
+    public GameManager gameManager; // runner에서 다른 클라 GM Ref 받아올 목적임
+
+    private void Awake()
+    {
+        gameManager = GameManager.instance;
+    }
 
     public float GetMaxHp() { return maxHp; }
     public void SetMaxHp(float setValue){ maxHp = setValue; }

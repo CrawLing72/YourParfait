@@ -89,9 +89,6 @@ public class LobbyManager : MonoBehaviour
             PlayerPrefs.SetString("NewScene", "GameScene");
             PlayerPrefs.SetString("CharName", CharFileName);
             SceneManager.LoadScene("LoadingScene");
-
-            GameManager.instance.gameInfo.ServerName = matchedServer.arranged_server;
-            GameManager.instance.gameInfo.PlayerName = PlayerPrefs.GetString("Name");
         }
         else
         {
