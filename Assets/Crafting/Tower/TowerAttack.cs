@@ -11,102 +11,100 @@ public class TowerAttack : MonoBehaviour
     [SerializeField]
     GameObject attackPrefeb;
 
-    GameObject target;
+    
+    bool bIsAttaclAble = false;
 
     bool bIsPlayer = false;
     bool bIsTarget = false;
-    bool bIsAttaclAble = false;
-    bool bIsMinion = false;
+    bool bIsAttacking = false;
 
-    private List<GameObject> PlayerList;
-    private List<GameObject> MinionList;
+    GameObject attackTarget;
+
 
     [SerializeField]
     bool team;
 
-    public void Update()
+
+
+    
+    public void FixedUpdate()
     {
         
-
+        
         if (bIsAttaclAble)
         {
             if (bIsTarget)
             {
-                if (bIsPlayer)
-                {
-                    target = PlayerList[0];
-                    if (target != null)
-                    {
-                        Debug.Log("Player");
-                        GameObject attackBall = Instantiate(attackPrefeb);
-                        RangeAttack rnageAttackc = attackBall.GetComponent<RangeAttack>();
 
-                        attackBall.transform.position = gameObject.transform.position;
+                GameObject attackBall = Instantiate(attackPrefeb);
+                RangeAttack rnageAttackc = attackBall.GetComponent<RangeAttack>();
 
-                        rnageAttackc.SetSkillDamage(attack);
-                        rnageAttackc.GetTarget(target);
+                attackBall.transform.position = gameObject.transform.position;
 
+                rnageAttackc.SetSkillDamage(attack);
+                rnageAttackc.GetTarget(attackTarget);
 
-                        bIsAttaclAble = false;
-                        Invoke("AttackTimer", 1);
-                    }
-                    else
-                    {
-                        PlayerList.RemoveAt(0);
-                    }
-                    
-                }
-                else
-                {
-                    target = MinionList[0];
-                    if (target != null)
-                    {
-                        GameObject attackBall = Instantiate(attackPrefeb);
-                        RangeAttack rnageAttackc = attackBall.GetComponent<RangeAttack>();
+                bIsAttaclAble = false;
+                Invoke("AttackTimer", 1);
 
-                        rnageAttackc.SetSkillDamage(attack);
-                        rnageAttackc.GetTarget(target);
+            }
+            else
+            {
+                bIsAttaclAble = false;
+                bIsAttacking = false; 
 
-                        bIsAttaclAble = false;
-                        Invoke("AttackTimer", 1);
-                    }
-                    else
-                    {
-                        PlayerList.RemoveAt(0);
-                    }
-                }
+            }
+            
+        }
+        else
+        {
+            if (bIsTarget && !bIsAttacking)
+            {
+                Invoke("AttackTimer", 1);
+                bIsAttacking = true;
+            }
+        }
+        
+    }
+
+    
+
+    
+
+    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!bIsPlayer)
+        {
+            BasicController Player = collision.GetComponent<BasicController>();
+            if (Player != null)
+            {
+                bIsTarget = true;
+                bIsPlayer = true;
+
+                attackTarget = collision.gameObject;
             }
         }
         else
         {
-            if (bIsTarget)
+            if (!bIsTarget)
             {
-                Invoke("AttackTimer", 1);
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        IAttack inTarget = collision.gameObject.GetComponent<IAttack>();
-        if (inTarget != null)
-        {
-            bIsTarget = true;
-
-            MinionTemp minion = collision.gameObject.GetComponent<MinionTemp>();
-            if (minion != null)
-            {
-                bIsMinion = true;
-                MinionList.Add(collision.gameObject);
-            }
-            else
-            {
-                BasicController player = collision.gameObject.GetComponentInParent<BasicController>();
-                if (player != null)
+                BasicController Player = collision.GetComponent<BasicController>();
+                if (Player != null)
                 {
+                    bIsTarget = true;
                     bIsPlayer = true;
-                    PlayerList.Add(collision.gameObject);
 
+                    attackTarget = collision.gameObject;
+                }
+                else
+                {
+                    MinionTemp minion = collision.GetComponent<MinionTemp>();
+                    if(minion != null)
+                    {
+                        bIsTarget = true;
+                        attackTarget = collision.gameObject;
+                    }
                 }
             }
         }
@@ -114,40 +112,25 @@ public class TowerAttack : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        IAttack inTarget = collision.gameObject.GetComponent<IAttack>();
-
-        if (inTarget != null)
+        BasicController Player = collision.GetComponent<BasicController>();
+        if (Player != null)
         {
-            MinionTemp minion = collision.gameObject.GetComponent<MinionTemp>();
+            bIsPlayer = false;
+            bIsTarget = false;
+
+        }
+        else
+        {
+            MinionTemp minion = collision.GetComponent<MinionTemp>();
             if (minion != null)
-            {
-                MinionList.Remove(collision.gameObject);
-                if (MinionList.Count == 0)
-                {
-                    bIsMinion = false;
-                }
-
-            }
-            else
-            {
-                BasicController player = collision.gameObject.GetComponentInParent<BasicController>();
-                if (player != null)
-                {
-                    PlayerList.Remove(collision.gameObject);
-                    if (PlayerList.Count == 0)
-                    {
-                        bIsPlayer = false;
-                    }
-
-                }
-            }
-
-            if (!bIsPlayer && !bIsMinion)
             {
                 bIsTarget = false;
             }
         }
     }
+
+
+
 
     void AttackTimer()
     {

@@ -18,6 +18,8 @@ public class NonTargetThrow : MonoBehaviour
 
     bool bTeam;
 
+    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
