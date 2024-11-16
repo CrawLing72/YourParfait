@@ -43,9 +43,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        GameManager.instance.GetPlayerInfos();
+        GetPlayerInfos();
         GameUIManager.instance.UpdateTopStatusBar();
         GameUIManager.instance.UpdateMainBar();
+        GameUIManager.instance.UpdatePlayerStatus();
 
     }
 
@@ -70,5 +71,6 @@ public class GameManager : MonoBehaviour
             temp_info.SetParameters(gameInfo.PlayerName, gameInfo.isRedTeam, PlayerStat.GetCurrentHp(), PlayerStat.GetMaxHp(), PlayerStat.GetCurrentMp(), PlayerStat.GetMaxMp(),gameInfo.CurrentChar);
             gameInfo.Players[PlayerStat.gameManager.gameInfo.PlayerName] = temp_info;
         }
+        GameUIManager.instance.UpdatePlayerStatus(true);
     }
 }

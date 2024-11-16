@@ -76,7 +76,7 @@ public class GameUIManager : MonoBehaviour
     public void UpdatePlayerStatus(bool isSetup = false) //setup과 update를 분리해 놓을것 : 안그러면 IO 배치수 개쪽남
     {
         Dictionary<string, Sprite> stats = new Dictionary<string, Sprite>();
-        if (isSetup)
+        if (isSetup && (GameManager.instance.gameInfo.Players.Count != 0))
         {
             foreach (KeyValuePair<string, Playerinfo> objs in GameManager.instance.gameInfo.Players)
             {
@@ -107,13 +107,13 @@ public class GameUIManager : MonoBehaviour
             Wskill.sprite = Resources.Load<Sprite>("UI/Skill/" + GameManager.instance.gameInfo.CurrentChar + "_W");
         }
 
-        float hp = GameManager.instance.gameInfo.Players[GameManager.instance.gameInfo.PlayerName].HP;
-        float maxhp = GameManager.instance.gameInfo.Players[GameManager.instance.gameInfo.PlayerName].maxHP;
+        float hp = GameManager.instance.gameInfo.Players.TryGetValue(GameManager.instance.gameInfo.PlayerName, out var temp) ? temp.HP : 1000;
+        float maxhp = GameManager.instance.gameInfo.Players.TryGetValue(GameManager.instance.gameInfo.PlayerName, out var temp2) ? temp.maxHP : 1000;
         HP_Bar.value = hp / maxhp;
         HP_Text.text = hp.ToString() + "/" + maxhp.ToString();
 
-        float mp = GameManager.instance.gameInfo.Players[GameManager.instance.gameInfo.PlayerName].MP;
-        float maxmp = GameManager.instance.gameInfo.Players[GameManager.instance.gameInfo.PlayerName].maxMP;
+        float mp = GameManager.instance.gameInfo.Players.TryGetValue(GameManager.instance.gameInfo.PlayerName, out var temp3) ? temp3.MP : 1000;
+        float maxmp = GameManager.instance.gameInfo.Players.TryGetValue(GameManager.instance.gameInfo.PlayerName, out var temp4) ? temp4.maxMP : 1000;
         MP_Bar.value = mp / maxmp;
         MP_Text.text = mp.ToString() + "/" + maxmp.ToString();
 
