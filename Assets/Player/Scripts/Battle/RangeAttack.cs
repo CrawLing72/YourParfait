@@ -6,7 +6,6 @@ using UnityEngine;
 public class RangeAttack : NonTargetThrow
 {
     GameObject target;
-    float Damage;
     protected Vector2 vel;
 
     public void Update()
@@ -19,22 +18,42 @@ public class RangeAttack : NonTargetThrow
 
         gameObject.transform.Translate(vel * 50.0f * Time.deltaTime);
 
-        if (Mathf.Abs((myLocation - targetLocation).magnitude) < 1.0f) 
-        {
-            IAttack getAttack = target.GetComponent<IAttack>();
-            getAttack.GetDamage(Damage);
-
-            Destroy(gameObject);
-        }
 
         //Debug.Log(vel.ToString());
 
     }
 
-    public void GetTarget(GameObject Target, float ad)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision != null)
+        {
+            Debug.Log("Collison on");
+
+            IAttack target = collision.gameObject.GetComponent<IAttack>();
+
+            if (target != null)
+            {
+                target.GetDamage(damage);
+
+
+                if (silent)
+                {
+                    target.GetSilent(silentTime);
+                }
+
+                if (slow)
+                {
+                    target.GetSlow(slowValue, slowTime);
+                }
+
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    public void GetTarget(GameObject Target)
     {
         target = Target;
-        Damage = ad;
     }
 
 }

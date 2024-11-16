@@ -68,6 +68,8 @@ public class BasicController : NetworkBehaviour, IAttack
     float ADBuffTemp;
     float TempSpeed;
 
+    bool team;
+
 
 
     protected void Awake()

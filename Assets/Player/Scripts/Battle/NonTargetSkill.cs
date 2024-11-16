@@ -37,9 +37,10 @@ public class NonTargetSkill : NonTargetThrow, IAttack
         transform.Translate(dir * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.collider != null)
+        if (collision != null)
         {
             Debug.Log(collision.gameObject.name);
 
@@ -48,7 +49,7 @@ public class NonTargetSkill : NonTargetThrow, IAttack
             {
                 target.GetDamage(damage);
 
-                if(silent)
+                if (silent)
                 {
                     target.GetSilent(silentTime);
                 }

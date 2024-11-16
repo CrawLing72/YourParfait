@@ -18,9 +18,9 @@ public class NonTargetThrow : MonoBehaviour
 
     bool bTeam;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider != null)
+        if (collision != null)
         {
             Debug.Log("Collison on");
 
@@ -30,7 +30,7 @@ public class NonTargetThrow : MonoBehaviour
             {
                 target.GetDamage(damage);
 
-                if(silent)
+                if (silent)
                 {
                     target.GetSilent(silentTime);
                 }
@@ -42,6 +42,7 @@ public class NonTargetThrow : MonoBehaviour
             }
         }
     }
+
 
     public void SetSkillDamage(float Damage)
     {

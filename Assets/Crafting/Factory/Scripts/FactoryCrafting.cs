@@ -42,7 +42,8 @@ public class FactoryCrafting : MonoBehaviour, IFactoryBuff
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!bIsFull)
         {
@@ -60,7 +61,7 @@ public class FactoryCrafting : MonoBehaviour, IFactoryBuff
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (!bIsMinion)
         {
@@ -73,7 +74,7 @@ public class FactoryCrafting : MonoBehaviour, IFactoryBuff
                     bIsFull = false;
                 }
 
-                if(currentMinion == 0)
+                if (currentMinion == 0)
                 {
                     bIsMinion = false;
                 }
