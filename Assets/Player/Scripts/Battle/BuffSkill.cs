@@ -5,7 +5,6 @@ using UnityEngine;
 public class BuffSkill : MonoBehaviour
 {
 
-    bool isFactory = false;
     GameObject player;
 
 

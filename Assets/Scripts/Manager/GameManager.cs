@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 
-public class GameManager : NetworkBehaviour
+public sealed class GameManager : NetworkBehaviour, ISpawned
 {
     public bool isRedTeam = true;
     public PlayerSpawner playerSpawner;
+
+    
     // Synced Variables
     [Networked, Capacity(6)] public NetworkArray<int> Players_Char_Index { get; } // -1 : Empty, 0 : Rainyk, etc.
     [Networked, Capacity(6)] public NetworkArray<bool> IsRedTeam_Sync { get; }
@@ -25,21 +27,13 @@ public class GameManager : NetworkBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
-        GameUIManager.instance.UpdateMainBar(true);
-        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
     }
 
     public override void FixedUpdateNetwork()
     {
-        base.FixedUpdateNetwork();
-
-        if (Object.HasStateAuthority)
-        {
-            GameTime -= Runner.DeltaTime;
-        }
+        GameTime -= Runner.DeltaTime;
 
         GameUIManager.instance.UpdateTopStatusBar();
-        GameUIManager.instance.UpdateMainBar();
         GameUIManager.instance.UpdatePlayerStatus();
 
         foreach (PlayerRef player in NetworkManager.Instance.runner.ActivePlayers)
@@ -58,24 +52,24 @@ public class GameManager : NetworkBehaviour
 
     public override void Spawned()
     {
-        if (Object.HasStateAuthority)
+        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
+        GameUIManager.instance.UpdateMainBar(true);
+        // Init. Common Variables
+        for (int i = 0; i < 6; i++)
         {
-            // Init. Common Variables
-            for (int i = 0; i < 6; i++)
-            {
-                Players_Char_Index.Set(i, -1);
-                IsRedTeam_Sync.Set(i, false);
-                HP.Set(i, 0);
-                MaxHP.Set(i, 0);
-                MP.Set(i, 0);
-                MaxMP.Set(i, 0);
-            }
-            GameTime = 1800f;
-            RedScore_Products = 0;
-            BlueScore_Products = 0;
-            RedScore_Goods = 0;
-            BlueScore_Goods = 0;
+            Players_Char_Index.Set(i, -1);
+            IsRedTeam_Sync.Set(i, false);
+            HP.Set(i, 0);
+            MaxHP.Set(i, 0);
+            MP.Set(i, 0);
+            MaxMP.Set(i, 0);
         }
-        playerSpawner.SettingInfos();
+        GameTime = 1800f;
+        RedScore_Products = 0;
+        BlueScore_Products = 0;
+        RedScore_Goods = 0;
+        BlueScore_Goods = 0;
+
+        playerSpawner.PlayerJoined(NetworkManager.Instance.runner.LocalPlayer);
     }
 }

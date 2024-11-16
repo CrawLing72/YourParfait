@@ -61,7 +61,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     {
     }
 
-    public void PlayerJoined(PlayerRef player)
+    public void PlayerJoined(PlayerRef player) // IF로 안들어 오는 현상 있어서 임시 수정 : 나중에 땜빵 할 것
     {
         // Check if this is the local player
         if (player == NetworkManager.Instance.runner.LocalPlayer)
@@ -104,19 +104,26 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
             obj.SetActive(true);
         }
         WaitingText.SetActive(false);
+
+        SettingInfos(); 
+
+        GameUIManager.instance.UpdateMainBar(true);
+        GameUIManager.instance.UpdatePlayerStatus(true);
     }
 
     public void SettingInfos()
     {
-        GameManager instance = FindObjectOfType<GameManager>();
+        GameManager instance = FindObjectOfType<GameManager>().GetComponent<GameManager>();
         // Set Synced Variables
         int clientIndex = PlayerPrefs.GetInt("ClientIndex");
         instance.Players_Char_Index.Set(clientIndex, char_name);
-        instance.IsRedTeam_Sync.Set(clientIndex, false); // Default to Blue team
-        instance.HP.Set(clientIndex, plStat.GetMaxHp());
+        instance.IsRedTeam_Sync.Set(clientIndex, instance.isRedTeam); // Default to Blue team
+        instance.HP.Set(clientIndex, plStat.GetCurrentHp());
         instance.MaxHP.Set(clientIndex, plStat.GetMaxHp());
-        instance.MP.Set(clientIndex, plStat.GetMaxMp());
+        instance.MP.Set(clientIndex, plStat.GetCurrentMp());
         instance.MaxMP.Set(clientIndex, plStat.GetMaxMp());
+
+        Debug.LogError("SettingInfos: " + instance.IsRedTeam_Sync.Get(clientIndex).ToString());
     }
 
 }
