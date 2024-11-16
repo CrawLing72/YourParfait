@@ -3,74 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
+    public bool isRedTeam = true;
+    public PlayerSpawner playerSpawner;
+    // Synced Variables
+    [Networked, Capacity(6)] public NetworkArray<int> Players_Char_Index { get; } // -1 : Empty, 0 : Rainyk, etc.
+    [Networked, Capacity(6)] public NetworkArray<bool> IsRedTeam_Sync { get; }
+    [Networked, Capacity(6)] public NetworkArray<float> HP { get; }
+    [Networked, Capacity(6)] public NetworkArray<float> MaxHP { get; }
+    [Networked, Capacity(6)] public NetworkArray<float> MP { get; }
+    [Networked, Capacity(6)] public NetworkArray<float> MaxMP { get; }
+    [Networked] public float GameTime { get; set; }
+    [Networked] public int RedScore_Products { get; set; }
+    [Networked] public int BlueScore_Products { get; set; }
+    [Networked] public int RedScore_Goods { get; set; }
+    [Networked] public int BlueScore_Goods { get; set; }
 
-    //GameManager singleton instance
-    public static GameManager instance;
+    public bool isSpanwed = false;
 
-    //GameInfo instance
-    public GameInfo gameInfo;
-
-    private void Awake()
-    {
-        //singleton pattern implementation
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        
-        DontDestroyOnLoad(gameObject);
-
-        //Game Info Settings
-        gameInfo = new GameInfo();
-        gameInfo.ServerName = PlayerPrefs.GetString("Server");
-        gameInfo.PlayerName = PlayerPrefs.GetString("Name");
-        gameInfo.CurrentChar = PlayerPrefs.GetString("CharName");
-
-    }
-    
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
-       // GameUIManager.instance.UpdatePlayerStatus(true); -> 나중에 modification 들어갈 것
         GameUIManager.instance.UpdateMainBar(true);
+        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
     }
 
-    private void Update()
+    public override void FixedUpdateNetwork()
     {
-        GetPlayerInfos();
+        base.FixedUpdateNetwork();
+
+        if (Object.HasStateAuthority)
+        {
+            GameTime -= Runner.DeltaTime;
+        }
+
         GameUIManager.instance.UpdateTopStatusBar();
         GameUIManager.instance.UpdateMainBar();
         GameUIManager.instance.UpdatePlayerStatus();
 
-    }
-
-    public void GetPlayerInfos()
-    {
-        //Get other Player's Information
-        IEnumerable<PlayerRef> Item = NetworkManager.Instance.runner.ActivePlayers;
-        GameManager.instance.gameInfo.CurrentPlayers = NetworkManager.Instance.runner.SessionInfo.PlayerCount;
-        foreach (Fusion.PlayerRef Player in Item) // Player들 처리하기!
+        foreach (PlayerRef player in NetworkManager.Instance.runner.ActivePlayers)
         {
-            Stat PlayerStat;
-            if (NetworkManager.Instance.runner.TryGetPlayerObject(Player, out var plObject))
+            NetworkManager.Instance.runner.TryGetPlayerObject(player, out NetworkObject playerObj);
+            if (playerObj)
             {
-                PlayerStat = plObject.gameObject.GetComponent<Stat>(); // Player의 Stat Component 불러오기
+                Debug.Log(playerObj.GetComponent<Stat>().name);
             }
             else
             {
-                return;
+                Debug.LogWarning("Player Object is null");
             }
-
-            Playerinfo temp_info = new Playerinfo();
-            temp_info.SetParameters(gameInfo.PlayerName, gameInfo.isRedTeam, PlayerStat.GetCurrentHp(), PlayerStat.GetMaxHp(), PlayerStat.GetCurrentMp(), PlayerStat.GetMaxMp(),gameInfo.CurrentChar);
-            gameInfo.Players[PlayerStat.gameManager.gameInfo.PlayerName] = temp_info;
         }
-        GameUIManager.instance.UpdatePlayerStatus(true);
+    }
+
+    public override void Spawned()
+    {
+        if (Object.HasStateAuthority)
+        {
+            // Init. Common Variables
+            for (int i = 0; i < 6; i++)
+            {
+                Players_Char_Index.Set(i, -1);
+                IsRedTeam_Sync.Set(i, false);
+                HP.Set(i, 0);
+                MaxHP.Set(i, 0);
+                MP.Set(i, 0);
+                MaxMP.Set(i, 0);
+            }
+            GameTime = 1800f;
+            RedScore_Products = 0;
+            BlueScore_Products = 0;
+            RedScore_Goods = 0;
+            BlueScore_Goods = 0;
+        }
+        playerSpawner.SettingInfos();
     }
 }

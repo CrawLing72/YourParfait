@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
-    //네트워크 매니저는 주로 Fusion Runner(Core system)과 네트워크 프로퍼티를 관리하는 역할을 합니다.
+    //네트워크 매니저는 주로 Fusion Runner(Core system)를 관리하는 역할을 합니다.
     //모르는 사항은 PM에게 문의해주세요.
 
     public NetworkRunner runner;
@@ -55,7 +55,8 @@ public class NetworkManager : MonoBehaviour
             var startGameArgs = new StartGameArgs()
             {
                 GameMode = Fusion.GameMode.Shared,
-                SessionName = PlayerPrefs.GetString("Server")
+                SessionName = PlayerPrefs.GetString("Server"),
+                PlayerCount = 6 // DO NOT CHANGE!!!!!!!
             };
 
             runner.StartGame(startGameArgs);

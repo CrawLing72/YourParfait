@@ -55,70 +55,39 @@ public class GameUIManager : MonoBehaviour
     }
     public void UpdateTopStatusBar()
     {
+        GameManager instance = FindObjectOfType<GameManager>();
         //Handle TeamThemeBar, productsCount, goodsCount
-        if (GameManager.instance.gameInfo.isRedTeam)
+        if (instance.isRedTeam)
         {
             TeamText.text = "Red Team";
             TeamThemeBar.sprite = redTeamBar;
-            ProductsCount.text = string.Format("{0, 3}", GameManager.instance.gameInfo.RedScore_Products.ToString());
-            GoodsCount.text = string.Format("{0, 3}", GameManager.instance.gameInfo.RedScore_Goods.ToString());
+            ProductsCount.text = string.Format("{0, 3}", instance.RedScore_Products.ToString());
+            GoodsCount.text = string.Format("{0, 3}", instance.RedScore_Goods.ToString());
         }
         else
         {
             TeamText.text = "Blue Team";
             TeamThemeBar.sprite = blueTeamBar;
-            ProductsCount.text = string.Format("{0, 3}", GameManager.instance.gameInfo.BlueScore_Products.ToString());
-            GoodsCount.text = string.Format("{0, 3}", GameManager.instance.gameInfo.BlueScore_Goods.ToString());
+            ProductsCount.text = string.Format("{0, 3}", instance.BlueScore_Products.ToString());
+            GoodsCount.text = string.Format("{0, 3}", instance.BlueScore_Goods.ToString());
         }
         KDA.text = "0/0/0"; // -> 나중에 GM에 추가해 놓을것.
     }
 
     public void UpdatePlayerStatus(bool isSetup = false) //setup과 update를 분리해 놓을것 : 안그러면 IO 배치수 개쪽남
     {
-        Dictionary<string, Sprite> stats = new Dictionary<string, Sprite>();
-        if (isSetup && (GameManager.instance.gameInfo.Players.Count != 0))
-        {
-            foreach (KeyValuePair<string, Playerinfo> objs in GameManager.instance.gameInfo.Players)
-            {
-                if (objs.Value.isRedTeam && GameManager.instance.gameInfo.isRedTeam)
-                    stats[objs.Value.id] = Resources.Load<Sprite>("circled_char/" + objs.Value.currentChar);
-                else if (!objs.Value.isRedTeam && !GameManager.instance.gameInfo.isRedTeam)
-                    stats[objs.Value.id] = Resources.Load<Sprite>("circled_char/" + objs.Value.currentChar);
-            }
-        }
 
-        int temp_count = 0;
-        foreach(KeyValuePair<string, Sprite> temp in stats)
-        {
-            Player_stats[temp_count].GetComponent<Image>().sprite = temp.Value;
-            Player_stats[temp_count].transform.GetChild(0).GetComponent<Slider>().value
-                = GameManager.instance.gameInfo.Players[temp.Key].HP / GameManager.instance.gameInfo.Players[temp.Key].maxHP;
-            temp_count += 1;
-        }
     }
 
     public void UpdateMainBar(bool isSetup = false)
     {
         if (isSetup)
         {
-            Char_Face.sprite = Resources.Load<Sprite>("circled_char_Spoted/" + GameManager.instance.gameInfo.CurrentChar);
-            Qskill.sprite = Resources.Load<Sprite>("UI/Skill/" + GameManager.instance.gameInfo.CurrentChar + "_Q");
-            Eskill.sprite = Resources.Load<Sprite>("UI/Skill/" + GameManager.instance.gameInfo.CurrentChar + "_E");
-            Wskill.sprite = Resources.Load<Sprite>("UI/Skill/" + GameManager.instance.gameInfo.CurrentChar + "_W");
+            Char_Face.sprite = Resources.Load<Sprite>("circled_char_Spoted/" + PlayerPrefs.GetString("CharName"));
+            Qskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_Q");
+            Eskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_E");
+            Wskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_W");
         }
-
-        float hp = GameManager.instance.gameInfo.Players.TryGetValue(GameManager.instance.gameInfo.PlayerName, out var temp) ? temp.HP : 1000;
-        float maxhp = GameManager.instance.gameInfo.Players.TryGetValue(GameManager.instance.gameInfo.PlayerName, out var temp2) ? temp.maxHP : 1000;
-        HP_Bar.value = hp / maxhp;
-        HP_Text.text = hp.ToString() + "/" + maxhp.ToString();
-
-        float mp = GameManager.instance.gameInfo.Players.TryGetValue(GameManager.instance.gameInfo.PlayerName, out var temp3) ? temp3.MP : 1000;
-        float maxmp = GameManager.instance.gameInfo.Players.TryGetValue(GameManager.instance.gameInfo.PlayerName, out var temp4) ? temp4.maxMP : 1000;
-        MP_Bar.value = mp / maxmp;
-        MP_Text.text = mp.ToString() + "/" + maxmp.ToString();
-
         // item, lv는 차후 수정
     }
-
-    
 }

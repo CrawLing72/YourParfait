@@ -1,4 +1,5 @@
 using Fusion;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,9 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     GameObject Rainyk;
 
     PlayerSpawner playerSpawner;
+    NetworkObject plObj;
+    Stat plStat;
+    int char_name;
 
     private void Awake()
     {
@@ -59,12 +63,60 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
     public void PlayerJoined(PlayerRef player)
     {
+        // Check if this is the local player
         if (player == NetworkManager.Instance.runner.LocalPlayer)
         {
-            var plObject = NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
-            NetworkManager.Instance.runner.SetPlayerObject(player, plObject);
+
+            // Spawn the player object
+            plObj = NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
+            if (plObj == null)
+            {
+                Debug.LogError("Failed to spawn player object!");
+                return;
+            }
+
+            // Set the player object for the runner
+            NetworkManager.Instance.runner.SetPlayerObject(player, plObj);
+
+            // Determine character index
+            switch (PlayerPrefs.GetString("CharName"))
+            {
+                case "Selena": char_name = 1; break;
+                case "Seraphina": char_name = 2; break;
+                case "Mixube": char_name = 3; break;
+                case "Tyneya": char_name = 4; break;
+                case "Rainyk": char_name = 0; break;
+                default: char_name = 1; break;
+            }
+
+            // Ensure Stat component is present
+            plStat = plObj.GetComponent<Stat>();
+            if (plStat == null)
+            {
+                Debug.LogError("Stat component not found on PlayerPrefab!");
+                return;
+            }
         }
-        foreach (var obj in UICAN) obj.SetActive(true);
+
+        // Activate UI elements
+        foreach (var obj in UICAN)
+        {
+            obj.SetActive(true);
+        }
         WaitingText.SetActive(false);
     }
+
+    public void SettingInfos()
+    {
+        GameManager instance = FindObjectOfType<GameManager>();
+        // Set Synced Variables
+        int clientIndex = PlayerPrefs.GetInt("ClientIndex");
+        instance.Players_Char_Index.Set(clientIndex, char_name);
+        instance.IsRedTeam_Sync.Set(clientIndex, false); // Default to Blue team
+        instance.HP.Set(clientIndex, plStat.GetMaxHp());
+        instance.MaxHP.Set(clientIndex, plStat.GetMaxHp());
+        instance.MP.Set(clientIndex, plStat.GetMaxMp());
+        instance.MaxMP.Set(clientIndex, plStat.GetMaxMp());
+    }
+
 }
