@@ -39,7 +39,7 @@ Transform:
   - {fileID: 392905249357114715}
   - {fileID: 544502607830625163}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -53,6 +53,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bef59479f6d7f44aa2e2c577aa07065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 0
+  maxMp: 0
+  currentHp: 0
+  currentMp: 0
+  speed: 0
+  attackRange: 0
+  attackTime: 0
+  qTime: 0
+  wTime: 0
+  eTime: 0
+  ad: 0
+  gameManager: {fileID: 0}
 --- !u!114 &5736492768576714638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +184,7 @@ MonoBehaviour:
   - {x: -0.0027694702, y: -1.8207352, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46266
+  m_InstanceId: -1101310
   m_LocalBounds:
     m_Center: {x: -0.5756798, y: -0.6737629, z: 0}
     m_Extent: {x: 0.5729103, y: 1.1469723, z: 0}
@@ -189,17 +201,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BasicAttack: {fileID: 1292993822233510530, guid: 5e3024423c6586444b9e6b7e1f63b7ca, type: 3}
-  maxHp: 100
-  maxMp: 100
-  currentHp: 100
-  currentMp: 100
+  CircleRangePrefeb: {fileID: 0}
+  maxHp: 1000
+  maxMp: 1000
+  currentHp: 1000
+  currentMp: 1000
   speed: 70
   attackRang: 100
   attackTime: 2
   wTime: 3
   eTime: 5
-  rTime: 7
+  qTime: 0
   ad: 9
+  skillEPreFeb: {fileID: 0}
+  skillQPreFeb: {fileID: 0}
+  skillWPreFeb: {fileID: 0}
+  QSkillRange: 0
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0

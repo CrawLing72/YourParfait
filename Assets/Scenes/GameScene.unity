@@ -3956,7 +3956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 22770f8d179248b4c83e41a7824fc1ed, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4648,7 +4648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054825423}
   m_LocalRotation: {x: 0, y: -1e-45, z: 0, w: 1}
-  m_LocalPosition: {x: -33.375317, y: 2.4037971, z: -13.745405}
+  m_LocalPosition: {x: -31.416908, y: 2.4037957, z: -13.745405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5311,7 +5311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39ae49ef244824a46849c8fb04e93944, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5404,7 +5404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 707440d48b7670644b3e7f297647417f, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6321,7 +6321,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.78
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6355,13 +6355,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TeamThemeBar: {fileID: 1199681620}
-  ProductsCount: 000
-  GoodsCount: 000
-  KDA: 0/0/0
+  ProductsCount: {fileID: 270659009}
+  GoodsCount: {fileID: 192833806}
+  KDA: {fileID: 181496486}
+  TeamText: {fileID: 44453506}
   RootObj: {fileID: 1212792048}
-  Player_stats_1: {fileID: 903408373}
-  Player_stats_2: {fileID: 1161452315}
-  Player_stats_3: {fileID: 1142821209}
+  Player_stats:
+  - {fileID: 903408373}
+  - {fileID: 1161452315}
+  - {fileID: 1142821209}
   Char_Face: {fileID: 1728604340}
   HP_Bar: {fileID: 1593622347}
   MP_Bar: {fileID: 1354582629}
@@ -11201,7 +11203,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.78
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

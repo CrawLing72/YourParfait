@@ -37,11 +37,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+       // GameUIManager.instance.UpdatePlayerStatus(true); -> 나중에 modification 들어갈 것
+        GameUIManager.instance.UpdateMainBar(true);
     }
 
     private void Update()
     {
         GameManager.instance.GetPlayerInfos();
+        GameUIManager.instance.UpdateTopStatusBar();
+        GameUIManager.instance.UpdateMainBar();
+
     }
 
     public void GetPlayerInfos()
