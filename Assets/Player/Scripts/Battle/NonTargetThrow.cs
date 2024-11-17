@@ -5,18 +5,24 @@ using UnityEngine;
 public class NonTargetThrow : MonoBehaviour
 {
 
-    private float damage;
+    protected float damage;
 
-    bool silent = false;
-    float silentTime;
+    protected bool silent = false;
+    protected float silentTime;
 
-    bool slow = false;
-    float slowTime;
-    float slowValue;
+    protected bool slow = false;
+    protected float slowTime;
+    protected float slowValue;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected bool bisbondage;
+
+    bool bTeam;
+
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider != null)
+        if (collision != null)
         {
             Debug.Log("Collison on");
 
@@ -26,7 +32,7 @@ public class NonTargetThrow : MonoBehaviour
             {
                 target.GetDamage(damage);
 
-                if(silent)
+                if (silent)
                 {
                     target.GetSilent(silentTime);
                 }
@@ -38,6 +44,7 @@ public class NonTargetThrow : MonoBehaviour
             }
         }
     }
+
 
     public void SetSkillDamage(float Damage)
     {
@@ -55,5 +62,10 @@ public class NonTargetThrow : MonoBehaviour
         slowTime = time;
         slowValue = value;
         slow = true;
+    }
+
+    public void GetTeam(bool team)
+    {
+        bTeam = team;
     }
 }
