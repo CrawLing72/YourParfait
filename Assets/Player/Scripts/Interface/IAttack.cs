@@ -9,4 +9,6 @@ public interface IAttack
     void GetSilent(float time) { }
 
     void GetSlow(float value, float time) { }
+
+    void Getbondage(float time) { }
 }

@@ -15,6 +15,8 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     CinemachineVirtualCamera cinemachineCamera; // 시네머신 카메라 변수 선언
 
+    GameObject Palyer;
+
     private void LateUpdate()
     {
         CameraMove();

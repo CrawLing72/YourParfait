@@ -97,7 +97,7 @@ public class ElainaController : BasicController
         RangeAttack attackFunc = attack.GetComponent<RangeAttack>();
 
         attack.transform.position = gameObject.transform.position;
-        attackFunc.GetTarget(Target, stat.GetAd()); 
+        attackFunc.GetTarget(Target); 
     }
 
     protected override void InputActionW()

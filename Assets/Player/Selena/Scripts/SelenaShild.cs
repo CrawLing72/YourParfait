@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class SelenaShild : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        IFactoryBuff Factory = collision.gameObject.GetComponent<IFactoryBuff>();
+        if (Factory != null)
+        {
+            Factory.GetBuff(1.2f);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        IFactoryBuff Factory = collision.gameObject.GetComponent<IFactoryBuff>();
+        if (Factory != null)
+        {
+            Factory.OffBuff();
+        }
     }
+
 }

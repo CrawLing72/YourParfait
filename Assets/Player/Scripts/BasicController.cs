@@ -3,6 +3,7 @@ using Fusion.Sockets;
 using Spine.Unity;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BasicController : NetworkBehaviour, IAttack
 {
@@ -66,6 +67,11 @@ public class BasicController : NetworkBehaviour, IAttack
     [SerializeField]
     protected GameObject skillWPreFeb;
 
+    float ADBuffTemp;
+    float TempSpeed;
+
+    bool team;
+
 
 
     protected void Awake()
@@ -77,11 +83,6 @@ public class BasicController : NetworkBehaviour, IAttack
         skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
 
         Scale = Char.localScale;
-    }
-
-    protected virtual void Start()
-    {
-        stat.SetSpeed(50.0f);
 
         QSkillRangePrefeb = transform.Find("QRange").gameObject;
 
@@ -102,6 +103,13 @@ public class BasicController : NetworkBehaviour, IAttack
         {
             WSkillRangePrefeb.SetActive(eIsOn);
         }
+    }
+
+    protected virtual void Start()
+    {
+        stat.SetSpeed(50.0f);
+
+        
     }
 
     public override void FixedUpdateNetwork()
@@ -269,7 +277,7 @@ public class BasicController : NetworkBehaviour, IAttack
     }
 
 
-    public virtual void GetDamage(float Damage, MonoBehaviour DamageCauser)
+    protected virtual void GetDamage(float Damage, MonoBehaviour DamageCauser)
     {
         float CurrentHp = stat.GetCurrentHp();
         stat.SetCurrentHp(CurrentHp - Damage);
@@ -354,7 +362,7 @@ public class BasicController : NetworkBehaviour, IAttack
         isSilent = false;
     }
 
-    public void GetSlow(float value, float time)
+    void GetSlow(float value, float time)
     {
 
     }
@@ -364,7 +372,17 @@ public class BasicController : NetworkBehaviour, IAttack
 
     }
 
-    void GetAdBuff(float value, float time)
+    void GetStop()
+    {
+
+    }
+
+    void Getbondage(float time)
+    {
+
+    }
+
+    protected void GetAdBuff(float value, float time)
     {
         stat.SetAd(stat.GetAd() + value);
         adBuffTemp = value;
@@ -373,7 +391,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     void OffAdBuff()
     {
-        stat.SetAd(stat.GetAd());
+        stat.SetAd(stat.GetAd() - adBuffTemp);
     }
 
     void OnQ()
