@@ -38,7 +38,7 @@ public sealed class GameManager : NetworkBehaviour, ISpawned
         GameTime -= Runner.DeltaTime;
 
         GameUIManager.instance.UpdateTopStatusBar();
-        GameUIManager.instance.UpdatePlayerStatus();
+        GameUIManager.instance.UpdatePlayerStatus(true);
     }
 
     public override void Spawned()
