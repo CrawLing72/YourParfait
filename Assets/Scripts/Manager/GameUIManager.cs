@@ -35,7 +35,7 @@ public class GameUIManager : MonoBehaviour
     private TMP_Text HP_Text;
     private TMP_Text MP_Text;
 
-    GameManager gmInstance;
+    GameState gmInstance;
     private void Awake()
     {
         //singleton pattern implementation
@@ -57,9 +57,9 @@ public class GameUIManager : MonoBehaviour
     }
     public void UpdateTopStatusBar()
     {
-        gmInstance = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        gmInstance = FindObjectOfType<GameState>().GetComponent<GameState>();
         //Handle TeamThemeBar, productsCount, goodsCount
-        if (gmInstance.isRedTeam)
+        if (GameManager.instance.isRedTeam)
         {
             TeamText.text = "Red Team";
             TeamThemeBar.sprite = redTeamBar;
@@ -78,14 +78,13 @@ public class GameUIManager : MonoBehaviour
 
     public void UpdatePlayerStatus(bool isSetup = false) //setup과 update를 분리해 놓을것 : 안그러면 IO 배치수 개쪽남
     {
-        gmInstance = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        gmInstance = FindObjectOfType<GameState>().GetComponent<GameState>();
         List<int> char_index = new List<int>();
         if (isSetup)
         {
             for (int i = 0; i < 6; i++)
             {
                 if(gmInstance.IsRedTeam_Sync.Get(i)) char_index.Add(i);
-                Debug.LogError("PlayerStatus: " + gmInstance.IsRedTeam_Sync.Get(i));
             }
             int count = 0;
             foreach(int idx in char_index)

@@ -49,11 +49,6 @@ public class NetworkManager : MonoBehaviour
     {
         startGame();
     }
-
-    private void Update()
-    {
-        Debug.LogError(GMNetwork.StateAuthority);
-    }
     private static void SetupInstance()
     {
         instance = FindObjectOfType<NetworkManager>();
@@ -77,7 +72,6 @@ public class NetworkManager : MonoBehaviour
                 Scene = sceneRef
             };
             runner.StartGame(startGameArgs);
-            PlayerPrefs.SetInt("GMSpawned", 0);
 
         }
     }

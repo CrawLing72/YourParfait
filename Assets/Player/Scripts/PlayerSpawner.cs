@@ -107,5 +107,8 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
         GameUIManager.instance.UpdateMainBar(true);
         GameUIManager.instance.UpdatePlayerStatus(true);
+
+        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount-1);
+        Debug.LogError("ClientIndex: " + PlayerPrefs.GetInt("ClientIndex"));
     }
 }

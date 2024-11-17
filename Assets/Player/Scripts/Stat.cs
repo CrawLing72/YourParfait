@@ -9,11 +9,11 @@ public class Stat : MonoBehaviour
     protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, qTime, wTime, eTime,
         ad;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-        if (PlayerPrefs.GetInt("GMSpawned") == 1)
+        GameState instance = FindObjectOfType<GameState>().GetComponent<GameState>();
+        if (instance.GSSpawned == 1)
         {
-            GameManager instance = FindObjectOfType<GameManager>().GetComponent<GameManager>();
             // Set Synced Variables
             int clientIndex = PlayerPrefs.GetInt("ClientIndex");
             int char_name;
@@ -26,12 +26,7 @@ public class Stat : MonoBehaviour
                 case "Rainyk": char_name = 0; break;
                 default: char_name = 1; break;
             }
-            instance.Players_Char_Index.Set(clientIndex, char_name);
-            instance.IsRedTeam_Sync.Set(clientIndex, instance.isRedTeam); // Default to Blue team
-            instance.HP.Set(clientIndex, GetCurrentHp());
-            instance.MaxHP.Set(clientIndex, GetMaxHp());
-            instance.MP.Set(clientIndex, GetCurrentMp());
-            instance.MaxMP.Set(clientIndex, GetMaxMp());
+            instance.RPC_SetProperties(clientIndex, char_name, GameManager.instance.isRedTeam, GetCurrentHp(), GetMaxHp(), GetCurrentMp(), GetMaxHp());
         }
     }
 
