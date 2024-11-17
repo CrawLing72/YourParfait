@@ -5,6 +5,14 @@ using UnityEngine;
 public class BuffSkill : MonoBehaviour
 {
 
+
+    GameObject player;
+
+
+    void Update()
+    {
+        transform.position = player.transform.position;
+    }
     bool isFactoryBuff = false;
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -2,13 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Stat : MonoBehaviour
 {
     [SerializeField]
     protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, qTime, wTime, eTime,
         ad;
+
+    private void FixedUpdate()
+    {
+        GameState instance = FindObjectOfType<GameState>().GetComponent<GameState>();
+        if (instance.GSSpawned == 1)
+        {
+            // Set Synced Variables
+            int clientIndex = PlayerPrefs.GetInt("ClientIndex");
+            int char_name;
+            switch (PlayerPrefs.GetString("CharName"))
+            {
+                case "Selena": char_name = 1; break;
+                case "Seraphina": char_name = 2; break;
+                case "Mixube": char_name = 3; break;
+                case "Tyneya": char_name = 4; break;
+                case "Rainyk": char_name = 0; break;
+                default: char_name = 1; break;
+            }
+            instance.SetProperties(clientIndex, char_name, GameManager.instance.isRedTeam, currentHp, maxHp, currentMp, maxMp);
+        }
+    }
 
     public float GetMaxHp() { return maxHp; }
     public void SetMaxHp(float setValue){ maxHp = setValue; }

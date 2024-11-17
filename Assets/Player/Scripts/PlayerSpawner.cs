@@ -1,12 +1,14 @@
 using Fusion;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Collections.Unicode;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 {
     public GameObject PlayerPrefab;
+    public GameObject[] UICAN;
+    public GameObject WaitingText;
     public Vector3 SpawnPoint = new Vector3(-33, 2, -4);
 
     [Header("Chars")]
@@ -22,6 +24,9 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     GameObject Rainyk;
 
     PlayerSpawner playerSpawner;
+    NetworkObject plObj;
+    Stat plStat;
+    int char_name;
 
     private void Awake()
     {
@@ -56,12 +61,54 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     {
     }
 
-    public void PlayerJoined(PlayerRef player)
+    public void PlayerJoined(PlayerRef player) // IF로 안들어 오는 현상 있어서 임시 수정 : 나중에 땜빵 할 것
     {
+        // Check if this is the local player
         if (player == NetworkManager.Instance.runner.LocalPlayer)
         {
-            Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-            NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
+
+            // Spawn the player object
+            plObj = NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
+            if (plObj == null)
+            {
+                Debug.LogError("Failed to spawn player object!");
+                return;
+            }
+
+            // Set the player object for the runner
+            NetworkManager.Instance.runner.SetPlayerObject(player, plObj);
+
+            // Determine character index
+            switch (PlayerPrefs.GetString("CharName"))
+            {
+                case "Selena": char_name = 1; break;
+                case "Seraphina": char_name = 2; break;
+                case "Mixube": char_name = 3; break;
+                case "Tyneya": char_name = 4; break;
+                case "Rainyk": char_name = 0; break;
+                default: char_name = 1; break;
+            }
+
+            // Ensure Stat component is present
+            plStat = plObj.GetComponent<Stat>();
+            if (plStat == null)
+            {
+                Debug.LogError("Stat component not found on PlayerPrefab!");
+                return;
+            }
         }
+
+        // Activate UI elements
+        foreach (var obj in UICAN)
+        {
+            obj.SetActive(true);
+        }
+        WaitingText.SetActive(false);
+
+        GameUIManager.instance.UpdateMainBar(true);
+        GameUIManager.instance.UpdatePlayerStatus(true);
+
+        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount-1);
+        Debug.LogError("ClientIndex: " + PlayerPrefs.GetInt("ClientIndex"));
     }
 }

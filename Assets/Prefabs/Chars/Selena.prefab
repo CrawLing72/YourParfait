@@ -246,6 +246,7 @@ MonoBehaviour:
   wTime: 0
   eTime: 0
   ad: 0
+  gameManager: {fileID: 0}
 --- !u!114 &2373934900748405906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +782,10 @@ PrefabInstance:
     - target: {fileID: 2054454735464131262, guid: 285c6238185fd3040bcb4fb0f21681ec, type: 3}
       propertyPath: m_Name
       value: ParticlePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2054454735464131262, guid: 285c6238185fd3040bcb4fb0f21681ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8758969915338609790, guid: 285c6238185fd3040bcb4fb0f21681ec, type: 3}
       propertyPath: m_RootOrder
