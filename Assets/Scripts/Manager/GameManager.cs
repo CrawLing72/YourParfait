@@ -43,7 +43,6 @@ public sealed class GameManager : NetworkBehaviour, ISpawned
 
     public override void Spawned()
     {
-        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
         GameUIManager.instance.UpdateMainBar(true);
         // Init. Common Variables
         for (int i = 0; i < 6; i++)
@@ -63,5 +62,7 @@ public sealed class GameManager : NetworkBehaviour, ISpawned
 
         playerSpawner.PlayerJoined(NetworkManager.Instance.runner.LocalPlayer);
         PlayerPrefs.SetInt("GMSpawned", 1);
+        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
+        Debug.LogError("ClientIndex: " + PlayerPrefs.GetInt("ClientIndex"));
     }
 }
