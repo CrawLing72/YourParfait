@@ -26,7 +26,7 @@ public class Stat : MonoBehaviour
                 case "Rainyk": char_name = 0; break;
                 default: char_name = 1; break;
             }
-            instance.RPC_SetProperties(clientIndex, char_name, GameManager.instance.isRedTeam, GetCurrentHp(), GetMaxHp(), GetCurrentMp(), GetMaxHp());
+            instance.SetProperties(clientIndex, char_name, GameManager.instance.isRedTeam, currentHp, maxHp, currentMp, maxMp);
         }
     }
 

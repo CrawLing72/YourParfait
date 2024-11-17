@@ -78,4 +78,9 @@ public sealed class GameState : NetworkBehaviour, ISpawned
         MP.Set(clinet_index, _CurrentMP);
         MaxMP.Set(clinet_index, _MaxMP);
     }
+
+    public void SetProperties(int clinet_index, int char_name, bool _isRedTeam, float _CurrentHP, float _MaxHP, float _CurrentMP, float _MaxMP)
+    {
+        RPC_SetProperties(clinet_index, char_name, _isRedTeam, _CurrentHP, _MaxHP, _CurrentMP, _MaxMP);
+    }
 }
