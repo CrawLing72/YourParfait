@@ -38,6 +38,8 @@ public class BasicController : NetworkBehaviour, IAttack
     
     protected Vector2 mouseClickPos;
 
+
+    protected bool shouldFire = false;
     private Transform Char;
     private SkeletonAnimation skeletonAnimation;
 

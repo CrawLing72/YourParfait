@@ -1,0 +1,119 @@
+msb 파츠분리.png
+size:2004,1958
+filter:Linear,Linear
+pma:true
+scale:0.5
+B-clothes
+bounds:1188,540,559,404
+offsets:0,24,587,456
+L-arm
+bounds:854,1448,236,603
+rotate:90
+L-eyebrow
+bounds:298,1927,214,29
+offsets:0,0,215,29
+L-eyelashes
+bounds:1019,1704,301,155
+L-face
+bounds:2,685,335,289
+offsets:0,1,335,291
+L-hair
+bounds:850,1215,231,1051
+rotate:90
+L-iris
+bounds:1699,1848,108,131
+rotate:90
+L-leg
+bounds:1047,946,267,750
+offsets:5,0,272,750
+rotate:90
+L-pupil
+bounds:262,1928,28,34
+offsets:3,0,32,34
+rotate:90
+R-pupil
+bounds:262,1928,28,34
+offsets:3,0,32,34
+rotate:90
+L-sclera
+bounds:1322,1686,296,162
+R-arm
+bounds:311,1244,272,537
+rotate:90
+R-eyebrow
+bounds:514,1916,212,40
+offsets:1,0,215,40
+R-eyelashes
+bounds:460,1760,263,154
+R-face
+bounds:2,1341,307,278
+offsets:0,1,308,280
+R-hair
+bounds:2,1800,125,456
+rotate:90
+R-hair copy
+bounds:1068,1861,95,496
+rotate:90
+R-iris
+bounds:1566,1850,106,131
+rotate:90
+R-leg
+bounds:302,976,237,743
+offsets:0,0,237,771
+rotate:90
+R-sclera
+bounds:1832,1709,247,170
+rotate:90
+body 1
+bounds:2,1011,298,328
+offsets:34,17,414,345
+body 2
+bounds:816,607,370,337
+offsets:6,38,414,375
+body down
+bounds:725,1728,292,141
+face
+bounds:2,2,765,650
+hat
+bounds:339,654,320,475
+rotate:90
+highlight l
+bounds:111,1943,18,13
+offsets:0,0,18,14
+highlight r
+bounds:93,1944,16,12
+offsets:0,1,16,13
+mouse
+bounds:17,1945,74,11
+msbWeapon
+bounds:131,1933,129,23
+nose
+bounds:2,1951,5,13
+rotate:90
+qweqeqweqweqweqe copy
+bounds:728,1884,249,72
+offsets:23,99,296,258
+r-closed eye
+bounds:1620,1454,290,253
+offsets:3,2,296,258
+ribbon
+bounds:979,1871,87,85
+폴더 7 copy
+bounds:423,1518,208,429
+offsets:121,0,329,488
+rotate:90
+폴더 7 copy 2
+bounds:2,1621,177,419
+offsets:0,0,277,438
+rotate:90
+
+msb 파츠분리_2.png
+size:1840,1388
+filter:Linear,Linear
+pma:true
+scale:0.5
+B-hair
+bounds:2,2,1153,1384
+F-hair
+bounds:1157,637,749,681
+rotate:90
