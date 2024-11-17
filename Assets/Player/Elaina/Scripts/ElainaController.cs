@@ -126,7 +126,6 @@ public class ElainaController : BasicController
             {
                 GameObject attack = Instantiate(skillEEffect);
                 BuffSkill eSkill = attack.GetComponent<BuffSkill>();
-                eSkill.SetTarget(gameObject);
                 attack.transform.position = gameObject.transform.position;
 
                 currentETime = stat.GetETime();

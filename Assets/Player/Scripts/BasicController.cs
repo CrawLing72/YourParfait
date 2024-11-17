@@ -19,6 +19,8 @@ public class BasicController : NetworkBehaviour, IAttack
     protected bool qIsOn = false, wIsOn = false, eIsOn = false;
     protected float currentAttackTime, currentQTime, currentWTime, currentETime;
 
+
+    float adBuffTemp;
     protected Vector3 Scale;
 
     // under : network property, do not modify manually!!!! - SHIN
@@ -31,15 +33,39 @@ public class BasicController : NetworkBehaviour, IAttack
     /// <summary>
     /// end of network property
     /// </summary>
-
+    
+    
     protected Vector2 mouseClickPos;
+
 
     protected bool shouldFire = false;
     private Transform Char;
     private SkeletonAnimation skeletonAnimation;
 
+    bool isSilent = false;
+
+    protected GameObject QSkillRangePrefeb;
+    protected GameObject ESkillRangePrefeb;
+    protected GameObject WSkillRangePrefeb;
+
     [SerializeField]
-    protected GameObject CircleRangePrefeb;
+    protected float QSkillRange;
+
+    [SerializeField]
+    protected float WSkillRange;
+
+    [SerializeField]
+    protected float ESkillRange;
+
+    [SerializeField]
+    protected GameObject skillEPreFeb;
+
+    [SerializeField]
+    protected GameObject skillQPreFeb;
+
+    [SerializeField]
+    protected GameObject skillWPreFeb;
+
 
 
     protected void Awake()
@@ -56,6 +82,26 @@ public class BasicController : NetworkBehaviour, IAttack
     protected virtual void Start()
     {
         stat.SetSpeed(50.0f);
+
+        QSkillRangePrefeb = transform.Find("QRange").gameObject;
+
+        if (QSkillRangePrefeb != null)
+        {
+            QSkillRangePrefeb.SetActive(qIsOn);
+        }
+
+
+        ESkillRangePrefeb = transform.Find("ERange").gameObject;
+        if (ESkillRangePrefeb != null)
+        {
+            ESkillRangePrefeb.SetActive(eIsOn);
+        }
+
+        WSkillRangePrefeb = transform.Find("WRange").gameObject;
+        if (WSkillRangePrefeb != null)
+        {
+            WSkillRangePrefeb.SetActive(eIsOn);
+        }
     }
 
     public override void FixedUpdateNetwork()
@@ -64,9 +110,14 @@ public class BasicController : NetworkBehaviour, IAttack
         settingAnimation();
 
         Attack2();
-        InputActionW();
-        InputActionE();
-        InputActionQ();
+        MouseRightClick();
+
+        if(!isSilent)
+        {
+            InputActionW();
+            InputActionE();
+            InputActionQ();
+        }
 
         setTimer(ref currentAttackTime, ref isAttackAble);
         setTimer(ref currentQTime, ref isQAble);
@@ -91,6 +142,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
         if (Mathf.Abs((distance).magnitude) < 0.5f)
             rb.velocity = Vector2.zero;
+
         else
         {
             if (distance.x < 0)
@@ -105,45 +157,93 @@ public class BasicController : NetworkBehaviour, IAttack
 
     }
 
-    protected void MouseLeftClick(Vector3 mouseClickPos) // Basic Attack
+    protected virtual void InputActionW() 
     {
-        RaycastHit2D hit = Physics2D.Raycast(mouseClickPos, Vector2.zero, Mathf.Infinity);
-
-        if (hit.collider != null)
+        if (UnityEngine.Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log($"Hit Object: {hit.collider.name}");
 
-            Vector2 objectPos = gameObject.transform.position;
-            Vector2 distance = ((Vector2)mouseClickPos - objectPos);
-
-            Debug.Log($"Distance: {distance.magnitude}, Required Range: {stat.GetAttackRange()}");
-
-            if (distance.magnitude < stat.GetAttackRange() && isAttackAble)
+            if (wIsOn)
             {
-                Vector3 projectilePos = gameObject.transform.position;
-                projectilePos.x += (distance.x < 0 ? -2 : 1); // Object Axis Imbalance로 인한 보정
-                projectilePos.y -= 1;
+                wIsOn = false;
 
-                GameObject projectile = Instantiate(BasicAttack, projectilePos, Quaternion.identity);
-                projectile.GetComponent<NonTargetSkill>().SetDirection(distance.normalized);
+                WSkillRangePrefeb.SetActive(wIsOn);
+            }
+            else
+            {
+                if (isWAble)
+                {
+                    wIsOn = true;
 
-                Debug.Log("Projectile Launched");
+                    eIsOn = false;
+                    qIsOn = false;
 
-                isAttackAble = false;
-                currentAttackTime = stat.GetAttackTime();
-                shouldFire = false; // 발사 후 플래그 초기화
+                    QSkillRangePrefeb.SetActive(qIsOn);
+                    WSkillRangePrefeb.SetActive(wIsOn);
+                    ESkillRangePrefeb.SetActive(eIsOn);
+
+                }
             }
         }
-        else
+    }
+    protected virtual void InputActionE() 
+    {
+        if (UnityEngine.Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("No Object Hit Detected");
-            shouldFire = false; // 발사 실패 시 플래그 초기화
+
+            if (eIsOn)
+            {
+                eIsOn = false;
+
+                ESkillRangePrefeb.SetActive(eIsOn);
+            }
+            else
+            {
+                if (isEAble)
+                {
+                    eIsOn = true;
+
+                    wIsOn = false;
+                    qIsOn = false;
+
+                    QSkillRangePrefeb.SetActive(qIsOn);
+                    WSkillRangePrefeb.SetActive(wIsOn);
+                    ESkillRangePrefeb.SetActive(eIsOn);
+
+                }
+            }
+
         }
+
     }
 
-    protected virtual void InputActionW() { }
-    protected virtual void InputActionE() { }
-    protected virtual void InputActionQ() { }
+
+    protected virtual void InputActionQ() 
+    {
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
+        {
+            if (qIsOn)
+            {
+                qIsOn = false;
+
+                QSkillRangePrefeb.SetActive(qIsOn);
+            }
+            else
+            {
+                if (isQAble)
+                {
+                    qIsOn = true;
+
+                    wIsOn = false;
+                    eIsOn = false;
+
+                    QSkillRangePrefeb.SetActive(qIsOn);
+                    WSkillRangePrefeb.SetActive(wIsOn);
+                    ESkillRangePrefeb.SetActive(eIsOn);
+
+                }
+            }
+        }
+    }
     protected virtual void Attack(GameObject Target) { }
 
     protected virtual void Attack2()
@@ -159,13 +259,13 @@ public class BasicController : NetworkBehaviour, IAttack
                     objectPos = gameObject.transform.position;
                     Vector2 dir = (mouseLeftPos - objectPos).normalized;
 
-                    GameObject projectile = Instantiate(BasicAttack, objectPos + dir*1.7f, Quaternion.identity);
+                    GameObject projectile = Instantiate(BasicAttack, objectPos + dir*1.7f, Quaternion.identity); // Need Change 
                     projectile.GetComponent<NonTargetSkill>().SetDirection(dir);
 
                     isAttackAble = false;
                     currentAttackTime = stat.GetAttackTime();
                 }
-            }
+           }
     }
 
 
@@ -224,4 +324,75 @@ public class BasicController : NetworkBehaviour, IAttack
         }
     }
 
+    public void GetSilent(float time)
+    {
+        isSilent = true;
+
+        qIsOn = false; wIsOn = false; eIsOn = false;
+        
+
+        if (QSkillRangePrefeb != null) 
+        {
+            QSkillRangePrefeb.SetActive(false);
+        }
+        if (WSkillRangePrefeb != null)
+        {
+            WSkillRangePrefeb.SetActive(false);
+        }
+        if (ESkillRangePrefeb != null)
+        {
+            ESkillRangePrefeb.SetActive(false);
+        }
+
+        Invoke("OffSilent", time);
+    }
+
+    
+
+    void OffSilent()
+    {
+        isSilent = false;
+    }
+
+    public void GetSlow(float value, float time)
+    {
+
+    }
+
+    void OffSlow()
+    {
+
+    }
+
+    void GetAdBuff(float value, float time)
+    {
+        stat.SetAd(stat.GetAd() + value);
+        adBuffTemp = value;
+        Invoke("OffAdBuff", time);
+    }
+
+    void OffAdBuff()
+    {
+        stat.SetAd(stat.GetAd());
+    }
+
+    void OnQ()
+    {
+        isQAble = true;
+    }
+
+    void OnW()
+    {
+        isWAble = true;
+    }
+
+    void OnE()
+    {
+        isEAble= true;
+    }
+
+    void OnAttack()
+    {
+        isAttackAble = true;
+    }
 }
