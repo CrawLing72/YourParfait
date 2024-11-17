@@ -61,7 +61,8 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public void startGame() {
+    public void startGame()
+    {
         {
             SceneRef sceneRef = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
             var startGameArgs = new StartGameArgs()

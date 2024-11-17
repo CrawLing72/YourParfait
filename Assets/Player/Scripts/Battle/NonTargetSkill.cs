@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NonTargetSkill : MonoBehaviour, IAttack
+public class NonTargetSkill : NonTargetThrow, IAttack
 {
     Stat playerStat;
 
@@ -12,8 +12,17 @@ public class NonTargetSkill : MonoBehaviour, IAttack
     [SerializeField]
     float time;
 
+    /*
+    bool silent = false;
+    float silentTime;
 
-    private float damage;
+    bool slow = false;
+    float slowTime;
+    float slowValue;
+    */
+
+
+//    private float damage;
 
 
     Vector2 dir;
@@ -28,9 +37,10 @@ public class NonTargetSkill : MonoBehaviour, IAttack
         transform.Translate(dir * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.collider != null)
+        if (collision != null)
         {
             Debug.Log(collision.gameObject.name);
 
@@ -38,6 +48,17 @@ public class NonTargetSkill : MonoBehaviour, IAttack
             if (target != null)
             {
                 target.GetDamage(damage);
+
+                if (silent)
+                {
+                    target.GetSilent(silentTime);
+                }
+
+                if (slow)
+                {
+                    target.GetSlow(slowValue, slowTime);
+                }
+
                 Destroy(gameObject);
             }
         }
@@ -48,13 +69,10 @@ public class NonTargetSkill : MonoBehaviour, IAttack
         playerStat = stat;
     }
 
+
     public void SetDirection(Vector2 diretion)
     {
         dir = diretion;
     }
 
-    public void SetSkillDamage(float Damage)
-    {
-        damage = Damage;
-    }
 }

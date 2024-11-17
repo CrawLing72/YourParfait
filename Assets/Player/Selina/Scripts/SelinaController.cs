@@ -40,10 +40,13 @@ public class SelinaController : BasicController
 
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("W is On");
 
                 Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 myPos = Object.transform.position;
+                Vector2 myPos = gameObject.transform.position;
+
+
+
+
                 Vector2 dir = (mousePos - myPos).normalized;
 
                 GameObject butterfly = Instantiate(skillWEffect);
@@ -69,7 +72,7 @@ public class SelinaController : BasicController
         RangeAttack attackFunc = attack.GetComponent<RangeAttack>();
 
         attack.transform.position = gameObject.transform.position;
-        attackFunc.GetTarget(Target, stat.GetAd());
+        attackFunc.GetTarget(Target);
     }
 
     protected override void InputActionW()

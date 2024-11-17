@@ -26,7 +26,14 @@ public class Stat : MonoBehaviour
                 case "Rainyk": char_name = 0; break;
                 default: char_name = 1; break;
             }
-            instance.SetProperties(clientIndex, char_name, GameManager.instance.isRedTeam, currentHp, maxHp, currentMp, maxMp);
+            if (instance == null) Debug.LogError("instace is null");
+            else if (GameManager.instance == null) Debug.LogError("GM is Null");
+            else if (GameManager.instance.isRedTeam == null) Debug.LogError("isRedTeam is null");
+            else if (currentHp == null) Debug.LogError("currentHp is null");
+            else if (maxHp == null) Debug.LogError("maxHp is null");
+            else if (currentMp == null) Debug.LogError("currentMp is null");
+            else if (maxMp == null) Debug.LogError("maxMp is null");
+            instance.RPC_SetProperties(clientIndex, char_name, GameManager.instance.isRedTeam, currentHp, maxHp, currentMp, maxMp);
         }
     }
 

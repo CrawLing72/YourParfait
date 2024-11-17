@@ -67,6 +67,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         if (player == NetworkManager.Instance.runner.LocalPlayer)
         {
 
+            Debug.LogError(PlayerPrefab.name);
             // Spawn the player object
             plObj = NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
             if (plObj == null)
