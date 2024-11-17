@@ -98,8 +98,8 @@ GameObject:
   - component: {fileID: 3552752287648522537}
   - component: {fileID: 2373934900748405906}
   - component: {fileID: -769864879231956894}
-  - component: {fileID: 6998256626790563293}
   - component: {fileID: 1193574297610853171}
+  - component: {fileID: 6767022160721295933}
   m_Layer: 7
   m_Name: Selena
   m_TagString: Untagged
@@ -211,7 +211,6 @@ MonoBehaviour:
   wTime: 0
   eTime: 0
   ad: 0
-  gameManager: {fileID: 0}
 --- !u!114 &2373934900748405906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,8 +229,8 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: -769864879231956894}
-  - {fileID: 6998256626790563293}
   - {fileID: 1193574297610853171}
+  - {fileID: 6767022160721295933}
 --- !u!114 &-769864879231956894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,28 +260,6 @@ MonoBehaviour:
   skillQPreFeb: {fileID: 2770224853270250887, guid: ddcce101c29164a4f9761566696bd33b, type: 3}
   skillWPreFeb: {fileID: 0}
   QSkillRange: 10
---- !u!114 &6998256626790563293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3022063319299320383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e690b5fb1084f5ab1c86457af401d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncScale: 1
-  SyncParent: 1
-  _interpolationTarget: {fileID: 0}
-  UsePreciseRotation: 0
-  UseRenderSleepThresholds: 1
-  RenderThresholds:
-    UseEnergy: 1
-    Position: 0.01
-    Rotation: 0.01
-    Scale: 0.01
 --- !u!114 &1193574297610853171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +278,28 @@ MonoBehaviour:
   SyncSettings: 79
   StateHashes: 00000000ef8e6eced3ac0c3c925ab4d4ae78d62615b524dc47ef5bf5
   TriggerHashes: 00000000
+--- !u!114 &6767022160721295933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022063319299320383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e690b5fb1084f5ab1c86457af401d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 1
+  _interpolationTarget: {fileID: 0}
+  UsePreciseRotation: 0
+  UseRenderSleepThresholds: 1
+  RenderThresholds:
+    UseEnergy: 1
+    Position: 0.01
+    Rotation: 0.01
+    Scale: 0.01
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0

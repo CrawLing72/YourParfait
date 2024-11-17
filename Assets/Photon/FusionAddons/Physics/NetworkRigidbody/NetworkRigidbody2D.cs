@@ -36,7 +36,6 @@ namespace Fusion.Addons.Physics {
     protected override void Awake() {
       base.Awake();
       AutoSimulateIsEnabled = Physics2D.simulationMode != SimulationMode2D.Script;
-      InterpolationTarget = gameObject.transform; // 24-11-13, SHIN : Customized
     }
     /// <inheritdoc/>
     protected override bool GetRBIsKinematic(Rigidbody2D rb) {
