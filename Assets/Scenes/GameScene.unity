@@ -4648,7 +4648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054825423}
   m_LocalRotation: {x: 0, y: -1e-45, z: 0, w: 1}
-  m_LocalPosition: {x: -33.375317, y: 2.4037971, z: -13.745405}
+  m_LocalPosition: {x: -31.299019, y: 2.4037957, z: -13.745405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12337,7 +12337,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RunnerPrefab: {fileID: 2382109156329011261, guid: 1956ff268bf1db448a9af274de982a90, type: 3}
   runner: {fileID: 0}
-  registerList: []
+  GMNetwork: {fileID: 7132126344275285428}
+  networkObjects:
+  - {fileID: 7132126344275285428}
 --- !u!114 &1929122498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12868,7 +12870,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &617727370354208473
+--- !u!114 &4447824283936074200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5211569685367537788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df2f3f5a29ca0941b52a9d248fca231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRedTeam: 1
+  playerSpawner: {fileID: 1929122498}
+  _Players_Char_Index: 
+  _IsRedTeam_Sync: 
+  _HP: []
+  _MaxHP: []
+  _MP: []
+  _MaxMP: []
+  _GameTime: 0
+  _RedScore_Products: 0
+  _BlueScore_Products: 0
+  _RedScore_Goods: 0
+  _BlueScore_Goods: 0
+--- !u!4 &4815702474531335202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5211569685367537788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5211569685367537788
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12876,9 +12918,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8001625064303430233}
-  - component: {fileID: 8688428687007253312}
-  - component: {fileID: 8688428687007253313}
+  - component: {fileID: 4815702474531335202}
+  - component: {fileID: 4447824283936074200}
+  - component: {fileID: 7132126344275285428}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -13022,64 +13064,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3131961169371166194, guid: 90256a0c36e25974cb3d71854d1ce07a, type: 3}
   m_PrefabInstance: {fileID: 6047930751933192629}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8001625064303430233
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617727370354208473}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8688428687007253312
+--- !u!114 &7132126344275285428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617727370354208473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df2f3f5a29ca0941b52a9d248fca231, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRedTeam: 1
-  playerSpawner: {fileID: 1929122498}
-  _Players_Char_Index: 
-  _IsRedTeam_Sync: 
-  _HP: []
-  _MaxHP: []
-  _MP: []
-  _MaxMP: []
-  _GameTime: 0
-  _RedScore_Products: 0
-  _BlueScore_Products: 0
-  _RedScore_Goods: 0
-  _BlueScore_Goods: 0
---- !u!114 &8688428687007253313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617727370354208473}
+  m_GameObject: {fileID: 5211569685367537788}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 4184046021
+  SortKey: 2456070659
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 131073
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 8688428687007253312}
+  - {fileID: 4447824283936074200}
 --- !u!1001 &8764773347446853410
 PrefabInstance:
   m_ObjectHideFlags: 0

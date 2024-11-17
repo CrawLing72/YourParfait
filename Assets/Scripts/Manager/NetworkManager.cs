@@ -13,8 +13,10 @@ public class NetworkManager : MonoBehaviour
     public NetworkRunner RunnerPrefab;
     public NetworkRunner runner;
     private static NetworkManager instance;
+    public NetworkObject GMNetwork;
 
-    public NetworkObject[] registerList;
+    [Header("Managing Network Objects")]
+    public NetworkObject[] networkObjects;
     public static NetworkManager Instance //singleton pattern implementation
     {
         get
@@ -41,13 +43,16 @@ public class NetworkManager : MonoBehaviour
 
         runner = Instantiate(RunnerPrefab);
         var events = runner.GetComponent<NetworkEvents>();
-        var sceneInfo = new NetworkSceneInfo();
-        sceneInfo.AddSceneRef(SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex));
-        startGame(sceneInfo);
+    }
+
+    private void Start()
+    {
+        startGame();
     }
 
     private void Update()
     {
+        Debug.LogError(GMNetwork.StateAuthority);
     }
     private static void SetupInstance()
     {
@@ -61,17 +66,18 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public void startGame(NetworkSceneInfo sceneinfos) {
+    public void startGame() {
         {
+            SceneRef sceneRef = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
             var startGameArgs = new StartGameArgs()
             {
                 GameMode = Fusion.GameMode.Shared,
                 SessionName = PlayerPrefs.GetString("Server"),
                 PlayerCount = 6,
-                Scene = sceneinfos
-                
+                Scene = sceneRef
             };
             runner.StartGame(startGameArgs);
+            PlayerPrefs.SetInt("GMSpawned", 0);
 
         }
     }

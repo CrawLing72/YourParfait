@@ -23,14 +23,10 @@ public sealed class GameManager : NetworkBehaviour, ISpawned
     [Networked] public int RedScore_Goods { get; set; }
     [Networked] public int BlueScore_Goods { get; set; }
 
-    private void Awake()
-    {
-        PlayerPrefs.SetInt("GMSpawned", 0);
-    }
-
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        Object.ReleaseStateAuthority();
     }
 
     public override void FixedUpdateNetwork()
