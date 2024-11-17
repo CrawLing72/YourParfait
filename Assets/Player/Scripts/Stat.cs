@@ -9,6 +9,32 @@ public class Stat : MonoBehaviour
     protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, qTime, wTime, eTime,
         ad;
 
+    private void LateUpdate()
+    {
+        if (PlayerPrefs.GetInt("GMSpawned") == 1)
+        {
+            GameManager instance = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+            // Set Synced Variables
+            int clientIndex = PlayerPrefs.GetInt("ClientIndex");
+            int char_name;
+            switch (PlayerPrefs.GetString("CharName"))
+            {
+                case "Selena": char_name = 1; break;
+                case "Seraphina": char_name = 2; break;
+                case "Mixube": char_name = 3; break;
+                case "Tyneya": char_name = 4; break;
+                case "Rainyk": char_name = 0; break;
+                default: char_name = 1; break;
+            }
+            instance.Players_Char_Index.Set(clientIndex, char_name);
+            instance.IsRedTeam_Sync.Set(clientIndex, instance.isRedTeam); // Default to Blue team
+            instance.HP.Set(clientIndex, GetCurrentHp());
+            instance.MaxHP.Set(clientIndex, GetMaxHp());
+            instance.MP.Set(clientIndex, GetCurrentMp());
+            instance.MaxMP.Set(clientIndex, GetMaxMp());
+        }
+    }
+
     public float GetMaxHp() { return maxHp; }
     public void SetMaxHp(float setValue){ maxHp = setValue; }
     public float GetCurrentHp() { return currentHp; }

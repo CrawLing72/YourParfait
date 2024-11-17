@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using ExitGames.Client.Photon.StructWrapping;
 
 public sealed class GameManager : NetworkBehaviour, ISpawned
 {
@@ -22,7 +23,10 @@ public sealed class GameManager : NetworkBehaviour, ISpawned
     [Networked] public int RedScore_Goods { get; set; }
     [Networked] public int BlueScore_Goods { get; set; }
 
-    public bool isSpanwed = false;
+    private void Awake()
+    {
+        PlayerPrefs.SetInt("GMSpawned", 0);
+    }
 
     void Start()
     {
@@ -35,19 +39,6 @@ public sealed class GameManager : NetworkBehaviour, ISpawned
 
         GameUIManager.instance.UpdateTopStatusBar();
         GameUIManager.instance.UpdatePlayerStatus();
-
-        foreach (PlayerRef player in NetworkManager.Instance.runner.ActivePlayers)
-        {
-            NetworkManager.Instance.runner.TryGetPlayerObject(player, out NetworkObject playerObj);
-            if (playerObj)
-            {
-                Debug.Log(playerObj.GetComponent<Stat>().name);
-            }
-            else
-            {
-                Debug.LogWarning("Player Object is null");
-            }
-        }
     }
 
     public override void Spawned()
@@ -71,5 +62,6 @@ public sealed class GameManager : NetworkBehaviour, ISpawned
         BlueScore_Goods = 0;
 
         playerSpawner.PlayerJoined(NetworkManager.Instance.runner.LocalPlayer);
+        PlayerPrefs.SetInt("GMSpawned", 1);
     }
 }

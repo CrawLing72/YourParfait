@@ -13062,7 +13062,6 @@ MonoBehaviour:
   _BlueScore_Products: 0
   _RedScore_Goods: 0
   _BlueScore_Goods: 0
-  isSpanwed: 0
 --- !u!114 &8688428687007253313
 MonoBehaviour:
   m_ObjectHideFlags: 0

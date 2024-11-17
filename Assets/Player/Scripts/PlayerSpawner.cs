@@ -105,25 +105,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         }
         WaitingText.SetActive(false);
 
-        SettingInfos(); 
-
         GameUIManager.instance.UpdateMainBar(true);
         GameUIManager.instance.UpdatePlayerStatus(true);
     }
-
-    public void SettingInfos()
-    {
-        GameManager instance = FindObjectOfType<GameManager>().GetComponent<GameManager>();
-        // Set Synced Variables
-        int clientIndex = PlayerPrefs.GetInt("ClientIndex");
-        instance.Players_Char_Index.Set(clientIndex, char_name);
-        instance.IsRedTeam_Sync.Set(clientIndex, instance.isRedTeam); // Default to Blue team
-        instance.HP.Set(clientIndex, plStat.GetCurrentHp());
-        instance.MaxHP.Set(clientIndex, plStat.GetMaxHp());
-        instance.MP.Set(clientIndex, plStat.GetCurrentMp());
-        instance.MaxMP.Set(clientIndex, plStat.GetMaxMp());
-
-        Debug.LogError("SettingInfos: " + instance.IsRedTeam_Sync.Get(clientIndex).ToString());
-    }
-
 }
