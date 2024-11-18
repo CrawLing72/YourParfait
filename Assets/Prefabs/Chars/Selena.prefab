@@ -38,7 +38,7 @@ Transform:
   - {fileID: 392905249357114715}
   - {fileID: 2638405977844794872}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -63,6 +63,7 @@ MonoBehaviour:
   wTime: 5
   eTime: 7
   ad: 9
+  clientIndex: 0
 --- !u!114 &2373934900748405906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +81,7 @@ MonoBehaviour:
   Flags: 786433
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 3552752287648522537}
   - {fileID: 1706839922809039679}
   - {fileID: 9125994120634019751}
 --- !u!50 &4112948764345381290

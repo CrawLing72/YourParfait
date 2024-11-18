@@ -100,7 +100,7 @@ public class GameUIManager : MonoBehaviour
                     default: player_name = "Selena"; break;
                 }
                 Player_stats[count].GetComponent<Image>().sprite = Resources.Load<Sprite>("circled_char_Spoted/"+player_name );
-                Player_stats[count].transform.GetChild(0).GetComponent<Slider>().value = gmInstance.HP.Get(idx) / gmInstance.MaxHP.Get(idx);
+                Player_stats[count].transform.GetChild(0).GetComponent<Slider>().value = (gmInstance.HP.Get(idx) / gmInstance.MaxHP.Get(idx));
                 count++;
             }
         }
@@ -108,6 +108,7 @@ public class GameUIManager : MonoBehaviour
 
     public void UpdateMainBar(bool isSetup = false)
     {
+        gmInstance = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (isSetup)
         {
             Char_Face.sprite = Resources.Load<Sprite>("circled_char_Spoted/" + PlayerPrefs.GetString("CharName"));
@@ -115,6 +116,11 @@ public class GameUIManager : MonoBehaviour
             Eskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_E");
             Wskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_W");
         }
+
+        HP_Bar.value = gmInstance.HP.Get(PlayerPrefs.GetInt("ClientIndex")) / gmInstance.MaxHP.Get(PlayerPrefs.GetInt("ClientIndex"));
+        MP_Bar.value = gmInstance.MP.Get(PlayerPrefs.GetInt("ClientIndex")) / gmInstance.MaxMP.Get(PlayerPrefs.GetInt("ClientIndex"));
+        HP_Text.text = gmInstance.HP.Get(PlayerPrefs.GetInt("ClientIndex")).ToString() + " / " + gmInstance.MaxHP.Get(PlayerPrefs.GetInt("ClientIndex")).ToString();
+        MP_Text.text = gmInstance.MP.Get(PlayerPrefs.GetInt("ClientIndex")).ToString() + " / " + gmInstance.MaxMP.Get(PlayerPrefs.GetInt("ClientIndex")).ToString();
         // item, lv는 차후 수정
     }
 }

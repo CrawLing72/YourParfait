@@ -64,8 +64,8 @@ public class NonTargetSkill : NonTargetThrow
     {
         if (collision != null)
         {
-            IAttack target = collision.gameObject.GetComponent<IAttack>();
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
+            IAttack target = targetObj.gameObject.GetComponent<IAttack>();
 
             if (targetObj != null)
             {
@@ -78,6 +78,7 @@ public class NonTargetSkill : NonTargetThrow
                 if (target != null && targetObj.HasStateAuthority)
                 {
                     target.GetDamage(damage);
+                    targetObj.ReleaseStateAuthority();
 
                     if (silent)
                     {

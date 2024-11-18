@@ -125,6 +125,7 @@ public class SelenaController : BasicController, IAttack
 
     void IAttack.GetDamage(float Damage)
     {
+        GameState Instance = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (IsShild)
         {
             CurrentShild = CurrentShild - Damage;
@@ -143,6 +144,7 @@ public class SelenaController : BasicController, IAttack
             float CurrentHp = stat.GetCurrentHp();
             Debug.LogError(CurrentHp);
             stat.SetCurrentHp(CurrentHp - Damage);
+            Instance.RPC_SetHP(stat.clientIndex, stat.GetCurrentHp(), stat.GetMaxHp());
             Object.RequestStateAuthority(); // State Authority È¸º¹
         }
     }
