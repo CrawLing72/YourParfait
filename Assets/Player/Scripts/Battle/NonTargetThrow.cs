@@ -1,8 +1,9 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NonTargetThrow : MonoBehaviour
+public class NonTargetThrow : NetworkBehaviour
 {
 
     protected float damage;

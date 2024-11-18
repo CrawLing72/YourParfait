@@ -274,8 +274,8 @@ public class BasicController : NetworkBehaviour, IAttack
                     objectPos = gameObject.transform.position;
                     Vector2 dir = (mouseLeftPos - objectPos).normalized;
 
-                    GameObject projectile = Instantiate(BasicAttack, objectPos + dir*1.7f, Quaternion.identity); // Need Change 
-                    projectile.GetComponent<NonTargetSkill>().SetDirection(dir);
+                    NetworkObject projectile = NetworkManager.Instance.runner.Spawn(BasicAttack, objectPos + dir*1.7f, Quaternion.identity); // Need Change 
+                    projectile.gameObject.GetComponent<NonTargetSkill>().SetDirection(dir);
 
                     isAttackAble = false;
                     currentAttackTime = stat.GetAttackTime();

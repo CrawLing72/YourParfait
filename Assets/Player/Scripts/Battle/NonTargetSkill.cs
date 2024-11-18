@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NonTargetSkill : NonTargetThrow, IAttack
@@ -32,9 +33,9 @@ public class NonTargetSkill : NonTargetThrow, IAttack
         Destroy(gameObject, time);
     }
 
-    private void Update()
+    public override void FixedUpdateNetwork()
     {
-        transform.Translate(dir * speed * Time.deltaTime);
+        transform.Translate(dir * speed * NetworkManager.Instance.runner.DeltaTime);
     }
 
 

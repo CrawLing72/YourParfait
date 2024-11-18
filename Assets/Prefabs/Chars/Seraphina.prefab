@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4112948764345381290}
   - component: {fileID: 8767585292580150796}
   - component: {fileID: 1706839922809039679}
-  - component: {fileID: 9125994120634019751}
+  - component: {fileID: 7038390285676943893}
   m_Layer: 0
   m_Name: Seraphina
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   - {fileID: 392905249357114715}
   - {fileID: 7729445684317839771}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -81,7 +81,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1706839922809039679}
-  - {fileID: 9125994120634019751}
+  - {fileID: 7038390285676943893}
 --- !u!50 &4112948764345381290
 Rigidbody2D:
   serializedVersion: 4
@@ -166,7 +166,7 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
---- !u!114 &9125994120634019751
+--- !u!114 &7038390285676943893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3022063319299320383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7f6c64b26835640822872621cd27f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 400aec5c52440864bad7b7d2ef9e7328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BasicAttack: {fileID: 1292993822233510530, guid: 5e3024423c6586444b9e6b7e1f63b7ca, type: 3}
@@ -185,17 +185,6 @@ MonoBehaviour:
   skillEPreFeb: {fileID: 1077081476847196230, guid: 854a01e75c0ca1d478589ef4b59a420e, type: 3}
   skillQPreFeb: {fileID: 5130351690371029280, guid: 68f357b2749c4f141aa5d681096b5fc2, type: 3}
   skillWPreFeb: {fileID: 6316867505692666275, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
-  maxHp: 0
-  maxMp: 0
-  currentHp: 0
-  currentMp: 0
-  speed: 0
-  attackRang: 0
-  attackTime: 0
-  wTime: 0
-  eTime: 0
-  qTime: 0
-  ad: 0
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +457,10 @@ PrefabInstance:
     - target: {fileID: 6316867505692666275, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
       propertyPath: m_Name
       value: Shild
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316867505692666275, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

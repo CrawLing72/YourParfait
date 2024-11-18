@@ -8,8 +8,6 @@ public class SeraphinaController : BasicController
     protected override void Start()
     {
         base.Start();
-
-        skillEPreFeb = transform.Find("ESkill").gameObject;
         skillEPreFeb.SetActive(false);
 
     }

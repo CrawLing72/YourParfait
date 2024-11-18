@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4112948764345381290}
   - component: {fileID: 8767585292580150796}
   - component: {fileID: 1706839922809039679}
-  - component: {fileID: 9125994120634019751}
+  - component: {fileID: 7104769286942423788}
   m_Layer: 0
   m_Name: Mixube
   m_TagString: Untagged
@@ -80,7 +80,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1706839922809039679}
-  - {fileID: 9125994120634019751}
+  - {fileID: 7104769286942423788}
 --- !u!50 &4112948764345381290
 Rigidbody2D:
   serializedVersion: 4
@@ -165,7 +165,7 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
---- !u!114 &9125994120634019751
+--- !u!114 &7104769286942423788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,27 +174,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3022063319299320383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7f6c64b26835640822872621cd27f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b453f566c50e644ea0585ea25e53c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BasicAttack: {fileID: 1292993822233510530, guid: 5e3024423c6586444b9e6b7e1f63b7ca, type: 3}
-  QSkillRange: 10
-  WSkillRange: 10
-  ESkillRange: 10
-  skillEPreFeb: {fileID: 2770224853270250887, guid: e377d8997c20388498c8794ca470cfa8, type: 3}
-  skillQPreFeb: {fileID: 2770224853270250887, guid: ddcce101c29164a4f9761566696bd33b, type: 3}
-  skillWPreFeb: {fileID: 6316867505692666275, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
-  maxHp: 0
-  maxMp: 0
-  currentHp: 0
-  currentMp: 0
-  speed: 0
-  attackRang: 0
-  attackTime: 0
-  wTime: 0
-  eTime: 0
-  qTime: 0
-  ad: 0
+  QSkillRange: 0
+  WSkillRange: 0
+  ESkillRange: 0
+  skillEPreFeb: {fileID: 0}
+  skillQPreFeb: {fileID: 0}
+  skillWPreFeb: {fileID: 0}
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,8 +212,8 @@ Transform:
   m_GameObject: {fileID: 3937707306988791267}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5156822, y: -1.1067971, z: 3.7454047}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.11, y: 0.11, z: 0.11}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1859932647050407994}
   m_RootOrder: -1
@@ -257,15 +246,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
-  - {fileID: 2100000, guid: 862d5e7ce91e0ef4aa7217f6b13af025, type: 2}
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
-  - {fileID: 2100000, guid: 40dd8f40b4161054c9e1ce74a97f83b9, type: 2}
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
-  - {fileID: 2100000, guid: 40dd8f40b4161054c9e1ce74a97f83b9, type: 2}
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
-  - {fileID: 2100000, guid: 40dd8f40b4161054c9e1ce74a97f83b9, type: 2}
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
+  - {fileID: 2100000, guid: 482af9968bd495a48a6d40264ada2b71, type: 2}
+  - {fileID: 2100000, guid: 39d783b3087450740ba3c13385661efd, type: 2}
+  - {fileID: 2100000, guid: 482af9968bd495a48a6d40264ada2b71, type: 2}
+  - {fileID: 2100000, guid: 39d783b3087450740ba3c13385661efd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -299,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 8a9bed2561d05354d9ac3797b1307da8, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 0505032bd1444804583574768e1a3a71, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
