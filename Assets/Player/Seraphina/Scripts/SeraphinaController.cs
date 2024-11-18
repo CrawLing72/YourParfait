@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeraphinaController : BasicController
+public class SeraphinaController : BasicController, IAttack
 {
 
     protected override void Start()
@@ -77,5 +77,16 @@ public class SeraphinaController : BasicController
         {
             base.Attack2();
         }
+    }
+
+    void IAttack.GetDamage(float Damage)
+    {
+        GameState Instance = FindObjectOfType<GameState>().GetComponent<GameState>();
+        Debug.LogError("Selena Got Damage!");
+        float CurrentHp = stat.GetCurrentHp();
+        Debug.LogError(CurrentHp);
+        stat.SetCurrentHp(CurrentHp - Damage);
+        Instance.RPC_SetHP(stat.clientIndex, stat.GetCurrentHp(), stat.GetMaxHp());
+        Object.RequestStateAuthority(); // State Authority È¸º¹
     }
 }

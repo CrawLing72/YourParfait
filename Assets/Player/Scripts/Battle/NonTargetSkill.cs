@@ -78,7 +78,6 @@ public class NonTargetSkill : NonTargetThrow
                 if (target != null && targetObj.HasStateAuthority)
                 {
                     target.GetDamage(damage);
-                    targetObj.ReleaseStateAuthority();
 
                     if (silent)
                     {
@@ -89,6 +88,7 @@ public class NonTargetSkill : NonTargetThrow
                     {
                         target.GetSlow(slowValue, slowTime);
                     }
+                    targetObj.ReleaseStateAuthority();
                     Despawn();
                 }
                 else

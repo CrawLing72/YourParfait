@@ -111,6 +111,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         if (player == NetworkManager.Instance.runner.LocalPlayer)
         {
             plStat.SendInitInfos();
+            GameManager.instance.ClientPlayer = plObj.gameObject;
         }
     }
 }

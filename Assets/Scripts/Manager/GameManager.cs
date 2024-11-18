@@ -5,8 +5,9 @@ using Fusion;
 
 public class GameManager : MonoBehaviour
 {
-    GameState gameState;
+    GameState gameState; //jghjikgjhjgk
     public bool isRedTeam = true;
+    public GameObject ClientPlayer;
 
     //singleton pattern implementation
     public static GameManager instance;

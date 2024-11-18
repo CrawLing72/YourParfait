@@ -8421,6 +8421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRedTeam: 1
+  ClientPlayer: {fileID: 0}
 --- !u!4 &1989258967
 Transform:
   m_ObjectHideFlags: 0

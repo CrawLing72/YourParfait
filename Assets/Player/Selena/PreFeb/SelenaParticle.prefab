@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5104088093491756160}
   - component: {fileID: 901117698368786312}
   m_Layer: 7
-  m_Name: ParticlePlayer
+  m_Name: SelenaParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

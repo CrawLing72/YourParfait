@@ -7,7 +7,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
-public class BasicController : NetworkBehaviour
+public class BasicController : NetworkBehaviour, IAttack
 {
 
     [Header("Skill")]
@@ -73,8 +73,6 @@ public class BasicController : NetworkBehaviour
     float TempSpeed;
 
     bool team;
-
-
 
     protected void Awake()
     {
@@ -282,7 +280,7 @@ public class BasicController : NetworkBehaviour
                 }
            }
     }
-    protected virtual void GetDamage(float Damage)
+    void IAttack.GetDamage(float Damage)
     {
         float CurrentHp = stat.GetCurrentHp();
         stat.SetCurrentHp(CurrentHp - Damage);
