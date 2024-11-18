@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Fusion;
 public class Stat : MonoBehaviour
 {
     [SerializeField]
     protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, qTime, wTime, eTime,
         ad;
+
+    public int clientIndex; // 얘는 public으로 해두겠습니다 -> 아니면 정신건강에 해로워짐
 
     private void FixedUpdate()
     {
@@ -15,7 +17,7 @@ public class Stat : MonoBehaviour
         if (instance.GSSpawned == 1)
         {
             // Set Synced Variables
-            int clientIndex = PlayerPrefs.GetInt("ClientIndex");
+            clientIndex = PlayerPrefs.GetInt("ClientIndex");
             int char_name;
             switch (PlayerPrefs.GetString("CharName"))
             {
@@ -33,7 +35,7 @@ public class Stat : MonoBehaviour
             else if (maxHp == null) Debug.LogError("maxHp is null");
             else if (currentMp == null) Debug.LogError("currentMp is null");
             else if (maxMp == null) Debug.LogError("maxMp is null");
-            instance.RPC_SetProperties(clientIndex, char_name, GameManager.instance.isRedTeam, currentHp, maxHp, currentMp, maxMp);
+            instance.RPC_SetProperties(clientIndex, char_name, GameManager.instance.isRedTeam, currentHp, maxHp, currentMp, maxMp, PlayerRef.FromIndex(clientIndex));
         }
     }
 

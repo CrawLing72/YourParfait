@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SelenaController : BasicController
+public class SelenaController : BasicController, IAttack
 {
 
     [Header("Status")]
@@ -123,9 +123,9 @@ public class SelenaController : BasicController
         }
     }
 
-    protected override void GetDamage(float Damage, MonoBehaviour DamageCauser)
+    void IAttack.GetDamage(float Damage)
     {
-        if(IsShild)
+        if (IsShild)
         {
             CurrentShild = CurrentShild - Damage;
             if(CurrentShild <= 0)
@@ -139,8 +139,11 @@ public class SelenaController : BasicController
         }
         else
         {
+            Debug.LogError("Selena Got Damage!");
             float CurrentHp = stat.GetCurrentHp();
+            Debug.LogError(CurrentHp);
             stat.SetCurrentHp(CurrentHp - Damage);
+            Object.RequestStateAuthority(); // State Authority È¸º¹
         }
     }
 

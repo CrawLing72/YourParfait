@@ -8844,6 +8844,7 @@ MonoBehaviour:
   _MaxHP: []
   _MP: []
   _MaxMP: []
+  _PlayerRefs: []
   _GameTime: 0
   _RedScore_Products: 0
   _BlueScore_Products: 0

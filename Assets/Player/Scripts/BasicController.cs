@@ -7,7 +7,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
-public class BasicController : NetworkBehaviour, IAttack
+public class BasicController : NetworkBehaviour
 {
 
     [Header("Skill")]
@@ -282,9 +282,7 @@ public class BasicController : NetworkBehaviour, IAttack
                 }
            }
     }
-
-
-    protected virtual void GetDamage(float Damage, MonoBehaviour DamageCauser)
+    protected virtual void GetDamage(float Damage)
     {
         float CurrentHp = stat.GetCurrentHp();
         stat.SetCurrentHp(CurrentHp - Damage);

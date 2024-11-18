@@ -23,6 +23,8 @@ public sealed class GameState : NetworkBehaviour, ISpawned
     public NetworkArray<float> MP { get; }
     [Networked, Capacity(6)] 
     public NetworkArray<float> MaxMP { get; }
+    [Networked, Capacity(6)]
+    public NetworkArray<PlayerRef> PlayerRefs { get; }
     [Networked] 
     public float GameTime { get; set; }
     [Networked] 
@@ -56,6 +58,7 @@ public sealed class GameState : NetworkBehaviour, ISpawned
             MaxHP.Set(i, 0f);
             MP.Set(i, 0f);
             MaxMP.Set(i, 0f);
+            PlayerRefs.Set(i, PlayerRef.None);
         }
         GameTime = 1800f;
         RedScore_Products = 0;
@@ -69,7 +72,7 @@ public sealed class GameState : NetworkBehaviour, ISpawned
 
     // -> BROADCASTING : Be AWARE of the RPCs
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_SetProperties(int clinet_index, int char_name, bool _isRedTeam, float _CurrentHP, float _MaxHP, float _CurrentMP, float _MaxMP)
+    public void RPC_SetProperties(int clinet_index, int char_name, bool _isRedTeam, float _CurrentHP, float _MaxHP, float _CurrentMP, float _MaxMP, PlayerRef playerRef)
     {
         Players_Char_Index.Set(clinet_index, char_name);
         IsRedTeam_Sync.Set(clinet_index, _isRedTeam);
@@ -77,10 +80,11 @@ public sealed class GameState : NetworkBehaviour, ISpawned
         MaxHP.Set(clinet_index, _MaxHP);
         MP.Set(clinet_index, _CurrentMP);
         MaxMP.Set(clinet_index, _MaxMP);
+        PlayerRefs.Set(clinet_index, playerRef);
     }
 
-    public void SetProperties(int clinet_index, int char_name, bool _isRedTeam, float _CurrentHP, float _MaxHP, float _CurrentMP, float _MaxMP)
+    public void SetProperties(int clinet_index, int char_name, bool _isRedTeam, float _CurrentHP, float _MaxHP, float _CurrentMP, float _MaxMP, PlayerRef _playerRef)
     {
-        RPC_SetProperties(clinet_index, char_name, _isRedTeam, _CurrentHP, _MaxHP, _CurrentMP, _MaxMP);
+        RPC_SetProperties(clinet_index, char_name, _isRedTeam, _CurrentHP, _MaxHP, _CurrentMP, _MaxMP, _playerRef);
     }
 }
