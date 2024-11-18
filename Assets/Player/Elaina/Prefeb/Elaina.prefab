@@ -135,6 +135,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 153401081678291508}
+  - {fileID: -7884896743747013699}
 --- !u!114 &153401081678291508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdae0fa82d375441b0d0c418677f13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BasicAttack: {fileID: 0}
+  QSkillRange: 0
+  WSkillRange: 0
+  ESkillRange: 0
+  skillEPreFeb: {fileID: 0}
+  skillQPreFeb: {fileID: 0}
+  skillWPreFeb: {fileID: 0}
   attackPrefeb: {fileID: 4910004878312158840, guid: d91ec0217ed7bbb4dbb1702c0e63ece1, type: 3}
   butterflyPrefb: {fileID: 2625981669018758132, guid: 7cde3bc6505803c4e839fff7507dea70, type: 3}
   skillEEffect: {fileID: 7964327190314459364, guid: 28169159b6d14af47b73433036d21dd0, type: 3}
@@ -170,10 +178,11 @@ MonoBehaviour:
   speed: 500
   attackRange: 10
   attackTime: 1
+  qTime: 0
   wTime: 3
   eTime: 3
-  rTime: 3
   ad: 3
+  clientIndex: 0
 --- !u!114 &6163534280365881847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,8 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSpeed: 300
-  zoomMAx: 200
   moveSpeed: 10
+  cinemachineCamera: {fileID: 0}
 --- !u!1 &5242648839746106436
 GameObject:
   m_ObjectHideFlags: 0

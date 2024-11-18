@@ -66,8 +66,6 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         // Check if this is the local player
         if (player == NetworkManager.Instance.runner.LocalPlayer)
         {
-
-            Debug.LogError(PlayerPrefab.name);
             // Spawn the player object
             plObj = NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
             if (plObj == null)
@@ -91,7 +89,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
             }
 
             // Ensure Stat component is present
-            plStat = plObj.GetComponent<Stat>();
+            plStat = plObj.gameObject.GetComponent<Stat>();
             if (plStat == null)
             {
                 Debug.LogError("Stat component not found on PlayerPrefab!");
@@ -110,6 +108,9 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         GameUIManager.instance.UpdatePlayerStatus(true);
 
         PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount-1);
-        Debug.LogError("ClientIndex: " + PlayerPrefs.GetInt("ClientIndex"));
+        if (player == NetworkManager.Instance.runner.LocalPlayer)
+        {
+            plStat.SendInitInfos();
+        }
     }
 }

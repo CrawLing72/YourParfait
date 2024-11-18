@@ -63,6 +63,7 @@ MonoBehaviour:
   wTime: 5
   eTime: 7
   ad: 9
+  clientIndex: 0
 --- !u!114 &2373934900748405906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +81,7 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 3552752287648522537}
   - {fileID: 1706839922809039679}
   - {fileID: 7038390285676943893}
 --- !u!50 &4112948764345381290

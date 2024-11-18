@@ -101,6 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1f7bf5ec411ee4eb2abdce977d26ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BasicAttack: {fileID: 0}
+  QSkillRange: 0
+  WSkillRange: 0
+  ESkillRange: 0
+  skillEPreFeb: {fileID: 0}
+  skillQPreFeb: {fileID: 0}
+  skillWPreFeb: {fileID: 0}
   attackPrefeb: {fileID: 4910004878312158840, guid: d91ec0217ed7bbb4dbb1702c0e63ece1, type: 3}
   skillWEffect: {fileID: 0}
   skillEEffect: {fileID: 0}
@@ -123,6 +130,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: -2770305868108611590}
+  - {fileID: 5420750544806358114}
 --- !u!114 &5420750544806358114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,10 +150,11 @@ MonoBehaviour:
   speed: 50
   attackRange: 10
   attackTime: 1
+  qTime: 0
   wTime: 3
   eTime: 3
-  rTime: 3
   ad: 1
+  clientIndex: 0
 --- !u!114 &5584798141532251554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSpeed: 300
-  zoomMAx: 200
   moveSpeed: 100
+  cinemachineCamera: {fileID: 0}
 --- !u!50 &5502899081421575378
 Rigidbody2D:
   serializedVersion: 4
