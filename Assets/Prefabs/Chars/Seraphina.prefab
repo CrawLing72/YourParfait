@@ -321,7 +321,7 @@ MonoBehaviour:
   unscaledTime: 0
   _animationName: idle
   loop: 1
-  timeScale: 1.5
+  timeScale: 1
 --- !u!1 &5529046116055389372
 GameObject:
   m_ObjectHideFlags: 0
