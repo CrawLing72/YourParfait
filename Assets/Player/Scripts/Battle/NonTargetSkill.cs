@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class NonTargetSkill : NonTargetThrow, IAttack
+public class NonTargetSkill : NonTargetThrow
 {
     Stat playerStat;
 
