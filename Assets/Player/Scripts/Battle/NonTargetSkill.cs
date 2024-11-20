@@ -79,7 +79,7 @@ public class NonTargetSkill : NonTargetThrow
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
             IAttack target = targetObj.gameObject.GetComponent<IAttack>();
 
-            if (targetObj != null)
+            if (targetObj != null && (!targetObj.HasStateAuthority)) // For preventing Self-kill
             {
                 // StateAuthority 요청
                 targetObj.RequestStateAuthority();
@@ -110,7 +110,7 @@ public class NonTargetSkill : NonTargetThrow
             }
             else
             {
-                Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
+                if(targetObj == null) Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
             }
         }
     }
