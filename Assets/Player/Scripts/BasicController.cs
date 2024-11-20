@@ -26,6 +26,8 @@ public class BasicController : NetworkBehaviour, IAttack
     float adBuffTemp;
     protected Vector3 Scale;
 
+    protected Vector3 CurrenPosition = new Vector3(0, 0, 0);
+
 
     // under : network property, do not modify manually!!!! - SHIN
     [Networked, OnChangedRender(nameof(settingNetworkAnim))]
@@ -79,6 +81,7 @@ public class BasicController : NetworkBehaviour, IAttack
         cam = Camera.main;
         Char = gameObject.transform.GetChild(0);
         skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
+        CurrenPosition = gameObject.transform.position;
 
         Scale = Char.localScale;
     }
@@ -86,8 +89,9 @@ public class BasicController : NetworkBehaviour, IAttack
     protected virtual void Start()
     {
         stat.SetSpeed(50.0f);
+        CurrenPosition = gameObject.transform.position;
 
-        
+
     }
 
     public override void FixedUpdateNetwork()
@@ -109,6 +113,8 @@ public class BasicController : NetworkBehaviour, IAttack
         setTimer(ref currentQTime, ref isQAble);
         setTimer(ref currentWTime, ref isWAble);
         setTimer(ref currentETime, ref isEAble);
+
+        CurrenPosition = gameObject.transform.position;
 
     }
 

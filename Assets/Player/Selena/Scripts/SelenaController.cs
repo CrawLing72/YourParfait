@@ -64,14 +64,17 @@ public class SelenaController : BasicController, IAttack
         if (Input.GetKeyDown(KeyCode.E))
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 myPos = Object.transform.position;
+            Vector2 myPos = CurrenPosition;
             Vector2 disTance = mousePos - myPos;
 
             if (disTance.magnitude < ESkillRange)
             {
-                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position, Quaternion.identity);
+                Debug.LogError("InputActionE Happened!");
+                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition, Quaternion.identity);
                 NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
+                Animator animator = attack.gameObject.GetComponent<Animator>();
 
+                animator.SetBool("isE", true);
                 skill.SetSkillDamage(400.0f); // need Change
                 skill.SetTime(1.7f);
                 attack.transform.position = mousePos;
@@ -94,12 +97,12 @@ public class SelenaController : BasicController, IAttack
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 myPos = Object.transform.position;
+            Vector2 myPos = CurrenPosition;
             Vector2 disTance = mousePos - myPos;
 
             if (disTance.magnitude < QSkillRange)
             {
-                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillQPreFeb, transform.position, Quaternion.identity);
+                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition, Quaternion.identity);
                 NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
 
                 skill.SetSkillDamage(200.0f); // need Change

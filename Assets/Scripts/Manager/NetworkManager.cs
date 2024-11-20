@@ -43,6 +43,8 @@ public class NetworkManager : MonoBehaviour
 
         runner = Instantiate(RunnerPrefab);
         var events = runner.GetComponent<NetworkEvents>();
+
+        runner.ProvideInput = true;
     }
 
     private void Start()

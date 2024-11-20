@@ -185,7 +185,7 @@ MonoBehaviour:
   QSkillRange: 10
   WSkillRange: 10
   ESkillRange: 10
-  skillEPreFeb: {fileID: 9140742913751458084, guid: 1e66936d9b6b4ee48b8d87f96ad5e7cd, type: 3}
+  skillEPreFeb: {fileID: 1756674921662589555, guid: 1e66936d9b6b4ee48b8d87f96ad5e7cd, type: 3}
   skillQPreFeb: {fileID: 2054454735464131262, guid: 285c6238185fd3040bcb4fb0f21681ec, type: 3}
   skillWPreFeb: {fileID: 6316867505692666275, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
   maxHp: 0
