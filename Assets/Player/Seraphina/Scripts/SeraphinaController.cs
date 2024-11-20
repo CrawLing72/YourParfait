@@ -69,7 +69,7 @@ public class SeraphinaController : BasicController, IAttack
                 currentQTime = stat.GetQTime();
 
                 qIsOn = false;
-                QSkillRangePrefeb.SetActive(qIsOn);
+                skillQPreFeb.SetActive(qIsOn);
 
             }
         }

@@ -38,7 +38,7 @@ Transform:
   - {fileID: 392905249357114715}
   - {fileID: 2638405977844794872}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -79,7 +79,8 @@ MonoBehaviour:
   SortKey: 511490579
   ObjectInterest: 1
   Flags: 786433
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 7807942361488003018}
   NetworkedBehaviours:
   - {fileID: 3552752287648522537}
   - {fileID: 1706839922809039679}
@@ -184,8 +185,8 @@ MonoBehaviour:
   QSkillRange: 10
   WSkillRange: 10
   ESkillRange: 10
-  skillEPreFeb: {fileID: 2770224853270250887, guid: e377d8997c20388498c8794ca470cfa8, type: 3}
-  skillQPreFeb: {fileID: 2770224853270250887, guid: ddcce101c29164a4f9761566696bd33b, type: 3}
+  skillEPreFeb: {fileID: 9140742913751458084, guid: 1e66936d9b6b4ee48b8d87f96ad5e7cd, type: 3}
+  skillQPreFeb: {fileID: 2054454735464131262, guid: 285c6238185fd3040bcb4fb0f21681ec, type: 3}
   skillWPreFeb: {fileID: 6316867505692666275, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
   maxHp: 0
   maxMp: 0
@@ -332,7 +333,7 @@ MonoBehaviour:
   unscaledTime: 0
   _animationName: idle
   loop: 1
-  timeScale: 1.5
+  timeScale: 1
 --- !u!1 &5529046116055389372
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +476,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8388130711423122912, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+      propertyPath: Flags
+      value: 262145
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388130711423122912, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+      propertyPath: SortKey
+      value: 1865989009
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388130711423122912, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+      propertyPath: NetworkedBehaviours.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388130711423122912, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+      propertyPath: NetworkedBehaviours.Array.data[0]
+      value: 
+      objectReference: {fileID: 7699032286952170018}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -485,3 +502,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4372504887102552018, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
   m_PrefabInstance: {fileID: 1743951083217941034}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7699032286952170018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8280913927744835592, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+  m_PrefabInstance: {fileID: 1743951083217941034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7807942361488003018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8388130711423122912, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+  m_PrefabInstance: {fileID: 1743951083217941034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

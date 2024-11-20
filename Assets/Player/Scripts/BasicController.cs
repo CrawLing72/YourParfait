@@ -26,6 +26,7 @@ public class BasicController : NetworkBehaviour, IAttack
     float adBuffTemp;
     protected Vector3 Scale;
 
+
     // under : network property, do not modify manually!!!! - SHIN
     [Networked, OnChangedRender(nameof(settingNetworkAnim))]
     protected string CurrentAnimation { get; set;}
@@ -43,13 +44,10 @@ public class BasicController : NetworkBehaviour, IAttack
 
     protected bool shouldFire = false;
     private Transform Char;
-    private SkeletonAnimation skeletonAnimation;
+    protected SkeletonAnimation skeletonAnimation;
+    protected string AnimName = "idle";
 
     bool isSilent = false;
-
-    protected GameObject QSkillRangePrefeb;
-    protected GameObject ESkillRangePrefeb;
-    protected GameObject WSkillRangePrefeb;
 
     [SerializeField]
     protected float QSkillRange;
@@ -83,31 +81,6 @@ public class BasicController : NetworkBehaviour, IAttack
         skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
 
         Scale = Char.localScale;
-
-        try{
-            QSkillRangePrefeb = transform.Find("QRange").gameObject;
-
-            if (QSkillRangePrefeb != null)
-            {
-                QSkillRangePrefeb.SetActive(qIsOn);
-            }
-
-
-            ESkillRangePrefeb = transform.Find("ERange").gameObject;
-            if (ESkillRangePrefeb != null)
-            {
-                ESkillRangePrefeb.SetActive(eIsOn);
-            }
-
-            WSkillRangePrefeb = transform.Find("WRange").gameObject;
-            if (WSkillRangePrefeb != null)
-            {
-                WSkillRangePrefeb.SetActive(eIsOn);
-            }
-        }
-        catch (Exception e)
-        {
-        }
     }
 
     protected virtual void Start()
@@ -179,7 +152,7 @@ public class BasicController : NetworkBehaviour, IAttack
             {
                 wIsOn = false;
 
-                WSkillRangePrefeb.SetActive(wIsOn);
+                skillWPreFeb.SetActive(wIsOn);
             }
             else
             {
@@ -190,9 +163,9 @@ public class BasicController : NetworkBehaviour, IAttack
                     eIsOn = false;
                     qIsOn = false;
 
-                    QSkillRangePrefeb.SetActive(qIsOn);
-                    WSkillRangePrefeb.SetActive(wIsOn);
-                    ESkillRangePrefeb.SetActive(eIsOn);
+                    skillQPreFeb.SetActive(qIsOn);
+                    skillWPreFeb.SetActive(wIsOn);
+                    skillEPreFeb.SetActive(eIsOn);
 
                 }
             }
@@ -207,7 +180,7 @@ public class BasicController : NetworkBehaviour, IAttack
             {
                 eIsOn = false;
 
-                ESkillRangePrefeb.SetActive(eIsOn);
+                skillEPreFeb.SetActive(eIsOn);
             }
             else
             {
@@ -218,9 +191,9 @@ public class BasicController : NetworkBehaviour, IAttack
                     wIsOn = false;
                     qIsOn = false;
 
-                    QSkillRangePrefeb.SetActive(qIsOn);
-                    WSkillRangePrefeb.SetActive(wIsOn);
-                    ESkillRangePrefeb.SetActive(eIsOn);
+                    skillQPreFeb.SetActive(qIsOn);
+                    skillWPreFeb.SetActive(wIsOn);
+                    skillEPreFeb.SetActive(eIsOn);
 
                 }
             }
@@ -238,7 +211,7 @@ public class BasicController : NetworkBehaviour, IAttack
             {
                 qIsOn = false;
 
-                QSkillRangePrefeb.SetActive(qIsOn);
+                skillQPreFeb.SetActive(qIsOn);
             }
             else
             {
@@ -249,9 +222,9 @@ public class BasicController : NetworkBehaviour, IAttack
                     wIsOn = false;
                     eIsOn = false;
 
-                    QSkillRangePrefeb.SetActive(qIsOn);
-                    WSkillRangePrefeb.SetActive(wIsOn);
-                    ESkillRangePrefeb.SetActive(eIsOn);
+                    skillQPreFeb.SetActive(qIsOn);
+                    skillWPreFeb.SetActive(wIsOn);
+                    skillEPreFeb.SetActive(eIsOn);
 
                 }
             }
@@ -302,23 +275,20 @@ public class BasicController : NetworkBehaviour, IAttack
 
     private void settingAnimation()
     {
-        if (rb.velocity.magnitude > 0)
+        if(AnimName != "idle")
         {
-            CurrentAnimation = "walking";
+            CurrentAnimation = AnimName;
         }
         else
         {
-            CurrentAnimation = "idle";
-        }
-        skeletonAnimation.AnimationName = CurrentAnimation;
-
-        if(isLeft)
-        {
-            Char.localScale = new Vector3(Scale.x, Scale.y, Scale.z);
-        }
-        else
-        {
-            Char.localScale = new Vector3(-Scale.x, Scale.y, Scale.z);
+            if(rb.velocity.magnitude > 0)
+            {
+                CurrentAnimation = "walking";
+            }
+            else
+            {
+                CurrentAnimation = "idle";
+            }
         }
     }
 
@@ -342,17 +312,17 @@ public class BasicController : NetworkBehaviour, IAttack
         qIsOn = false; wIsOn = false; eIsOn = false;
         
 
-        if (QSkillRangePrefeb != null) 
+        if (skillQPreFeb != null) 
         {
-            QSkillRangePrefeb.SetActive(false);
+            skillQPreFeb.SetActive(false);
         }
-        if (WSkillRangePrefeb != null)
+        if (skillWPreFeb != null)
         {
-            WSkillRangePrefeb.SetActive(false);
+            skillWPreFeb.SetActive(false);
         }
-        if (ESkillRangePrefeb != null)
+        if (skillEPreFeb != null)
         {
-            ESkillRangePrefeb.SetActive(false);
+            skillEPreFeb.SetActive(false);
         }
 
         Invoke("OffSilent", time);
@@ -415,5 +385,10 @@ public class BasicController : NetworkBehaviour, IAttack
     void OnAttack()
     {
         isAttackAble = true;
+    }
+
+    protected void SettingAnimationIdle()
+    {
+        AnimName = "idle";
     }
 }

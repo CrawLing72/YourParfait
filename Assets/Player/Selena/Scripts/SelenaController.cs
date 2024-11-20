@@ -1,3 +1,5 @@
+using Fusion;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -38,13 +40,13 @@ public class SelenaController : BasicController, IAttack
         {
             skillWPreFeb.SetActive(IsShild);
         }
-        
 
+        skeletonAnimation.name = "idle";
         
     }
 
 
-    protected override void InputActionW() 
+    protected override void InputActionW() // Selena : Shield on
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -54,6 +56,66 @@ public class SelenaController : BasicController, IAttack
             skillWPreFeb.SetActive(IsShild);
 
             Invoke("OffShild", 5);
+        }
+    }
+
+    protected override void InputActionE() // Selena : 마석 던져서 대폭발 시키기
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 myPos = Object.transform.position;
+            Vector2 disTance = mousePos - myPos;
+
+            if (disTance.magnitude < ESkillRange)
+            {
+                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position, Quaternion.identity);
+                NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
+
+                skill.SetSkillDamage(400.0f); // need Change
+                skill.SetTime(1.7f);
+                attack.transform.position = mousePos;
+                isEAble = false;
+                currentETime = stat.GetETime();
+                AnimName = "AtribinJoint";
+                Invoke("SettingAnimationIdle", 1.33f);
+
+            }
+            else
+            {
+                return; //Early Termination
+            }
+
+        }
+    }
+
+    protected override void InputActionQ() // Selena : 마석 던지기
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 myPos = Object.transform.position;
+            Vector2 disTance = mousePos - myPos;
+
+            if (disTance.magnitude < QSkillRange)
+            {
+                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillQPreFeb, transform.position, Quaternion.identity);
+                NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
+
+                skill.SetSkillDamage(200.0f); // need Change
+                skill.SetTime(1.2f);
+                attack.transform.position = mousePos;
+                isEAble = false;
+                currentETime = stat.GetQTime();
+                AnimName = "AtribinJoint";
+                Invoke("SettingAnimationIdle", 1.33f);
+
+            }
+            else
+            {
+                return; //Early Termination
+            }
+
         }
     }
 
@@ -82,7 +144,7 @@ public class SelenaController : BasicController, IAttack
 
                 qIsOn = false;
 
-                QSkillRangePrefeb.SetActive(qIsOn);
+                skillQPreFeb.SetActive(qIsOn);
 
             }
         }
@@ -113,7 +175,7 @@ public class SelenaController : BasicController, IAttack
 
                 eIsOn = false;
 
-                ESkillRangePrefeb.SetActive(eIsOn);
+                skillEPreFeb.SetActive(eIsOn);
 
             }
         }    

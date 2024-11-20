@@ -79,7 +79,8 @@ MonoBehaviour:
   SortKey: 3044305627
   ObjectInterest: 1
   Flags: 262145
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 2558717018860923817}
   NetworkedBehaviours:
   - {fileID: 3552752287648522537}
   - {fileID: 1706839922809039679}
@@ -464,11 +465,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8388130711423122912, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+      propertyPath: SortKey
+      value: 2382245044
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+--- !u!114 &2558717018860923817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8388130711423122912, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+  m_PrefabInstance: {fileID: 6335091205475980873}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7729445684317839771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4372504887102552018, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
