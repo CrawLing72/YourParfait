@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
 public class SeraphinaController : BasicController, IAttack
 {
-
+    protected NetworkObject destroyObj;
     protected override void Start()
     {
         base.Start();
@@ -15,23 +16,44 @@ public class SeraphinaController : BasicController, IAttack
     {
         if (isWAble)
         {
-            float currentHp = stat.GetCurrentHp();
-            float healAmount = 150.0f;
-            stat.SetCurrentHp(currentHp + healAmount);
-            GetAdBuff(50.0f, 3);
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                float currentHp = stat.GetCurrentHp();
+                float healAmount = 150.0f;
+                stat.SetCurrentHp(currentHp + healAmount);
+                GetAdBuff(50.0f, 3);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, transform.position, Quaternion.identity);
+                obj.gameObject.transform.SetParent(gameObject.transform, true);
+                destroyObj = obj;
 
-            isWAble = false;
-            currentWTime = stat.GetWTime();
+                Invoke("DestroyParticle", 1.5f);
+                isWAble = false;
+                currentWTime = stat.GetWTime();
+            }
         }
     }
     protected override void InputActionE() 
     {
-        if(isEAble)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            GameObject attack = Instantiate(skillEPreFeb);
-            skillEPreFeb.SetActive(true);
-            Invoke("OffE", 3);
+            if (isEAble)
+            {
+                Vector3 interpolation = new Vector3(0f, 2.5f, 0);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position - interpolation, Quaternion.identity);
+                obj.gameObject.transform.SetParent(gameObject.transform, true);
+                destroyObj = obj;
+                obj.gameObject.SetActive(true);
 
+                AnimName = "WelcomeZone";
+                Invoke("SettingAnimationIdle", 4f);
+
+
+                Invoke("OffE", 4f);
+                Invoke("DestroyParticle", 4f);
+                isEAble = false;
+                currentETime = stat.GetETime();
+
+            }
         }
     }
 
@@ -88,5 +110,10 @@ public class SeraphinaController : BasicController, IAttack
         stat.SetCurrentHp(CurrentHp - Damage);
         Instance.RPC_SetHP(stat.clientIndex, stat.GetCurrentHp(), stat.GetMaxHp());
         Object.RequestStateAuthority(); // State Authority È¸º¹
+    }
+
+    void DestroyParticle()
+    {
+        NetworkManager.Instance.runner.Despawn(destroyObj);
     }
 }
