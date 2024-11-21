@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4112948764345381290}
   - component: {fileID: 8767585292580150796}
   - component: {fileID: 1706839922809039679}
-  - component: {fileID: 2735277905656397048}
+  - component: {fileID: 2610410920373656282}
   m_Layer: 0
   m_Name: Rainyk
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 5477536672568322876}
   - {fileID: 392905249357114715}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -82,7 +82,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 3552752287648522537}
   - {fileID: 1706839922809039679}
-  - {fileID: 2735277905656397048}
+  - {fileID: 2610410920373656282}
 --- !u!50 &4112948764345381290
 Rigidbody2D:
   serializedVersion: 4
@@ -167,7 +167,7 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
---- !u!114 &2735277905656397048
+--- !u!114 &2610410920373656282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,20 +176,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3022063319299320383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccdae0fa82d375441b0d0c418677f13f, type: 3}
+  m_Script: {fileID: 11500000, guid: d6dc6f7750f48824490781ae97be0eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BasicAttack: {fileID: 1292993822233510530, guid: 5e3024423c6586444b9e6b7e1f63b7ca, type: 3}
   QSkillRange: 10
   WSkillRange: 10
   ESkillRange: 10
-  skillEPreFeb: {fileID: 7964327190314459364, guid: 28169159b6d14af47b73433036d21dd0, type: 3}
-  skillQPreFeb: {fileID: 0}
-  skillWPreFeb: {fileID: 0}
-  attackPrefeb: {fileID: 0}
-  butterflyPrefb: {fileID: 0}
-  skillEEffect: {fileID: 0}
-  skillREffect: {fileID: 0}
+  skillEPreFeb: {fileID: 7516571897094069152, guid: 9a64cf0f78a02724e807f64e65b3ed46, type: 3}
+  skillQPreFeb: {fileID: 5224260743560662178, guid: 86f3357cc97a62947a34bbee0a8a0e13, type: 3}
+  skillWPreFeb: {fileID: 6178459221590761052, guid: 1138868616c4cab4eb5fb9ad02752c72, type: 3}
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +312,7 @@ MonoBehaviour:
   unscaledTime: 0
   _animationName: idle
   loop: 1
-  timeScale: 1.5
+  timeScale: 1
 --- !u!1 &5529046116055389372
 GameObject:
   m_ObjectHideFlags: 0

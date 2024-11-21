@@ -12,9 +12,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SeraphinaQSkill
       objectReference: {fileID: 0}
+    - target: {fileID: 1202575319040091512, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1202575319040091513, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1202575319040091513, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -107,5 +111,57 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1202575319040091512, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4738816361210399876}
+    - targetCorrespondingSourceObject: {fileID: 1202575319040091512, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3741909729303203152}
   m_SourcePrefab: {fileID: 100100000, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
+--- !u!95 &6346522234064823580 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1202575319040091514, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
+  m_PrefabInstance: {fileID: 5234035683815063654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6346522234064823582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1202575319040091512, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
+  m_PrefabInstance: {fileID: 5234035683815063654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4738816361210399876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346522234064823582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2249839548
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 3741909729303203152}
+--- !u!114 &3741909729303203152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346522234064823582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 6346522234064823580}
+  TotalWords: 0
+  ApplyTiming: 2
+  SyncSettings: 79
+  StateHashes: 
+  TriggerHashes: 

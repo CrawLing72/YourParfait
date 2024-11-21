@@ -36,7 +36,7 @@ Transform:
   - {fileID: 2047384217090097131}
   - {fileID: 1182032193060576482}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3069019933018963832
 SpriteRenderer:
@@ -123,12 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
-  TotalWords: -1
+  Animator: {fileID: 6938094002146108157}
+  TotalWords: 0
   ApplyTiming: 2
   SyncSettings: 79
-  StateHashes: 
-  TriggerHashes: 
+  StateHashes: 00000000070b2450a24fc3ef
+  TriggerHashes: 00000000
 --- !u!114 &7107079389437275257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.49685526, b: 0.49685526, a: 1}
   m_Intensity: 0.73
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0

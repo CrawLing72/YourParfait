@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SeraphinaW
       objectReference: {fileID: 0}
+    - target: {fileID: 1301883937029999125, guid: e43bd4417c278b84881304940e284fc8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1301883937273638093, guid: e43bd4417c278b84881304940e284fc8, type: 3}
       propertyPath: m_Color.b
       value: 0.21960783
