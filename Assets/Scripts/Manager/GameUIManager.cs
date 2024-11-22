@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using ExitGames.Client.Photon.StructWrapping;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -22,8 +23,8 @@ public class GameUIManager : MonoBehaviour
 
     [Header("MainBar")]
     public Image Char_Face;
-    public Slider HP_Bar;
-    public Slider MP_Bar;
+    public Image HP_Bar;
+    public Image MP_Bar;
     public Image Qskill;
     public Image Wskill;
     public Image Eskill;
@@ -52,8 +53,8 @@ public class GameUIManager : MonoBehaviour
 
         blueTeamBar = Resources.Load<Sprite>("UI/BlueTeam_Bar");
         redTeamBar = Resources.Load<Sprite>("UI/RedTeam_Bar");
-        HP_Text = HP_Bar.transform.GetChild(2).GetComponent<TMP_Text>();
-        MP_Text = MP_Bar.transform.GetChild(2).GetComponent<TMP_Text>();
+        HP_Text = HP_Bar.transform.GetChild(0).GetComponent<TMP_Text>();
+        MP_Text = MP_Bar.transform.GetChild(0).GetComponent<TMP_Text>();
     }
     public void UpdateTopStatusBar()
     {
@@ -108,6 +109,7 @@ public class GameUIManager : MonoBehaviour
 
     public void UpdateMainBar(bool isSetup = false)
     {
+        int clinet_index = PlayerPrefs.GetInt("ClientIndex");
         gmInstance = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (isSetup)
         {
@@ -117,10 +119,16 @@ public class GameUIManager : MonoBehaviour
             Wskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_W");
         }
 
-        HP_Bar.value = gmInstance.HP.Get(PlayerPrefs.GetInt("ClientIndex")) / gmInstance.MaxHP.Get(PlayerPrefs.GetInt("ClientIndex"));
-        MP_Bar.value = gmInstance.MP.Get(PlayerPrefs.GetInt("ClientIndex")) / gmInstance.MaxMP.Get(PlayerPrefs.GetInt("ClientIndex"));
-        HP_Text.text = gmInstance.HP.Get(PlayerPrefs.GetInt("ClientIndex")).ToString() + " / " + gmInstance.MaxHP.Get(PlayerPrefs.GetInt("ClientIndex")).ToString();
-        MP_Text.text = gmInstance.MP.Get(PlayerPrefs.GetInt("ClientIndex")).ToString() + " / " + gmInstance.MaxMP.Get(PlayerPrefs.GetInt("ClientIndex")).ToString();
+        var HPValue = gmInstance.HP.Get(clinet_index) / gmInstance.MaxHP.Get(clinet_index);
+        var MPValue = gmInstance.MP.Get(clinet_index) / gmInstance.MaxMP.Get(clinet_index);
+
+        Debug.LogError("HPValue : " + HPValue + " MPValue : " + MPValue);
+
+        HP_Bar.fillAmount = (float)HPValue;
+        MP_Bar.fillAmount = (float)MPValue;
+
+        HP_Text.text = gmInstance.HP.Get(clinet_index).ToString() + " / " + gmInstance.MaxHP.Get(clinet_index).ToString();
+        MP_Text.text = gmInstance.MP.Get(clinet_index).ToString() + " / " + gmInstance.MaxMP.Get(clinet_index).ToString();
         // item, lv는 차후 수정
     }
 }

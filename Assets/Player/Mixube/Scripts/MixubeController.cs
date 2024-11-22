@@ -78,7 +78,7 @@ public class MixubeController : BasicController, IAttack
     {
         if (Input.GetMouseButtonDown(0))
         {
-            float xinterpolation = isLeft ? 5f : -4f;
+            float xinterpolation = isLeft ? 1f : -0.5f;
             Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, transform.position - interpolation, Quaternion.identity);
             obj.gameObject.transform.SetParent(gameObject.transform, true);

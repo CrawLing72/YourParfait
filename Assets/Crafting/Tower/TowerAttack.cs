@@ -1,9 +1,10 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TowerAttack : MonoBehaviour
+public class TowerAttack : NetworkBehaviour
 {
     [SerializeField]
     float attack;

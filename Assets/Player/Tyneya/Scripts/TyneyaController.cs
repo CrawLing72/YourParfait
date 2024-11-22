@@ -46,8 +46,7 @@ public class TyneyaController : BasicController, IAttack
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            float x_interpolation = isLeft ? 5f : -4f;
-            Vector3 interpolation = new Vector3(x_interpolation, 0f, 0);
+            Vector3 interpolation = new Vector3(0f, 0f, 0f);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position - interpolation, Quaternion.identity);
             obj.gameObject.transform.SetParent(gameObject.transform, true);
             destroyObj = obj;
