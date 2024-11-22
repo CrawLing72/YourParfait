@@ -6,6 +6,8 @@ using Fusion;
 public class RainykController : BasicController, IAttack
 {
     protected NetworkObject destroyObj;
+    protected float w_time = 0;
+    protected bool w_time_on = false;
     protected override void Start()
     {
         base.Start();
@@ -22,8 +24,12 @@ public class RainykController : BasicController, IAttack
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, transform.position - interpolation, Quaternion.identity);
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
+                obj.gameObject.SetActive(true);
 
-                Invoke("DestroyParticle", 1.5f);
+                // Buff Effect 추가해 놓을 것
+                w_time_on = true;
+
+                Invoke("DestroyParticle", 1.0f);
                 isWAble = false;
                 currentWTime = stat.GetWTime();
             }
@@ -35,18 +41,28 @@ public class RainykController : BasicController, IAttack
         {
             if (isEAble)
             {
-                Vector3 interpolation = new Vector3(0f, 2.5f, 0);
+                float xinterpolation = isLeft ? 5f: -4f;
+                Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position - interpolation, Quaternion.identity);
+                FrontSkill objSkill = obj.gameObject.GetComponent<FrontSkill>();
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
+
+
                 destroyObj = obj;
                 obj.gameObject.SetActive(true);
 
-                AnimName = "WelcomeZone";
-                Invoke("SettingAnimationIdle", 4f);
+                float current_mp = stat.GetCurrentMp();
+                stat.SetCurrentMp(0);
+                stat.SetSpeed(stat.GetSpeed() + 10f);
+                objSkill.SetDamage(current_mp);
+                
+
+                AnimName = "Rux";
+                Invoke("SettingAnimationIdle", 2.33f);
 
 
-                Invoke("OffE", 4f);
-                Invoke("DestroyParticle", 4f);
+                Invoke("OffE", 2.33f);
+                Invoke("DestroyParticle", 2.33f);
                 isEAble = false;
                 currentETime = stat.GetETime();
 
@@ -60,22 +76,43 @@ public class RainykController : BasicController, IAttack
         {
             if (isQAble)
             {
-                Vector3 interpolation = new Vector3(0f, 2.5f, 0);
+                Vector3 interpolation = new Vector3(0f, 0f, 0);
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, transform.position - interpolation, Quaternion.identity);
-                obj.gameObject.transform.SetParent(gameObject.transform, true);
+                NonTargetSkill objSkill = obj.gameObject.GetComponent<NonTargetSkill>();
+
+                Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 myPos = Object.transform.position;
+                Vector2 disTance = mousePos - myPos;
+                Vector2 dir = disTance.normalized;
+
+                objSkill.SetDirection(dir);
+                objSkill.SetSkillDamage(200f);
+
                 destroyObj = obj;
                 obj.gameObject.SetActive(true);
 
-                AnimName = "Don'tCome";
-                Invoke("SettingAnimationIdle", 1.2f);
+                AnimName = "ShootFly";
+                Invoke("SettingAnimationIdle", 1.66f);
 
 
-                Invoke("OffQ", 1.2f);
-                Invoke("DestroyParticle", 1.2f);
+                Invoke("OffQ", 1.66f);
+                Invoke("DestroyParticle", 1.66f);
                 isQAble = false;
                 currentETime = stat.GetQTime();
             }
         }
+    }
+
+    protected override void ApplySkillEffect()
+    {
+        // under : W construction
+        if(w_time_on) w_time += NetworkManager.Instance.runner.DeltaTime; 
+        if(w_time > 5.0f)
+          {
+            stat.SetSpeed(stat.GetSpeed() - 10f);
+            w_time_on = false;
+                w_time = 0;
+          }
     }
 
     void OffE()
@@ -135,9 +172,7 @@ public class RainykController : BasicController, IAttack
     void IAttack.GetDamage(float Damage)
     {
         GameState Instance = FindObjectOfType<GameState>().GetComponent<GameState>();
-        Debug.LogError("Selena Got Damage!");
         float CurrentHp = stat.GetCurrentHp();
-        Debug.LogError(CurrentHp);
         stat.SetCurrentHp(CurrentHp - Damage);
         Instance.RPC_SetHP(stat.clientIndex, stat.GetCurrentHp(), stat.GetMaxHp());
         Object.RequestStateAuthority(); // State Authority 회복

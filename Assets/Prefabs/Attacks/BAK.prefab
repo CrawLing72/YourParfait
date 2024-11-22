@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 6829393597272393959}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3255010167615193764
 SpriteRenderer:
@@ -191,6 +191,7 @@ MonoBehaviour:
   Flags: 786433
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 1574632193232041022}
   - {fileID: -2848962543398691668}
   - {fileID: 2002106893534382105}
 --- !u!114 &2002106893534382105

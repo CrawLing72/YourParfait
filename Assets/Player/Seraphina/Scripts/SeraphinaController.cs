@@ -6,6 +6,7 @@ using Fusion;
 public class SeraphinaController : BasicController, IAttack
 {
     protected NetworkObject destroyObj;
+    protected CircleCollider2D circleCollider;
     protected override void Start()
     {
         base.Start();
@@ -25,6 +26,7 @@ public class SeraphinaController : BasicController, IAttack
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, transform.position - interpolation, Quaternion.identity);
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
+                obj.gameObject.SetActive(true);
 
                 Invoke("DestroyParticle", 1.5f);
                 isWAble = false;
@@ -71,7 +73,6 @@ public class SeraphinaController : BasicController, IAttack
 
                 AnimName = "Don'tCome";
                 Invoke("SettingAnimationIdle", 1.2f);
-
 
                 Invoke("OffQ", 1.2f);
                 Invoke("DestroyParticle", 1.2f);
@@ -138,9 +139,7 @@ public class SeraphinaController : BasicController, IAttack
     void IAttack.GetDamage(float Damage)
     {
         GameState Instance = FindObjectOfType<GameState>().GetComponent<GameState>();
-        Debug.LogError("Selena Got Damage!");
         float CurrentHp = stat.GetCurrentHp();
-        Debug.LogError(CurrentHp);
         stat.SetCurrentHp(CurrentHp - Damage);
         Instance.RPC_SetHP(stat.clientIndex, stat.GetCurrentHp(), stat.GetMaxHp());
         Object.RequestStateAuthority(); // State Authority È¸º¹

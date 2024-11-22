@@ -12,7 +12,7 @@ public class BasicController : NetworkBehaviour, IAttack
 
     [Header("Skill")]
     [SerializeField]
-    GameObject BasicAttack;
+    protected GameObject BasicAttack;
 
     protected Rigidbody2D rb;
     protected Camera cam;
@@ -115,6 +115,8 @@ public class BasicController : NetworkBehaviour, IAttack
         setTimer(ref currentETime, ref isEAble);
 
         CurrenPosition = gameObject.transform.position;
+
+        ApplySkillEffect();
 
     }
 
@@ -396,5 +398,10 @@ public class BasicController : NetworkBehaviour, IAttack
     protected void SettingAnimationIdle()
     {
         AnimName = "idle";
+    }
+
+    virtual protected void ApplySkillEffect()
+    {
+
     }
 }

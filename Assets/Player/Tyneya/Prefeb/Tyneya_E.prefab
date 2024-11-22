@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7439363037799070717}
   - component: {fileID: 2777865263932107550}
   - component: {fileID: 554550701077129904}
+  - component: {fileID: 5459763542812115499}
   m_Layer: 0
   m_Name: Tyneya_E
   m_TagString: Untagged
@@ -54,6 +55,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 2777865263932107550}
   - {fileID: 554550701077129904}
+  - {fileID: 5459763542812115499}
 --- !u!114 &2777865263932107550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +90,19 @@ MonoBehaviour:
   SyncSettings: 79
   StateHashes: 
   TriggerHashes: 
+--- !u!114 &5459763542812115499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034713280186128726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5cc792d7f16314fb33dee5641636e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10
 --- !u!1001 &1337987020441543854
 PrefabInstance:
   m_ObjectHideFlags: 0

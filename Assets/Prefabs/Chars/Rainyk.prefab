@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2610410920373656282}
   m_Layer: 0
   m_Name: Rainyk
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,8 +184,8 @@ MonoBehaviour:
   WSkillRange: 10
   ESkillRange: 10
   skillEPreFeb: {fileID: 7516571897094069152, guid: 9a64cf0f78a02724e807f64e65b3ed46, type: 3}
-  skillQPreFeb: {fileID: 5224260743560662178, guid: 86f3357cc97a62947a34bbee0a8a0e13, type: 3}
-  skillWPreFeb: {fileID: 6178459221590761052, guid: 1138868616c4cab4eb5fb9ad02752c72, type: 3}
+  skillQPreFeb: {fileID: 6178459221590761052, guid: 1138868616c4cab4eb5fb9ad02752c72, type: 3}
+  skillWPreFeb: {fileID: 5224260743560662178, guid: 86f3357cc97a62947a34bbee0a8a0e13, type: 3}
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 52
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4361756127189816574
 MonoBehaviour:

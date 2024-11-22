@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7104769286942423788}
   m_Layer: 0
   m_Name: Mixube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 5477536672568322876}
   - {fileID: 392905249357114715}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b453f566c50e644ea0585ea25e53c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BasicAttack: {fileID: 1292993822233510530, guid: 5e3024423c6586444b9e6b7e1f63b7ca, type: 3}
+  BasicAttack: {fileID: 684887721214481791, guid: 0a20c8dc35df10d4a95d8a5102b8d40b, type: 3}
   QSkillRange: 0
   WSkillRange: 0
   ESkillRange: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   unscaledTime: 0
   _animationName: idle
   loop: 1
-  timeScale: 1.5
+  timeScale: 1
 --- !u!1 &5529046116055389372
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8876925350947690255}
   - component: {fileID: 9175597669489799560}
   - component: {fileID: 4138977200699423771}
+  - component: {fileID: 3857869223740203306}
   m_Layer: 0
   m_Name: Tyneya_W
   m_TagString: Untagged
@@ -129,6 +130,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 9175597669489799560}
   - {fileID: 4138977200699423771}
+  - {fileID: 3857869223740203306}
 --- !u!114 &9175597669489799560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +165,19 @@ MonoBehaviour:
   SyncSettings: 79
   StateHashes: 0000000077ea9c396d7ba6d3
   TriggerHashes: 00000000
+--- !u!114 &3857869223740203306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326771597966056682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5cc792d7f16314fb33dee5641636e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 3
 --- !u!1 &5381028287220525445
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,8 +244,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.4031, y: -0.75734997, z: 0}
-    m_Extent: {x: 2.9329, y: 1.51825, z: 0}
+    m_Center: {x: -0.40969992, y: -0.75795007, z: 0}
+    m_Extent: {x: 2.9268, y: 1.51215, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
