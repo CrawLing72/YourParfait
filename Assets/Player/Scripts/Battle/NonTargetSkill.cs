@@ -71,7 +71,7 @@ public class NonTargetSkill : NonTargetThrow
             if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
             {
                 // RPC 호출로 데미지 및 상태 이상 적용
-                Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, targetObj, damage, silent, silentTime, slow, slowValue, slowTime);
+                Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
 
                 // 포탄 제거
                 Despawn();
@@ -86,7 +86,6 @@ public class NonTargetSkill : NonTargetThrow
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void Rpc_ApplyDamageAndEffects(
         [RpcTarget] PlayerRef player,
-        NetworkObject targetObj,
         float damage,
         bool silent,
         float silentTime,
@@ -95,22 +94,14 @@ public class NonTargetSkill : NonTargetThrow
         float slowTime
         )
     {
-        IAttack target = targetObj.GetComponent<IAttack>();
-        if (target != null)
+        NetworkObject targetObj = NetworkManager.Instance.runner.GetPlayerObject(player);
+        IAttack target = targetObj?.GetComponent<IAttack>();
+        if(target != null)
         {
             target.GetDamage(damage);
-            Debug.LogError("Damage : " + damage);
-
-            if (silent)
-            {
-                target.GetSilent(silentTime);
-            }
-
-            if (slow)
-            {
-                target.GetSlow(slowValue, slowTime);
-            }
+            Debug.LogError("Damage Completed!");
         }
+
     }
 
     public void SetStat(Stat stat)
