@@ -94,12 +94,25 @@ public class NonTargetSkill : NonTargetThrow
         float slowTime
         )
     {
-        NetworkObject targetObj = NetworkManager.Instance.runner.GetPlayerObject(player);
-        IAttack target = targetObj?.GetComponent<IAttack>();
-        if(target != null)
+        if(NetworkManager.Instance.runner.TryGetPlayerObject(player, out NetworkObject playerObj))
         {
+            IAttack target = playerObj.GetComponent<IAttack>();
+
             target.GetDamage(damage);
-            Debug.LogError("Damage Completed!");
+
+            if (silent)
+            {
+                target.GetSilent(silentTime);
+            }
+
+            if (slow)
+            {
+                target.GetSlow(slowValue, slowTime);
+            }
+        }
+        else
+        {
+            Debug.LogError("Rpc_ApplyDamageAndEffects: PlayerRef에 해당하는 PlayerObject를 찾을 수 없습니다!");
         }
 
     }

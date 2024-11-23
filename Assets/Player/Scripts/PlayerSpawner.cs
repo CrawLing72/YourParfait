@@ -61,7 +61,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     {
     }
 
-    public void PlayerJoined(PlayerRef player) // IF로 안들어 오는 현상 있어서 임시 수정 : 나중에 땜빵 할 것
+    public void PlayerJoined(Fusion.PlayerRef player) // IF로 안들어 오는 현상 있어서 임시 수정 : 나중에 땜빵 할 것
     {
         // Check if this is the local player
         if (player == NetworkManager.Instance.runner.LocalPlayer)
