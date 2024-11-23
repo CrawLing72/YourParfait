@@ -3,7 +3,6 @@ using Fusion.Sockets;
 using Spine.Unity;
 using System;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -72,7 +71,8 @@ public class BasicController : NetworkBehaviour, IAttack
     float ADBuffTemp;
     float TempSpeed;
 
-    bool team;
+    [Networked]
+    public bool isRedTeam { get; set;}
 
     protected void Awake()
     {
@@ -119,6 +119,13 @@ public class BasicController : NetworkBehaviour, IAttack
         ApplySkillEffect();
 
     }
+
+    public override void Spawned()
+    {
+        base.Spawned();
+        isRedTeam = GameManager.instance.isRedTeam;
+    }
+
 
     protected void MouseRightClick()
     {
@@ -261,7 +268,7 @@ public class BasicController : NetworkBehaviour, IAttack
                 }
            }
     }
-    void IAttack.GetDamage(float Damage)
+    public void GetDamage(float Damage)
     {
         float CurrentHp = stat.GetCurrentHp();
         stat.SetCurrentHp(CurrentHp - Damage);

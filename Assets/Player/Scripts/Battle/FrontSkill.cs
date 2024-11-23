@@ -2,7 +2,6 @@ using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class FrontSkill : NetworkBehaviour
@@ -21,58 +20,55 @@ public class FrontSkill : NetworkBehaviour
 
     bool bTeam;
 
-    private async Task<bool> WaitForStateAuthorityWithTimeout(NetworkObject obj, int timeoutMs)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        int elapsed = 0;
-        while (!obj.HasStateAuthority && elapsed < timeoutMs)
-        {
-            await Task.Delay(10);
-            elapsed += 10;
-        }
-        return obj.HasStateAuthority;
-    }
-
-    private async Task OnTriggerEnter2DAsync(Collider2D collision)
-    {
+        Debug.LogError("Collision on!");
         if (collision != null)
         {
-            if (collision.gameObject.CompareTag("Player")) // "Player"태그가 달려 있어야만이 피격 가능
+            NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
+            IAttack target = targetObj?.GetComponent<IAttack>();
+
+            if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
             {
-                NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
-                IAttack target = targetObj.gameObject.GetComponent<IAttack>();
+                // RPC 호출로 데미지 및 상태 이상 적용
+                Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, targetObj, damage, silent, silentTime, slow, slowValue, slowTime);
 
-                if (targetObj != null && (!targetObj.HasStateAuthority)) // For preventing Self-kill
-                {
-                    // StateAuthority 요청
-                    targetObj.RequestStateAuthority();
+                // 포탄 제거
+                Despawn();
+            }
+            else
+            {
+                if (targetObj == null)
+                    Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
+            }
+        }
+    }
 
-                    // StateAuthority가 획득될 때까지 대기
-                    await WaitForStateAuthorityWithTimeout(targetObj, 150); // Maximum 150ms
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void Rpc_ApplyDamageAndEffects(
+        [RpcTarget] PlayerRef player,
+        NetworkObject targetObj,
+        float damage,
+        bool silent,
+        float silentTime,
+        bool slow,
+        float slowValue,
+        float slowTime
+        )
+    {
+        IAttack target = targetObj.GetComponent<IAttack>();
+        if (target != null)
+        {
+            target.GetDamage(damage);
 
-                    if (target != null && targetObj.HasStateAuthority)
-                    {
-                        target.GetDamage(damage);
+            if (silent)
+            {
+                target.GetSilent(silentTime);
+            }
 
-                        if (silent)
-                        {
-                            target.GetSilent(silentTime);
-                        }
-
-                        if (slow)
-                        {
-                            target.GetSlow(slowValue, slowTime);
-                        }
-                        targetObj.ReleaseStateAuthority();
-                    }
-                    else
-                    {
-                        Debug.LogError("NO STATE AUTHORITY!!!");
-                    }
-                }
-                else
-                {
-                    if (targetObj == null) Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
-                }
+            if (slow)
+            {
+                target.GetSlow(slowValue, slowTime);
             }
         }
     }

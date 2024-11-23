@@ -23,7 +23,7 @@ public class TowerAttack : NetworkBehaviour
 
 
     [SerializeField]
-    bool team;
+    bool isRedTeam = true;
 
 
 
@@ -37,8 +37,8 @@ public class TowerAttack : NetworkBehaviour
             if (bIsTarget)
             {
 
-                GameObject attackBall = Instantiate(attackPrefeb);
-                RangeAttack rnageAttackc = attackBall.GetComponent<RangeAttack>();
+                NetworkObject attackBall = NetworkManager.Instance.runner.Spawn(attackPrefeb, gameObject.transform.position, Quaternion.identity, Object.StateAuthority);
+                RangeAttack rnageAttackc = attackBall.gameObject.GetComponent<RangeAttack>();
 
                 attackBall.transform.position = gameObject.transform.position;
 
@@ -78,7 +78,7 @@ public class TowerAttack : NetworkBehaviour
         if (!bIsPlayer)
         {
             BasicController Player = collision.GetComponent<BasicController>();
-            if (Player != null)
+            if (Player != null && (isRedTeam != Player.isRedTeam))
             {
                 bIsTarget = true;
                 bIsPlayer = true;

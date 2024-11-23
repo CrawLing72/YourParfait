@@ -60,57 +60,56 @@ public class NonTargetSkill : NonTargetThrow
     }
 
     // Collision Detection Part : 아래 구조는 수정시 대참사 일어 날 수 있으니 PM에게 무조건 문의
-    private async Task<bool> WaitForStateAuthorityWithTimeout(NetworkObject obj, int timeoutMs)
-    {
-        int elapsed = 0;
-        while (!obj.HasStateAuthority && elapsed < timeoutMs)
-        {
-            await Task.Delay(10);
-            elapsed += 10;
-        }
-        return obj.HasStateAuthority;
-    }
 
-    private async void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.LogError("Collision on!");    
+        Debug.LogError("Collision on!");
         if (collision != null)
         {
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
-            IAttack target = targetObj.gameObject.GetComponent<IAttack>();
+            IAttack target = targetObj?.GetComponent<IAttack>();
 
-            if (targetObj != null && (!targetObj.HasStateAuthority)) // For preventing Self-kill
+            if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
             {
-                // StateAuthority 요청
-                targetObj.RequestStateAuthority();
+                // RPC 호출로 데미지 및 상태 이상 적용
+                Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, targetObj, damage, silent, silentTime, slow, slowValue, slowTime);
 
-                // StateAuthority가 획득될 때까지 대기
-                await WaitForStateAuthorityWithTimeout(targetObj, 150); // Maximum 150ms
-
-                if (target != null && targetObj.HasStateAuthority)
-                {
-                    target.GetDamage(damage);
-
-                    if (silent)
-                    {
-                        target.GetSilent(silentTime);
-                    }
-
-                    if (slow)
-                    {
-                        target.GetSlow(slowValue, slowTime);
-                    }
-                    targetObj.ReleaseStateAuthority();
-                    Despawn();
-                }
-                else
-                {
-                    Debug.LogError("NO STATE AUTHORITY!!!");
-                }
+                // 포탄 제거
+                Despawn();
             }
             else
             {
-                if(targetObj == null) Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
+                if (targetObj == null)
+                    Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
+            }
+        }
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void Rpc_ApplyDamageAndEffects(
+        [RpcTarget] PlayerRef player,
+        NetworkObject targetObj,
+        float damage,
+        bool silent,
+        float silentTime,
+        bool slow,
+        float slowValue,
+        float slowTime
+        )
+    {
+        IAttack target = targetObj.GetComponent<IAttack>();
+        if (target != null)
+        {
+            target.GetDamage(damage);
+
+            if (silent)
+            {
+                target.GetSilent(silentTime);
+            }
+
+            if (slow)
+            {
+                target.GetSlow(slowValue, slowTime);
             }
         }
     }

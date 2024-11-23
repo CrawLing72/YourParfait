@@ -169,7 +169,7 @@ public class RainykController : BasicController, IAttack
         }
     }
 
-    void IAttack.GetDamage(float Damage)
+    public new void GetDamage(float Damage)
     {
         GameState Instance = FindObjectOfType<GameState>().GetComponent<GameState>();
         float CurrentHp = stat.GetCurrentHp();

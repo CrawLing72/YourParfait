@@ -1,5 +1,6 @@
 using UnityEngine;
 using Fusion;
+using static Unity.Collections.Unicode;
 
 public sealed class GameState : NetworkBehaviour, ISpawned
 {
@@ -52,7 +53,10 @@ public sealed class GameState : NetworkBehaviour, ISpawned
 
     public override void Spawned()
     {
-        if(PlayerPrefs.GetInt("ClientIdex") == 0)
+        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
+        Debug.LogError("Client Index : " + PlayerPrefs.GetInt("ClientIndex"));
+
+        if (PlayerPrefs.GetInt("ClientIdex") == 0)
         {
             // Init. Common Variables
             for (int i = 0; i < 6; i++)

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class TyneyaController : BasicController, IAttack
@@ -117,7 +116,7 @@ public class TyneyaController : BasicController, IAttack
         }
     }
 
-    void IAttack.GetDamage(float Damage)
+    public new void GetDamage(float Damage)
     {
         GameState Instance = FindObjectOfType<GameState>().GetComponent<GameState>();
         float CurrentHp = stat.GetCurrentHp();

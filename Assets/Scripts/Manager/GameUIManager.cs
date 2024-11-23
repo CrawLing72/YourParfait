@@ -111,18 +111,27 @@ public class GameUIManager : MonoBehaviour
     {
         int clinet_index = PlayerPrefs.GetInt("ClientIndex");
         gmInstance = FindObjectOfType<GameState>().GetComponent<GameState>();
+        string player_name;
+        switch (gmInstance.Players_Char_Index[clinet_index])
+        {
+            case 0: player_name = "Rainyk"; break;
+            case 1: player_name = "Selena"; break;
+            case 2: player_name = "Seraphina"; break;
+            case 3: player_name = "Mixube"; break;
+            case 4: player_name = "Tyneya"; break;
+            default: player_name = "Selena"; break;
+        }
+
         if (isSetup)
         {
-            Char_Face.sprite = Resources.Load<Sprite>("circled_char_Spoted/" + PlayerPrefs.GetString("CharName"));
-            Qskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_Q");
-            Eskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_E");
-            Wskill.sprite = Resources.Load<Sprite>("UI/Skill/" + PlayerPrefs.GetString("CharName") + "_W");
+            Char_Face.sprite = Resources.Load<Sprite>("circled_char_Spoted/" + player_name);
+            Qskill.sprite = Resources.Load<Sprite>("UI/Skill/" + player_name + "_Q");
+            Eskill.sprite = Resources.Load<Sprite>("UI/Skill/" + player_name + "_E");
+            Wskill.sprite = Resources.Load<Sprite>("UI/Skill/" + player_name + "_W");
         }
 
         var HPValue = gmInstance.HP.Get(clinet_index) / gmInstance.MaxHP.Get(clinet_index);
         var MPValue = gmInstance.MP.Get(clinet_index) / gmInstance.MaxMP.Get(clinet_index);
-
-        Debug.LogError("HPValue : " + HPValue + " MPValue : " + MPValue);
 
         HP_Bar.fillAmount = (float)HPValue;
         MP_Bar.fillAmount = (float)MPValue;
