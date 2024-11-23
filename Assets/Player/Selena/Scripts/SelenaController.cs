@@ -1,3 +1,5 @@
+using Fusion;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -38,13 +40,13 @@ public class SelenaController : BasicController, IAttack
         {
             skillWPreFeb.SetActive(IsShild);
         }
-        
 
+        skeletonAnimation.name = "idle";
         
     }
 
 
-    protected override void InputActionW() 
+    protected override void InputActionW() // Selena : Shield on
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -54,6 +56,69 @@ public class SelenaController : BasicController, IAttack
             skillWPreFeb.SetActive(IsShild);
 
             Invoke("OffShild", 5);
+        }
+    }
+
+    protected override void InputActionE() // Selena : 마석 던져서 대폭발 시키기
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 myPos = CurrenPosition;
+            Vector2 disTance = mousePos - myPos;
+
+            if (disTance.magnitude < ESkillRange)
+            {
+                Debug.LogError("InputActionE Happened!");
+                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition, Quaternion.identity);
+                NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
+                Animator animator = attack.gameObject.GetComponent<Animator>();
+
+                animator.SetBool("isE", true);
+                skill.SetSkillDamage(400.0f); // need Change
+                skill.SetTime(1.7f);
+                attack.transform.position = mousePos;
+                isEAble = false;
+                currentETime = stat.GetETime();
+                AnimName = "AtribinJoint";
+                Invoke("SettingAnimationIdle", 1.33f);
+
+            }
+            else
+            {
+                return; //Early Termination
+            }
+
+        }
+    }
+
+    protected override void InputActionQ() // Selena : 마석 던지기
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 myPos = CurrenPosition;
+            Vector2 disTance = mousePos - myPos;
+
+            if (disTance.magnitude < QSkillRange)
+            {
+                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition, Quaternion.identity);
+                NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
+
+                skill.SetSkillDamage(200.0f); // need Change
+                skill.SetTime(1.2f);
+                attack.transform.position = mousePos;
+                isEAble = false;
+                currentETime = stat.GetQTime();
+                AnimName = "AtribinJoint";
+                Invoke("SettingAnimationIdle", 1.33f);
+
+            }
+            else
+            {
+                return; //Early Termination
+            }
+
         }
     }
 
@@ -74,7 +139,7 @@ public class SelenaController : BasicController, IAttack
                     GameObject attack = Instantiate(skillQPreFeb);
                     NonTargetThrow skill = attack.GetComponent<NonTargetThrow>();
 
-                    skill.SetSkillDamage(10.0f); // need Change
+                    skill.SetSkillDamage(60.0f); // need Change
                     attack.transform.position = mousePos;
                     isQAble = false;
                     currentQTime = stat.GetQTime();
@@ -82,7 +147,7 @@ public class SelenaController : BasicController, IAttack
 
                 qIsOn = false;
 
-                QSkillRangePrefeb.SetActive(qIsOn);
+                skillQPreFeb.SetActive(qIsOn);
 
             }
         }
@@ -102,7 +167,7 @@ public class SelenaController : BasicController, IAttack
 
 
                     skill.SetSilent(3);
-                    skill.SetSkillDamage(10.0f); // need Change
+                    skill.SetSkillDamage(60.0f); // need Change
                     attack.transform.position = mousePos;
 
 
@@ -113,7 +178,7 @@ public class SelenaController : BasicController, IAttack
 
                 eIsOn = false;
 
-                ESkillRangePrefeb.SetActive(eIsOn);
+                skillEPreFeb.SetActive(eIsOn);
 
             }
         }    
@@ -123,7 +188,7 @@ public class SelenaController : BasicController, IAttack
         }
     }
 
-    void IAttack.GetDamage(float Damage)
+    public new void GetDamage(float Damage)
     {
         GameState Instance = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (IsShild)
@@ -140,12 +205,9 @@ public class SelenaController : BasicController, IAttack
         }
         else
         {
-            Debug.LogError("Selena Got Damage!");
             float CurrentHp = stat.GetCurrentHp();
-            Debug.LogError(CurrentHp);
             stat.SetCurrentHp(CurrentHp - Damage);
             Instance.RPC_SetHP(stat.clientIndex, stat.GetCurrentHp(), stat.GetMaxHp());
-            Object.RequestStateAuthority(); // State Authority 회복
         }
     }
 

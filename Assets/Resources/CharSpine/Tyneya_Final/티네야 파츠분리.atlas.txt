@@ -1,0 +1,144 @@
+티네야 파츠분리.png
+size:2045,1970
+filter:Linear,Linear
+pma:true
+scale:0.5
+B- l hair
+bounds:1334,1473,211,296
+rotate:90
+B- r hair
+bounds:696,1289,235,455
+rotate:90
+F- l side hair
+bounds:1557,659,337,531
+offsets:0,234,337,765
+F- r side hair
+bounds:648,556,366,614
+offsets:0,150,681,764
+rotate:90
+F-hair
+bounds:1459,1192,238,503
+offsets:3,0,244,503
+rotate:90
+L-arm
+bounds:281,1342,221,413
+offsets:35,0,256,422
+rotate:90
+L-eyebrow
+bounds:279,1930,214,38
+offsets:1,0,216,40
+L-eyelashes
+bounds:1418,1686,273,161
+offsets:1,0,274,162
+L-hand
+bounds:2,1797,136,143
+rotate:90
+L-iris
+bounds:1494,1857,111,142
+offsets:1,0,112,143
+rotate:90
+L-leg
+bounds:785,924,266,770
+rotate:90
+L-pupil
+bounds:495,1924,44,47
+offsets:0,0,44,48
+rotate:90
+R-pupil
+bounds:495,1924,44,47
+offsets:0,0,44,48
+rotate:90
+L-sclera
+bounds:639,1741,262,142
+L-side hair
+bounds:836,1526,181,496
+offsets:15,1,196,497
+rotate:90
+Lll
+bounds:147,1787,254,141
+offsets:11,3,273,166
+R-arm
+bounds:1632,1432,202,388
+rotate:90
+R-eyebrow
+bounds:77,1935,200,33
+offsets:0,0,201,34
+R-eyelashes
+bounds:903,1734,254,149
+offsets:1,1,256,151
+R-hand
+bounds:1638,1849,119,142
+rotate:90
+R-iris
+bounds:1362,1865,103,130
+offsets:1,1,105,132
+rotate:90
+R-leg
+bounds:2,1058,229,781
+rotate:90
+R-sclera
+bounds:403,1744,234,141
+offsets:0,0,235,141
+R-side hair
+bounds:355,1565,174,479
+offsets:0,1,174,480
+rotate:90
+Rrr
+bounds:1159,1709,257,154
+offsets:0,5,273,166
+TnyWeapon
+bounds:1782,1835,133,251
+rotate:90
+face
+bounds:1264,2,737,655
+l
+bounds:1153,1211,304,260
+offsets:1,1,306,261
+mouse
+bounds:14,1960,61,8
+necktie
+bounds:544,1887,81,250
+rotate:90
+nose
+bounds:2,1963,5,10
+offsets:0,1,5,11
+rotate:90
+r
+bounds:2,1343,277,243
+offsets:1,0,278,243
+레이어 25
+bounds:1221,1870,139,98
+offsets:1,0,141,98
+레이어 25 copy
+bounds:974,1885,245,83
+offsets:0,0,245,84
+레이어 25 copy 2
+bounds:796,1885,176,83
+offsets:0,0,176,87
+레이어 25 copy 4
+bounds:2,763,293,644
+offsets:0,3,293,647
+rotate:90
+레이어 29
+bounds:2,295,625,466
+폴더 10
+bounds:2,1588,197,351
+rotate:90
+폴더 10 copy
+bounds:1693,1636,197,350
+rotate:90
+
+티네야 파츠분리_2.png
+size:1636,1748
+filter:Linear,Linear
+pma:true
+scale:0.5
+body down
+bounds:2,689,622,1057
+레이어 31
+bounds:626,865,1008,881
+폴더 11
+bounds:2,31,656,868
+rotate:90
+폴더 11 copy
+bounds:872,2,653,861

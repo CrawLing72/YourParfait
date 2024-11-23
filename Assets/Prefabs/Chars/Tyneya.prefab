@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 4112948764345381290}
   - component: {fileID: 8767585292580150796}
   - component: {fileID: 1706839922809039679}
-  - component: {fileID: 9125994120634019751}
+  - component: {fileID: 3549100919820226341}
   m_Layer: 0
   m_Name: Tyneya
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 5477536672568322876}
   - {fileID: 392905249357114715}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -82,7 +82,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 3552752287648522537}
   - {fileID: 1706839922809039679}
-  - {fileID: 9125994120634019751}
+  - {fileID: 3549100919820226341}
 --- !u!50 &4112948764345381290
 Rigidbody2D:
   serializedVersion: 4
@@ -142,8 +142,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5756798, y: -0.6737629}
-  m_Size: {x: 1.1458206, y: 2.2939446}
+  m_Offset: {x: -0.86458206, y: -0.80583155}
+  m_Size: {x: 0.89819336, y: 2.5580819}
   m_Direction: 0
 --- !u!114 &1706839922809039679
 MonoBehaviour:
@@ -167,7 +167,7 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
---- !u!114 &9125994120634019751
+--- !u!114 &3549100919820226341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,27 +176,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3022063319299320383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7f6c64b26835640822872621cd27f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fa5fa4f50a9efe4abd2be30d138f6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BasicAttack: {fileID: 1292993822233510530, guid: 5e3024423c6586444b9e6b7e1f63b7ca, type: 3}
+  BasicAttack: {fileID: 684887721214481791, guid: 0a20c8dc35df10d4a95d8a5102b8d40b, type: 3}
   QSkillRange: 10
   WSkillRange: 10
   ESkillRange: 10
-  skillEPreFeb: {fileID: 2770224853270250887, guid: e377d8997c20388498c8794ca470cfa8, type: 3}
-  skillQPreFeb: {fileID: 2770224853270250887, guid: ddcce101c29164a4f9761566696bd33b, type: 3}
-  skillWPreFeb: {fileID: 6316867505692666275, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
-  maxHp: 0
-  maxMp: 0
-  currentHp: 0
-  currentMp: 0
-  speed: 0
-  attackRang: 0
-  attackTime: 0
-  wTime: 0
-  eTime: 0
-  qTime: 0
-  ad: 0
+  skillEPreFeb: {fileID: 3034713280186128726, guid: 3876430491b627944ac1b58173c274f7, type: 3}
+  skillQPreFeb: {fileID: 0}
+  skillWPreFeb: {fileID: 326771597966056682, guid: 64e2190556f8d484388f4e3e315e0196, type: 3}
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,8 +214,8 @@ Transform:
   m_GameObject: {fileID: 3937707306988791267}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5156822, y: -1.1067971, z: 3.7454047}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.08000001, y: 0.08000001, z: 0.08000001}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1859932647050407994}
   m_RootOrder: -1
@@ -259,15 +248,12 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
-  - {fileID: 2100000, guid: 862d5e7ce91e0ef4aa7217f6b13af025, type: 2}
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
-  - {fileID: 2100000, guid: 40dd8f40b4161054c9e1ce74a97f83b9, type: 2}
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
-  - {fileID: 2100000, guid: 40dd8f40b4161054c9e1ce74a97f83b9, type: 2}
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
-  - {fileID: 2100000, guid: 40dd8f40b4161054c9e1ce74a97f83b9, type: 2}
-  - {fileID: 2100000, guid: 19883d9af457b4342b85491c68f31705, type: 2}
+  - {fileID: 2100000, guid: f1cf1d97f1dd6274cb9be83a68668352, type: 2}
+  - {fileID: 2100000, guid: f0fbbe6bd1399364a87faaa38779d34d, type: 2}
+  - {fileID: 2100000, guid: f1cf1d97f1dd6274cb9be83a68668352, type: 2}
+  - {fileID: 2100000, guid: f0fbbe6bd1399364a87faaa38779d34d, type: 2}
+  - {fileID: 2100000, guid: f1cf1d97f1dd6274cb9be83a68668352, type: 2}
+  - {fileID: 2100000, guid: f0fbbe6bd1399364a87faaa38779d34d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -287,7 +273,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 32
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4361756127189816574
 MonoBehaviour:
@@ -301,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 8a9bed2561d05354d9ac3797b1307da8, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 3d3be9073be438740836fc4d66343edc, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
@@ -331,7 +317,7 @@ MonoBehaviour:
   unscaledTime: 0
   _animationName: idle
   loop: 1
-  timeScale: 1.5
+  timeScale: 1
 --- !u!1 &5529046116055389372
 GameObject:
   m_ObjectHideFlags: 0

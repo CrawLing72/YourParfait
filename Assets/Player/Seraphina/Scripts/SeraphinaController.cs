@@ -1,43 +1,100 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class SeraphinaController : BasicController
+public class SeraphinaController : BasicController, IAttack
 {
-
+    protected NetworkObject destroyObj;
+    protected CircleCollider2D circleCollider;
     protected override void Start()
     {
         base.Start();
-        skillEPreFeb.SetActive(false);
 
     }
     protected override void InputActionW() 
     {
         if (isWAble)
         {
-            float currentHp = stat.GetCurrentHp();
-            float healAmount = 150.0f;
-            stat.SetCurrentHp(currentHp + healAmount);
-            GetAdBuff(50.0f, 3);
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                float currentHp = stat.GetCurrentHp();
+                float healAmount = 150.0f;
+                stat.SetCurrentHp(currentHp + healAmount);
+                GetAdBuff(50.0f, 3);
+                Vector3 interpolation = new Vector3(0f, 2.5f, 0);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, transform.position - interpolation, Quaternion.identity);
+                obj.gameObject.transform.SetParent(gameObject.transform, true);
+                destroyObj = obj;
+                obj.gameObject.SetActive(true);
 
-            isWAble = false;
-            currentWTime = stat.GetWTime();
+                Invoke("DestroyParticle", 1.5f);
+                isWAble = false;
+                currentWTime = stat.GetWTime();
+            }
         }
     }
     protected override void InputActionE() 
     {
-        if(isEAble)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            GameObject attack = Instantiate(skillEPreFeb);
-            skillEPreFeb.SetActive(true);
-            Invoke("OffE", 3);
+            if (isEAble)
+            {
+                Vector3 interpolation = new Vector3(0f, 2.5f, 0);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position - interpolation, Quaternion.identity);
+                obj.gameObject.transform.SetParent(gameObject.transform, true);
+                destroyObj = obj;
+                obj.gameObject.SetActive(true);
 
+                AnimName = "WelcomeZone";
+                Invoke("SettingAnimationIdle", 4f);
+
+
+                Invoke("OffE", 4f);
+                Invoke("DestroyParticle", 4f);
+                isEAble = false;
+                currentETime = stat.GetETime();
+
+            }
+        }
+    }
+
+    protected override void InputActionQ()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (isQAble)
+            {
+                Vector3 interpolation = new Vector3(0f, 2.5f, 0);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, transform.position - interpolation, Quaternion.identity);
+                obj.gameObject.transform.SetParent(gameObject.transform, true);
+                destroyObj = obj;
+                obj.gameObject.SetActive(true);
+
+                AnimName = "Don'tCome";
+                Invoke("SettingAnimationIdle", 1.2f);
+
+                Invoke("OffQ", 1.2f);
+                Invoke("DestroyParticle", 1.2f);
+                isQAble = false;
+                currentETime = stat.GetQTime();
+            }
         }
     }
 
     void OffE()
     {
         skillEPreFeb.SetActive(false);
+    }
+
+    void OffQ()
+    {
+        skillQPreFeb.SetActive(false);
+    }
+
+    void OffW()
+    {
+        skillWPreFeb.SetActive(false);
     }
 
 
@@ -69,7 +126,7 @@ public class SeraphinaController : BasicController
                 currentQTime = stat.GetQTime();
 
                 qIsOn = false;
-                QSkillRangePrefeb.SetActive(qIsOn);
+                skillQPreFeb.SetActive(qIsOn);
 
             }
         }
@@ -77,5 +134,18 @@ public class SeraphinaController : BasicController
         {
             base.Attack2();
         }
+    }
+
+    public new void GetDamage(float Damage)
+    {
+        GameState Instance = FindObjectOfType<GameState>().GetComponent<GameState>();
+        float CurrentHp = stat.GetCurrentHp();
+        stat.SetCurrentHp(CurrentHp - Damage);
+        Instance.RPC_SetHP(stat.clientIndex, stat.GetCurrentHp(), stat.GetMaxHp());
+    }
+
+    void DestroyParticle()
+    {
+        NetworkManager.Instance.runner.Despawn(destroyObj);
     }
 }

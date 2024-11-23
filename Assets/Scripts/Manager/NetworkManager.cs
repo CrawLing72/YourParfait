@@ -1,5 +1,4 @@
 using Fusion;
-using Fusion.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +42,8 @@ public class NetworkManager : MonoBehaviour
 
         runner = Instantiate(RunnerPrefab);
         var events = runner.GetComponent<NetworkEvents>();
+
+        runner.ProvideInput = true;
     }
 
     private void Start()
