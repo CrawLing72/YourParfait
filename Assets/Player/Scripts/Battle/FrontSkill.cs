@@ -22,7 +22,6 @@ public class FrontSkill : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.LogError("Collision on!");
         if (collision != null)
         {
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();

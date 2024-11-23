@@ -30,19 +30,24 @@ public class RangeAttack : NonTargetThrow
     {
         if (collision != null)
         {
-            NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
-            IAttack target = targetObj.GetComponent<IAttack>();
-
-            if (targetObj != null)
+            GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
+            if (collision != null)
             {
-                // RPC 호출로 데미지 및 상태 이상 적용
-                Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, targetObj, damage, silent, silentTime, slow, slowValue, slowTime);
-                // 포탄 제거
-                Destroy();
+                NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
+                IAttack target = targetObj?.GetComponent<IAttack>();
+
+                if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
+                {
+                    // RPC 호출로 데미지 및 상태 이상 적용
+                    gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
+
+                    // 포탄 제거
+                    Destroy();
+                }
             }
             else
             {
-                 Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
+                Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
             }
         }
     }
