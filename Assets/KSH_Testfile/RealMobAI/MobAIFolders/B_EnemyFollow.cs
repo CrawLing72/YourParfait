@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyFollow : MonoBehaviour
+public class B_EnemyFollow : MonoBehaviour
 {
     private enum State
     {
