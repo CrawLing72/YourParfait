@@ -36,7 +36,7 @@ public class RangeAttack : NonTargetThrow
                 NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
                 IAttack target = targetObj?.GetComponent<IAttack>();
 
-                if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
+                if (targetObj != null) // Onlly For Towers : Player Range Attack이 필요하면 따로 상속받을것.
                 {
                     // RPC 호출로 데미지 및 상태 이상 적용
                     gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
