@@ -26,7 +26,7 @@ public class EnemyFollow : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletParent;
     [SerializeField] 
-    int playerHealth = 3;
+    int playerHealth = 100;
 
     Rigidbody2D myrigidbody2D;
     public Transform Spawner;
@@ -122,7 +122,7 @@ public class EnemyFollow : MonoBehaviour
         myrigidbody2D.velocity = new Vector2(0, 0);
         Animator anim = GetComponent<Animator>();
         anim.SetBool("Walk", false);
-        anim.SetBool("Dead", false);
+        anim.SetBool("Die", false);
         anim.SetBool("Attack", false);
         anim.SetBool("Idle", true);
         anim.Play("Idle");
@@ -137,7 +137,7 @@ public class EnemyFollow : MonoBehaviour
         Animator anim = GetComponent<Animator>();
         anim.SetBool("Walk", true);
         anim.SetBool("Idle", false);
-        anim.SetBool("Dead", false);
+        anim.SetBool("Die", false);
         anim.SetBool("Attack", false);
 
         anim.Play("Walk");
@@ -149,7 +149,7 @@ public class EnemyFollow : MonoBehaviour
         anim.SetBool("Attack", true);
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
-        anim.SetBool("Dead", false);
+        anim.SetBool("Die", false);
         anim.Play("Attack");
     }
     private void UpdateDie(float DFP, float DFS)
@@ -184,21 +184,17 @@ public class EnemyFollow : MonoBehaviour
     }
 
 
-
-
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        playerHealth--;
+        //playerHealth--;
         if (playerHealth > 0)
         {
-            animator.SetBool("Dead", false);
+            animator.SetBool("Die", false);
         }
         else
         {
             speed = 0f;
-            animator.SetBool("Dead", true);
+            animator.SetBool("Die", true);
         }
     }
 

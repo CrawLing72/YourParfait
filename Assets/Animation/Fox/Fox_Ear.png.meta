@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Fox_Ear_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 14
+        width: 24
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaa07b86f9a1b0c4c81d1f6b4b45d814
+      internalID: 1585479717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 14
+        width: 24
+        height: 18
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64cd9dd7910216946b7a86c9c4e82372
+      internalID: 1407687221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_2
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 14
+        width: 24
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc6994d18a7e8a4ab828a37bcae876c
+      internalID: -416712560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_3
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 14
+        width: 24
+        height: 18
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c5c24ce676b6f8439fc18fb8862189e
+      internalID: -2022174740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_4
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 14
+        width: 24
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1fc5993938821c49826f3c15ab0fef3
+      internalID: 2009396368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_5
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 14
+        width: 24
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d074436d880dcab4c944f5f0f5632456
+      internalID: -1526372958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_6
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 14
+        width: 25
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c76918f6ee1a624c92f012a4f828b3f
+      internalID: -886042090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_7
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 13
+        width: 26
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad76f6b9d5ad20479e0902669b4e1de
+      internalID: 712185756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_8
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 14
+        width: 25
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03ad4444e68e593438b5c935728c7a34
+      internalID: -678415130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_9
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 14
+        width: 24
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 363f3fa61cf2f4d41b11fdf6c0a96b1e
+      internalID: 1459989951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_10
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 14
+        width: 24
+        height: 18
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f3b4ec79a74c534a96718addd9d51df
+      internalID: -789207535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fox_Ear_11
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 14
+        width: 24
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67108f6d793ff8c4793fd9e01cedf670
+      internalID: 606473627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +371,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fox_Ear_0: 1585479717
+      Fox_Ear_1: 1407687221
+      Fox_Ear_10: -789207535
+      Fox_Ear_11: 606473627
+      Fox_Ear_2: -416712560
+      Fox_Ear_3: -2022174740
+      Fox_Ear_4: 2009396368
+      Fox_Ear_5: -1526372958
+      Fox_Ear_6: -886042090
+      Fox_Ear_7: 712185756
+      Fox_Ear_8: -678415130
+      Fox_Ear_9: 1459989951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
