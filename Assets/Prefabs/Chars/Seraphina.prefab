@@ -63,7 +63,7 @@ MonoBehaviour:
   qTime: 3
   wTime: 5
   eTime: 7
-  ad: 9
+  ad: 50
   clientIndex: 0
 --- !u!114 &2373934900748405906
 MonoBehaviour:
@@ -189,6 +189,7 @@ MonoBehaviour:
   skillEPreFeb: {fileID: 1077081476847196230, guid: 854a01e75c0ca1d478589ef4b59a420e, type: 3}
   skillQPreFeb: {fileID: 6346522234064823582, guid: af9b3bfb624d7174b99212512b32fdae, type: 3}
   skillWPreFeb: {fileID: 8466777109278153077, guid: c74b19ce57f28d24fb648fa713c7b855, type: 3}
+  _isRedTeam: 0
 --- !u!58 &4569934555998255407
 CircleCollider2D:
   m_ObjectHideFlags: 0

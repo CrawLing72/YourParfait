@@ -38,7 +38,7 @@ Transform:
   - {fileID: 392905249357114715}
   - {fileID: 2638405977844794872}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -62,7 +62,7 @@ MonoBehaviour:
   qTime: 3
   wTime: 5
   eTime: 7
-  ad: 9
+  ad: 50
   clientIndex: 0
 --- !u!114 &2373934900748405906
 MonoBehaviour:
@@ -188,6 +188,7 @@ MonoBehaviour:
   skillEPreFeb: {fileID: 2054454735464131262, guid: 285c6238185fd3040bcb4fb0f21681ec, type: 3}
   skillQPreFeb: {fileID: 2054454735464131262, guid: 285c6238185fd3040bcb4fb0f21681ec, type: 3}
   skillWPreFeb: {fileID: 6316867505692666275, guid: 38de42a3d8e5e7e45915f8e93b5a9352, type: 3}
+  _isRedTeam: 0
   maxHp: 0
   maxMp: 0
   currentHp: 0

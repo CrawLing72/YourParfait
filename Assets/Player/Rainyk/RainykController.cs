@@ -149,7 +149,7 @@ public class RainykController : BasicController, IAttack
                 GameObject attack = Instantiate(skillQPreFeb);
                 NonTargetThrow skill = attack.GetComponent<NonTargetThrow>();
 
-                skill.SetSkillDamage(10.0f); // need Change
+                skill.SetSkillDamage(70.0f); // need Change
                 attack.transform.rotation = Quaternion.AngleAxis(angel, new Vector3(0, 0, 1));
                 attack.transform.position = myPos + dir * 2.0f;
 

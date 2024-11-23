@@ -61,7 +61,7 @@ MonoBehaviour:
   qTime: 3
   wTime: 5
   eTime: 7
-  ad: 9
+  ad: 50
   clientIndex: 0
 --- !u!114 &2373934900748405906
 MonoBehaviour:
@@ -186,6 +186,7 @@ MonoBehaviour:
   skillEPreFeb: {fileID: 7516571897094069152, guid: 9a64cf0f78a02724e807f64e65b3ed46, type: 3}
   skillQPreFeb: {fileID: 6178459221590761052, guid: 1138868616c4cab4eb5fb9ad02752c72, type: 3}
   skillWPreFeb: {fileID: 5224260743560662178, guid: 86f3357cc97a62947a34bbee0a8a0e13, type: 3}
+  _isRedTeam: 0
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0

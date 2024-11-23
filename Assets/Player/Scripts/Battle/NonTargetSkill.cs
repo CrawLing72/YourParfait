@@ -99,6 +99,7 @@ public class NonTargetSkill : NonTargetThrow
         if (target != null)
         {
             target.GetDamage(damage);
+            Debug.LogError("Damage : " + damage);
 
             if (silent)
             {

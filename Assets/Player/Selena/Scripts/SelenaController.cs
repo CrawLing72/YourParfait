@@ -139,7 +139,7 @@ public class SelenaController : BasicController, IAttack
                     GameObject attack = Instantiate(skillQPreFeb);
                     NonTargetThrow skill = attack.GetComponent<NonTargetThrow>();
 
-                    skill.SetSkillDamage(10.0f); // need Change
+                    skill.SetSkillDamage(60.0f); // need Change
                     attack.transform.position = mousePos;
                     isQAble = false;
                     currentQTime = stat.GetQTime();
@@ -167,7 +167,7 @@ public class SelenaController : BasicController, IAttack
 
 
                     skill.SetSilent(3);
-                    skill.SetSkillDamage(10.0f); // need Change
+                    skill.SetSkillDamage(60.0f); // need Change
                     attack.transform.position = mousePos;
 
 
