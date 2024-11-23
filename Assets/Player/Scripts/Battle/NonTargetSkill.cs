@@ -89,6 +89,7 @@ public class NonTargetSkill : NonTargetThrow
                     {
                         target.GetSlow(slowValue, slowTime);
                     }
+
                     Despawn();
                 }
                 else
