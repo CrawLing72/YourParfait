@@ -3,16 +3,15 @@ using Fusion.Sockets;
 using Spine.Unity;
 using System;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
-public class BasicController : NetworkBehaviour
+public class BasicController : NetworkBehaviour, IAttack
 {
 
     [Header("Skill")]
     [SerializeField]
-    GameObject BasicAttack;
+    protected GameObject BasicAttack;
 
     protected Rigidbody2D rb;
     protected Camera cam;
@@ -25,6 +24,9 @@ public class BasicController : NetworkBehaviour
 
     float adBuffTemp;
     protected Vector3 Scale;
+
+    protected Vector3 CurrenPosition = new Vector3(0, 0, 0);
+
 
     // under : network property, do not modify manually!!!! - SHIN
     [Networked, OnChangedRender(nameof(settingNetworkAnim))]
@@ -43,13 +45,10 @@ public class BasicController : NetworkBehaviour
 
     protected bool shouldFire = false;
     private Transform Char;
-    private SkeletonAnimation skeletonAnimation;
+    protected SkeletonAnimation skeletonAnimation;
+    protected string AnimName = "idle";
 
     bool isSilent = false;
-
-    protected GameObject QSkillRangePrefeb;
-    protected GameObject ESkillRangePrefeb;
-    protected GameObject WSkillRangePrefeb;
 
     [SerializeField]
     protected float QSkillRange;
@@ -72,9 +71,8 @@ public class BasicController : NetworkBehaviour
     float ADBuffTemp;
     float TempSpeed;
 
-    bool team;
-
-
+    [Networked]
+    public bool isRedTeam { get; set;}
 
     protected void Awake()
     {
@@ -83,40 +81,17 @@ public class BasicController : NetworkBehaviour
         cam = Camera.main;
         Char = gameObject.transform.GetChild(0);
         skeletonAnimation = Char.GetComponent<SkeletonAnimation>();
+        CurrenPosition = gameObject.transform.position;
 
         Scale = Char.localScale;
-
-        try{
-            QSkillRangePrefeb = transform.Find("QRange").gameObject;
-
-            if (QSkillRangePrefeb != null)
-            {
-                QSkillRangePrefeb.SetActive(qIsOn);
-            }
-
-
-            ESkillRangePrefeb = transform.Find("ERange").gameObject;
-            if (ESkillRangePrefeb != null)
-            {
-                ESkillRangePrefeb.SetActive(eIsOn);
-            }
-
-            WSkillRangePrefeb = transform.Find("WRange").gameObject;
-            if (WSkillRangePrefeb != null)
-            {
-                WSkillRangePrefeb.SetActive(eIsOn);
-            }
-        }
-        catch (Exception e)
-        {
-        }
     }
 
     protected virtual void Start()
     {
         stat.SetSpeed(50.0f);
+        CurrenPosition = gameObject.transform.position;
 
-        
+
     }
 
     public override void FixedUpdateNetwork()
@@ -139,7 +114,18 @@ public class BasicController : NetworkBehaviour
         setTimer(ref currentWTime, ref isWAble);
         setTimer(ref currentETime, ref isEAble);
 
+        CurrenPosition = gameObject.transform.position;
+
+        ApplySkillEffect();
+
     }
+
+    public override void Spawned()
+    {
+        base.Spawned();
+        isRedTeam = GameManager.instance.isRedTeam;
+    }
+
 
     protected void MouseRightClick()
     {
@@ -181,7 +167,7 @@ public class BasicController : NetworkBehaviour
             {
                 wIsOn = false;
 
-                WSkillRangePrefeb.SetActive(wIsOn);
+                skillWPreFeb.SetActive(wIsOn);
             }
             else
             {
@@ -192,9 +178,9 @@ public class BasicController : NetworkBehaviour
                     eIsOn = false;
                     qIsOn = false;
 
-                    QSkillRangePrefeb.SetActive(qIsOn);
-                    WSkillRangePrefeb.SetActive(wIsOn);
-                    ESkillRangePrefeb.SetActive(eIsOn);
+                    skillQPreFeb.SetActive(qIsOn);
+                    skillWPreFeb.SetActive(wIsOn);
+                    skillEPreFeb.SetActive(eIsOn);
 
                 }
             }
@@ -209,7 +195,7 @@ public class BasicController : NetworkBehaviour
             {
                 eIsOn = false;
 
-                ESkillRangePrefeb.SetActive(eIsOn);
+                skillEPreFeb.SetActive(eIsOn);
             }
             else
             {
@@ -220,9 +206,9 @@ public class BasicController : NetworkBehaviour
                     wIsOn = false;
                     qIsOn = false;
 
-                    QSkillRangePrefeb.SetActive(qIsOn);
-                    WSkillRangePrefeb.SetActive(wIsOn);
-                    ESkillRangePrefeb.SetActive(eIsOn);
+                    skillQPreFeb.SetActive(qIsOn);
+                    skillWPreFeb.SetActive(wIsOn);
+                    skillEPreFeb.SetActive(eIsOn);
 
                 }
             }
@@ -240,7 +226,7 @@ public class BasicController : NetworkBehaviour
             {
                 qIsOn = false;
 
-                QSkillRangePrefeb.SetActive(qIsOn);
+                skillQPreFeb.SetActive(qIsOn);
             }
             else
             {
@@ -251,9 +237,9 @@ public class BasicController : NetworkBehaviour
                     wIsOn = false;
                     eIsOn = false;
 
-                    QSkillRangePrefeb.SetActive(qIsOn);
-                    WSkillRangePrefeb.SetActive(wIsOn);
-                    ESkillRangePrefeb.SetActive(eIsOn);
+                    skillQPreFeb.SetActive(qIsOn);
+                    skillWPreFeb.SetActive(wIsOn);
+                    skillEPreFeb.SetActive(eIsOn);
 
                 }
             }
@@ -276,13 +262,14 @@ public class BasicController : NetworkBehaviour
 
                     NetworkObject projectile = NetworkManager.Instance.runner.Spawn(BasicAttack, objectPos + dir*1.7f, Quaternion.identity); // Need Change 
                     projectile.gameObject.GetComponent<NonTargetSkill>().SetDirection(dir);
+                    projectile.gameObject.GetComponent<NonTargetSkill>().SetSkillDamage(stat.GetAd());
 
                     isAttackAble = false;
                     currentAttackTime = stat.GetAttackTime();
                 }
            }
     }
-    protected virtual void GetDamage(float Damage)
+    public void GetDamage(float Damage)
     {
         float CurrentHp = stat.GetCurrentHp();
         stat.SetCurrentHp(CurrentHp - Damage);
@@ -304,23 +291,20 @@ public class BasicController : NetworkBehaviour
 
     private void settingAnimation()
     {
-        if (rb.velocity.magnitude > 0)
+        if(AnimName != "idle")
         {
-            CurrentAnimation = "walking";
+            CurrentAnimation = AnimName;
         }
         else
         {
-            CurrentAnimation = "idle";
-        }
-        skeletonAnimation.AnimationName = CurrentAnimation;
-
-        if(isLeft)
-        {
-            Char.localScale = new Vector3(Scale.x, Scale.y, Scale.z);
-        }
-        else
-        {
-            Char.localScale = new Vector3(-Scale.x, Scale.y, Scale.z);
+            if(rb.velocity.magnitude > 0)
+            {
+                CurrentAnimation = "walking";
+            }
+            else
+            {
+                CurrentAnimation = "idle";
+            }
         }
     }
 
@@ -344,17 +328,17 @@ public class BasicController : NetworkBehaviour
         qIsOn = false; wIsOn = false; eIsOn = false;
         
 
-        if (QSkillRangePrefeb != null) 
+        if (skillQPreFeb != null) 
         {
-            QSkillRangePrefeb.SetActive(false);
+            skillQPreFeb.SetActive(false);
         }
-        if (WSkillRangePrefeb != null)
+        if (skillWPreFeb != null)
         {
-            WSkillRangePrefeb.SetActive(false);
+            skillWPreFeb.SetActive(false);
         }
-        if (ESkillRangePrefeb != null)
+        if (skillEPreFeb != null)
         {
-            ESkillRangePrefeb.SetActive(false);
+            skillEPreFeb.SetActive(false);
         }
 
         Invoke("OffSilent", time);
@@ -417,5 +401,15 @@ public class BasicController : NetworkBehaviour
     void OnAttack()
     {
         isAttackAble = true;
+    }
+
+    protected void SettingAnimationIdle()
+    {
+        AnimName = "idle";
+    }
+
+    virtual protected void ApplySkillEffect()
+    {
+
     }
 }

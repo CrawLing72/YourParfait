@@ -1,0 +1,22 @@
+Tree.png
+size:1125,460
+filter:Linear,Linear
+pma:true
+scale:0.5
+폴더 1
+bounds:839,4,62,42
+폴더 1 copy
+bounds:1001,106,169,122
+rotate:90
+폴더 2
+bounds:839,277,181,256
+rotate:90
+폴더 2 copy
+bounds:491,2,22,37
+폴더 2 copy 2
+bounds:839,48,160,227
+폴더 3
+bounds:2,12,487,446
+폴더 4
+bounds:491,41,417,346
+rotate:90

@@ -66,6 +66,7 @@ public class Stat : NetworkBehaviour
     { 
         Mathf.Clamp(setValue, 0, maxHp);
         currentHp = setValue; 
+        instance.RPC_SetHP(clientIndex, currentHp, maxHp);
 
     }
     public float GetMaxMp() { return maxMp; }
@@ -75,6 +76,7 @@ public class Stat : NetworkBehaviour
     {
         Mathf.Clamp(setValue, 0, maxMp);
         currentMp = setValue; 
+        instance.RPC_SetMP(clientIndex, currentMp, maxMp);
     }
     public float GetSpeed() { return speed; }
     public void SetSpeed(float setValue) { speed = setValue; }

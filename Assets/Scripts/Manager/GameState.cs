@@ -1,5 +1,6 @@
 using UnityEngine;
 using Fusion;
+using static Unity.Collections.Unicode;
 
 public sealed class GameState : NetworkBehaviour, ISpawned
 {
@@ -52,7 +53,10 @@ public sealed class GameState : NetworkBehaviour, ISpawned
 
     public override void Spawned()
     {
-        if(PlayerPrefs.GetInt("ClientIdex") == 0)
+        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
+        Debug.LogError("Client Index : " + PlayerPrefs.GetInt("ClientIndex"));
+
+        if (PlayerPrefs.GetInt("ClientIdex") == 0)
         {
             // Init. Common Variables
             for (int i = 0; i < 6; i++)
@@ -112,5 +116,39 @@ public sealed class GameState : NetworkBehaviour, ISpawned
     public void RPC_SetChar(int _clinet_index, int _char_name)
     {
         Players_Char_Index.Set(_clinet_index, _char_name);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_ApplyDamageAndEffects(
+        [RpcTarget] PlayerRef player,
+        float damage,
+        bool silent,
+        float silentTime,
+        bool slow,
+        float slowValue,
+        float slowTime
+        )
+    {
+        if (NetworkManager.Instance.runner.TryGetPlayerObject(player, out NetworkObject playerObj))
+        {
+            IAttack target = playerObj.GetComponent<IAttack>();
+
+            target.GetDamage(damage);
+
+            if (silent)
+            {
+                target.GetSilent(silentTime);
+            }
+
+            if (slow)
+            {
+                target.GetSlow(slowValue, slowTime);
+            }
+        }
+        else
+        {
+            Debug.LogError("Rpc_ApplyDamageAndEffects: PlayerRef에 해당하는 PlayerObject를 찾을 수 없습니다!");
+        }
+
     }
 }

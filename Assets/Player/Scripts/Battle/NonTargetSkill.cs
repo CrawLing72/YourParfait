@@ -16,8 +16,11 @@ public class NonTargetSkill : NonTargetThrow
     float time;
 
     float timer = 0f;
+    float collisionTimer = 0f;
     float detection_timer = 0.2f; // 평균 핑이 200ms 내외임을 감안 (애초에 200넘으면 씹힘)
     bool onDetectionPlayer = false;
+
+    CircleCollider2D hitCollider;
     /*
     bool silent = false;
     float silentTime;
@@ -32,75 +35,52 @@ public class NonTargetSkill : NonTargetThrow
 
     Vector2 dir;
 
-    private void Start()
+    private void Awake()
     {
-        SetSkillDamage(50);
+        hitCollider = GetComponent<CircleCollider2D>();
+        
+
     }
 
     public override void FixedUpdateNetwork()
     {
         timer += NetworkManager.Instance.runner.DeltaTime;
+        collisionTimer += NetworkManager.Instance.runner.DeltaTime;
         transform.Translate(dir * speed * NetworkManager.Instance.runner.DeltaTime);
-        Debug.Log(timer);
+
         if (timer > time)
         {
             Despawn();
         }
+        if (collisionTimer > 0.3f)
+        {
+            hitCollider.enabled = true;
+        }
+
     }
 
     // Collision Detection Part : 아래 구조는 수정시 대참사 일어 날 수 있으니 PM에게 무조건 문의
-    private async Task<bool> WaitForStateAuthorityWithTimeout(NetworkObject obj, int timeoutMs)
-    {
-        int elapsed = 0;
-        while (!obj.HasStateAuthority && elapsed < timeoutMs)
-        {
-            await Task.Delay(10);
-            elapsed += 10;
-        }
-        return obj.HasStateAuthority;
-    }
 
-    private async void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (collision != null)
         {
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
-            IAttack target = targetObj.gameObject.GetComponent<IAttack>();
+            IAttack target = targetObj?.GetComponent<IAttack>();
 
-            if (targetObj != null)
+            if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
             {
-                // StateAuthority 요청
-                targetObj.RequestStateAuthority();
+                // RPC 호출로 데미지 및 상태 이상 적용
+                gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
 
-                // StateAuthority가 획득될 때까지 대기
-                await WaitForStateAuthorityWithTimeout(targetObj, 150); // Maximum 150ms
-
-                if (target != null && targetObj.HasStateAuthority)
-                {
-                    target.GetDamage(damage);
-                    targetObj.ReleaseStateAuthority();
-
-                    if (silent)
-                    {
-                        target.GetSilent(silentTime);
-                    }
-
-                    if (slow)
-                    {
-                        target.GetSlow(slowValue, slowTime);
-                    }
-
-                    Despawn();
-                }
-                else
-                {
-                    Debug.LogError("NO STATE AUTHORITY!!!");
-                }
+                // 포탄 제거
+                Despawn();
             }
-            else
-            {
-                Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
-            }
+        }
+        else
+        {
+            Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
         }
     }
 
@@ -118,6 +98,11 @@ public class NonTargetSkill : NonTargetThrow
     public void Despawn()
     {
         NetworkManager.Instance.runner.Despawn(Object);
+    }
+
+    public void SetTime(float limitTime)
+    {
+        time = limitTime;
     }
 
 }
