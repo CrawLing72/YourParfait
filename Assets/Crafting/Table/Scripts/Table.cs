@@ -11,6 +11,8 @@ public class Table : MonoBehaviour, IAttack
     float scaley = 1.0f;
     float scalex = 1.0f;
 
+    bool team;
+
     bool bisMax = false;
 
     SpriteRenderer spriteRenderer;
@@ -43,8 +45,22 @@ public class Table : MonoBehaviour, IAttack
     {
         Debug.Log("Table Damage");
 
+        
+        
+
         if (!bisMax)
         {
+            int productDecrease = 2;
+
+            if (team)
+            {
+                GameManager.instance.gameState.RedScore_Products -= productDecrease;
+            }
+            else
+            {
+                GameManager.instance.gameState.RedScore_Products -= productDecrease;
+            }
+
             gage += 0.5f * scaley;
             if (gage >= max)
             {

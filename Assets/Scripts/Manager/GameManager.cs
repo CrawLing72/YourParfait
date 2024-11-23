@@ -5,7 +5,7 @@ using Fusion;
 
 public class GameManager : MonoBehaviour
 {
-    GameState gameState; //jghjikgjhjgk
+    public GameState gameState; //jghjikgjhjgk
     public bool isRedTeam = true;
     public GameObject ClientPlayer;
 

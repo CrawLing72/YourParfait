@@ -4256,6 +4256,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table
       objectReference: {fileID: 0}
+    - target: {fileID: 7786489559796638792, guid: 9a3e4593d967bcc42b13c0c57cc7498f, type: 3}
+      propertyPath: Flags
+      value: 262145
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786489559796638792, guid: 9a3e4593d967bcc42b13c0c57cc7498f, type: 3}
+      propertyPath: SortKey
+      value: 2481823723
+      objectReference: {fileID: 0}
     - target: {fileID: 8000997030147541890, guid: 9a3e4593d967bcc42b13c0c57cc7498f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.2
@@ -4518,7 +4526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054825423}
   m_LocalRotation: {x: 0, y: -1e-45, z: 0, w: 1}
-  m_LocalPosition: {x: -18.25864, y: 2.4037957, z: -13.745405}
+  m_LocalPosition: {x: -33.375317, y: 2.4037971, z: -13.745405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8167,6 +8175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b15aab262b707346a595fc35f12f9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 0}
   isRedTeam: 1
   ClientPlayer: {fileID: 0}
 --- !u!4 &1989258967
