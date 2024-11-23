@@ -122,7 +122,6 @@ public class TyneyaController : BasicController, IAttack
         float CurrentHp = stat.GetCurrentHp();
         stat.SetCurrentHp(CurrentHp - Damage);
         Instance.RPC_SetHP(stat.clientIndex, stat.GetCurrentHp(), stat.GetMaxHp());
-        Object.RequestStateAuthority(); // State Authority È¸º¹
     }
 
     void DestroyParticle()

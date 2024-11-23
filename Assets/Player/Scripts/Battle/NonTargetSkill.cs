@@ -63,7 +63,6 @@ public class NonTargetSkill : NonTargetThrow
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.LogError("Collision on!");
         if (collision != null)
         {
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
@@ -77,11 +76,10 @@ public class NonTargetSkill : NonTargetThrow
                 // 포탄 제거
                 Despawn();
             }
-            else
-            {
-                if (targetObj == null)
-                    Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
-            }
+        }
+        else
+        {
+            Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
         }
     }
 
