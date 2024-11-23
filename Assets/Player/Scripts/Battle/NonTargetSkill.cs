@@ -63,6 +63,7 @@ public class NonTargetSkill : NonTargetThrow
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (collision != null)
         {
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
@@ -71,7 +72,7 @@ public class NonTargetSkill : NonTargetThrow
             if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
             {
                 // RPC 호출로 데미지 및 상태 이상 적용
-                Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
+                gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
 
                 // 포탄 제거
                 Despawn();
@@ -81,40 +82,6 @@ public class NonTargetSkill : NonTargetThrow
         {
             Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
         }
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    private void Rpc_ApplyDamageAndEffects(
-        [RpcTarget] PlayerRef player,
-        float damage,
-        bool silent,
-        float silentTime,
-        bool slow,
-        float slowValue,
-        float slowTime
-        )
-    {
-        if(NetworkManager.Instance.runner.TryGetPlayerObject(player, out NetworkObject playerObj))
-        {
-            IAttack target = playerObj.GetComponent<IAttack>();
-
-            target.GetDamage(damage);
-
-            if (silent)
-            {
-                target.GetSilent(silentTime);
-            }
-
-            if (slow)
-            {
-                target.GetSlow(slowValue, slowTime);
-            }
-        }
-        else
-        {
-            Debug.LogError("Rpc_ApplyDamageAndEffects: PlayerRef에 해당하는 PlayerObject를 찾을 수 없습니다!");
-        }
-
     }
 
     public void SetStat(Stat stat)
