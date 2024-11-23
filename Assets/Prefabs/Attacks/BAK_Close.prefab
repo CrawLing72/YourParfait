@@ -89,17 +89,19 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.35, y: 1.35}
+    newSize: {x: 1.35, y: 1.35}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
     - - {x: -0.27602005, y: 0.5572187}
+      - {x: -1.3285522, y: 1.8863685}
       - {x: -2.5324202, y: 0.22851136}
+      - {x: -1.8436584, y: -1.424559}
       - {x: -0.72579336, y: -0.84351945}
       - {x: -0.48754346, y: -0.36623555}
       - {x: -0.2680292, y: 0.015746295}

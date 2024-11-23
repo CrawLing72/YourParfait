@@ -22,6 +22,7 @@ public class FrontSkill : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (collision != null)
         {
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
@@ -30,7 +31,7 @@ public class FrontSkill : NetworkBehaviour
             if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
             {
                 // RPC 호출로 데미지 및 상태 이상 적용
-                Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, targetObj, damage, silent, silentTime, slow, slowValue, slowTime);
+                gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
 
                 // 포탄 제거
                 Despawn();
@@ -39,35 +40,6 @@ public class FrontSkill : NetworkBehaviour
             {
                 if (targetObj == null)
                     Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
-            }
-        }
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    private void Rpc_ApplyDamageAndEffects(
-        [RpcTarget] PlayerRef player,
-        NetworkObject targetObj,
-        float damage,
-        bool silent,
-        float silentTime,
-        bool slow,
-        float slowValue,
-        float slowTime
-        )
-    {
-        IAttack target = targetObj.GetComponent<IAttack>();
-        if (target != null)
-        {
-            target.GetDamage(damage);
-
-            if (silent)
-            {
-                target.GetSilent(silentTime);
-            }
-
-            if (slow)
-            {
-                target.GetSlow(slowValue, slowTime);
             }
         }
     }

@@ -97,10 +97,12 @@ public class TyneyaController : BasicController, IAttack
     {
         if (Input.GetMouseButtonDown(0))
         {
-            float xinterpolation = isLeft ? 5f : -4f;
+            float xinterpolation = isLeft ? 2f : -0.5f;
             Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, transform.position - interpolation, Quaternion.identity);
             objSkill = obj.gameObject.GetComponent<FrontSkill>();
+
+            if(!isLeft)obj.gameObject.transform.localScale = new Vector3(-1, 1, 1);
 
             objSkill.SetDamage(objSkill.GetDamage() + damageInterpolation);
             qSkillOn = false;
