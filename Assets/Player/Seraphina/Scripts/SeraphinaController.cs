@@ -23,7 +23,7 @@ public class SeraphinaController : BasicController, IAttack
                 stat.SetCurrentHp(currentHp + healAmount);
                 GetAdBuff(50.0f, 3);
                 Vector3 interpolation = new Vector3(0f, 2.5f, 0);
-                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, transform.position - interpolation, Quaternion.identity);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
                 obj.gameObject.SetActive(true);
@@ -41,7 +41,7 @@ public class SeraphinaController : BasicController, IAttack
             if (isEAble)
             {
                 Vector3 interpolation = new Vector3(0f, 2.5f, 0);
-                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position - interpolation, Quaternion.identity);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
                 obj.gameObject.SetActive(true);
@@ -66,7 +66,7 @@ public class SeraphinaController : BasicController, IAttack
             if (isQAble)
             {
                 Vector3 interpolation = new Vector3(0f, 2.5f, 0);
-                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, transform.position - interpolation, Quaternion.identity);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
                 obj.gameObject.SetActive(true);

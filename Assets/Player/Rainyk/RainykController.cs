@@ -21,7 +21,7 @@ public class RainykController : BasicController, IAttack
             {
                 // Buff Effect Not Implemented
                 Vector3 interpolation = new Vector3(0f, 2.5f, 0);
-                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, transform.position - interpolation, Quaternion.identity);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, CurrenPosition - interpolation, Quaternion.identity);
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
                 obj.gameObject.SetActive(true);
@@ -43,7 +43,7 @@ public class RainykController : BasicController, IAttack
             {
                 float xinterpolation = isLeft ? 5f: -4f;
                 Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
-                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position - interpolation, Quaternion.identity);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition - interpolation, Quaternion.identity);
                 FrontSkill objSkill = obj.gameObject.GetComponent<FrontSkill>();
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
 
@@ -77,7 +77,7 @@ public class RainykController : BasicController, IAttack
             if (isQAble)
             {
                 Vector3 interpolation = new Vector3(0f, 0f, 0);
-                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, transform.position - interpolation, Quaternion.identity);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition - interpolation, Quaternion.identity);
                 NonTargetSkill objSkill = obj.gameObject.GetComponent<NonTargetSkill>();
 
                 Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);

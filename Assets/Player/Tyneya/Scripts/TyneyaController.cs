@@ -29,7 +29,7 @@ public class TyneyaController : BasicController, IAttack
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Vector3 interpolation = new Vector3(0f, 0f, 0);
-                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, transform.position - interpolation, Quaternion.identity);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillWPreFeb, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
 
@@ -46,7 +46,7 @@ public class TyneyaController : BasicController, IAttack
         if (Input.GetKeyDown(KeyCode.E) && isEAble)
         {
             Vector3 interpolation = new Vector3(0f, 0f, 0f);
-            NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position - interpolation, Quaternion.identity);
+            NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
             obj.gameObject.transform.SetParent(gameObject.transform, true);
             destroyObj = obj;
 
@@ -99,7 +99,7 @@ public class TyneyaController : BasicController, IAttack
         {
             float xinterpolation = isLeft ? 2f : -0.5f;
             Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
-            NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, transform.position - interpolation, Quaternion.identity);
+            NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
             objSkill = obj.gameObject.GetComponent<FrontSkill>();
 
             if(!isLeft)obj.gameObject.transform.localScale = new Vector3(-1, 1, 1);
