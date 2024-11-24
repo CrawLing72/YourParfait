@@ -119,7 +119,7 @@ Transform:
   m_Children:
   - {fileID: 9176034851205624881}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8923883206477996722
 SpriteRenderer:
@@ -251,6 +251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SyncScale: 0
-  SyncParent: 0
+  SyncParent: 1
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0

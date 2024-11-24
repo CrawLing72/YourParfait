@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 6000414779423668174}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1814685798526115807
 SpriteRenderer:
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SyncScale: 0
-  SyncParent: 0
+  SyncParent: 1
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
 --- !u!114 &3857869223740203306
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.4115001, y: -0.75334996, z: 0}
-    m_Extent: {x: 2.9288, y: 1.5213499, z: 0}
+    m_Center: {x: -0.40240002, y: -0.75285006, z: 0}
+    m_Extent: {x: 2.9217, y: 1.50525, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

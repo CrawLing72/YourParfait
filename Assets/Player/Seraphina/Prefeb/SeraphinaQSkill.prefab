@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202575319040091513, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1202575319040091513, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -124,6 +124,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1202575319040091512, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9097957919347333945}
+    - targetCorrespondingSourceObject: {fileID: 1202575319040091512, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1597818330920124338}
   m_SourcePrefab: {fileID: 100100000, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
 --- !u!1 &6346522234064823582 stripped
 GameObject:
@@ -149,6 +152,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 3151603947686635828}
   - {fileID: 5044852290280232133}
+  - {fileID: 1597818330920124338}
 --- !u!114 &3151603947686635828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,3 +214,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.35
+--- !u!114 &1597818330920124338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346522234064823582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 1
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0

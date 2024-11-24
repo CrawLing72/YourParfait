@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 323392646292501320}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7439363037799070717
 MonoBehaviour:
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SyncScale: 0
-  SyncParent: 0
+  SyncParent: 1
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
 --- !u!114 &5459763542812115499

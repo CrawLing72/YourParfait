@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SyncScale: 0
-  SyncParent: 0
+  SyncParent: 1
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
 --- !u!1 &5842432772870679132
@@ -209,8 +209,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.9171001, y: 0.58079994, z: 0}
-    m_Extent: {x: 3.1672, y: 2.8054, z: 0}
+    m_Center: {x: -0.91015005, y: 0.57764995, z: 0}
+    m_Extent: {x: 3.16085, y: 2.80835, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
