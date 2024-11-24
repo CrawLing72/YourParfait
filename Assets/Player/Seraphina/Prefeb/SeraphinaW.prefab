@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1301883937029999124, guid: e43bd4417c278b84881304940e284fc8, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1301883937029999124, guid: e43bd4417c278b84881304940e284fc8, type: 3}
       propertyPath: m_LocalScale.x
@@ -115,6 +115,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1301883937029999125, guid: e43bd4417c278b84881304940e284fc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3070639145772497950}
+    - targetCorrespondingSourceObject: {fileID: 1301883937029999125, guid: e43bd4417c278b84881304940e284fc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5709157433768420917}
   m_SourcePrefab: {fileID: 100100000, guid: e43bd4417c278b84881304940e284fc8, type: 3}
 --- !u!1 &8466777109278153077 stripped
 GameObject:
@@ -137,4 +140,21 @@ MonoBehaviour:
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 5709157433768420917}
+--- !u!114 &5709157433768420917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8466777109278153077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 1
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
