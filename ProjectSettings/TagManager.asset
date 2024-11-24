@@ -7,6 +7,7 @@ TagManager:
   - Resource
   - NPC
   - Table
+  - Mob
   layers:
   - Default
   - TransparentFX

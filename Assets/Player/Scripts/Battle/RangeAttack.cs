@@ -68,7 +68,7 @@ public class RangeAttack : NonTargetThrow
                         targetMinion_Red.HP -= damage;
                     }
                 }
-                else if (targetObj != null)
+                else if (targetObj != null && targetObj.gameObject.CompareTag("Player"))
                 {
                     target.GetDamage(damage);
                 }

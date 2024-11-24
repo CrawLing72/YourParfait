@@ -71,43 +71,69 @@ public class NonTargetSkill : NonTargetThrow
 
             if (targetObj != null && !targetObj.HasStateAuthority) // 본인이 마스터 클라이언트가 아닌 경우
             {
-                // RPC 호출로 데미지 및 상태 이상 적용
-                if (!targetObj.gameObject.CompareTag("NPC")) gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
-                else
+
+                string tag = targetObj.gameObject.tag;
+                switch (tag)
                 {
-                    MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
-                    MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
-                    if (targetMinion != null)
-                    {
-                        targetMinion.Rpc_Damage(damage);
-                    }
-                    else if (targetMinion_Red != null)
-                    {
-                        targetMinion_Red.Rpc_Damage(damage);
-                    }
+                    case "Player":
+                        gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
+                        break;
+                    case "NPC":
+                        MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
+                        MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
+                        if (targetMinion != null)
+                        {
+                            targetMinion.Rpc_Damage(damage);
+                        }
+                        else if (targetMinion_Red != null)
+                        {
+                            targetMinion_Red.Rpc_Damage(damage);
+                        }
+                        break;
+                    case "Mob":
+                        Mola mola = targetObj.gameObject.GetComponent<Mola>();
+                        TreeMob tree = targetObj.gameObject.GetComponent<TreeMob>();
+
+                        if (mola != null) mola.Rpc_Damage(damage);
+                        else if(tree != null) tree.Rpc_Damage(damage);
+                        break;
+                    default:
+                        break;
+
                 }
-                Despawn();
+
             }
-            else // -> 본인이 마스터 클라이언트인 경우
+            else if(targetObj != null) // -> 본인이 마스터 클라이언트인 경우
             {
-                if (targetObj != null && targetObj.gameObject.CompareTag("NPC"))
+                string tag = targetObj.gameObject.tag;
+                switch (tag)
                 {
-                    MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
-                    MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
-                    if (targetMinion != null)
-                    {
-                        targetMinion.HP -= damage;
-                    }
-                    else if (targetMinion_Red != null)
-                    {
-                        targetMinion_Red.HP -= damage;
-                    }
+                    case "Player":
+                        target.GetDamage(damage);
+                        break;
+                    case "NPC":
+                        MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
+                        MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
+                        if (targetMinion != null)
+                        {
+                            targetMinion.HP -= damage;
+                        }
+                        else if (targetMinion_Red != null)
+                        {
+                            targetMinion_Red.HP -= damage;
+                        }
+                        break;
+                    case "Mob":
+                        Mola mola = targetObj.gameObject.GetComponent<Mola>();
+                        TreeMob tree = targetObj.gameObject.GetComponent<TreeMob>();
+
+                        if (mola != null) mola.health -= damage;
+                        else if(tree != null) tree.health -= damage;
+                        break;
+                    default:
+                        break;
+
                 }
-                else if (targetObj != null)
-                {
-                    target.GetDamage(damage);
-                }
-                Despawn();
             }
         }
     }
