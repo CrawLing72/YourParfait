@@ -28,18 +28,42 @@ public class FrontSkill : NetworkBehaviour
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
             IAttack target = targetObj?.GetComponent<IAttack>();
 
-            if (targetObj != null && !targetObj.HasStateAuthority) // Prevent self-kill
+            if (targetObj != null && !targetObj.HasStateAuthority) // 본인이 마스터 클라이언트가 아닌 경우
             {
                 // RPC 호출로 데미지 및 상태 이상 적용
-                gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
-
-                // 포탄 제거
-                Despawn();
+                if (!targetObj.gameObject.CompareTag("NPC")) gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
+                else
+                {
+                    MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
+                    MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
+                    if (targetMinion != null)
+                    {
+                        targetMinion.Rpc_Damage(damage);
+                    }
+                    else if (targetMinion_Red != null)
+                    {
+                        targetMinion_Red.Rpc_Damage(damage);
+                    }
+                }
             }
-            else
+            else // -> 본인이 마스터 클라이언트인 경우
             {
-                if (targetObj == null)
-                    Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
+                if(targetObj != null && targetObj.gameObject.CompareTag("NPC")){
+                    MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
+                    MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
+                    if (targetMinion != null)
+                    {
+                        targetMinion.HP -= damage;
+                    }
+                    else if (targetMinion_Red != null)
+                    {
+                        targetMinion_Red.HP -= damage;
+                    }
+                }
+                else if (targetObj != null)
+                {
+                    target.GetDamage(damage);
+                }
             }
         }
     }

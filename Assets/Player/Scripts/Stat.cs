@@ -4,13 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using System.Threading.Tasks;
+using TMPro;
 public class Stat : NetworkBehaviour
 {
     [SerializeField]
     protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, qTime, wTime, eTime,
         ad;
 
+    [Networked]
+    public int goodscount { get; set; }
+
+
     public int clientIndex; // 얘는 public으로 해두겠습니다 -> 아니면 정신건강에 해로워짐
+    public bool isRedTeam = true;
+    public GameObject Canvus;
+    public TMP_Text GoodsCount; // 얜 표시 Text임
 
     GameState instance;
 
@@ -44,7 +52,11 @@ public class Stat : NetworkBehaviour
         instance.RPC_SetHP(clientIndex, currentHp, maxHp);
         instance.RPC_SetMP(clientIndex, currentMp, maxMp);
 
+        goodscount = 0;
+
         Debug.Log("Initialization complete!");
+
+        isRedTeam = instance.IsRedTeam_Sync.Get(clientIndex);
     }
     public async void SendInitInfos()
     {
@@ -57,7 +69,25 @@ public class Stat : NetworkBehaviour
         InitializeClient(instance);
     }
 
-  // -- end -- //
+    public override void FixedUpdateNetwork()
+    {
+        if(goodscount > 0)
+        {
+            Canvus.SetActive(true);
+            GoodsCount.text = goodscount.ToString();
+        }
+        else
+        {
+            Canvus.SetActive(false);
+        }
+    }
+
+    // -- end -- //
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void Rpc_PlusGoodsCount(int _count)
+    {
+       goodscount += _count;
+    }
 
     public float GetMaxHp() { return maxHp; }
     public void SetMaxHp(float setValue){ maxHp = setValue; }

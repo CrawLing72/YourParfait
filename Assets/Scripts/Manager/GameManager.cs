@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     public bool isRedTeam = true;
     public GameObject ClientPlayer;
 
+    public bool isGameStarted = true; // Build 때는 반드시 false로 해 놓을 것.
+    public bool isGameOvered = false;
+
+    public int Coins = 0;
+
     //singleton pattern implementation
     public static GameManager instance;
     private void Awake()
@@ -37,5 +42,8 @@ public class GameManager : MonoBehaviour
             GameUIManager.instance.UpdateTopStatusBar();
             GameUIManager.instance.UpdatePlayerStatus(true);
         }
+
+        // Game Starting Logic
+        // Game Ended Logic
     }
 }

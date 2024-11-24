@@ -28,26 +28,51 @@ public class RangeAttack : NonTargetThrow
     // Collision Detection Part : 아래 구조는 수정시 대참사 일어 날 수 있으니 PM에게 무조건 문의
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (collision != null)
         {
-            GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
-            if (collision != null)
-            {
-                NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
-                IAttack target = targetObj?.GetComponent<IAttack>();
+            NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
+            IAttack target = targetObj?.GetComponent<IAttack>();
 
-                if (targetObj != null) // Onlly For Towers : Player Range Attack이 필요하면 따로 상속받을것.
+            if (targetObj != null && !targetObj.HasStateAuthority) // 본인이 마스터 클라이언트가 아닌 경우
+            {
+                // RPC 호출로 데미지 및 상태 이상 적용
+                if (!targetObj.gameObject.CompareTag("NPC")) gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
+                else
                 {
-                    // RPC 호출로 데미지 및 상태 이상 적용
-                    gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
-
-                    // 포탄 제거
-                    Destroy();
+                    MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
+                    MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
+                    if (targetMinion != null)
+                    {
+                        targetMinion.Rpc_Damage(damage);
+                    }
+                    else if (targetMinion_Red != null)
+                    {
+                        targetMinion_Red.Rpc_Damage(damage);
+                    }
                 }
+                Destroy();
             }
-            else
+            else // -> 본인이 마스터 클라이언트인 경우
             {
-                Debug.LogError("Collision 대상에 NetworkObject가 없습니다!");
+                if (targetObj != null && targetObj.gameObject.CompareTag("NPC"))
+                {
+                    MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
+                    MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
+                    if (targetMinion != null)
+                    {
+                        targetMinion.HP -= damage;
+                    }
+                    else if (targetMinion_Red != null)
+                    {
+                        targetMinion_Red.HP -= damage;
+                    }
+                }
+                else if (targetObj != null)
+                {
+                    target.GetDamage(damage);
+                }
+                Destroy();
             }
         }
     }

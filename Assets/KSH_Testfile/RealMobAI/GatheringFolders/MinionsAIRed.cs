@@ -1,9 +1,12 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MinionsAIRed : MonoBehaviour
+public class MinionsAIRed : NetworkBehaviour, IAttack
 {
 
     private enum State
@@ -20,46 +23,63 @@ public class MinionsAIRed : MonoBehaviour
     public float speed;
     public float StopRange;
     public float WaitingTime;
+    public float SearchRange;
 
     Rigidbody2D myrigidbody2D;
     public Transform Spawner;
     public Transform Resource;
     float Timer;
     private SpriteRenderer minionSpriteRenderer;
+
+    [Networked]
+    public float HP { get; set; }
+
+    public Slider HPBar;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        myrigidbody2D = GetComponent<Rigidbody2D>();
-        Spawner = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Transform>();
-        Resource = GameObject.FindGameObjectWithTag("Resource").GetComponent<Transform>();
+        myrigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         Timer = 0;
-        minionSpriteRenderer = GetComponent<SpriteRenderer>();
+        minionSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         //lineOfSite = GetComponent<>
         //animator = GetComponent<Animator>();
         //animator.SetBool("Idle", true);
         currentState = State.MoveToResource;
+        HP = 100f;
     }
 
     // Update is called once per frame
-    void Update()
+    public override void FixedUpdateNetwork()
     {
+
+        if (HP < 0f)
+        {
+            GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
+            NetworkManager.Instance.runner.Despawn(Object);
+            gameState.RedScore_Minions -= 1;
+        }
+
+        HPBar.value = HP / 100f;
+
         float distanceFromResource = Vector2.Distance(Resource.transform.position, transform.position);
         float distanceFromSpawner = Vector2.Distance(Spawner.transform.position, transform.position);
 
         switch (currentState)
         {
             case State.MoveToResource:
-                if (distanceFromResource < 3)//멈추고 2초동안 대기(자원캐기)
+                if (distanceFromResource < SearchRange)//멈추고 2초동안 대기(자원캐기)
                     ChangeState(State.Idle);
                 MoveToResource();
                 break;
             case State.MoveToSpawner:   
-                if(distanceFromSpawner < 3) 
+                if(distanceFromSpawner < SearchRange) 
                     ChangeState(State.Idle);
                 MoveToSpawner();
                 break;
             case State.Idle:
-                Timer += Time.deltaTime;
+                Timer += NetworkManager.Instance.runner.DeltaTime;https://www.youtube.com/watch?v=QK8uw4s7xA8
                 if (WaitingTime < Timer)
                 {
                     Timer = 0;
@@ -88,8 +108,10 @@ public class MinionsAIRed : MonoBehaviour
         //Quaternion rotation = Quaternion.Slerp(transform.rotation, angleAxis, speed);
         //transform.rotation = rotation;
         minionSpriteRenderer.flipX = false;
-        Vector2 moveDir = (Resource.position - transform.position).normalized * speed;
-        myrigidbody2D.velocity = new Vector2(moveDir.x, moveDir.y);
+
+        Vector3 dir = (Resource.position - transform.position).normalized * speed * NetworkManager.Instance.runner.DeltaTime;
+
+        gameObject.transform.Translate(dir);
         Animator anim = GetComponent<Animator>();
         anim.SetBool("Run", true);
         anim.SetBool("Idle", false);
@@ -105,8 +127,7 @@ public class MinionsAIRed : MonoBehaviour
         //Quaternion rotation = Quaternion.Slerp(transform.rotation, angleAxis, speed);
         //transform.rotation = rotation;
         minionSpriteRenderer.flipX = true;
-        Vector2 moveDir = (Spawner.position - transform.position).normalized * speed;
-        myrigidbody2D.velocity = new Vector2(moveDir.x, moveDir.y);
+        gameObject.transform.Translate((Spawner.position - transform.position).normalized *speed * NetworkManager.Instance.runner.DeltaTime);
         Animator anim = GetComponent<Animator>();
         anim.SetBool("Run", true);
         anim.SetBool("Idle", false);
@@ -122,6 +143,12 @@ public class MinionsAIRed : MonoBehaviour
         anim.SetBool("Idle", true);
 
         anim.Play("Idle");
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void Rpc_Damage(float damage)
+    {
+        HP -= damage;
     }
 }
 

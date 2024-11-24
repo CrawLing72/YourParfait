@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &80086918958179236
 MonoBehaviour:
@@ -100,7 +100,7 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.27602005, y: 0.5572187}
       - {x: -1.3285522, y: 1.8863685}
-      - {x: -2.5324202, y: 0.22851136}
+      - {x: -3.5216284, y: 0.49036112}
       - {x: -1.8436584, y: -1.424559}
       - {x: -0.72579336, y: -0.84351945}
       - {x: -0.48754346, y: -0.36623555}

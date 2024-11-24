@@ -33,7 +33,9 @@ public class MixubeController : BasicController, IAttack
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Vector3 interpolation = new Vector3(0f, 0f, 0);
-                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition - interpolation, Quaternion.identity);
+                NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, - interpolation, Quaternion.identity);
+                obj.transform.SetParent(gameObject.transform, true);
+                
                 NonTargetSkill objSkill = obj.gameObject.GetComponent<NonTargetSkill>();
 
                 Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -82,6 +84,8 @@ public class MixubeController : BasicController, IAttack
             float xinterpolation = isLeft ? 2f : -0.5f;
             Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, CurrenPosition - interpolation, Quaternion.identity);
+
+
             objSkill = obj.gameObject.GetComponent<FrontSkill>();
 
             if (!isLeft) obj.gameObject.transform.localScale = new Vector3(-1, 1, 1);
