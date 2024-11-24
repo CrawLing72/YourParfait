@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8301009131599255189}
   - component: {fileID: 3062692430441369843}
   - component: {fileID: 8483208366129285178}
-  - component: {fileID: 765214097421916112}
   - component: {fileID: 8150997701421209738}
   - component: {fileID: 4404725716695154619}
   m_Layer: 0
@@ -110,24 +109,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &765214097421916112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5224260743560662178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animator: {fileID: 8483208366129285178}
-  TotalWords: 0
-  ApplyTiming: 2
-  SyncSettings: 79
-  StateHashes: 000000001b87da725829e971
-  TriggerHashes: 00000000
 --- !u!114 &8150997701421209738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +126,6 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 765214097421916112}
   - {fileID: 4404725716695154619}
 --- !u!114 &4404725716695154619
 MonoBehaviour:
