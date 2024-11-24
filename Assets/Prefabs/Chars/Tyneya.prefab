@@ -57,11 +57,11 @@ MonoBehaviour:
   currentMp: 1000
   speed: 50
   attackRange: 10
-  attackTime: 1
-  qTime: 3
-  wTime: 5
-  eTime: 7
-  ad: 9
+  attackTime: 2
+  qTime: 8
+  wTime: 15
+  eTime: 50
+  ad: 50
   clientIndex: 0
 --- !u!114 &2373934900748405906
 MonoBehaviour:
@@ -186,6 +186,7 @@ MonoBehaviour:
   skillEPreFeb: {fileID: 3034713280186128726, guid: 3876430491b627944ac1b58173c274f7, type: 3}
   skillQPreFeb: {fileID: 0}
   skillWPreFeb: {fileID: 326771597966056682, guid: 64e2190556f8d484388f4e3e315e0196, type: 3}
+  _isRedTeam: 0
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0

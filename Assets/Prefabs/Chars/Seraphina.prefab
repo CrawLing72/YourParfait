@@ -59,10 +59,10 @@ MonoBehaviour:
   currentMp: 1000
   speed: 50
   attackRange: 10
-  attackTime: 1
-  qTime: 3
-  wTime: 5
-  eTime: 7
+  attackTime: 2
+  qTime: 9
+  wTime: 12
+  eTime: 120
   ad: 50
   clientIndex: 0
 --- !u!114 &2373934900748405906

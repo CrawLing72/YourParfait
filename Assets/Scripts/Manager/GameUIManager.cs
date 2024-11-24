@@ -36,6 +36,14 @@ public class GameUIManager : MonoBehaviour
     private TMP_Text HP_Text;
     private TMP_Text MP_Text;
 
+    // Under : SKill Timer Related
+    public TMP_Text QSkillText;
+    public TMP_Text ESkillText;
+    public TMP_Text WSkillText;
+    private float QSkillTime = 0f;
+    private float ESkillTime = 0f;
+    private float WSkillTime = 0f;
+
     GameState gmInstance;
     private void Awake()
     {
@@ -74,7 +82,9 @@ public class GameUIManager : MonoBehaviour
             ProductsCount.text = string.Format("{0, 3}", gmInstance.BlueScore_Products.ToString());
             GoodsCount.text = string.Format("{0, 3}", gmInstance.BlueScore_Goods.ToString());
         }
-        KDA.text = "0/0/0."; // -> 나중에 GM에 추가해 놓을것.
+        int reamined_time_min = (int)gmInstance.GameTime / 60;
+        int remained_time_sec = (int)gmInstance.GameTime % 60;
+        KDA.text = string.Format("{0, 2}", reamined_time_min.ToString()) + " : " + string.Format("{0, 2}", remained_time_sec.ToString());
     }
 
     public void UpdatePlayerStatus(bool isSetup = false) //setup과 update를 분리해 놓을것 : 안그러면 IO 배치수 개쪽남
@@ -85,10 +95,10 @@ public class GameUIManager : MonoBehaviour
         {
             for (int i = 0; i < 6; i++)
             {
-                if(gmInstance.IsRedTeam_Sync.Get(i)) char_index.Add(i);
+                if (gmInstance.IsRedTeam_Sync.Get(i)) char_index.Add(i);
             }
             int count = 0;
-            foreach(int idx in char_index)
+            foreach (int idx in char_index)
             {
                 string player_name;
                 switch (gmInstance.Players_Char_Index[idx])
@@ -100,7 +110,7 @@ public class GameUIManager : MonoBehaviour
                     case 4: player_name = "Tyneya"; break;
                     default: player_name = "Selena"; break;
                 }
-                Player_stats[count].GetComponent<Image>().sprite = Resources.Load<Sprite>("circled_char_Spoted/"+player_name );
+                Player_stats[count].GetComponent<Image>().sprite = Resources.Load<Sprite>("circled_char_Spoted/" + player_name);
                 Player_stats[count].transform.GetChild(0).GetComponent<Slider>().value = (gmInstance.HP.Get(idx) / gmInstance.MaxHP.Get(idx));
                 count++;
             }
@@ -130,6 +140,34 @@ public class GameUIManager : MonoBehaviour
             Wskill.sprite = Resources.Load<Sprite>("UI/Skill/" + player_name + "_W");
         }
 
+        //Under : Skill Timer Expression
+        if(QSkillTime> 0) { 
+            QSkillText.text = ((int)QSkillTime).ToString();
+            Qskill.color = new Color(1f, 1f, 1f, (200-QSkillTime)/255);
+        }
+        else { 
+            QSkillText.text = "Q";
+            Qskill.color = new Color(1f, 1f, 1f, 1f);
+        }
+
+        if(ESkillTime > 0) { 
+            ESkillText.text = ((int)ESkillTime).ToString();
+            ESkillText.color = new Color(1f, 1f, 1f, (200-ESkillTime)/255);
+        }
+        else { 
+            ESkillText.text = "E";
+            Eskill.color = new Color(1f, 1f, 1f, 1f);
+        }
+
+        if(WSkillTime > 0) { 
+            WSkillText.text = ((int)WSkillTime).ToString();
+            WSkillText.color = new Color(1f, 1f, 1f, (200-WSkillTime)/255);
+        }
+        else { 
+            WSkillText.text = "W";
+            Wskill.color = new Color(1f, 1f, 1f, 1f);
+        }
+
         var HPValue = gmInstance.HP.Get(clinet_index) / gmInstance.MaxHP.Get(clinet_index);
         var MPValue = gmInstance.MP.Get(clinet_index) / gmInstance.MaxMP.Get(clinet_index);
 
@@ -140,4 +178,8 @@ public class GameUIManager : MonoBehaviour
         MP_Text.text = gmInstance.MP.Get(clinet_index).ToString() + " / " + gmInstance.MaxMP.Get(clinet_index).ToString();
         // item, lv는 차후 수정
     }
+
+    public void SetQTimer(float q_Time) { QSkillTime = q_Time; }
+    public void SetETimer(float e_Time) { ESkillTime = e_Time; }
+    public void SetWTimer(float w_Time) { WSkillTime = w_Time; }
 }

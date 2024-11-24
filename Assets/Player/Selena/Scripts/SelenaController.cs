@@ -48,7 +48,7 @@ public class SelenaController : BasicController, IAttack
 
     protected override void InputActionW() // Selena : Shield on
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && isWAble)
         {
             IsShild = true;
             CurrentShild = 200.0f;
@@ -56,12 +56,13 @@ public class SelenaController : BasicController, IAttack
             skillWPreFeb.SetActive(IsShild);
 
             Invoke("OffShild", 5);
+            currentWTime = stat.GetWTime();
         }
     }
 
     protected override void InputActionE() // Selena : 마석 던져서 대폭발 시키기
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && isEAble)
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             Vector2 myPos = CurrenPosition;
@@ -94,7 +95,7 @@ public class SelenaController : BasicController, IAttack
 
     protected override void InputActionQ() // Selena : 마석 던지기
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && isQAble)
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             Vector2 myPos = CurrenPosition;

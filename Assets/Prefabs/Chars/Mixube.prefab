@@ -58,10 +58,10 @@ MonoBehaviour:
   speed: 50
   attackRange: 10
   attackTime: 1
-  qTime: 3
-  wTime: 5
-  eTime: 7
-  ad: 9
+  qTime: 8
+  wTime: 8
+  eTime: 120
+  ad: 50
   clientIndex: 0
 --- !u!114 &2373934900748405906
 MonoBehaviour:
@@ -186,6 +186,7 @@ MonoBehaviour:
   skillEPreFeb: {fileID: 0}
   skillQPreFeb: {fileID: 0}
   skillWPreFeb: {fileID: 0}
+  _isRedTeam: 0
 --- !u!1 &3937707306988791267
 GameObject:
   m_ObjectHideFlags: 0

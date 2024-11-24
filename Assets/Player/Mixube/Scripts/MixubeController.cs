@@ -7,6 +7,7 @@ public class MixubeController : BasicController, IAttack
 {
     protected NetworkObject destroyObj;
     protected PolygonCollider2D bakCollider;
+    protected FrontSkill objSkill;
     protected override void Start()
     {
         base.Start();
@@ -78,16 +79,23 @@ public class MixubeController : BasicController, IAttack
     {
         if (Input.GetMouseButtonDown(0))
         {
-            float xinterpolation = isLeft ? 1f : -0.5f;
+            float xinterpolation = isLeft ? 2f : -0.5f;
             Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, transform.position - interpolation, Quaternion.identity);
+            objSkill = obj.gameObject.GetComponent<FrontSkill>();
+
+            if (!isLeft) obj.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+
+            objSkill.SetDamage(objSkill.GetDamage());
+
             obj.gameObject.transform.SetParent(gameObject.transform, true);
             destroyObj = obj;
 
             AnimName = "attack";
-            Invoke("SettingAnimationIdle", 0.834f);
+            Invoke("SettingAnimationIdle", 1.2f);
 
-            Invoke("DestroyParticle", 0.834f);
+            Invoke("DestroyParticle", 1.2f);
+
         }
     }
 

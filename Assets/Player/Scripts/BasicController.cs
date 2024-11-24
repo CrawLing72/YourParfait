@@ -114,6 +114,10 @@ public class BasicController : NetworkBehaviour, IAttack
         setTimer(ref currentWTime, ref isWAble);
         setTimer(ref currentETime, ref isEAble);
 
+        GameUIManager.instance.SetETimer(currentETime);
+        GameUIManager.instance.SetQTimer(currentQTime);
+        GameUIManager.instance.SetWTimer(currentWTime);
+
         CurrenPosition = gameObject.transform.position;
 
         ApplySkillEffect();

@@ -43,7 +43,7 @@ public class TyneyaController : BasicController, IAttack
     }
     protected override void InputActionE()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && isEAble)
         {
             Vector3 interpolation = new Vector3(0f, 0f, 0f);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, transform.position - interpolation, Quaternion.identity);
@@ -63,7 +63,7 @@ public class TyneyaController : BasicController, IAttack
 
     protected override void InputActionQ()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && isQAble)
         {
             qSkillOn = true;
             damageInterpolation = 100f;
