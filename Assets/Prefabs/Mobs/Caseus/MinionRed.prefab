@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3902134229174934188}
   - component: {fileID: 7542736695281085133}
   - component: {fileID: 2554492474208966566}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1676718430538039685}
   - component: {fileID: 267590584351849204}
   - component: {fileID: 5568502055231943961}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MinionRed
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 4484453981559593758}
   - component: {fileID: 208503500674195170}
   - component: {fileID: 2710990676988992238}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 4799020676542530513}
   - component: {fileID: 833278478067857589}
   - component: {fileID: 7673625041092815812}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4431669902248498996}
   - component: {fileID: 7218307783114346777}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3172472906390281741}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

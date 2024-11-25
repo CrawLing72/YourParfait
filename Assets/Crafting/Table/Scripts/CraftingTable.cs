@@ -5,19 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Table : NetworkBehaviour, IAttack
+public class CraftingTable : NetworkBehaviour, IAttack
 {
-    [Networked]
-    float gage { get; set; } = 10.0f;
-
-    [Networked]
-    float mwidth { get; set; } = 25.40496f;
-
-    float max = 30.48f;
-    float scaley = 1f;
-    float scalex = 1f;
-    bool bisMax = false;
-
     [Networked]
     bool isSecondStage { get; set; } = false;
 
@@ -36,19 +25,13 @@ public class Table : NetworkBehaviour, IAttack
     {
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.size = new Vector2(mwidth, gage);
-        scaley = gameObject.transform.localScale.y;
-        scalex = gameObject.transform.localScale.x;
 
 
     }
 
     private void Start()
     {
-        max = max * scaley;
-        mwidth = mwidth * scalex;
-        gage = gage * scaley;
-
+        this.enabled = true;
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
@@ -95,32 +78,20 @@ public class Table : NetworkBehaviour, IAttack
             }
         }
     }
-
     public override void FixedUpdateNetwork()
     {
+        base.FixedUpdateNetwork();
         if(goods_count >= maximumGoodsCount)
         {
             goods_count = 0;
             isSecondStage = true;
         }
-
-        slider.value = gage/ max;
         goodsText.text = goods_count.ToString() + "/" + maximumGoodsCount.ToString();
     }
 
     public void GetDamage(float Damage)
     {
-        if (!bisMax && isSecondStage)
-        {
-            gage += 0.5f * scaley;
-            if (gage >= max) // Game Winning Condition.
-            {
-                GameManager.instance.isGameOvered = true;
-                bisMax = true;
-            }
-            Mathf.Clamp(gage, 0, max);
-            spriteRenderer.size = new Vector2(mwidth, gage);
-        }
+
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]

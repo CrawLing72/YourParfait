@@ -68,6 +68,9 @@ public class FactoryCrafting : NetworkBehaviour, IFactoryBuff
             goods += 1;
             if (isRedTeam) gameState.RedScore_Goods += 1;
             else gameState.BlueScore_Goods += 1;
+
+            if (isRedTeam) gameState.RedScore_Products -= resoucrce;
+            else gameState.BlueScore_Products -= resoucrce;
             resoucrce = 0;
         }
 

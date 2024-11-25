@@ -20,7 +20,7 @@ public class NonTargetSkill : NonTargetThrow
     float detection_timer = 0.2f; // 평균 핑이 200ms 내외임을 감안 (애초에 200넘으면 씹힘)
     bool onDetectionPlayer = false;
 
-    CircleCollider2D hitCollider;
+    public CircleCollider2D hitCollider;
     /*
     bool silent = false;
     float silentTime;
@@ -71,12 +71,12 @@ public class NonTargetSkill : NonTargetThrow
 
             if (targetObj != null && !targetObj.HasStateAuthority) // 본인이 마스터 클라이언트가 아닌 경우
             {
-
                 string tag = targetObj.gameObject.tag;
                 switch (tag)
                 {
                     case "Player":
                         gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
+                        Despawn();
                         break;
                     case "NPC":
                         MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
@@ -89,6 +89,7 @@ public class NonTargetSkill : NonTargetThrow
                         {
                             targetMinion_Red.Rpc_Damage(damage);
                         }
+                        Despawn();
                         break;
                     case "Mob":
                         Mola mola = targetObj.gameObject.GetComponent<Mola>();
@@ -96,6 +97,8 @@ public class NonTargetSkill : NonTargetThrow
 
                         if (mola != null) mola.Rpc_Damage(damage);
                         else if(tree != null) tree.Rpc_Damage(damage);
+
+                        Despawn();
                         break;
                     default:
                         break;
@@ -103,13 +106,14 @@ public class NonTargetSkill : NonTargetThrow
                 }
 
             }
-            else if(targetObj != null) // -> 본인이 마스터 클라이언트인 경우
+            else if(targetObj != null) // -> 본인이 마스터 클라이언트인 경우, 혹은 해당 Obj에 StateAuthority를 가지고 있는 경우
             {
                 string tag = targetObj.gameObject.tag;
                 switch (tag)
                 {
                     case "Player":
                         target.GetDamage(damage);
+                        Despawn();
                         break;
                     case "NPC":
                         MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
@@ -122,13 +126,16 @@ public class NonTargetSkill : NonTargetThrow
                         {
                             targetMinion_Red.HP -= damage;
                         }
+                        Despawn();
                         break;
                     case "Mob":
+                        Debug.LogError("Mob Collision Detected!");
                         Mola mola = targetObj.gameObject.GetComponent<Mola>();
                         TreeMob tree = targetObj.gameObject.GetComponent<TreeMob>();
 
                         if (mola != null) mola.health -= damage;
                         else if(tree != null) tree.health -= damage;
+                        Despawn();
                         break;
                     default:
                         break;

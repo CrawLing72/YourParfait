@@ -1,6 +1,5 @@
 using UnityEngine;
 using Fusion;
-using static Unity.Collections.Unicode;
 
 public sealed class GameState : NetworkBehaviour, ISpawned
 {
@@ -60,8 +59,6 @@ public sealed class GameState : NetworkBehaviour, ISpawned
             }
 
         }
-        
-        Debug.Log("Current Red minion : " + RedScore_Minions.ToString());
     }
 
     public override void Spawned()

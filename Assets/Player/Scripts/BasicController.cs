@@ -74,6 +74,19 @@ public class BasicController : NetworkBehaviour, IAttack
     [Networked]
     public bool isRedTeam { get; set;}
 
+    [Networked]
+    public bool isDead { get; set; } = false;
+    public float ReSpawnTime = 30f;
+    public float deathAnimTime = 1f;
+
+    public MeshRenderer meshRenderer;
+
+    public Transform RedTeamBase;
+    public Transform BlueTeamBase;
+
+    private float SpawnTimer = 0f;
+    private float DeadAnimTImer = 0f;
+
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -90,37 +103,83 @@ public class BasicController : NetworkBehaviour, IAttack
     {
         stat.SetSpeed(50.0f);
         CurrenPosition = gameObject.transform.position;
+        SpawnTimer = ReSpawnTime;
 
 
     }
 
     public override void FixedUpdateNetwork()
     {
-        MouseRightClick();
-        settingAnimation();
-
-        Attack2();
-        MouseRightClick();
-
-        if(!isSilent)
+        if (!isDead)
         {
-            InputActionW();
-            InputActionE();
-            InputActionQ();
+            if (stat.GetCurrentHp() <= 0f) // When Dead while playing
+            {
+                isDead = true;
+                
+            }
+
+            MouseRightClick();
+            settingAnimation();
+
+            Attack2();
+            MouseRightClick();
+
+            if (!isSilent)
+            {
+                InputActionW();
+                InputActionE();
+                InputActionQ();
+            }
+
+            setTimer(ref currentAttackTime, ref isAttackAble);
+            setTimer(ref currentQTime, ref isQAble);
+            setTimer(ref currentWTime, ref isWAble);
+            setTimer(ref currentETime, ref isEAble);
+
+            GameUIManager.instance.SetETimer(currentETime);
+            GameUIManager.instance.SetQTimer(currentQTime);
+            GameUIManager.instance.SetWTimer(currentWTime);
+            ApplySkillEffect();
+        }
+        else
+        {
+            GameUIManager.instance.RootObj.SetActive(false);
+            GameUIManager.instance.Char_Face.transform.parent.gameObject.SetActive(false); 
+
+            SpawnTimer -= NetworkManager.Instance.runner.DeltaTime;
+            DeadAnimTImer += NetworkManager.Instance.runner.DeltaTime;
+
+            if (isRedTeam) gameObject.transform.position = RedTeamBase.position;
+            else gameObject.transform.position = BlueTeamBase.position;
+
+            if (SpawnTimer < 0f)
+            {
+                isDead = false;
+                SpawnTimer = ReSpawnTime;
+                meshRenderer.enabled = true;
+
+                GameUIManager.instance.RootObj.SetActive(true);
+                GameUIManager.instance.Char_Face.transform.parent.gameObject.SetActive(true);
+
+                stat.SetCurrentHp(stat.GetMaxHp());
+                stat.SetCurrentMp(stat.GetMaxMp());
+
+                AnimName = "idle";
+                settingAnimation();
+            }
+            if(DeadAnimTImer > deathAnimTime)
+            {
+                meshRenderer.enabled = false;
+                DeadAnimTImer = 0f;
+            }
+            else
+            {
+                AnimName = "die";
+                settingAnimation();
+            }
         }
 
-        setTimer(ref currentAttackTime, ref isAttackAble);
-        setTimer(ref currentQTime, ref isQAble);
-        setTimer(ref currentWTime, ref isWAble);
-        setTimer(ref currentETime, ref isEAble);
-
-        GameUIManager.instance.SetETimer(currentETime);
-        GameUIManager.instance.SetQTimer(currentQTime);
-        GameUIManager.instance.SetWTimer(currentWTime);
-
         CurrenPosition = gameObject.transform.position;
-
-        ApplySkillEffect();
 
     }
 
@@ -128,6 +187,8 @@ public class BasicController : NetworkBehaviour, IAttack
     {
         base.Spawned();
         isRedTeam = GameManager.instance.isRedTeam;
+        if (isRedTeam) gameObject.layer = 9;
+        else gameObject.layer = 10;
     }
 
 
@@ -265,6 +326,8 @@ public class BasicController : NetworkBehaviour, IAttack
                     Vector2 dir = (mouseLeftPos - objectPos).normalized;
 
                     NetworkObject projectile = NetworkManager.Instance.runner.Spawn(BasicAttack, objectPos + dir*1.7f, Quaternion.identity); // Need Change 
+                    if(isRedTeam) projectile.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
+                    else projectile.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
                     projectile.gameObject.GetComponent<NonTargetSkill>().SetDirection(dir);
                     projectile.gameObject.GetComponent<NonTargetSkill>().SetSkillDamage(stat.GetAd());
 

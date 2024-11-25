@@ -65,6 +65,7 @@ MonoBehaviour:
   ad: 50
   _goodscount: 0
   clientIndex: 0
+  isRedTeam: 1
   Canvus: {fileID: 7647823602455356033}
   GoodsCount: {fileID: 7716316912068624993}
 --- !u!114 &2373934900748405906
@@ -191,6 +192,10 @@ MonoBehaviour:
   skillQPreFeb: {fileID: 6178459221590761052, guid: 1138868616c4cab4eb5fb9ad02752c72, type: 3}
   skillWPreFeb: {fileID: 5224260743560662178, guid: 86f3357cc97a62947a34bbee0a8a0e13, type: 3}
   _isRedTeam: 0
+  _isDead: 0
+  ReSpawnTime: 30
+  deathAnimTime: 1
+  meshRenderer: {fileID: 8398504614470041437}
 --- !u!1 &3467719407463940633
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7691244974867445882}
   - component: {fileID: 6494628795982907696}
   - component: {fileID: 4361167322597897731}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MinionBlue
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ Transform:
   m_Children:
   - {fileID: 4950946363078244669}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8818034642928264124
 SpriteRenderer:
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 3442310311785251951}
   - component: {fileID: 6269791987214861373}
   - component: {fileID: 8546048766566179859}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1443784563048112867}
   - component: {fileID: 5122459590170731080}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 2231246902616602025}
   - component: {fileID: 6139601650060510284}
   - component: {fileID: 6864733380962615967}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5281601015404185125}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 852671873604803676}
   - component: {fileID: 5057010832032339687}
   - component: {fileID: 6739527836208588684}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
