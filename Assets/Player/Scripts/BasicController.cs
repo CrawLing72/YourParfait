@@ -111,6 +111,11 @@ public class BasicController : NetworkBehaviour, IAttack
 
     }
 
+    protected void Update()
+    {
+        FixCameraToObject();
+    }
+
     public override void FixedUpdateNetwork()
     {
         isRedTeam = GameManager.instance.isRedTeam;
@@ -504,5 +509,18 @@ public class BasicController : NetworkBehaviour, IAttack
     public void Rpc_SetMeshRenderer(bool ison)
     {
         meshRenderer.enabled = ison;
+    }
+
+    private void FixCameraToObject()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Scape");
+            Vector2 camLocation = gameObject.transform.position;
+            Vector3 targetPos = new Vector3(camLocation.x, camLocation.y, -13.74541f);
+            ICameraInterface camControll = cam.GetComponent<ICameraInterface>();
+            camControll.SetCamearaPos(targetPos);
+        }
     }
 }
