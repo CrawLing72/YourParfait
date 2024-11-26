@@ -60,6 +60,10 @@ public class BasicController : NetworkBehaviour, IAttack
     [SerializeField]
     protected float ESkillRange;
 
+    protected GameObject skillQRangePreFeb;
+    protected GameObject skillWRangePreFeb;
+    protected GameObject skillERangePreFeb;
+
     [SerializeField]
     protected GameObject skillEPreFeb;
 
@@ -68,6 +72,9 @@ public class BasicController : NetworkBehaviour, IAttack
 
     [SerializeField]
     protected GameObject skillWPreFeb;
+
+    [SerializeField]
+    bool bSkillRange = false;
 
     float ADBuffTemp;
     float TempSpeed;
@@ -90,6 +97,8 @@ public class BasicController : NetworkBehaviour, IAttack
 
     private bool isDeadAnimEnded = false;
 
+
+
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,6 +109,31 @@ public class BasicController : NetworkBehaviour, IAttack
         CurrenPosition = gameObject.transform.position;
 
         Scale = Char.localScale;
+
+        if(bSkillRange)
+        {
+            skillQRangePreFeb = transform.Find("QRange").gameObject;
+            if(skillQRangePreFeb != null )
+            {
+                skillQRangePreFeb.transform.localScale = new Vector3(QSkillRange*2, QSkillRange*2, 1.0f);
+                skillQRangePreFeb.SetActive(qIsOn);
+            }
+
+            skillWRangePreFeb = transform.Find("WRange").gameObject;
+            if (skillWRangePreFeb != null)
+            {
+                skillWRangePreFeb.transform.localScale = new Vector3(WSkillRange * 2, WSkillRange * 2, 1.0f);
+                skillWRangePreFeb.SetActive(wIsOn);
+            }
+
+            skillERangePreFeb = transform.Find("ERange").gameObject;
+            if (skillERangePreFeb != null)
+            {
+                skillERangePreFeb.transform.localScale = new Vector3(ESkillRange * 2, ESkillRange * 2, 1.0f);
+                skillERangePreFeb.SetActive(wIsOn);
+            }
+        }
+        
     }
 
     protected virtual void Start()
@@ -257,7 +291,7 @@ public class BasicController : NetworkBehaviour, IAttack
             {
                 wIsOn = false;
 
-                skillWPreFeb.SetActive(wIsOn);
+                skillWRangePreFeb.SetActive(wIsOn);
             }
             else
             {
@@ -272,6 +306,13 @@ public class BasicController : NetworkBehaviour, IAttack
                     skillWPreFeb.SetActive(wIsOn);
                     skillEPreFeb.SetActive(eIsOn);
 
+                    if (bSkillRange)
+                    {
+                        skillQRangePreFeb.SetActive(qIsOn);
+                        skillWRangePreFeb.SetActive(wIsOn);
+                        skillERangePreFeb.SetActive(eIsOn);
+                    }
+
                 }
             }
         }
@@ -285,7 +326,7 @@ public class BasicController : NetworkBehaviour, IAttack
             {
                 eIsOn = false;
 
-                skillEPreFeb.SetActive(eIsOn);
+                skillERangePreFeb.SetActive(eIsOn);
             }
             else
             {
@@ -299,6 +340,14 @@ public class BasicController : NetworkBehaviour, IAttack
                     skillQPreFeb.SetActive(qIsOn);
                     skillWPreFeb.SetActive(wIsOn);
                     skillEPreFeb.SetActive(eIsOn);
+
+                    if (bSkillRange)
+                    {
+                        skillQRangePreFeb.SetActive(qIsOn);
+                        skillWRangePreFeb.SetActive(wIsOn);
+                        skillERangePreFeb.SetActive(eIsOn);
+                    }
+                    
 
                 }
             }
@@ -316,7 +365,7 @@ public class BasicController : NetworkBehaviour, IAttack
             {
                 qIsOn = false;
 
-                skillQPreFeb.SetActive(qIsOn);
+                skillQRangePreFeb.SetActive(qIsOn);
             }
             else
             {
@@ -330,6 +379,13 @@ public class BasicController : NetworkBehaviour, IAttack
                     skillQPreFeb.SetActive(qIsOn);
                     skillWPreFeb.SetActive(wIsOn);
                     skillEPreFeb.SetActive(eIsOn);
+
+                    if (bSkillRange)
+                    {
+                        skillQRangePreFeb.SetActive(qIsOn);
+                        skillWRangePreFeb.SetActive(wIsOn);
+                        skillERangePreFeb.SetActive(eIsOn);
+                    }
 
                 }
             }
@@ -420,17 +476,17 @@ public class BasicController : NetworkBehaviour, IAttack
         qIsOn = false; wIsOn = false; eIsOn = false;
         
 
-        if (skillQPreFeb != null) 
+        if (skillQRangePreFeb != null) 
         {
-            skillQPreFeb.SetActive(false);
+            skillQRangePreFeb.SetActive(false);
         }
-        if (skillWPreFeb != null)
+        if (skillWRangePreFeb != null)
         {
-            skillWPreFeb.SetActive(false);
+            skillWRangePreFeb.SetActive(false);
         }
-        if (skillEPreFeb != null)
+        if (skillERangePreFeb != null)
         {
-            skillEPreFeb.SetActive(false);
+            skillERangePreFeb.SetActive(false);
         }
 
         Invoke("OffSilent", time);

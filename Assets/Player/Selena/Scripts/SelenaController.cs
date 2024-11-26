@@ -60,75 +60,6 @@ public class SelenaController : BasicController, IAttack
         }
     }
 
-    protected override void InputActionE() // Selena : 마석 던져서 대폭발 시키기
-    {
-        if (Input.GetKeyDown(KeyCode.E) && isEAble)
-        {
-            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 myPos = CurrenPosition;
-            Vector2 disTance = mousePos - myPos;
-
-            if (disTance.magnitude < ESkillRange)
-            {
-                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition, Quaternion.identity);
-                NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
-                if (isRedTeam) attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
-                else attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
-
-
-                Animator animator = attack.gameObject.GetComponent<Animator>();
-
-                animator.SetBool("isE", true);
-                skill.SetSkillDamage(400.0f); // need Change
-                skill.SetTime(1.7f);
-                attack.transform.position = mousePos;
-                isEAble = false;
-                currentETime = stat.GetETime();
-                AnimName = "AtribinJoint";
-                Invoke("SettingAnimationIdle", 1.33f);
-
-            }
-            else
-            {
-                return; //Early Termination
-            }
-
-        }
-    }
-
-    protected override void InputActionQ() // Selena : 마석 던지기
-    {
-        if (Input.GetKeyDown(KeyCode.Q) && isQAble)
-        {
-            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 myPos = CurrenPosition;
-            Vector2 disTance = mousePos - myPos;
-
-            if (disTance.magnitude < QSkillRange)
-            {
-                NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition, Quaternion.identity);
-                if (isRedTeam) attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
-                else attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
-
-                NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
-
-                skill.SetSkillDamage(200.0f); // need Change
-                skill.SetTime(1.2f);
-                attack.transform.position = mousePos;
-                isEAble = false;
-                currentETime = stat.GetQTime();
-                AnimName = "AtribinJoint";
-                Invoke("SettingAnimationIdle", 1.33f);
-
-            }
-            else
-            {
-                return; //Early Termination
-            }
-
-        }
-    }
-
     protected override void Attack2()
     {
 
@@ -136,25 +67,35 @@ public class SelenaController : BasicController, IAttack
         {
             if (Input.GetMouseButtonDown(0))
             {
+                skillEPreFeb.SetActive(qIsOn);
 
                 Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 myPos = Object.transform.position;
+                Vector2 myPos = CurrenPosition;
                 Vector2 disTance = mousePos - myPos;
 
                 if (disTance.magnitude <= QSkillRange)
                 {
-                    GameObject attack = Instantiate(skillQPreFeb);
-                    NonTargetThrow skill = attack.GetComponent<NonTargetThrow>();
+                    NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition, Quaternion.identity);
+                    if (isRedTeam) attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
+                    else attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
 
-                    skill.SetSkillDamage(60.0f); // need Change
+                    NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
+
+                    skill.SetSkillDamage(200.0f); // need Change
+                    skill.SetTime(1.2f);
                     attack.transform.position = mousePos;
-                    isQAble = false;
-                    currentQTime = stat.GetQTime();
+                    isEAble = false;
+                    currentETime = stat.GetQTime();
+                    AnimName = "AtribinJoint";
+                    Invoke("SettingAnimationIdle", 1.33f);
                 }
 
                 qIsOn = false;
 
-                skillQPreFeb.SetActive(qIsOn);
+                skillQRangePreFeb.SetActive(qIsOn);
+
+                return;
+
 
             }
         }
@@ -162,6 +103,7 @@ public class SelenaController : BasicController, IAttack
         {
             if (Input.GetMouseButtonDown(0))
             {
+                skillEPreFeb.SetActive(eIsOn);
 
                 Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 myPos = Object.transform.position;
@@ -169,23 +111,28 @@ public class SelenaController : BasicController, IAttack
 
                 if (disTance.magnitude <= ESkillRange)
                 {
-                    GameObject attack = Instantiate(skillEPreFeb);
-                    NonTargetThrow skill = attack.GetComponent<NonTargetThrow>();
+                    NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition, Quaternion.identity);
+                    NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
+                    if (isRedTeam) attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
+                    else attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
 
 
-                    skill.SetSilent(3);
-                    skill.SetSkillDamage(60.0f); // need Change
+                    Animator animator = attack.gameObject.GetComponent<Animator>();
+
+                    animator.SetBool("isE", true);
+                    skill.SetSkillDamage(400.0f); // need Change
+                    skill.SetTime(1.7f);
                     attack.transform.position = mousePos;
-
-
-
                     isEAble = false;
                     currentETime = stat.GetETime();
+                    AnimName = "AtribinJoint";
+                    Invoke("SettingAnimationIdle", 1.33f);
                 }
 
                 eIsOn = false;
+                skillERangePreFeb.SetActive(eIsOn);
 
-                skillEPreFeb.SetActive(eIsOn);
+                return;
 
             }
         }    
