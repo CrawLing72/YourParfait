@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Cinemachine; // 시네머신 네임스페이스 추가
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, ICameraInterface
 {
     [SerializeField]
     float zoomSpeed = 1200f;
@@ -16,6 +16,11 @@ public class CameraController : MonoBehaviour
     CinemachineVirtualCamera cinemachineCamera; // 시네머신 카메라 변수 선언
 
     GameObject Palyer;
+
+    public void SetCamearaPos(Vector3 targetPos)
+    {
+        transform.position = targetPos;
+    }
 
     private void LateUpdate()
     {
