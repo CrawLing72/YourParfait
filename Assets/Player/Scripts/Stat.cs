@@ -101,6 +101,9 @@ public class Stat : NetworkBehaviour
     { 
         Mathf.Clamp(setValue, 0, maxHp);
         currentHp = setValue; 
+        Debug.LogError("SetCurrentHp: " + currentHp);
+        Debug.LogError("SetCurrentmaxHp: " + maxHp);
+        Debug.LogError("SetCurrentIndex: " + clientIndex);
         instance.RPC_SetHP(clientIndex, currentHp, maxHp);
 
     }

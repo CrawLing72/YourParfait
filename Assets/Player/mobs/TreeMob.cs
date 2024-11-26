@@ -77,6 +77,19 @@ public class TreeMob : NetworkBehaviour, IAttack
         }
     }
 
+    protected void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && Object.HasStateAuthority)
+        {
+            isPlayerExists = true;
+            target = collision.gameObject.GetComponent<NetworkObject>();
+        }else if (collision.gameObject.CompareTag("Player") && !Object.HasStateAuthority)
+        {
+            isPlayerExists = true;
+            Rpc_SetNetworkObject(collision.gameObject.GetComponent<NetworkObject>());
+        }
+    }
+
     protected void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.gameObject.GetComponent<NetworkObject>() == target)
@@ -101,5 +114,11 @@ public class TreeMob : NetworkBehaviour, IAttack
     public void Rpc_SettingAnimation(string _name)
     {
        skeletonAnimation.AnimationName = _name;
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_SetNetworkObject(NetworkObject _target)
+    {
+        target = _target;
     }
 }
