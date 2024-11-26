@@ -47,7 +47,6 @@ public class TreeMob : NetworkBehaviour, IAttack
     public override void FixedUpdateNetwork()
     {
         GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
-        Debug.Log(target.Name);
 
         if(timer >= attackTime)
         {

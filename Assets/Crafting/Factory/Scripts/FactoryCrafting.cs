@@ -37,11 +37,13 @@ public class FactoryCrafting : NetworkBehaviour, IFactoryBuff
     public int requiredSupplyForGoods = 10;
     public TMP_Text GoodsText;
 
+    private bool isSpanwed = false;
     public override void Spawned()
     {
         gage = 0f;
         resoucrce = 0;
         goods = 0;
+        isSpanwed = true;
     }
     public override void FixedUpdateNetwork()
     {
@@ -77,9 +79,12 @@ public class FactoryCrafting : NetworkBehaviour, IFactoryBuff
 
     public void FixedUpdate()
     {
-        SupplyText.text = resoucrce.ToString();
-        SupplySlider.value = gage / maxGage;
-        GoodsText.text = goods.ToString();
+        if (isSpanwed)
+        {
+            SupplyText.text = resoucrce.ToString();
+            SupplySlider.value = gage / maxGage;
+            GoodsText.text = goods.ToString();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // -> 이 파트, Master Clinet로 Goods가 0이 안되는 문제 존재 (타 클라에서)

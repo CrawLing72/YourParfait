@@ -61,7 +61,7 @@ public class TowerAttack : NetworkBehaviour
         {
             if (bIsTarget && !bIsAttacking)
             {
-                Invoke("AttackTimer", 1);
+                Invoke("AttackTimer", 2);
                 bIsAttacking = true;
             }
         }

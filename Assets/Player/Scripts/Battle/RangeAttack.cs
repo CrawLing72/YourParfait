@@ -41,7 +41,6 @@ public class RangeAttack : NonTargetThrow
                 {
                     case "Player":
                         gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
-                        Debug.LogError(targetObj.StateAuthority);
                         Destroy();
                         break;
                     default:

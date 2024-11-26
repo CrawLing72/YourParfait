@@ -26,6 +26,8 @@ public class CraftingTable : NetworkBehaviour, IAttack
     public Slider slider;
     public TMP_Text goodsText;
 
+    private bool isSpawned = false;
+
     protected void Awake()
     {
 
@@ -102,22 +104,25 @@ public class CraftingTable : NetworkBehaviour, IAttack
 
     public void FixedUpdate()
     {
-        if (!isSecondStage) goodsText.text = goods_count.ToString() + "/" + maximumGoodsCount.ToString();
-        else
+        if (isSpawned)
         {
-            goodsText.text = "Making..";
-            slider.value = totalDamage / maxDamage;
-
-            if (totalDamage >= maxDamage)
+            if (!isSecondStage) goodsText.text = goods_count.ToString() + "/" + maximumGoodsCount.ToString();
+            else
             {
-                if (Object.HasStateAuthority)
+                goodsText.text = "Making..";
+                slider.value = totalDamage / maxDamage;
+
+                if (totalDamage >= maxDamage)
                 {
-                    GameManager.instance.isGameOvered = true;
-                    GameManager.instance.isRedTeamWin = isRedTeam;
-                }
-                else
-                {
-                    Rpc_gameOver(isRedTeam);
+                    if (Object.HasStateAuthority)
+                    {
+                        GameManager.instance.isGameOvered = true;
+                        GameManager.instance.isRedTeamWin = isRedTeam;
+                    }
+                    else
+                    {
+                        Rpc_gameOver(isRedTeam);
+                    }
                 }
             }
         }
