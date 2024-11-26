@@ -36,33 +36,58 @@ public class RangeAttack : NonTargetThrow
 
             if (targetObj != null && !targetObj.HasStateAuthority) // 본인이 마스터 클라이언트가 아닌 경우
             {
-                // RPC 호출로 데미지 및 상태 이상 적용
-                if (!targetObj.gameObject.CompareTag("NPC") && !targetObj.gameObject.CompareTag("mob"))
+                string tag = targetObj.gameObject.tag;
+                switch (tag)
                 {
-                    Stat targetStat = targetObj.gameObject.GetComponent<Stat>();
-                    targetStat.SetCurrentHp(targetStat.GetCurrentHp() - damage); // -> SetCurrentHP 내부에 RPC 존재
+                    case "Player":
+                        gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
+                        Destroy();
+                        break;
+                    case "NPC":
+                        MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
+                        MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
+                        if (targetMinion != null)
+                        {
+                            targetMinion.Rpc_Damage(damage);
+                        }
+                        else if (targetMinion_Red != null)
+                        {
+                            targetMinion_Red.Rpc_Damage(damage);
+                        }
+                        Destroy();
+                        break;
+                    case "Mob":
+                        Mola mola = targetObj.gameObject.GetComponent<Mola>();
+                        TreeMob tree = targetObj.gameObject.GetComponent<TreeMob>();
+
+                        if (mola != null) mola.Rpc_Damage(damage);
+                        else if (tree != null) tree.Rpc_Damage(damage);
+                        Destroy();
+                        break;
+                    case "Table":
+                        CraftingTable table = targetObj.gameObject.GetComponent<CraftingTable>();
+                        if (table != null)
+                        {
+                            table.Rpc_PlusDamage(damage);
+                        }
+                        Destroy();
+                        break;
+                    default:
+                        break;
+
                 }
-                else
-                {
-                    MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
-                    MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
-                    if (targetMinion != null)
-                    {
-                        targetMinion.Rpc_Damage(damage);
-                    }
-                    else if (targetMinion_Red != null)
-                    {
-                        targetMinion_Red.Rpc_Damage(damage);
-                    }
-                }
-                Destroy();
+
             }
-            else // -> 본인이 마스터 클라이언트인 경우
+            else if (targetObj != null) // -> 본인이 마스터 클라이언트인 경우, 혹은 해당 Obj에 StateAuthority를 가지고 있는 경우
             {
-                if (targetObj != null && targetObj.gameObject.CompareTag("NPC"))
+                string tag = targetObj.gameObject.tag;
+                switch (tag)
                 {
-                    if (targetObj.gameObject.CompareTag("Mob"))
-                    {
+                    case "Player":
+                        target.GetDamage(damage);
+                        Destroy();
+                        break;
+                    case "NPC":
                         MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
                         MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
                         if (targetMinion != null)
@@ -73,13 +98,26 @@ public class RangeAttack : NonTargetThrow
                         {
                             targetMinion_Red.HP -= damage;
                         }
-                    }
+                        Destroy();
+                        break;
+                    case "Mob":
+                        Debug.LogError("Mob Collision Detected!");
+                        Mola mola = targetObj.gameObject.GetComponent<Mola>();
+                        TreeMob tree = targetObj.gameObject.GetComponent<TreeMob>();
+
+                        if (mola != null) mola.health -= damage;
+                        else if (tree != null) tree.health -= damage;
+                        Destroy();
+                        break;
+                    case "Table":
+                        CraftingTable table = targetObj.gameObject.GetComponent<CraftingTable>();
+                        table.GetDamage(damage);
+                        Destroy();
+                        break;
+                    default:
+                        break;
+
                 }
-                else if (targetObj != null && targetObj.gameObject.CompareTag("Player"))
-                {
-                    target.GetDamage(damage);
-                }
-                Destroy();
             }
         }
     }
