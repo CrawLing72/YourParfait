@@ -100,6 +100,10 @@ public class TyneyaController : BasicController, IAttack
             float xinterpolation = isLeft ? 2f : -0.5f;
             Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
+
+            if (isRedTeam) obj.gameObject.GetComponent<FrontSkill>().hitCollider_polygon.excludeLayers = LayerMask.GetMask("RedTeam");
+            else obj.gameObject.GetComponent<FrontSkill>().hitCollider_polygon.excludeLayers = LayerMask.GetMask("BlueTeam");
+
             objSkill = obj.gameObject.GetComponent<FrontSkill>();
 
             if(!isLeft)obj.gameObject.transform.localScale = new Vector3(-1, 1, 1);

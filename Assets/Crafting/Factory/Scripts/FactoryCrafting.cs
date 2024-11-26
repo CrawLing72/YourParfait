@@ -48,11 +48,11 @@ public class FactoryCrafting : NetworkBehaviour, IFactoryBuff
         GameState gameState = FindObjectOfType<GameState>().gameObject.GetComponent<GameState>();
         if (!bIsBuff)
         {
-            gage += currentMinion * NetworkManager.Instance.runner.DeltaTime * 10f;
+            gage += currentMinion * NetworkManager.Instance.runner.DeltaTime * 20f;
         }
         else
         {
-            gage += currentMinion * NetworkManager.Instance.runner.DeltaTime * 10f * buffValue;
+            gage += currentMinion * NetworkManager.Instance.runner.DeltaTime * 20f * buffValue;
         }
 
         if (gage >= maxGage)
@@ -73,14 +73,16 @@ public class FactoryCrafting : NetworkBehaviour, IFactoryBuff
             else gameState.BlueScore_Products -= resoucrce;
             resoucrce = 0;
         }
+    }
 
+    public void FixedUpdate()
+    {
+        SupplyText.text = resoucrce.ToString();
         SupplySlider.value = gage / maxGage;
-        SupplyText.text= resoucrce.ToString();
         GoodsText.text = goods.ToString();
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) // -> 이 파트, Master Clinet로 Goods가 0이 안되는 문제 존재 (타 클라에서)
     {
         GameState gameState = FindObjectOfType<GameState>().gameObject.GetComponent<GameState>();
         if (isRedTeam)

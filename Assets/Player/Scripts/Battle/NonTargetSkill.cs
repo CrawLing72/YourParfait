@@ -100,6 +100,14 @@ public class NonTargetSkill : NonTargetThrow
 
                         Despawn();
                         break;
+                    case "Table":
+                        CraftingTable table = targetObj.gameObject.GetComponent<CraftingTable>();
+                        if (table != null)
+                        {
+                            table.Rpc_PlusDamage(damage);
+                        }
+                        Despawn();
+                        break;
                     default:
                         break;
 
@@ -135,6 +143,11 @@ public class NonTargetSkill : NonTargetThrow
 
                         if (mola != null) mola.health -= damage;
                         else if(tree != null) tree.health -= damage;
+                        Despawn();
+                        break;
+                    case "Table":
+                        CraftingTable table = targetObj.gameObject.GetComponent<CraftingTable>();
+                        table.GetDamage(damage);
                         Despawn();
                         break;
                     default:

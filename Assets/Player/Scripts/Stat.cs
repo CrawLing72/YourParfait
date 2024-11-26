@@ -89,6 +89,11 @@ public class Stat : NetworkBehaviour
        goodscount += _count;
     }
 
+    public void SetGoodsCount(int _count)
+    {
+        goodscount = _count;
+    }
+
     public float GetMaxHp() { return maxHp; }
     public void SetMaxHp(float setValue){ maxHp = setValue; }
     public float GetCurrentHp() { return currentHp; }

@@ -9,7 +9,8 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     public GameObject PlayerPrefab;
     public GameObject[] UICAN;
     public GameObject WaitingText;
-    public Vector3 SpawnPoint = new Vector3(-33, 2, -4);
+    public Vector3 RedSpawnPoint = new Vector3(-33, 2, -4);
+    public Vector3 BlueSpawnPoint = new Vector3(29.12f, 0f, -4);
 
     [Header("Chars")]
     [SerializeField]
@@ -67,7 +68,20 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         if (player == NetworkManager.Instance.runner.LocalPlayer)
         {
             // Spawn the player object
-            plObj = NetworkManager.Instance.runner.Spawn(PlayerPrefab, SpawnPoint, Quaternion.identity);
+            plObj = NetworkManager.Instance.runner.Spawn(PlayerPrefab, RedSpawnPoint, Quaternion.identity);
+            PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
+
+            if(PlayerPrefs.GetInt("ClientIndex") < GameManager.instance.PlayerDet)
+            {
+                plObj.gameObject.transform.position = RedSpawnPoint;
+                GameManager.instance.isRedTeam = true;
+            }
+            else
+            {
+                plObj.gameObject.transform.position = BlueSpawnPoint;
+                GameManager.instance.isRedTeam = false;
+            }
+
             if (plObj == null)
             {
                 Debug.LogError("Failed to spawn player object!");
@@ -107,7 +121,6 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         GameUIManager.instance.UpdateMainBar(true);
         GameUIManager.instance.UpdatePlayerStatus(true);
 
-        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount-1);
         if (player == NetworkManager.Instance.runner.LocalPlayer)
         {
             plStat.SendInitInfos();

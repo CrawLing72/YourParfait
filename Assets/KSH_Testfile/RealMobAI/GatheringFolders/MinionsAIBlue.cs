@@ -59,7 +59,6 @@ public class MinionsAIBlue : NetworkBehaviour, IAttack
             GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
             gameState.BlueScore_Minions -= 1;
         }
-        HPBar.value = HP / 100f;
 
         float distanceFromResource = Vector2.Distance(Resource.transform.position, transform.position);
         float distanceFromSpawner = Vector2.Distance(Spawner.transform.position, transform.position);
@@ -93,6 +92,11 @@ public class MinionsAIBlue : NetworkBehaviour, IAttack
         }
     }
 
+    public void FixedUpdate()
+    {
+        HPBar.value = HP / 100f;
+    }
+
     private void ChangeState(State newState)
     {
         currentState = newState;
@@ -105,7 +109,7 @@ public class MinionsAIBlue : NetworkBehaviour, IAttack
         //Quaternion angleAxis = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
         //Quaternion rotation = Quaternion.Slerp(transform.rotation, angleAxis, speed);
         //transform.rotation = rotation;
-        minionSpriteRenderer.flipX = true;
+        Rpc_SetDirection(true);
         gameObject.transform.Translate((Resource.position - transform.position).normalized * speed * NetworkManager.Instance.runner.DeltaTime);
         Animator anim = GetComponent<Animator>();
         anim.SetBool("Run", true);
@@ -121,7 +125,7 @@ public class MinionsAIBlue : NetworkBehaviour, IAttack
         //Quaternion angleAxis = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
         //Quaternion rotation = Quaternion.Slerp(transform.rotation, angleAxis, speed);
         //transform.rotation = rotation;
-        minionSpriteRenderer.flipX = false;
+        Rpc_SetDirection(false);
         gameObject.transform.Translate((Spawner.position - transform.position).normalized * speed * NetworkManager.Instance.runner.DeltaTime);
         Animator anim = GetComponent<Animator>();
         anim.SetBool("Run", true);
@@ -144,6 +148,12 @@ public class MinionsAIBlue : NetworkBehaviour, IAttack
     public void Rpc_Damage(float damage)
     {
         HP -= damage;
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_SetDirection(bool _dir)
+    {
+        minionSpriteRenderer.flipX = _dir;
     }
 }
 

@@ -20,6 +20,26 @@ public class FrontSkill : NetworkBehaviour
 
     bool bTeam;
 
+    public CircleCollider2D hitCollider;
+    public BoxCollider2D hitCollider_box;
+    public PolygonCollider2D hitCollider_polygon;
+
+
+    public void Start()
+    {
+        if (gameObject.TryGetComponent<CircleCollider2D>(out CircleCollider2D component))
+            {
+            hitCollider = component;
+        }
+        else if (gameObject.TryGetComponent<BoxCollider2D>(out BoxCollider2D component2))
+        {
+            hitCollider_box = component2;
+        }
+        else if (gameObject.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D component3))
+        {
+            hitCollider_polygon = component3;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
@@ -56,6 +76,13 @@ public class FrontSkill : NetworkBehaviour
                         if(mola  != null) mola.Rpc_Damage(damage);
                         else if(tree != null) tree.Rpc_Damage(damage);
                         break;
+                    case "Table":
+                        CraftingTable table = targetObj.gameObject.GetComponent<CraftingTable>();
+                        if (table != null)
+                        {
+                            table.Rpc_PlusDamage(damage);
+                        }
+                        break;
                     default:
                         break;
 
@@ -88,6 +115,13 @@ public class FrontSkill : NetworkBehaviour
 
                         if (mola != null) mola.health -= damage;
                         else if(tree != null) tree.health -= damage;
+                        break;
+                    case "Table":
+                        CraftingTable table = targetObj.gameObject.GetComponent<CraftingTable>();
+                        if (table != null)
+                        {
+                            table.GetDamage(damage);
+                        }
                         break;
                     default:
                         break;

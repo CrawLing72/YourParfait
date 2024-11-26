@@ -35,7 +35,10 @@ public class MixubeController : BasicController, IAttack
                 Vector3 interpolation = new Vector3(0f, 0f, 0);
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, - interpolation, Quaternion.identity);
                 obj.transform.SetParent(gameObject.transform, true);
-                
+
+                if (isRedTeam) obj.gameObject.GetComponent<FrontSkill>().hitCollider_polygon.excludeLayers = LayerMask.GetMask("RedTeam");
+                else obj.gameObject.GetComponent<FrontSkill>().hitCollider_polygon.excludeLayers = LayerMask.GetMask("BlueTeam");
+
                 NonTargetSkill objSkill = obj.gameObject.GetComponent<NonTargetSkill>();
 
                 Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -84,6 +87,8 @@ public class MixubeController : BasicController, IAttack
             float xinterpolation = isLeft ? 2f : -0.5f;
             Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, CurrenPosition - interpolation, Quaternion.identity);
+            if (isRedTeam) obj.gameObject.GetComponent<FrontSkill>().hitCollider_polygon.excludeLayers = LayerMask.GetMask("RedTeam");
+            else obj.gameObject.GetComponent<FrontSkill>().hitCollider_polygon.excludeLayers = LayerMask.GetMask("BlueTeam");
 
 
             objSkill = obj.gameObject.GetComponent<FrontSkill>();

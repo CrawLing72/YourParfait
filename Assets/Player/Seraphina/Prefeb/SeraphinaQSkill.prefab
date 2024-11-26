@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202575319040091513, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1202575319040091513, guid: b943495eb41acd64eb4c00fedd7917a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -166,6 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 200
+  hitCollider: {fileID: 9097957919347333945}
+  hitCollider_box: {fileID: 0}
+  hitCollider_polygon: {fileID: 0}
 --- !u!114 &5044852290280232133
 MonoBehaviour:
   m_ObjectHideFlags: 0

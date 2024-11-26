@@ -37,7 +37,11 @@ public class RangeAttack : NonTargetThrow
             if (targetObj != null && !targetObj.HasStateAuthority) // 본인이 마스터 클라이언트가 아닌 경우
             {
                 // RPC 호출로 데미지 및 상태 이상 적용
-                if (!targetObj.gameObject.CompareTag("NPC")) gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
+                if (!targetObj.gameObject.CompareTag("NPC"))
+                {
+                    Stat targetStat = targetObj.gameObject.GetComponent<Stat>();
+                    targetStat.SetCurrentHp(targetStat.GetCurrentHp() - damage); // -> SetCurrentHP 내부에 RPC 존재
+                }
                 else
                 {
                     MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();

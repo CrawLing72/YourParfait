@@ -16,11 +16,15 @@ public class Mola : NetworkBehaviour, IAttack
 
     public override void FixedUpdateNetwork()
     {
-        healthBar.value = health / maxHealth;
         if(health <= 0)
         {
             NetworkManager.Instance.runner.Despawn(Object);
         }
+    }
+
+    public void FixedUpdate()
+    {
+        healthBar.value = health / maxHealth;
     }
 
 

@@ -44,6 +44,8 @@ public class RainykController : BasicController, IAttack
                 float xinterpolation = isLeft ? 5f: -4f;
                 Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition - interpolation, Quaternion.identity);
+                if (isRedTeam) obj.gameObject.GetComponent<FrontSkill>().hitCollider_box.excludeLayers = LayerMask.GetMask("RedTeam");
+                else obj.gameObject.GetComponent<FrontSkill>().hitCollider_box.excludeLayers = LayerMask.GetMask("BlueTeam");
                 FrontSkill objSkill = obj.gameObject.GetComponent<FrontSkill>();
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
 
@@ -79,6 +81,8 @@ public class RainykController : BasicController, IAttack
                 Vector3 interpolation = new Vector3(0f, 0f, 0);
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition - interpolation, Quaternion.identity);
                 NonTargetSkill objSkill = obj.gameObject.GetComponent<NonTargetSkill>();
+                if (isRedTeam) obj.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
+                else obj.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
 
                 Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 myPos = Object.transform.position;

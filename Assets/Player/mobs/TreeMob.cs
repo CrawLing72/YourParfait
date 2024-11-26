@@ -2,6 +2,7 @@ using Fusion;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,12 +20,14 @@ public class TreeMob : NetworkBehaviour, IAttack
     public float maxHealth = 200f;
 
     private float timer = 0f;
-    private bool isPlayerExists = false;
 
-    private NetworkObject target;
-    public override void FixedUpdateNetwork()
+    [Networked]
+    private bool isPlayerExists { get; set; } = false;
+    [Networked]
+    private NetworkObject target { get; set; }
+
+    public void FixedUpdate()
     {
-        GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
         if (isPlayerExists)
         {
             timer += NetworkManager.Instance.runner.DeltaTime;
@@ -35,6 +38,13 @@ public class TreeMob : NetworkBehaviour, IAttack
             skeletonAnimation.AnimationName = "idle";
         }
 
+        healthBar.value = health / maxHealth;
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
+
         if(timer >= attackTime)
         {
             if(target != null && target.HasStateAuthority)
@@ -44,13 +54,12 @@ public class TreeMob : NetworkBehaviour, IAttack
             }
             else if (target != null && !target.HasStateAuthority)
             {
-                gameState.Rpc_ApplyDamageAndEffects(target.StateAuthority, damage, false, 0f, false, 0f, 0f);
+                Stat targetStat = target.GetComponent<Stat>();
+                targetStat.SetCurrentHp(targetStat.GetCurrentHp() - damage);
                 timer = 0f;
 
             }
         }
-
-        healthBar.value = health / maxHealth;
 
         if(health <= 0)
         {
@@ -85,5 +94,11 @@ public class TreeMob : NetworkBehaviour, IAttack
     public void Rpc_Damage(float _dm)
     {
         GetDamage(_dm);
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void Rpc_SettingAnimation(string _name)
+    {
+       skeletonAnimation.AnimationName = _name;
     }
 }

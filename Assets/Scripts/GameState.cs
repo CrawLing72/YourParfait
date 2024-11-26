@@ -59,11 +59,15 @@ public sealed class GameState : NetworkBehaviour, ISpawned
             }
 
         }
+        if (GameTime < 0f)
+        {
+            GameManager.instance.isGameOvered = true;
+        }
     }
 
     public override void Spawned()
     {
-        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo.PlayerCount - 1);
+        PlayerPrefs.SetInt("ClientIndex", NetworkManager.Instance.runner.SessionInfo. PlayerCount - 1);
         Debug.LogError("Client Index : " + PlayerPrefs.GetInt("ClientIndex"));
 
         if (PlayerPrefs.GetInt("ClientIdex") == 0)

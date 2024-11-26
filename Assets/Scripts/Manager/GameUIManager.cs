@@ -9,6 +9,13 @@ public class GameUIManager : MonoBehaviour
 
     public static GameUIManager instance;
 
+    [Header("Minimap")]
+    public GameObject Minimap;
+
+    [Header("DeadScreen")]
+    public GameObject RespawnTimeText;
+    public GameObject DeadEffect;
+
     [Header("TopStatusBar")]
     public Image TeamThemeBar;
     public TMP_Text ProductsCount;
@@ -94,7 +101,12 @@ public class GameUIManager : MonoBehaviour
         {
             for (int i = 0; i < 6; i++)
             {
-                if (gmInstance.IsRedTeam_Sync.Get(i)) char_index.Add(i);
+                if (gmInstance.IsRedTeam_Sync.Get(i) && GameManager.instance.isRedTeam) char_index.Add(i);
+                else if (!gmInstance.IsRedTeam_Sync.Get(i) && !GameManager.instance.isRedTeam)
+                {
+                    if (gmInstance.Players_Char_Index[i] != -1) char_index.Add(i);
+                }
+
             }
             int count = 0;
             foreach (int idx in char_index)

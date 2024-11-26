@@ -2,6 +2,7 @@ using Fusion;
 using Fusion.Sockets;
 using Spine.Unity;
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
@@ -81,11 +82,13 @@ public class BasicController : NetworkBehaviour, IAttack
 
     public MeshRenderer meshRenderer;
 
-    public Transform RedTeamBase;
-    public Transform BlueTeamBase;
+    private Vector3 RedTeamPos = new Vector3(-28.83f, 0.78f, 0);
+    private Vector3 BlueTeamPos = new Vector3(29.12f, 0.03f, 0);
 
     private float SpawnTimer = 0f;
     private float DeadAnimTImer = 0f;
+
+    private bool isDeadAnimEnded = false;
 
     protected void Awake()
     {
@@ -110,6 +113,10 @@ public class BasicController : NetworkBehaviour, IAttack
 
     public override void FixedUpdateNetwork()
     {
+        isRedTeam = GameManager.instance.isRedTeam;
+        if (isRedTeam) gameObject.layer = 9;
+        else gameObject.layer = 10;
+
         if (!isDead)
         {
             if (stat.GetCurrentHp() <= 0f) // When Dead while playing
@@ -143,14 +150,21 @@ public class BasicController : NetworkBehaviour, IAttack
         }
         else
         {
+            stat.SetGoodsCount(0);
+
             GameUIManager.instance.RootObj.SetActive(false);
             GameUIManager.instance.Char_Face.transform.parent.gameObject.SetActive(false); 
+
+            GameUIManager.instance.DeadEffect.SetActive(true);
+            GameUIManager.instance.RespawnTimeText.SetActive(true);
+            TMP_Text text = GameUIManager.instance.RespawnTimeText.GetComponent<TMP_Text>();
+            text.text = "Respawn Time : " + ((int)SpawnTimer).ToString();
 
             SpawnTimer -= NetworkManager.Instance.runner.DeltaTime;
             DeadAnimTImer += NetworkManager.Instance.runner.DeltaTime;
 
-            if (isRedTeam) gameObject.transform.position = RedTeamBase.position;
-            else gameObject.transform.position = BlueTeamBase.position;
+            if (isRedTeam) gameObject.transform.position = RedTeamPos;
+            else gameObject.transform.position = BlueTeamPos;
 
             if (SpawnTimer < 0f)
             {
@@ -161,18 +175,22 @@ public class BasicController : NetworkBehaviour, IAttack
                 GameUIManager.instance.RootObj.SetActive(true);
                 GameUIManager.instance.Char_Face.transform.parent.gameObject.SetActive(true);
 
+                GameUIManager.instance.DeadEffect.SetActive(false);
+                GameUIManager.instance.RespawnTimeText.SetActive(false);
+
                 stat.SetCurrentHp(stat.GetMaxHp());
                 stat.SetCurrentMp(stat.GetMaxMp());
 
-                AnimName = "idle";
-                settingAnimation();
+                SettingAnimationIdle();
             }
             if(DeadAnimTImer > deathAnimTime)
             {
                 meshRenderer.enabled = false;
+                SettingAnimationIdle();
+                isDeadAnimEnded = true;
                 DeadAnimTImer = 0f;
             }
-            else
+            else if (isDeadAnimEnded == false)
             {
                 AnimName = "die";
                 settingAnimation();
@@ -186,9 +204,6 @@ public class BasicController : NetworkBehaviour, IAttack
     public override void Spawned()
     {
         base.Spawned();
-        isRedTeam = GameManager.instance.isRedTeam;
-        if (isRedTeam) gameObject.layer = 9;
-        else gameObject.layer = 10;
     }
 
 

@@ -8,12 +8,17 @@ using UnityEngine.UI;
 public class CraftingTable : NetworkBehaviour, IAttack
 {
     [Networked]
-    bool isSecondStage { get; set; } = false;
+    bool isSecondStage { get; set; }
 
     SpriteRenderer spriteRenderer;
 
     [Networked]
-    int goods_count { get; set; } = 0;
+    int goods_count { get; set; }
+
+    [Networked]
+    float totalDamage { get; set; }
+
+    public int maxDamage = 1000;
 
     public bool isRedTeam = true;
     public int maximumGoodsCount = 20;
@@ -29,6 +34,13 @@ public class CraftingTable : NetworkBehaviour, IAttack
 
     }
 
+    public override void Spawned()
+    {
+        isSecondStage = false;
+        goods_count = 0;
+        totalDamage = 0f;
+    }
+
     private void Start()
     {
         this.enabled = true;
@@ -36,7 +48,7 @@ public class CraftingTable : NetworkBehaviour, IAttack
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !isSecondStage)
         {
             NetworkObject targetObj = collision.gameObject.GetComponent<NetworkObject>();
             GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
@@ -86,16 +98,38 @@ public class CraftingTable : NetworkBehaviour, IAttack
             goods_count = 0;
             isSecondStage = true;
         }
-        goodsText.text = goods_count.ToString() + "/" + maximumGoodsCount.ToString();
+    }
+
+    public void FixedUpdate()
+    {
+        if (!isSecondStage) goodsText.text = goods_count.ToString() + "/" + maximumGoodsCount.ToString();
+        else
+        {
+            goodsText.text = "Making..";
+            slider.value = totalDamage / maxDamage;
+
+            if (totalDamage >= maxDamage)
+            {
+                if (Object.HasStateAuthority)
+                {
+                    GameManager.instance.isGameOvered = true;
+                    GameManager.instance.isRedTeamWin = isRedTeam;
+                }
+                else
+                {
+                    Rpc_gameOver(isRedTeam);
+                }
+            }
+        }
     }
 
     public void GetDamage(float Damage)
     {
-
+        totalDamage += Damage;
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void Rpc_SetDamage(float _damage)
+    public void Rpc_PlusDamage(float _damage)
     {
         GetDamage(_damage);
     }
@@ -104,5 +138,12 @@ public class CraftingTable : NetworkBehaviour, IAttack
     public void Rpc_SetGoodsCount(int _count)
     {
         goods_count = _count;
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void Rpc_gameOver(bool isRedTeam)
+    {
+        GameManager.instance.isGameOvered = true;
+        GameManager.instance.isRedTeamWin = isRedTeam;
     }
 }

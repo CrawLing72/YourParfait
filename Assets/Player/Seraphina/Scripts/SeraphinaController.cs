@@ -42,6 +42,9 @@ public class SeraphinaController : BasicController, IAttack
             {
                 Vector3 interpolation = new Vector3(0f, 2.5f, 0);
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
+                if (isRedTeam) obj.gameObject.GetComponent<FrontSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
+                else obj.gameObject.GetComponent<FrontSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
+
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
                 obj.gameObject.SetActive(true);
@@ -67,6 +70,9 @@ public class SeraphinaController : BasicController, IAttack
             {
                 Vector3 interpolation = new Vector3(0f, 2.5f, 0);
                 NetworkObject obj = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
+                if (isRedTeam) obj.gameObject.GetComponent<FrontSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
+                else obj.gameObject.GetComponent<FrontSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
+
                 obj.gameObject.transform.SetParent(gameObject.transform, true);
                 destroyObj = obj;
                 obj.gameObject.SetActive(true);

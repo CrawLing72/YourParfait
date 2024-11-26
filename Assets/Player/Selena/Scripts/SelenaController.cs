@@ -70,9 +70,12 @@ public class SelenaController : BasicController, IAttack
 
             if (disTance.magnitude < ESkillRange)
             {
-                Debug.LogError("InputActionE Happened!");
                 NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillEPreFeb, CurrenPosition, Quaternion.identity);
                 NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
+                if (isRedTeam) attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
+                else attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
+
+
                 Animator animator = attack.gameObject.GetComponent<Animator>();
 
                 animator.SetBool("isE", true);
@@ -104,6 +107,9 @@ public class SelenaController : BasicController, IAttack
             if (disTance.magnitude < QSkillRange)
             {
                 NetworkObject attack = NetworkManager.Instance.runner.Spawn(skillQPreFeb, CurrenPosition, Quaternion.identity);
+                if (isRedTeam) attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("RedTeam");
+                else attack.gameObject.GetComponent<NonTargetSkill>().hitCollider.excludeLayers = LayerMask.GetMask("BlueTeam");
+
                 NonTargetSkill skill = attack.GetComponent<NonTargetSkill>();
 
                 skill.SetSkillDamage(200.0f); // need Change
