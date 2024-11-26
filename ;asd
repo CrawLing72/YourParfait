@@ -1,0 +1,1172 @@
+[33mcommit f6d242f6dea22be655ee52a261d0d40397c6e2f6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain_2[m[33m, [m[1;33mtag: [m[1;33mv0.1[m[33m, [m[1;31morigin/main_2[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 14:42:34 2024 +0900
+
+    Beta 0.02v
+
+[33mcommit d53b8df0f99e1c8b5096ffbde161cabdca311c25[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 14:28:41 2024 +0900
+
+    Tree Fixing & GameStarting MEch.
+
+[33mcommit 2ff7bce8a552b355ebeda474c16e5db8139112aa[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 14:16:57 2024 +0900
+
+    dl;asjadkl;
+
+[33mcommit 3029208ef8dcdbb524a62572a3f2c28426a94b2c[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 13:31:18 2024 +0900
+
+    Tower Bug Fixed
+
+[33mcommit abfe8d11210070797e99e4e5adf16fd6d0fff123[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 13:24:46 2024 +0900
+
+    1324 : Final Tree Fix.. maybe?
+
+[33mcommit f33966a389f0527373ca58fa6e5ad60d2c092dd1[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 13:10:05 2024 +0900
+
+    13:10
+
+[33mcommit 8a1d0411640b681c5b189919b041ea57af032b7c[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 13:03:26 2024 +0900
+
+    1303
+
+[33mcommit b22d3c30d579498f148946bec29e75923f87bd3a[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 12:53:29 2024 +0900
+
+    Tree TRSP Added -> sibal
+
+[33mcommit bdd7f08f4730e57d81048b90f3a60e602791b11e[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 12:35:09 2024 +0900
+
+    11261235
+
+[33mcommit 040340b20712c650fe3e1222bbc82a70bcc2de2f[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 12:24:42 2024 +0900
+
+    lasdlkjlkasjd
+
+[33mcommit dc593578e8c9fa2224ece7f9638f3184f79bf6fc[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 12:22:33 2024 +0900
+
+    Fix : Tree Bug
+
+[33mcommit fe73036ba870c34010eaa8f4a3522e655f6f113a[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 26 12:05:30 2024 +0900
+
+    Final : Beta 0.01v
+
+[33mcommit 33f6fd36ff8159c835b1b2e93dabb1f3c9ed5346[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Mon Nov 25 15:45:27 2024 +0900
+
+    Player Death Implemented(except VFX)
+
+[33mcommit 282daf39426390aee5da3201b187cf001a6948b2[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 25 03:36:14 2024 +0900
+
+    ADDED : Mobs
+
+[33mcommit 5fc03e8bb22d30410270692ecb6ff67e474556bf[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 25 01:33:39 2024 +0900
+
+    COMPLETED (Except mob, 연출)
+
+[33mcommit c88bc5ab57005f7697e569b9fd45bfc7fb8acedf[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 24 17:03:28 2024 +0900
+
+    Seraphina Fix
+
+[33mcommit a556803f82f27cef4c46c9ebae7db2bafa4aa43c[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 24 17:00:13 2024 +0900
+
+    Effect Obj Sync Parrent
+
+[33mcommit d604b9b0b8132cf5293273694f68a6154a88585d[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 24 16:41:59 2024 +0900
+
+    Fixed : Skill Object Position
+
+[33mcommit 21537fa99e837cb23793b07af828a0ddaf7de6f3[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 24 16:21:19 2024 +0900
+
+    Minor Fix : Prefab Activated when init.
+
+[33mcommit 200d4584b1c08d340bf7ee0a5afa14a99b069930[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 24 16:16:57 2024 +0900
+
+    FIX : Skill Animation -> Not Synced.
+
+[33mcommit 9d49d7dca01b5b74770e7e3b850ea06b37a59ca7[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 24 14:48:30 2024 +0900
+
+    Cooltime Expression Impelmented
+
+[33mcommit fb146ef08923478d88604d093d24f4368c8d35b5[m
+Merge: 3639d95 e22d953
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 24 11:52:57 2024 +0900
+
+    Merge pull request #22 from CrawLing72/Mob-AI
+    
+    Mob ai & Audio Integration
+
+[33mcommit e22d953fc8fe55ee24997791265f29269e30255f[m
+Author: KimSeungHan <rlatmdgks4@naver.com>
+Date:   Sun Nov 24 05:48:12 2024 +0900
+
+    Update Sounds
+
+[33mcommit ceabffaf974458062818588e63bada8c9797dc71[m
+Author: KimSeungHan <rlatmdgks4@naver.com>
+Date:   Sun Nov 24 04:36:04 2024 +0900
+
+    Update Mob, Fox AI
+
+[33mcommit 3639d9507f8ed71a83c7175de38890e3996ee280[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 23:54:36 2024 +0900
+
+    2411232355
+
+[33mcommit 879e06796b37cbe989535961c47d7f0a1f73183d[m
+Merge: 9ffd94b c7ffc19
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 22:05:53 2024 +0900
+
+    Merge pull request #21 from CrawLing72/networandmerge
+    
+    Final Merge to main_2
+
+[33mcommit c7ffc1919206d2db424e543c41d78cdb49666bac[m[33m ([m[1;31morigin/network[m[33m, [m[1;31morigin/networandmerge[m[33m, [m[1;32mnetwork[m[33m, [m[1;32mnetworandmerge[m[33m)[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sat Nov 23 21:47:12 2024 +0900
+
+    Table Change
+    
+    .
+
+[33mcommit 75fa3652f10106165d4415ffb068dfc59ff90a58[m
+Merge: d03cf88 de856d9
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sat Nov 23 20:59:05 2024 +0900
+
+    Merge remote-tracking branch 'origin/network' into networandmerge
+
+[33mcommit de856d9626734fca95809ca70a577de55451e405[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Sat Nov 23 18:09:43 2024 +0900
+
+    Fix : Minor Bugs
+
+[33mcommit d03cf886571103f5ef8b15e28d95ce3263cf74f1[m[33m ([m[1;31morigin/add-table-and-minion-Spwnaer[m[33m)[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sat Nov 23 17:48:43 2024 +0900
+
+    add table and minionSpawn 1
+    
+    ..
+
+[33mcommit fbfbfc99d3ee27e9ee1dc3b94eb4567092c99e10[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 16:45:41 2024 +0900
+
+    202411231645
+
+[33mcommit 0ce09b2ff2c735b37d2c733673e450f1933c7359[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 16:36:58 2024 +0900
+
+    RPC -> GameState(All except PM)
+
+[33mcommit 60f4bb13578393f29a02f8c2bc48acca97258559[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 16:31:05 2024 +0900
+
+    minor fix
+
+[33mcommit e96fc8c60311ba8058e48ebc714998835ae24ea9[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 16:07:53 2024 +0900
+
+    minor fix
+
+[33mcommit c0d8b75a3752ce9fd3cced6464f83a66efb1f277[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 15:23:32 2024 +0900
+
+    BAK Fixed
+
+[33mcommit ae4f5e25affb996c87a59265d6bdb9b6d6a8bd87[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 14:55:58 2024 +0900
+
+    2411232455
+
+[33mcommit 3023b87bb017ab809bb7a0c6c61feaab57ccf523[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 23 14:31:50 2024 +0900
+
+    FETCH : Attack Networking System Fixed
+
+[33mcommit 1a6e4c9cdf10a58eedf54e393cfb85d1eaaac850[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Fri Nov 22 23:50:45 2024 +0900
+
+    Fixed : main bar status loading bug fixed
+
+[33mcommit e7e383663c0d8de36c8a41104d00ed8ca532effe[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Fri Nov 22 22:44:05 2024 +0900
+
+    Player Controller except mixube
+
+[33mcommit d12d24e079e9ddf5b7ad690f3259eaae8b2e133b[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Thu Nov 21 14:12:00 2024 +0900
+
+    Rainyk Controller (temp)
+
+[33mcommit de95ae570a12734bf508e64355ae65ff6f0115d8[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Thu Nov 21 12:33:52 2024 +0900
+
+    'slkjkadkasjd'
+
+[33mcommit 8e0f83d6876b71d7e2dc6f284ed728b5338578da[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Nov 20 21:46:42 2024 +0900
+
+    Fixed : Job bug sibal
+
+[33mcommit 0bd57f974a5bf1eed45ce171d81cc1f4e5fa56e0[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Wed Nov 20 18:03:27 2024 +0900
+
+    FIXED : NonTargetSkill not applies to player(self)
+
+[33mcommit 02ff7cc011b57b36bcf4f49d4610d97fe848c536[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Nov 20 16:30:59 2024 +0900
+
+    BasicController Fixed & Selena Completed
+
+[33mcommit d93dff3f25e9f35f52ede644f0a0cd3caace33d3[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Tue Nov 19 14:31:27 2024 +0900
+
+    ADDED : Char, mob, and Res
+
+[33mcommit 2b767dba4fcd1797f8feb9e4c79c443f237e6d29[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Tue Nov 19 13:46:12 2024 +0900
+
+    ADDED : Seraphina Effect
+
+[33mcommit bba9ec68d265396d12d66b94cdba4210bcd4fc1d[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 19 03:15:31 2024 +0900
+
+    Skil Effect ADDED
+
+[33mcommit 05917641d07903d2b0d7554888844354c3347dc1[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 19 01:06:04 2024 +0900
+
+    minor fix : include player in GM
+
+[33mcommit ae5d8add4ad8e162bc2b19e4473ad8d929a2de61[m[33m ([m[1;31morigin/Mob-AI[m[33m)[m
+Author: KimSeungHan <rlatmdgks4@naver.com>
+Date:   Mon Nov 18 21:59:09 2024 +0900
+
+    Create Sounds File
+
+[33mcommit 9ffd94b0b1f69e8b2f3e3c66a9b66ab1c610dc27[m
+Merge: 5d36cf9 304a7db
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 18 21:47:30 2024 +0900
+
+    Merge pull request #20 from CrawLing72/Mob-AI
+    
+    Mob ai
+
+[33mcommit 5d36cf9d6d730cdfb4007812caeae4facaf762b1[m
+Merge: 1d65fda faedfae
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 18 19:50:52 2024 +0900
+
+    Merge pull request #19 from CrawLing72/network
+    
+    Network System Fixed
+
+[33mcommit faedfae85a8cd34c5f97e23a0d19c936a2933f5c[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 18 19:48:15 2024 +0900
+
+    Network System Fixed
+
+[33mcommit 7deb146a9da23b087d78854fb682e28522625968[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Mon Nov 18 15:09:46 2024 +0900
+
+    BAK to Network
+
+[33mcommit a693baccff12bb82959580a99db322443284991e[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Mon Nov 18 12:06:13 2024 +0900
+
+    2411181205
+
+[33mcommit 1d65fda2176dd318b85292c1d0a2d8d0a6ebfede[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 18 11:48:58 2024 +0900
+
+    '202411181148'
+
+[33mcommit a273af222c397759f6210793ac095935ad9309fc[m
+Merge: a32b54f 1f10498
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 16:18:15 2024 +0900
+
+    Bugs Fixed
+
+[33mcommit a32b54ff2797f1ab4d0dea821577d64eed134b13[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 14:52:16 2024 +0900
+
+    FIXED
+
+[33mcommit 1f1049873c988530bfe0eca165968a5288069ee8[m
+Merge: 78d3a5a b1dbac3
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 14:26:38 2024 +0900
+
+    Merge pull request #18 from CrawLing72/TEst1
+    
+    Main Branch뻑나서 skills로 덮습니다
+
+[33mcommit b1dbac3a71fafad48fbfa8f19367ba8a97a957ab[m[33m ([m[1;31morigin/TEst1[m[33m)[m
+Merge: 8b8f38a e52681a
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 14:20:15 2024 +0900
+
+    Merge branch 'main' into TEst1
+
+[33mcommit e52681ac6392d8de1bd114aeb4cef5ebaeb9ea48[m
+Merge: 62b7512 78d3a5a
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 14:13:15 2024 +0900
+
+    Merge pull request #16 from CrawLing72/skills
+    
+    Game Sync Implementation
+
+[33mcommit 78d3a5a58991f2455dcf592ad311d710de7c3e13[m
+Merge: 08ee627 62b7512
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 14:13:08 2024 +0900
+
+    Merge branch 'main' into skills
+
+[33mcommit 08ee6276aa56ae6ee9a8477d04350a2370640bad[m[33m ([m[1;31morigin/skills[m[33m)[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 14:00:50 2024 +0900
+
+    Minor Change
+
+[33mcommit c146c118647d59774292a2485ec73fe84187a12b[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 13:41:29 2024 +0900
+
+    FETCH : GameInfos -> GameStatus
+
+[33mcommit f0ec5a7f07c0bfb220d4755143346ef0bceae34d[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 12:09:38 2024 +0900
+
+    Release StateAuthority
+
+[33mcommit 8dc973c092ad67271adb28dae91304f47075b62f[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 10:36:46 2024 +0900
+
+    Fixed: bugs
+
+[33mcommit 43ff718d8f11dcbaa27f45b38247242d4b093ca2[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 10:11:37 2024 +0900
+
+    asjdklasjkdljkladlk
+
+[33mcommit 3a5256611657dab4d7a82b877acf61ac845669ba[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 10:04:29 2024 +0900
+
+    FIXED : Stat - GM Comm.
+
+[33mcommit 8b8f38aee2a63116ac44647b106e545e2607f2cf[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sun Nov 17 05:15:18 2024 +0900
+
+    Add Tower
+
+[33mcommit 304a7db48eee558a599209217ba02b7e6ddf155c[m
+Author: KimSeungHan <rlatmdgks4@naver.com>
+Date:   Sun Nov 17 04:40:59 2024 +0900
+
+    Create Mob AI
+
+[33mcommit 4918551ad544d985664239b5c18b9715e2265e4a[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 17 01:09:21 2024 +0900
+
+    FETCH : MultiSystem Refactoring, Etc.
+
+[33mcommit ff8a7e7bb36bebf59722f655288ea11cd92a9c9d[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 16 21:12:17 2024 +0900
+
+    Fetch : GameManager Refactoring
+
+[33mcommit e5138e9ad5877e1c1aa20de486cd7286b74ce04b[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sat Nov 16 19:18:08 2024 +0900
+
+    Change Trigger and AddTower(But not work)
+
+[33mcommit 5f05fffb369235ce9416d2eb3418fe90418f912b[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 16 16:21:38 2024 +0900
+
+    202411161621
+
+[33mcommit aa293689d2e71e78740986761414390c879f07af[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 16 16:15:41 2024 +0900
+
+    2411150415
+
+[33mcommit 44a6ed29119a686bcc4c574cf2a3cc269bbaed77[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Sat Nov 16 14:26:52 2024 +0900
+
+    FETCH : UI
+
+[33mcommit bc0eaa8c8e4a7cf643f63b6b55cd99a644a145fb[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sat Nov 16 00:52:46 2024 +0900
+
+    .
+    
+    .
+
+[33mcommit f1a7d4a53de40923391f1b75f8879b79defc7f7e[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Sat Nov 16 00:27:04 2024 +0900
+
+    GameInfo Sync and UI data transfer(partial)
+
+[33mcommit 85f0d474487c42105303df37f824ca63f18bb75c[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Fri Nov 15 23:30:31 2024 +0900
+
+    add Factory
+
+[33mcommit d728096e65663a812a0a9d10d011ff05c35441c0[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Fri Nov 15 21:26:48 2024 +0900
+
+    attack change
+
+[33mcommit 0a6740450fc98d8161742f7a9d81352a8a82234f[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Fri Nov 15 10:18:38 2024 +0900
+
+    Seraphina
+    
+    .
+
+[33mcommit 6fdb7daee685fef7685f81940fc4548b44228cd0[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Fri Nov 15 10:14:08 2024 +0900
+
+    'asdads'
+
+[33mcommit 20b4cc9816c2f433e73ace46b73bf646f3f86abb[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Thu Nov 14 20:02:37 2024 +0900
+
+    .
+    
+    .
+
+[33mcommit 868b04a6b0f7f32eb3672ffaa351f4f079c7a523[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Thu Nov 14 19:41:58 2024 +0900
+
+    GameScene
+    
+    .
+
+[33mcommit 0d5fb001e28ba5e3e36c10af10e5913079ab3eb5[m
+Merge: a191584 bb804aa
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Thu Nov 14 19:41:23 2024 +0900
+
+    .
+    
+    .
+
+[33mcommit a191584c95ab67a660e97d14a0884e817a281a90[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Thu Nov 14 19:39:17 2024 +0900
+
+    add bondage
+    
+    .
+
+[33mcommit 62b751269b7047615aa0f0d26b14b2f67a86f207[m
+Merge: 96be59a bb804aa
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Thu Nov 14 17:00:42 2024 +0900
+
+    Merge pull request #15 from CrawLing72/TEst1
+    
+    T est1
+
+[33mcommit bb804aafc7c9ad6acf92455da1cce23834e73362[m
+Merge: e925c87 96be59a
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Thu Nov 14 17:00:34 2024 +0900
+
+    Merge branch 'main' into TEst1
+
+[33mcommit e925c87afa3ceaed8a18507807e01ed4a4304432[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Thu Nov 14 16:02:54 2024 +0900
+
+    bug fix
+    
+    .
+
+[33mcommit 60dfa102a283f438de53bd093981a5361e377dc7[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Thu Nov 14 15:54:37 2024 +0900
+
+    ControllerChange
+    
+    .
+
+[33mcommit c92aabed82ad8152bf1155eaaed6e959ae06a1b9[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Thu Nov 14 15:43:00 2024 +0900
+
+    ControllerChange
+    
+    .
+
+[33mcommit 0c92c1f03015243a4520c73cbab1ebd2babf17a3[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Thu Nov 14 15:38:23 2024 +0900
+
+    ControllerChange
+    
+    .
+
+[33mcommit 53b4aa4c3b129135236cfee9aafd0670ca6a3753[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Thu Nov 14 09:24:50 2024 +0900
+
+    UPDATE : Main Intro Video
+
+[33mcommit 96be59a059770397d1046706cfa45cfd9c7aa986[m
+Merge: c0574c5 7ba289c
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Nov 13 21:06:54 2024 +0900
+
+    Merge pull request #14 from CrawLing72/skills
+    
+    FETCH : MultiSys and Selena
+
+[33mcommit 7ba289c0052d78f76a43f8c7d54267d2f5e7f1cf[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Nov 13 21:05:39 2024 +0900
+
+    FETCH : MultiSys and Selena
+
+[33mcommit c0574c509c7683640aebbcfc602a39572e62a8da[m[33m ([m[1;32mmain[m[33m)[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Wed Nov 13 17:45:12 2024 +0900
+
+    commit
+    
+    .
+
+[33mcommit 3c33c14410f5ccb52572083f67c793c80b62936d[m
+Author: KimSeungHan <rlatmdgks4@naver.com>
+Date:   Tue Nov 12 23:35:46 2024 +0900
+
+    Create Mob AI
+
+[33mcommit 981eb9109fde3e4935f16201685dceefb1d5b66f[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 23:33:51 2024 +0900
+
+    EMERGENCY FETCH : Movement Bug Fixed
+
+[33mcommit c004c4269a1ef8de9008dafe10f257ae366a29bd[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 22:23:01 2024 +0900
+
+    FETCH : Error Fixed
+
+[33mcommit bc136bd587cf04f78577b0278209c1f64ad2f84b[m
+Merge: a22a8a8 95e9220
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 22:08:27 2024 +0900
+
+    Merge pull request #13 from CrawLing72/MultiSys
+    
+    FETCH : ETC
+
+[33mcommit 95e9220624c2fa7ad0546e2bc046952eb2fb0ccb[m[33m ([m[1;31morigin/MultiSys[m[33m)[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 22:06:51 2024 +0900
+
+    FETCH : ETC
+
+[33mcommit a22a8a8e5ded8b8aaa91cb796181150b99288eb6[m
+Merge: 8cde4b8 df2bbb2
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 22:04:26 2024 +0900
+
+    Merge pull request #12 from CrawLing72/Player2
+    
+    factory addㅁㄴㅇㅁㄴㅇㄴㅁㅇ
+
+[33mcommit df2bbb20af24b617210f1a987c90534b031b30ef[m[33m ([m[1;31morigin/Player2[m[33m)[m
+Merge: 82644c6 8cde4b8
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 22:04:11 2024 +0900
+
+    Merge branch 'main' into Player2
+
+[33mcommit 82644c65db88e28179c219507e95f9459d1eb7aa[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Tue Nov 12 21:59:34 2024 +0900
+
+    factory add
+    
+    .
+
+[33mcommit 8cde4b8a8e9622d6a600d1cff82c8599e82eb3d4[m
+Merge: aaae753 8e7a6d4
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 18:46:42 2024 +0900
+
+    Merge pull request #11 from CrawLing72/MultiSys
+    
+    Merging Completed Map Structure
+
+[33mcommit 8e7a6d418559dd0f3c99f5f02382a3d9d9c6a408[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 18:45:19 2024 +0900
+
+    FETCH : MAP Object Batch
+
+[33mcommit d43b048e88623030ba54f8f8ce15fdbfeb6fadf6[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Tue Nov 12 14:27:13 2024 +0900
+
+    FETCH : UI/skillset
+
+[33mcommit f7f882663e87190b773a40b338b9a10dff29ff95[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 12 08:53:07 2024 +0900
+
+    FETCH : UI & Char
+
+[33mcommit e96724e46c6d1953acc75306dc7c7ffdbb94a663[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Mon Nov 11 14:53:15 2024 +0900
+
+    ADDED: inGame UI
+
+[33mcommit aaae7530613a4192295efa86c249205104c82dbf[m
+Merge: 05a0d8a 78f707c
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 11 00:03:45 2024 +0900
+
+    Merge pull request #10 from CrawLing72/MultiSys
+    
+    ADDED : Normal Attack
+
+[33mcommit 78f707cec56050d04fa4d2a808cc5877551fce99[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 11 00:02:58 2024 +0900
+
+    ADDED : Normal Attack
+
+[33mcommit 05a0d8ad5319ac6600236a5a2f03060d31f94589[m
+Merge: 7a6f82d 7b6c26f
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 9 23:29:07 2024 +0900
+
+    Merge pull request #9 from CrawLing72/MultiSys
+    
+    Char System Integration
+
+[33mcommit 7b6c26f7a7b0603f3d724c98bb13d1d2902297d3[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 9 23:28:06 2024 +0900
+
+    UPDATE : Char System
+
+[33mcommit 5adc2d9d6cbb53d37140c5c4f8dde926449f86e3[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Sat Nov 9 19:19:10 2024 +0900
+
+    FETCH : Player
+
+[33mcommit 7a6f82df42c5aad06964ea46c1efb7e32149df14[m
+Merge: 27baa9f 23f6cb2
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Thu Nov 7 19:29:30 2024 +0900
+
+    Merge pull request #8 from CrawLing72/MultiSys
+    
+    Multi sys
+
+[33mcommit 23f6cb2dbebbf4721c243757497610628217df83[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Wed Nov 6 14:35:55 2024 +0900
+
+    FIXED : Selena & Spine:
+
+[33mcommit ff919d26ed3e0d6aef864473184f06d1ef992028[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Nov 6 00:11:52 2024 +0900
+
+    ADDED : Spine Plugin & ex
+
+[33mcommit 594477fd093b0e856cb25a01e200cea4d01ab620[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 5 12:21:08 2024 +0900
+
+    ADDED : SPINE!
+
+[33mcommit eae775657c88bc571d392c319cd27339570653cb[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Nov 5 12:02:57 2024 +0900
+
+    ADDED : Light
+
+[33mcommit 27624ac8c8e93c572f1ba440a5954008917339c0[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Nov 4 17:38:40 2024 +0900
+
+    FETCH : Camera Const & Multi
+
+[33mcommit 27baa9fe3ecf7a1d3ef91e7a3a989816533415f3[m
+Merge: dbbb98a 4f1fa5b
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 3 23:23:08 2024 +0900
+
+    Merge pull request #7 from CrawLing72/MultiSys
+    
+    FETCH : Tab movement and Fusion Runner Basic Setting Completed
+
+[33mcommit 4f1fa5bf7c078fbfe43036cfb74e9c5c1069cbe6[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sun Nov 3 23:20:36 2024 +0900
+
+    FETCH : Tab movement and Fusion Runner Basic Setting Completed, 자세한건 PM에 문의
+
+[33mcommit dbbb98a7650c2ed9987a0728d1b43b067eb2d8a5[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 2 05:15:59 2024 +0900
+
+    minor fix
+
+[33mcommit bb76b3e2abe3ba66dd039b35c2b87e8ace259f4c[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 2 04:17:18 2024 +0900
+
+    FETCH : Map border collision & cinema
+
+[33mcommit e78eca172344bd595a6ca9f583c42f28b26cb5ab[m
+Merge: a2d0bd6 495dee5
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 2 03:30:27 2024 +0900
+
+    Merge branch 'main' of https://github.com/CrawLing72/YourParfait
+
+[33mcommit a2d0bd61ee394f7b2e0d9bdcbc0c8dd6166fcccb[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Nov 2 03:29:58 2024 +0900
+
+    ADDED : Click effect
+
+[33mcommit 495dee567ba8fb4d78de0d8645d940f4ed271233[m
+Merge: c3c5521 16dcdc1
+Author: KimSeungHan <rlatmdgks4@naver.com>
+Date:   Sat Nov 2 02:54:03 2024 +0900
+
+    Merge pull request #6 from CrawLing72/Mob-AI
+    
+    Create memojang
+
+[33mcommit 16dcdc12294ab1b60b1ebbaab42218d21a8dc398[m
+Author: KimSeungHan <rlatmdgks4@naver.com>
+Date:   Sat Nov 2 02:51:25 2024 +0900
+
+    Create memojang
+
+[33mcommit c3c55216def424f35db00801d2b6e251f816f3c1[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Mon Oct 28 17:13:46 2024 +0900
+
+    ADDED : UI Particle System:
+
+[33mcommit 41e74e966cfe97e6ce0f911e0fd7b7b790e9e835[m
+Merge: a4e0d0b 0ce2a72
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Oct 12 17:06:02 2024 +0900
+
+    Merge branch 'main' of https://github.com/CrawLing72/YourParfait
+
+[33mcommit a4e0d0b865fce55dcb84c86db2541118053cfbbc[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Oct 12 17:05:52 2024 +0900
+
+    Fix : Network Error Fixed
+
+[33mcommit 0ce2a72c31034f66c4f3672bfaa3c660c86e1570[m
+Merge: 39b889d 8d6a0d4
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Oct 12 17:00:43 2024 +0900
+
+    Merge pull request #5 from CrawLing72/matchmaking
+    
+    Matchmaking branch merge to main due to imcomplete commit
+
+[33mcommit 8d6a0d4ccfd2989a6b3ff8301142ef0fe0a5cd2a[m[33m ([m[1;31morigin/matchmaking[m[33m)[m
+Merge: 51d682f df96019
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Oct 12 16:59:14 2024 +0900
+
+    Merge branch 'matchmaking' of https://github.com/CrawLing72/YourParfait into matchmaking
+
+[33mcommit 51d682f2369affbe6947e4529e6498499c66d0b9[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Oct 12 16:58:48 2024 +0900
+
+    main branch 이상 커밋 복구
+
+[33mcommit 9a6ec8b2b04d7d3aca5a9112095ae0afe0d9a53f[m
+Merge: dde048f 39b889d
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Oct 12 16:55:32 2024 +0900
+
+    Merge branch 'main' into matchmaking
+
+[33mcommit 39b889dab2be6749ae6537f674ca65daaf61582c[m
+Author: KimSeungHan <rlatmdgks4@naver.com>
+Date:   Sat Oct 12 16:47:48 2024 +0900
+
+    Add minion
+
+[33mcommit 0dc937caf4b9d34658747c8f2e844b1dbe2a45c7[m
+Merge: d029648 a1d5a2e
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Oct 9 17:32:15 2024 +0900
+
+    Merge pull request #4 from CrawLing72/Player
+    
+    Player
+
+[33mcommit a1d5a2e6ba5b09f76aa1521be29f5e59509a601c[m[33m ([m[1;31morigin/Player[m[33m)[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Wed Oct 9 17:02:32 2024 +0900
+
+    .
+    
+    .
+
+[33mcommit f866e1a17ec711c40476f3d5c874542a317fa304[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Wed Oct 9 12:51:56 2024 +0900
+
+    Add simple Camera Movement
+    
+    .
+
+[33mcommit df9601996890362cf6e063e7577270f910b5460d[m
+Merge: 821cdda dde048f
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Wed Oct 9 11:55:30 2024 +0900
+
+    Merge branch 'matchmaking' of https://github.com/CrawLing72/YourParfait into matchmaking
+
+[33mcommit 821cdda3a8de8f67d94a251ea54d42a5a56fbf28[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Wed Oct 9 11:55:03 2024 +0900
+
+    Fix : bugs
+
+[33mcommit dde048f3a3fa7ad8706cb3c913937c979a033184[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Oct 8 21:09:29 2024 +0900
+
+    FETCH : EC2 to Client(http)
+
+[33mcommit d029648dfb7f75d8d8ba1ca0d14349d650a7b295[m
+Merge: 708648f e681174
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Oct 7 22:06:28 2024 +0900
+
+    Merge pull request #3 from CrawLing72/matchmaking
+    
+    Client to Server Implementation
+
+[33mcommit e681174fc676e637915f16ed42a3756f65f8d0dc[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Mon Oct 7 22:03:12 2024 +0900
+
+    FETCH : JWT & Server arrange Implemented
+
+[33mcommit 9f0461c87527336f8a79a6836ffd6fe873f0bac4[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Mon Oct 7 14:26:54 2024 +0900
+
+    FETCH : JWT token importing implemented
+
+[33mcommit a3181c9fc294a0d28a6b15b6d228f6b9161ee860[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Sun Oct 6 20:13:28 2024 +0900
+
+    Fix : minor bugs
+
+[33mcommit 2e73da6162f5c77e1deca04688f16b91ce604f42[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Sun Oct 6 19:27:43 2024 +0900
+
+    FETCH : Client Login Implementation (Except JWT)
+
+[33mcommit 708648f4bd6daa45fde18fd1b40167b490c14e44[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Sat Oct 5 22:55:48 2024 +0900
+
+    UPDATE : Client-server comm.
+
+[33mcommit 39df6d2fc67245d26ab800e65031f30c438fdd15[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sat Oct 5 20:19:12 2024 +0900
+
+    skilll test 1
+    
+    .
+
+[33mcommit f57ed70bcba5e4bc578dc32103615620b75af22c[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Fri Oct 4 00:04:10 2024 +0900
+
+    FIXED : Scene 전환시 Ref 소멸 수정
+
+[33mcommit 082ad0811c3ccac3ad4e70e9260abb5b7a1a5e9f[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Oct 2 21:26:35 2024 +0900
+
+    Modified
+
+[33mcommit d72e88850df62d8af9c167bece99749ce7351884[m
+Merge: b83de06 18371f5
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Oct 2 21:13:36 2024 +0900
+
+    Merge pull request #2 from CrawLing72/matchmaking
+    
+    Test
+
+[33mcommit 18371f551b3f93f2aef7bebefe9799712b944d84[m
+Merge: ff16b41 4d16912
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Oct 2 21:10:31 2024 +0900
+
+    Merge branch 'matchmaking' of https://github.com/CrawLing72/YourParfait into matchmaking
+
+[33mcommit ff16b41f39b7423a2b44c132b4c607efcadf280e[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Oct 2 21:09:54 2024 +0900
+
+    REMOVE : read.me
+
+[33mcommit b83de066158df56b4ff9c3c73428f92526e33f44[m
+Merge: d3983e9 b3113eb
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Oct 2 21:03:42 2024 +0900
+
+    Merge branch 'main' of https://github.com/CrawLing72/YourParfait
+
+[33mcommit d3983e91e021dec08805719900db69f5f1daac34[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Wed Oct 2 21:00:48 2024 +0900
+
+    FETCH
+    
+    .
+
+[33mcommit 4d169125f8c4f3bc17ccdfcc55465f9e0edb25bd[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Wed Oct 2 14:28:36 2024 +0900
+
+    Fetch: 잡버그
+
+[33mcommit a2d590e98e7b18f091c06922c1c9e37dc05485f0[m
+Merge: b3113eb 55e7b78
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Wed Oct 2 12:01:32 2024 +0900
+
+    Merge branch 'matchmaking' of https://github.com/CrawLing72/YourParfait
+
+[33mcommit 55e7b78bfb11f99dcc6335542782666b647ea3a3[m
+Author: CrawLing72 <caseus.molamola@gmail.com>
+Date:   Tue Oct 1 22:57:10 2024 +0900
+
+    UPDATE : Matchmaking UI/Resource
+
+[33mcommit b3113eb3fba2157e0f9d06c77760a4f7bea91f17[m
+Merge: 1c53b71 a8ae193
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Tue Oct 1 13:16:41 2024 +0900
+
+    Merge pull request #1 from CrawLing72/matchmaking
+    
+    메인화면 일부 리소스를 메인 브렌치로 머지합시다
+
+[33mcommit a8ae193d433f5f9ec13df04b97fd0d7d1966f7fd[m
+Merge: 253ec2c 27af694
+Author: CrawLing72 <caseus.molamola@gmail.com>
+Date:   Tue Oct 1 13:14:00 2024 +0900
+
+    Merge branch 'matchmaking' of https://github.com/CrawLing72/YourParfait into matchmaking
+
+[33mcommit 253ec2c1c97e05f4ac89ef6c059f3ecb73221574[m
+Author: CrawLing72 <caseus.molamola@gmail.com>
+Date:   Tue Oct 1 13:13:39 2024 +0900
+
+    UPDATE : Resource
+
+[33mcommit 2cc7f61327d7d180eab68864855b069b032610f4[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Mon Sep 30 20:40:17 2024 +0900
+
+    Attack Mistake change
+    
+    .
+
+[33mcommit caa7f7f53ee9b5cca90c28ad6dc879ef39fd28a1[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Mon Sep 30 20:14:12 2024 +0900
+
+    AttackChange
+    
+    /
+
+[33mcommit 27af694c357237a61e201236a912867f2a65be31[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Sun Sep 29 17:08:42 2024 +0900
+
+    ADDED : Server Comm to match
+
+[33mcommit ef717cdb7d41f2157042595421ab8c3b49ae46f5[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sun Sep 29 16:52:02 2024 +0900
+
+    Add Timer
+    
+    .
+
+[33mcommit 61afdc4afe5a3f2ebed35b9d1c03503c40f0c41b[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sun Sep 29 12:11:55 2024 +0900
+
+    attack mistake change
+    
+    .
+
+[33mcommit c6cceb179757c7d0b522d901f86fbcc71f6261eb[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sun Sep 29 11:58:41 2024 +0900
+
+    Attack
+    
+    attacktest
+
+[33mcommit 55514630bb60515de0e20b74f60b77e1eed30a44[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sat Sep 28 21:03:27 2024 +0900
+
+    Folder Name Change
+    
+    miss
+
+[33mcommit cd6f3bd8768edddb4c7a060b59ecf9875b62ce55[m
+Author: kimminjae <alswo29291@gmail.com>
+Date:   Sat Sep 28 20:57:55 2024 +0900
+
+    PlayerSetting
+    
+    make player structure
+
+[33mcommit 1c53b713bf13e0dcb326423ff09f0a7eb3f3e741[m
+Author: CrawLing72 <dongdongcompay@khu.ac.kr>
+Date:   Sun Sep 22 11:15:08 2024 +0900
+
+    Fetch : CSV Manager Added
+
+[33mcommit 504abddec1246e2ec8f3b9c782096f1327db2f10[m
+Author: Huidong Shin <dongdongcompany@khu.ac.kr>
+Date:   Fri Sep 20 21:40:26 2024 +0900
+
+    Update readme.txt
+
+[33mcommit 5c111a432869fd2ce28e5c945214cc08e7ee288e[m
+Author: CrawLing72 <caseus.molamola@gmail.com>
+Date:   Fri Sep 20 19:37:03 2024 +0900
+
+    UPDATE : 묘비 추가
+
+[33mcommit 19c51adc5c571309bb8ac5e5d464f549646f8a79[m
+Author: CrawLing72 <caseus.molamola@gmail.com>
+Date:   Fri Sep 20 19:20:33 2024 +0900
+
+    first commit
+
+[33mcommit ecd24ef93f4f16db29102476fc64a65f61c3c89c[m
+Author: Huidong Shin <caseus.molamola@gmail.com>
+Date:   Fri Sep 20 19:16:29 2024 +0900
+
+    Initial commit

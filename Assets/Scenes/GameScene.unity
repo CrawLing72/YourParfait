@@ -3112,7 +3112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2517331005
   ObjectInterest: 1
-  Flags: 1
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 560953404}
@@ -7618,7 +7618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 376508883
   ObjectInterest: 1
-  Flags: 1
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1163930030}
@@ -10452,7 +10452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e848ed683d245e846b43d1b8ed092914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
+  attack: 10
   attackPrefeb: {fileID: 3885194144419789381, guid: 1e5056fefdc75be4493dd0abcc799eba, type: 3}
   isRedTeam: 1
 --- !u!1 &1694865477
@@ -17011,7 +17011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 3267018668
   ObjectInterest: 1
-  Flags: 1
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2027504935}
