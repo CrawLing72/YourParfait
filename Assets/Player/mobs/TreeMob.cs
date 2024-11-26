@@ -1,9 +1,11 @@
 using Fusion;
+using Spine;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,18 +50,40 @@ public class TreeMob : NetworkBehaviour, IAttack
 
         if(timer >= attackTime)
         {
-            if(target != null && target.HasStateAuthority)
+            if (target != null)
             {
-                target.GetComponent<IAttack>().GetDamage(damage);
-                timer = 0f;
-            }
-            else if (target != null && !target.HasStateAuthority)
-            {
-                NetworkObject targetObj = NetworkManager.Instance.runner.GetPlayerObject(target.StateAuthority);
-                targetObj.gameObject.GetComponent<Stat>().SetCurrentHp(targetObj.gameObject.GetComponent<Stat>().GetCurrentHp() - damage);
-                Debug.LogError(targetObj.gameObject.GetComponent<Stat>().GetCurrentHp());
-                timer = 0f;
+                NetworkObject targetObj = target.gameObject.GetComponent<NetworkObject>();
+                IAttack target_I = targetObj?.GetComponent<IAttack>();
 
+                if (targetObj != null && !targetObj.HasStateAuthority) // 본인이 마스터 클라이언트가 아닌 경우
+                {
+                    string tag = targetObj.gameObject.tag;
+                    switch (tag)
+                    {
+                        case "Player":
+                            gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, false, 0, false, 0, 0);
+                            break;
+                        default:
+                            break;
+
+                    }
+
+                }
+                else if (targetObj != null) // -> 본인이 마스터 클라이언트인 경우, 혹은 해당 Obj에 StateAuthority를 가지고 있는 경우
+                {
+                    string tag = targetObj.gameObject.tag;
+                    switch (tag)
+                    {
+                        case "Player":
+                            target_I.GetDamage(damage);
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+
+                timer = 0f;
             }
         }
 
