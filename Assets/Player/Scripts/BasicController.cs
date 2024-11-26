@@ -163,14 +163,15 @@ public class BasicController : NetworkBehaviour, IAttack
             SpawnTimer -= NetworkManager.Instance.runner.DeltaTime;
             DeadAnimTImer += NetworkManager.Instance.runner.DeltaTime;
 
-            if (isRedTeam) gameObject.transform.position = RedTeamPos;
-            else gameObject.transform.position = BlueTeamPos;
+            gameObject.transform.position = new Vector3(100, 100, 100); // Àú½ÂÀ¸·Î À¯Æó½ÃÅ°±â
 
             if (SpawnTimer < 0f)
             {
+                if (isRedTeam) gameObject.transform.position = RedTeamPos;
+                else gameObject.transform.position = BlueTeamPos;
+
                 isDead = false;
                 SpawnTimer = ReSpawnTime;
-                meshRenderer.enabled = true;
 
                 GameUIManager.instance.RootObj.SetActive(true);
                 GameUIManager.instance.Char_Face.transform.parent.gameObject.SetActive(true);
@@ -183,15 +184,19 @@ public class BasicController : NetworkBehaviour, IAttack
 
                 SettingAnimationIdle();
             }
+
             if(DeadAnimTImer > deathAnimTime)
             {
-                meshRenderer.enabled = false;
+                if(Object.HasStateAuthority) meshRenderer.enabled = false;
+                else Rpc_SetMeshRenderer(false);
                 SettingAnimationIdle();
                 isDeadAnimEnded = true;
                 DeadAnimTImer = 0f;
             }
             else if (isDeadAnimEnded == false)
             {
+                if (Object.HasStateAuthority) meshRenderer.enabled = true;
+                else Rpc_SetMeshRenderer(true);
                 AnimName = "die";
                 settingAnimation();
             }
@@ -493,5 +498,11 @@ public class BasicController : NetworkBehaviour, IAttack
     virtual protected void ApplySkillEffect()
     {
 
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void Rpc_SetMeshRenderer(bool ison)
+    {
+        meshRenderer.enabled = ison;
     }
 }
