@@ -55,8 +55,9 @@ public class TreeMob : NetworkBehaviour, IAttack
             }
             else if (target != null && !target.HasStateAuthority)
             {
-                Stat targetStat = target.GetComponent<Stat>();
-                targetStat.SetCurrentHp(targetStat.GetCurrentHp() - damage);
+                NetworkObject targetObj = NetworkManager.Instance.runner.GetPlayerObject(target.StateAuthority);
+                targetObj.gameObject.GetComponent<Stat>().SetCurrentHp(targetObj.gameObject.GetComponent<Stat>().GetCurrentHp() - damage);
+                Debug.LogError(targetObj.gameObject.GetComponent<Stat>().GetCurrentHp());
                 timer = 0f;
 
             }
