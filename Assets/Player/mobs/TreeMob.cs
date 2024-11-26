@@ -30,6 +30,11 @@ public class TreeMob : NetworkBehaviour, IAttack
     [Networked]
     private Vector3 CurrentTransform { get; set; } // 이상하게 타 클라에서 Position 안 맞는 문제 있어 수정
 
+    public override void Spawned()
+    {
+        CurrentTransform = transform.position;
+    }
+
     public void FixedUpdate()
     {
         if (isPlayerExists)
