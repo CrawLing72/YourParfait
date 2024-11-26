@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9077626899076635483}
   - component: {fileID: 4213581296843854368}
   - component: {fileID: 818126680810990254}
+  - component: {fileID: -5988469170546692114}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Mob
@@ -168,6 +169,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 9077626899076635483}
+  - {fileID: -5988469170546692114}
 --- !u!58 &818126680810990254
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -203,6 +205,22 @@ CircleCollider2D:
   m_Offset: {x: -0.010277271, y: -3.8}
   serializedVersion: 2
   m_Radius: 7.81
+--- !u!114 &-5988469170546692114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3400849112166294607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &6069861594718616587
 GameObject:
   m_ObjectHideFlags: 0
