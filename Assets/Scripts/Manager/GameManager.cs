@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public bool isRedTeam = true;
     public GameObject ClientPlayer;
 
-    public bool isGameStarted = true; // Build 때는 반드시 false로 해 놓을 것.
+    public bool isGameStarted = false; // Build 때는 반드시 false로 해 놓을 것.
     public bool isGameOvered = false;
     public bool isRedTeamWin = true;
 
@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+
+        if((NetworkManager.Instance.runner.SessionInfo.PlayerCount) > PlayerDet)
+        {
+            isGameStarted = true;
+        }
         if(gameState.GSSpawned == 1 && !isGameOvered)
         {
             GameUIManager.instance.UpdateMainBar(true);
