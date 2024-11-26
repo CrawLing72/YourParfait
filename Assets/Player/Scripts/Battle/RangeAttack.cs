@@ -41,35 +41,7 @@ public class RangeAttack : NonTargetThrow
                 {
                     case "Player":
                         gameState.Rpc_ApplyDamageAndEffects(targetObj.StateAuthority, damage, silent, silentTime, slow, slowValue, slowTime);
-                        Destroy();
-                        break;
-                    case "NPC":
-                        MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
-                        MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
-                        if (targetMinion != null)
-                        {
-                            targetMinion.Rpc_Damage(damage);
-                        }
-                        else if (targetMinion_Red != null)
-                        {
-                            targetMinion_Red.Rpc_Damage(damage);
-                        }
-                        Destroy();
-                        break;
-                    case "Mob":
-                        Mola mola = targetObj.gameObject.GetComponent<Mola>();
-                        TreeMob tree = targetObj.gameObject.GetComponent<TreeMob>();
-
-                        if (mola != null) mola.Rpc_Damage(damage);
-                        else if (tree != null) tree.Rpc_Damage(damage);
-                        Destroy();
-                        break;
-                    case "Table":
-                        CraftingTable table = targetObj.gameObject.GetComponent<CraftingTable>();
-                        if (table != null)
-                        {
-                            table.Rpc_PlusDamage(damage);
-                        }
+                        Debug.LogError(targetObj.StateAuthority);
                         Destroy();
                         break;
                     default:
@@ -85,33 +57,6 @@ public class RangeAttack : NonTargetThrow
                 {
                     case "Player":
                         target.GetDamage(damage);
-                        Destroy();
-                        break;
-                    case "NPC":
-                        MinionsAIBlue targetMinion = targetObj.GetComponent<MinionsAIBlue>();
-                        MinionsAIRed targetMinion_Red = targetObj.GetComponent<MinionsAIRed>();
-                        if (targetMinion != null)
-                        {
-                            targetMinion.HP -= damage;
-                        }
-                        else if (targetMinion_Red != null)
-                        {
-                            targetMinion_Red.HP -= damage;
-                        }
-                        Destroy();
-                        break;
-                    case "Mob":
-                        Debug.LogError("Mob Collision Detected!");
-                        Mola mola = targetObj.gameObject.GetComponent<Mola>();
-                        TreeMob tree = targetObj.gameObject.GetComponent<TreeMob>();
-
-                        if (mola != null) mola.health -= damage;
-                        else if (tree != null) tree.health -= damage;
-                        Destroy();
-                        break;
-                    case "Table":
-                        CraftingTable table = targetObj.gameObject.GetComponent<CraftingTable>();
-                        table.GetDamage(damage);
                         Destroy();
                         break;
                     default:
