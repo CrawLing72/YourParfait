@@ -2,6 +2,7 @@ using Fusion;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +27,9 @@ public class TreeMob : NetworkBehaviour, IAttack
     [Networked]
     private NetworkObject target { get; set; }
 
+    [Networked]
+    private Vector3 CurrentTransform { get; set; } // 이상하게 타 클라에서 Position 안 맞는 문제 있어 수정
+
     public void FixedUpdate()
     {
         if (isPlayerExists)
@@ -39,11 +43,18 @@ public class TreeMob : NetworkBehaviour, IAttack
         }
 
         healthBar.value = health / maxHealth;
+
+        transform.position = CurrentTransform;
     }
 
     public override void FixedUpdateNetwork()
     {
         GameState gameState = FindObjectOfType<GameState>().GetComponent<GameState>();
+
+        if (Object.HasStateAuthority)
+        {
+            CurrentTransform = transform.position;
+        }
 
         if(timer >= attackTime)
         {
