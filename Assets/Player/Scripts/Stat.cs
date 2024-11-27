@@ -11,6 +11,8 @@ public class Stat : NetworkBehaviour
     protected float maxHp, maxMp, currentHp, currentMp, speed, attackRange, attackTime, qTime, wTime, eTime,
         ad;
 
+    private float tempSpeed;
+
     [Networked]
     public int goodscount { get; set; }
 
@@ -127,5 +129,23 @@ public class Stat : NetworkBehaviour
     public void SetQTime(float setValue) { qTime = setValue; }
     public float GetAd() { return ad; }
     public void SetAd(float setValue) { ad = setValue; }
+
+    public void Stop()
+    {
+        tempSpeed = speed;
+        speed = 0;
+    }
+
+    public void Slow(float slowValue)
+    {
+        tempSpeed = speed;
+        speed = speed * slowValue;
+    }
+    public void ReMove()
+    {
+        speed = tempSpeed;
+    }
+
+
 
 }

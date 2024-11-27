@@ -15,7 +15,10 @@ public class NonTargetThrow : NetworkBehaviour
     protected float slowTime;
     protected float slowValue;
 
-    protected bool bisbondage;
+    protected bool bisbondage = false;
+    protected float bondageTime;
+
+    GameObject bondagePrefeb;
 
     bool bTeam;
 
@@ -41,6 +44,20 @@ public class NonTargetThrow : NetworkBehaviour
                 if (slow)
                 {
                     target.GetSlow(slowValue, slowTime);
+                }
+
+                if(bisbondage)
+                {
+                    target.Getbondage(bondageTime);
+                    GameObject bondage = Instantiate(bondagePrefeb);
+
+                    EffectTimer bd = bondage.GetComponent<EffectTimer>();
+                    if (bd != null)
+                    {
+                        bd.SetTime(slowTime);
+                    }
+                    bondage.transform.position = collision.transform.position;
+
                 }
             }
         }
@@ -68,5 +85,12 @@ public class NonTargetThrow : NetworkBehaviour
     public void GetTeam(bool team)
     {
         bTeam = team;
+    }
+
+    public void SetBondage(float time, GameObject gbondagePrefeb)
+    {
+        bisbondage = true;
+        bondagePrefeb = gbondagePrefeb;
+        bondageTime = time;
     }
 }

@@ -22,4 +22,9 @@ public class EffectTimer : NetworkBehaviour
     {
         NetworkManager.Instance.runner.Despawn(gameObject.GetComponent<NetworkObject>());
     }
+
+    public void SetTime(float Time)
+    {
+        time = Time;
+    }
 }

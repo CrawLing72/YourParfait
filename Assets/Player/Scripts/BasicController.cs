@@ -450,24 +450,27 @@ public class BasicController : NetworkBehaviour, IAttack
         isSilent = false;
     }
 
-    void GetSlow(float value, float time)
+    public void GetSlow(float value, float time)
     {
-
+        stat.Slow(value);
+        Invoke("OffSlow", time);
     }
+
 
     void OffSlow()
     {
-
+        stat.ReMove();
     }
 
-    void GetStop()
+    void Offbondage()
     {
-
+        stat.ReMove();
     }
 
-    void Getbondage(float time)
+    public void Getbondage(float time)
     {
-
+        stat.Stop();
+        Invoke("Offbondage", time);
     }
 
     protected void GetAdBuff(float value, float time)
