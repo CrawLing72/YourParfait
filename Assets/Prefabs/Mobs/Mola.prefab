@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 9190356543032634632}
   - component: {fileID: 1255730518088043906}
   - component: {fileID: 9045827777242109527}
+  - component: {fileID: 1139583856502793742}
   m_Layer: 0
   m_Name: Mola
   m_TagString: Mob
@@ -606,3 +607,16 @@ CircleCollider2D:
   m_Offset: {x: 0.84, y: 0.3302064}
   serializedVersion: 2
   m_Radius: 4.07
+--- !u!114 &1139583856502793742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8915906811685959212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c169529456eeb4fb057deb2eba9257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjName: Mola

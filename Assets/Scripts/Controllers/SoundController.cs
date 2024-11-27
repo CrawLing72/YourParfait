@@ -11,7 +11,6 @@ public class SoundController : MonoBehaviour
         gameObject.AddComponent<AkEvent>();
 
         _event.Post(gameObject);
-        Debug.LogError(_event.Name);
         Invoke("SelfKill", 10f);
     }
 

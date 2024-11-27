@@ -9,6 +9,10 @@ public class GameUIManager : MonoBehaviour
 
     public static GameUIManager instance;
 
+    [Header("Obj Description")]
+    public TMP_Text ObjName;
+    public TMP_Text ObjDescription;
+
     [Header("Minimap")]
     public GameObject Minimap;
 
@@ -193,4 +197,24 @@ public class GameUIManager : MonoBehaviour
     public void SetQTimer(float q_Time) { QSkillTime = q_Time; }
     public void SetETimer(float e_Time) { ESkillTime = e_Time; }
     public void SetWTimer(float w_Time) { WSkillTime = w_Time; }
+
+    public void SetObjDescription(string char_name)
+    {
+        foreach(var ObjData in DataManager.Instance.TableMob_info)
+        {
+            if ((string)ObjData["DetName"] == char_name)
+            {
+                ObjName.text = ObjData["Name"].ToString();
+                ObjDescription.text = ObjData["Description"].ToString();
+                break;
+            }
+        }
+    }
+
+    public void OffObjDescription()
+    {
+        ObjName.text = "";
+        ObjDescription.text = ""; 
+    }
 }
+

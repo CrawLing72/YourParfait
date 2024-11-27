@@ -99,6 +99,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6846541187983744123, guid: c48df1f7b4ccf6a4aa2ce02f377ad384, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3972214338488260800}
+    - targetCorrespondingSourceObject: {fileID: 6846541187983744123, guid: c48df1f7b4ccf6a4aa2ce02f377ad384, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7801066621965311743}
   m_SourcePrefab: {fileID: 100100000, guid: c48df1f7b4ccf6a4aa2ce02f377ad384, type: 3}
 --- !u!1 &4786865693871244318 stripped
 GameObject:
@@ -121,3 +124,16 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &7801066621965311743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4786865693871244318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c169529456eeb4fb057deb2eba9257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjName: Tree

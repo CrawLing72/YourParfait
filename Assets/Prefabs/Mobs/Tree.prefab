@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4213581296843854368}
   - component: {fileID: 818126680810990254}
   - component: {fileID: -5988469170546692114}
+  - component: {fileID: -9134803061253852198}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Mob
@@ -158,6 +159,7 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 8f61697bc5b78b047aa673b280b9d7f0, type: 2}
   SoundObject: {fileID: 3758922449049788596, guid: d1378ffecd75cb34ab1283889bfb8b75, type: 3}
+  huhTime: 5
   _health: 200
   maxHealth: 200
 --- !u!114 &4213581296843854368
@@ -230,6 +232,19 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &-9134803061253852198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3400849112166294607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c169529456eeb4fb057deb2eba9257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjName: Tree
 --- !u!1 &6069861594718616587
 GameObject:
   m_ObjectHideFlags: 0

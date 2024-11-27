@@ -127,6 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8b4f32a5e31ed41aa81a4630a7dffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDamage: 1000
+  isRedTeam: 1
+  maximumGoodsCount: 20
+  slider: {fileID: 0}
+  goodsText: {fileID: 0}
 --- !u!61 &8384886363340552539
 BoxCollider2D:
   m_ObjectHideFlags: 0

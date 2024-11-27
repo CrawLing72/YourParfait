@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class DataManager : MonoBehaviour
 {
     public List<Dictionary<string, object>> Character_info;
+    public List<Dictionary<string, object>> TableMob_info;
     public bool isLogined;
     public string JWTToken;
     public string username;
@@ -53,5 +54,6 @@ public class DataManager : MonoBehaviour
     private void Start()
     {
         Character_info = CSVReader.Read("CharacterInfo");
+        TableMob_info = CSVReader.Read("TableMobInfo");
     }
 }

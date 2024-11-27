@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - Table
   - Mob
+  - Factory
   layers:
   - Default
   - TransparentFX

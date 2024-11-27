@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7239180926645782613}
   - component: {fileID: -7691244974867445882}
   - component: {fileID: 6494628795982907696}
+  - component: {fileID: -1373254163418715380}
   - component: {fileID: 4361167322597897731}
   m_Layer: 10
   m_Name: MinionBlue
@@ -241,6 +242,19 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &-1373254163418715380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2221377648923725135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c169529456eeb4fb057deb2eba9257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjName: Caseus
 --- !u!114 &4361167322597897731
 MonoBehaviour:
   m_ObjectHideFlags: 0
