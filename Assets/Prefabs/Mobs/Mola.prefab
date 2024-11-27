@@ -564,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 10
   healthBar: {fileID: 7826047626510288721}
-  huhTime: 5
+  huhTime: 10
   SoundObject: {fileID: 3758922449049788596, guid: d1378ffecd75cb34ab1283889bfb8b75, type: 3}
   SoundEvent:
     idInternal: 0

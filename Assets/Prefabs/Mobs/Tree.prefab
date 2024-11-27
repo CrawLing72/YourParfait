@@ -159,7 +159,7 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 8f61697bc5b78b047aa673b280b9d7f0, type: 2}
   SoundObject: {fileID: 3758922449049788596, guid: d1378ffecd75cb34ab1283889bfb8b75, type: 3}
-  huhTime: 5
+  huhTime: 10
   _health: 200
   maxHealth: 200
 --- !u!114 &4213581296843854368
