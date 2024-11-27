@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 5930548470518256209}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7292753780184634700
 MeshFilter:
@@ -149,6 +149,15 @@ MonoBehaviour:
   attackTime: 1.4
   skeletonAnimation: {fileID: 6734989044871368567}
   damage: 50
+  idleEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7825eb1b60331fa4cbafc8106bf2ff55, type: 2}
+  attackEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8f61697bc5b78b047aa673b280b9d7f0, type: 2}
+  SoundObject: {fileID: 3758922449049788596, guid: d1378ffecd75cb34ab1283889bfb8b75, type: 3}
   _health: 200
   maxHealth: 200
 --- !u!114 &4213581296843854368

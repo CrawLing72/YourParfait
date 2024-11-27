@@ -2,44 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using AK.Wwise;
 
 public class GameSoundManager : MonoBehaviour
 {
     public static GameSoundManager instance;
 
-    [Header ("AudioSources")]
-    public AudioSource UI_Source;
-    public AudioSource BGM_Source;
-    public AudioSource Voice_Source;
-    public AudioSource Effect_Source;
+    public AK.Wwise.Event BGM_Event;
+    public AK.Wwise.Event Click_Event;
+    public AK.Wwise.Event Confirm_Event;
 
-    [Header ("AudioClips")]
-    public AudioClip[] Clicke_Effects;
-    public AudioClip[] BGMS;
-    
-    public void onClick()
+    public void onClick(bool isClick)
     {
-        UI_Source.clip = Clicke_Effects[Random.Range(0, Clicke_Effects.Length)];
-        UI_Source.Play();
+        if(isClick)
+        {
+            Click_Event.Post(gameObject);
+        }
+        else
+        {
+            Confirm_Event.Post(gameObject);
+        }
     }
     
     public void stopPlayingBGM()
     {
-        BGM_Source.Stop();
+        BGM_Event.Stop(gameObject);
     }
 
     public void startPlayingBGM()
     {
-        BGM_Source.clip = BGMS[Random.Range(0, BGMS.Length)];
-        BGM_Source.Play();
-    }
-
-    private void Update()
-    {
-        if (!BGM_Source.isPlaying)
-        {
-            startPlayingBGM();
-        }
+        BGM_Event.Post(gameObject);
     }
     void Awake()
     {

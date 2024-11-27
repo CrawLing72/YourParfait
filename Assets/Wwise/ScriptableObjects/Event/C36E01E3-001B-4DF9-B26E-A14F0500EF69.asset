@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d06ffb89028e9f44869348c40308e34, type: 3}
+  m_Name: C36E01E3-001B-4DF9-B26E-A14F0500EF69
+  m_EditorClassIdentifier: 
+  objectName: Tree_Attack
+  id: 1529788032
+  guid: C36E01E3-001B-4DF9-B26E-A14F0500EF69
+  IsInUserDefinedSoundBank: 1
+  IsAutoBankLoaded: 0

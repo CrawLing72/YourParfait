@@ -57,6 +57,9 @@ public class SelenaController : BasicController, IAttack
 
             Invoke("OffShild", 5);
             currentWTime = stat.GetWTime();
+
+            if(Object.HasStateAuthority) SpawnSoundPrefab("W");
+            else Rpc_Sound("W");
         }
     }
 
@@ -86,6 +89,9 @@ public class SelenaController : BasicController, IAttack
                 currentETime = stat.GetETime();
                 AnimName = "AtribinJoint";
                 Invoke("SettingAnimationIdle", 1.33f);
+
+                if(Object.HasStateAuthority) SpawnSoundPrefab("E");
+                else Rpc_Sound("E");
 
             }
             else
@@ -119,6 +125,9 @@ public class SelenaController : BasicController, IAttack
                 currentETime = stat.GetQTime();
                 AnimName = "AtribinJoint";
                 Invoke("SettingAnimationIdle", 1.33f);
+
+                if(Object.HasStateAuthority) SpawnSoundPrefab("Q");
+                else Rpc_Sound("Q");
 
             }
             else
@@ -155,6 +164,8 @@ public class SelenaController : BasicController, IAttack
                 qIsOn = false;
 
                 skillQPreFeb.SetActive(qIsOn);
+
+                SpawnSoundPrefab("BAK");
 
             }
         }

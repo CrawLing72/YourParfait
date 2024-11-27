@@ -419,7 +419,7 @@ Transform:
   m_Children:
   - {fileID: 2820126135861149180}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2445503262925940297
 MeshFilter:
@@ -563,6 +563,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 10
   healthBar: {fileID: 7826047626510288721}
+  huhTime: 5
+  SoundObject: {fileID: 3758922449049788596, guid: d1378ffecd75cb34ab1283889bfb8b75, type: 3}
+  SoundEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 652e235f97053d3499d8656b3234d5ec, type: 2}
   _health: 200
   maxHealth: 200
 --- !u!58 &9045827777242109527

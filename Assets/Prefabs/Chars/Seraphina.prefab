@@ -40,7 +40,7 @@ Transform:
   - {fileID: 7729445684317839771}
   - {fileID: 6184867837353565681}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3552752287648522537
 MonoBehaviour:
@@ -199,6 +199,36 @@ MonoBehaviour:
   ReSpawnTime: 30
   deathAnimTime: 1
   meshRenderer: {fileID: 8398504614470041437}
+  BAK:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c78bb97e4c9bedc4babfe654746f03ab, type: 2}
+  BAK_Close:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 00bf57a11cccb0045bf1f705fff15df0, type: 2}
+  Qskill:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6f1cf659b8ac918459bf7fa0c11010d4, type: 2}
+  Wskill:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 61a00956a5ebd6540b59a9000900848e, type: 2}
+  Eskill:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b6bd882fc5d99404386666324873a25b, type: 2}
+  Dead:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8ee41d4a1cca39942a4d4abe34e20b5a, type: 2}
+  SoundPrefab: {fileID: 3758922449049788596, guid: d1378ffecd75cb34ab1283889bfb8b75, type: 3}
+  RunGround:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 83b09a4df3113ff4e85a40d564df3a0e, type: 2}
+  WalkingTime: 1
 --- !u!58 &4569934555998255407
 CircleCollider2D:
   m_ObjectHideFlags: 0

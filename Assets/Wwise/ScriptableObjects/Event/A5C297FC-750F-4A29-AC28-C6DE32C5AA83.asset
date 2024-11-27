@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d06ffb89028e9f44869348c40308e34, type: 3}
+  m_Name: A5C297FC-750F-4A29-AC28-C6DE32C5AA83
+  m_EditorClassIdentifier: 
+  objectName: Dead
+  id: 2044049779
+  guid: A5C297FC-750F-4A29-AC28-C6DE32C5AA83
+  IsInUserDefinedSoundBank: 1
+  IsAutoBankLoaded: 0

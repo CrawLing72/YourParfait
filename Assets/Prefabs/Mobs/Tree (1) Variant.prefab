@@ -8,9 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2310392535974691691, guid: c48df1f7b4ccf6a4aa2ce02f377ad384, type: 3}
+      propertyPath: SoundObject
+      value: 
+      objectReference: {fileID: 3758922449049788596, guid: d1378ffecd75cb34ab1283889bfb8b75, type: 3}
+    - target: {fileID: 2310392535974691691, guid: c48df1f7b4ccf6a4aa2ce02f377ad384, type: 3}
+      propertyPath: idleEvent.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 7825eb1b60331fa4cbafc8106bf2ff55, type: 2}
+    - target: {fileID: 2310392535974691691, guid: c48df1f7b4ccf6a4aa2ce02f377ad384, type: 3}
+      propertyPath: attackEvent.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f61697bc5b78b047aa673b280b9d7f0, type: 2}
     - target: {fileID: 2513669809045014854, guid: c48df1f7b4ccf6a4aa2ce02f377ad384, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2513669809045014854, guid: c48df1f7b4ccf6a4aa2ce02f377ad384, type: 3}
       propertyPath: m_LocalPosition.x

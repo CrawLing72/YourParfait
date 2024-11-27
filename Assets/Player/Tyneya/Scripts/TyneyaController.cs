@@ -1,3 +1,4 @@
+using AK.Wwise;
 using Fusion;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,6 +39,9 @@ public class TyneyaController : BasicController, IAttack
                 Invoke("DestroyParticle", 1.5f);
                 isWAble = false;
                 currentWTime = stat.GetWTime();
+
+                if (Object.HasStateAuthority) SpawnSoundPrefab("W");
+                else Rpc_Sound("W");
             }
         }
     }
@@ -58,6 +62,9 @@ public class TyneyaController : BasicController, IAttack
             currentETime = stat.GetETime();
 
             Attack2();
+
+            if(Object.HasStateAuthority) SpawnSoundPrefab("E");
+            else SpawnSoundPrefab("E");
         }
     }
 
@@ -74,6 +81,9 @@ public class TyneyaController : BasicController, IAttack
 
             isQAble = false;
             currentQTime = stat.GetQTime();
+
+            if(Object.HasStateAuthority) SpawnSoundPrefab("Q");
+            else SpawnSoundPrefab("Q");
         }
     }
 
@@ -101,6 +111,8 @@ public class TyneyaController : BasicController, IAttack
             Vector3 interpolation = new Vector3(xinterpolation, 1f, 0);
             NetworkObject obj = NetworkManager.Instance.runner.Spawn(BasicAttack, CurrenPosition - interpolation, Quaternion.identity, NetworkManager.Instance.runner.LocalPlayer);
 
+            BAK_Close.Post(gameObject);
+
             if (isRedTeam) obj.gameObject.GetComponent<FrontSkill>().hitCollider_polygon.excludeLayers = LayerMask.GetMask("RedTeam");
             else obj.gameObject.GetComponent<FrontSkill>().hitCollider_polygon.excludeLayers = LayerMask.GetMask("BlueTeam");
 
@@ -118,6 +130,9 @@ public class TyneyaController : BasicController, IAttack
             Invoke("SettingAnimationIdle", 1.2f);
 
             Invoke("DestroyParticle", 1.2f);
+
+            if(Object.HasStateAuthority) SpawnSoundPrefab("BAK_Close");
+            else SpawnSoundPrefab("BAK_Close");
 
         }
     }

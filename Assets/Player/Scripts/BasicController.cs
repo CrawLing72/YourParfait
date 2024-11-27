@@ -5,7 +5,8 @@ using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+using AK.Wwise;
+
 
 public class BasicController : NetworkBehaviour, IAttack
 {
@@ -90,6 +91,21 @@ public class BasicController : NetworkBehaviour, IAttack
 
     private bool isDeadAnimEnded = false;
 
+    [Header("Sound Property")]
+    public AK.Wwise.Event BAK;
+    public AK.Wwise.Event BAK_Close;
+    public AK.Wwise.Event Qskill;
+    public AK.Wwise.Event Wskill;
+    public AK.Wwise.Event Eskill;
+    public AK.Wwise.Event Dead;
+    public GameObject SoundPrefab;
+    public AK.Wwise.Event RunGround;
+    public float WalkingTime = 0.1f;
+
+    protected void Update()
+    {
+        WalkingTime -= Time.deltaTime;
+    }
     private void FixCameraToObject()
     {
 
@@ -365,6 +381,9 @@ public class BasicController : NetworkBehaviour, IAttack
 
                     isAttackAble = false;
                     currentAttackTime = stat.GetAttackTime();
+
+                    if(Object.HasStateAuthority) SpawnSoundPrefab("BAK");
+                    else Rpc_Sound("BAK_Close");
                 }
            }
     }
@@ -399,6 +418,12 @@ public class BasicController : NetworkBehaviour, IAttack
             if(rb.velocity.magnitude > 0)
             {
                 CurrentAnimation = "walking";
+                if(WalkingTime < 0)
+                {
+                    if(Object.HasStateAuthority) SpawnSoundPrefab("RunGround");
+                    WalkingTime = 1f;
+                }
+                
             }
             else
             {
@@ -512,11 +537,74 @@ public class BasicController : NetworkBehaviour, IAttack
 
     }
 
+    virtual protected void SpawnSoundPrefab(string keyword)
+    {
+        AK.Wwise.Event sound = null;
+        switch(keyword)
+        {
+            case "Q":
+                sound = Qskill;
+                break;
+            case "W":
+                sound = Wskill;
+                break;
+            case "E":
+                sound = Eskill;
+                break;
+            case "Dead":
+                sound = Dead;
+                break;
+            case "BAK_Close":
+                sound = BAK_Close;
+                break;
+            case "BAK":
+                sound = BAK;
+                break;
+            case "RunGround":
+                sound = RunGround;
+                break;
+        }
+
+        GameObject sp = Instantiate(SoundPrefab, gameObject.transform.position, Quaternion.identity);
+        sp.GetComponent<SoundController>().PlaySound(sound);
+        
+
+    }
+
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void Rpc_SetMeshRenderer(bool ison)
     {
         meshRenderer.enabled = ison;
     }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void Rpc_Sound(string keyword)
+    {
+        switch (keyword)
+        {
+            case "Q":
+                SpawnSoundPrefab("Q");
+                break;
+            case "W":
+                SpawnSoundPrefab("W");
+                break;
+            case "E":
+                SpawnSoundPrefab("E");
+                break;
+            case "Dead":
+                SpawnSoundPrefab("Dead");
+                break;
+            case "BAK_Close":
+                SpawnSoundPrefab("BAK_Close");
+                break;
+            case "BAK":
+                SpawnSoundPrefab("BAK");
+                break;
+        }
+    }
+
+
+
     protected void FixedUpdate()
     {
         FixCameraToObject();

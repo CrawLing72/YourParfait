@@ -32,6 +32,9 @@ public class RainykController : BasicController, IAttack
                 Invoke("DestroyParticle", 1.0f);
                 isWAble = false;
                 currentWTime = stat.GetWTime();
+
+                if (Object.HasStateAuthority) SpawnSoundPrefab("W");
+                else Rpc_Sound("W");
             }
         }
     }
@@ -68,6 +71,9 @@ public class RainykController : BasicController, IAttack
                 isEAble = false;
                 currentETime = stat.GetETime();
 
+                if (Object.HasStateAuthority) SpawnSoundPrefab("E");
+                else Rpc_Sound("E");
+
             }
         }
     }
@@ -103,6 +109,9 @@ public class RainykController : BasicController, IAttack
                 Invoke("DestroyParticle", 1.66f);
                 isQAble = false;
                 currentETime = stat.GetQTime();
+
+                if (Object.HasStateAuthority) SpawnSoundPrefab("Q");
+                else Rpc_Sound("Q");
             }
         }
     }
@@ -164,6 +173,8 @@ public class RainykController : BasicController, IAttack
 
                 qIsOn = false;
                 skillQPreFeb.SetActive(qIsOn);
+
+                SpawnSoundPrefab("BAK");
 
             }
         }

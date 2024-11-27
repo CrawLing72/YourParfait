@@ -18,6 +18,12 @@ public class TreeMob : NetworkBehaviour, IAttack
     public SkeletonAnimation skeletonAnimation;
     public float damage = 20f;
 
+    public AK.Wwise.Event idleEvent;
+    public AK.Wwise.Event attackEvent;
+    public GameObject SoundObject;
+
+    public float huhTime = 5f;
+
     [Networked]
     public float health { get; set; } = 200f;
     public float maxHealth = 200f;
@@ -33,12 +39,27 @@ public class TreeMob : NetworkBehaviour, IAttack
     {
         if (isPlayerExists)
         {
-            timer += NetworkManager.Instance.runner.DeltaTime;
+            timer += Time.deltaTime;
             skeletonAnimation.AnimationName = "attack 2";
+            if(timer >= attackTime)
+            {
+                GameObject obj = Instantiate(SoundObject, transform.position, Quaternion.identity);
+                SoundController sound = obj.GetComponent<SoundController>();
+                sound.PlaySound(attackEvent);
+                timer = 0f;
+            }
         }
         else
         {
+           timer += Time.deltaTime;
             skeletonAnimation.AnimationName = "idle";
+            if (timer >= huhTime)
+            {
+                GameObject obj = Instantiate(SoundObject, transform.position, Quaternion.identity);
+                SoundController sound = obj.GetComponent<SoundController>();
+                sound.PlaySound(idleEvent);
+                timer = 0f;
+            }
         }
 
         healthBar.value = health / maxHealth;

@@ -31,6 +31,9 @@ public class SeraphinaController : BasicController, IAttack
                 Invoke("DestroyParticle", 1.5f);
                 isWAble = false;
                 currentWTime = stat.GetWTime();
+
+                if (Object.HasStateAuthority) SpawnSoundPrefab("W");
+                else Rpc_Sound("W");
             }
         }
     }
@@ -58,6 +61,9 @@ public class SeraphinaController : BasicController, IAttack
                 isEAble = false;
                 currentETime = stat.GetETime();
 
+                if (Object.HasStateAuthority) SpawnSoundPrefab("E");
+                else Rpc_Sound("E");
+
             }
         }
     }
@@ -84,6 +90,9 @@ public class SeraphinaController : BasicController, IAttack
                 Invoke("DestroyParticle", 1.2f);
                 isQAble = false;
                 currentETime = stat.GetQTime();
+
+                if(Object.HasStateAuthority) SpawnSoundPrefab("Q");
+                else Rpc_Sound("Q");
             }
         }
     }
@@ -134,6 +143,7 @@ public class SeraphinaController : BasicController, IAttack
                 qIsOn = false;
                 skillQPreFeb.SetActive(qIsOn);
 
+                SpawnSoundPrefab("BAK");
             }
         }
         else

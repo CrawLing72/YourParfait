@@ -32,12 +32,14 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         logginMenu.SetActive(true);
+        GameSoundManager.instance.onClick(true);
     }
 
     public void DeactivateLoginMenu()
     {
         mainMenu.SetActive(true);
         logginMenu.SetActive(false);
+        GameSoundManager.instance.onClick(true);
     }
 
     public async void sendLogginData()

@@ -39,6 +39,7 @@ public class CraftingTable : NetworkBehaviour, IAttack
     public override void Spawned()
     {
         isSecondStage = false;
+        isSpawned = true;
         goods_count = 0;
         totalDamage = 0f;
     }

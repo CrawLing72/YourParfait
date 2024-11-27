@@ -9,6 +9,9 @@ public class Mola : NetworkBehaviour, IAttack
     [Header("Properties")]
     public int coins;
     public Slider healthBar;
+    public float huhTime = 5f;
+    public GameObject SoundObject;
+    public AK.Wwise.Event SoundEvent;
 
     [Networked]
     public float health { get; set; } = 200f;
@@ -22,9 +25,17 @@ public class Mola : NetworkBehaviour, IAttack
         }
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         healthBar.value = health / maxHealth;
+        huhTime -= Time.deltaTime;
+        if(huhTime <= 0)
+        {
+            huhTime = 5f;
+            GameObject obj = Instantiate(SoundObject, transform.position, Quaternion.identity);
+            SoundController sound = obj.GetComponent<SoundController>();
+            sound.PlaySound(SoundEvent);
+        }
     }
 
 
